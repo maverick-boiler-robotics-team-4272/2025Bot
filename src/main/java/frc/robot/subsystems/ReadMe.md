@@ -15,8 +15,11 @@ Carl Lee Landskron
 ## Dev Team
 Andrew 'Andy' Lohr </br>
 Elliott Menon </br>
-Gracien </br>
-Edi
+Graycen </br>
+Edi Lazar
+
+## Addition Mentors
+Nelu Lazar
 
 ### Resources
 [WPILIB Subsystems](https://docs.wpilib.org/en/stable/docs/software/commandbased/subsystems.html)
