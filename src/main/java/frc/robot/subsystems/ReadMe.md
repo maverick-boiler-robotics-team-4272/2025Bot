@@ -45,7 +45,9 @@ Swerve Drive Specialties MK4i using </br>
 UnderDev
 
 ## Hardware
-TODO update with the hardware
+2 Neo Vortexs //Todo: Add gear ratio
+
+1 Lasercan for Coral Detection
 
 # Armivator
 UnderDev
@@ -54,7 +56,15 @@ UnderDev
 UnderDev
 
 ## Hardware
-UnderDev
+2 Neos Vortexs for lift #TODO: Add Gear ratio
+
+1 Neo Vortex for Arm #TODO: Add Gear ratio
+
+1 Mavcoder plugged into the arm motor for rotation
+
+1 Limit Switch plugged into Neo Vortex for Elevator
+
+
 # Climber
 UnderDev
 
@@ -63,7 +73,9 @@ UnderDev
 UnderDev
 
 ## Hardware
-UnderDev
+1 Neo Vortex #TODO: Add rotation
+
+1 Mavcoder for Rotation plugged
 
 # Manipulator
 UnderDev
@@ -72,7 +84,8 @@ UnderDev
 UnderDev
 
 ## Hardware
-UnderDev
+2 Neo Vortexs
+
 
 
 
