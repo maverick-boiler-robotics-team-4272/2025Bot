@@ -15,7 +15,7 @@ Carl Lee Landskron
 ## Dev Team
 Andrew 'Andy' Lohr </br>
 Elliott Menon </br>
-Graycen </br>
+Grayson </br>
 Edi Lazar
 
 ## Addition Mentors
