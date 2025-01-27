@@ -6,6 +6,8 @@ import java.util.function.Supplier;
 
 import org.littletonrobotics.junction.AutoLog;
 import org.littletonrobotics.junction.Logger;
+import org.littletonrobotics.junction.inputs.LoggableInputs;
+
 import com.ctre.phoenix6.SignalLogger;
 import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.swerve.SwerveDrivetrainConstants;
@@ -53,7 +55,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     }
 
     // Logging inputs
-    DrivetrainInputsAutoLogged inputs = new DrivetrainInputsAutoLogged();
+    private DrivetrainInputs inputs;
 
     private void initInputs() {
         inputs.distanceTraveled = 0.0;
@@ -295,7 +297,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     
     @Override
     public void log(String subdirectory, String humanReadableName) {
-        Logger.processInputs(subdirectory + "/" + humanReadableName, inputs);
+        Logger.processInputs(subdirectory + "/" + humanReadableName, (LoggableInputs) inputs);
     }
 
     @Override
