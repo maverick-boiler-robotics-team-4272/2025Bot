@@ -53,6 +53,8 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     }
 
     // Logging inputs
+    private DrivetrainInputsAutoLogged drivetrainInputs;
+    drivetrainInputs = new DrivetrainInputsAutoLogged();
     DrivetrainInputsAutoLogged inputs = new DrivetrainInputsAutoLogged();
 
     private void initInputs() {
