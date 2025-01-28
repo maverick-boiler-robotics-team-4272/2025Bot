@@ -7,16 +7,23 @@ public class Manipulator extends SubsystemBase {
     private final Vortex motor;
 
     public Manipulator() {
-        motor = new Vortex(0);
 
+    private Inputs inputs = new Inputs();
+
+    private ManiMotor maniMotor = new DropperMotor();
+
+    public void setPower(double power) {
+        inputs.maniPower = power;
+        maniMotor.set(power);
     }
 
-    public void setSpeed(double speed) {
-        motor.set(speed);
+    private class Inputs {
+        public double maniMotor;
     }
 
-    public void stop() {
-        motor.stopMotor();
+    private class DropperMotor {
+        public void set(double power) {
+        }
+        
     }
-    
 }
