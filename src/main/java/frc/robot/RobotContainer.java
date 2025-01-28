@@ -14,6 +14,8 @@ import frc.robot.constants.SubsystemConstants;
 import frc.robot.constants.TunerConstants;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
 import frc.robot.subsystems.drivetrain.states.DriveState;
+import frc.robot.subsystems.manipulator.states.AlgaeMani;
+import frc.robot.subsystems.manipulator.states.CoralMani;
 
 public class RobotContainer {
     private ShuffleboardTab autoTab;
@@ -48,6 +50,10 @@ public class RobotContainer {
 
         // reset the field-centric heading on left bumper press
         joystick.leftBumper().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
+
+
+        //joystick.rightBumper().whileTrue(new AlgaeMani(manipulator));
+
 
         drivetrain.registerTelemetry(logger::telemeterize);
     }

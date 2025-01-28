@@ -4,26 +4,19 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.utils.hardware.Vortex;
 
 public class Manipulator extends SubsystemBase {
-    private final Vortex motor;
+    public final Vortex motor1;
+    public final Vortex motor2;
 
     public Manipulator() {
-
-    private Inputs inputs = new Inputs();
-
-    private ManiMotor maniMotor = new DropperMotor();
+        motor1 = new Vortex(1);
+        motor2 = new Vortex(2);
+    }
 
     public void setPower(double power) {
-        inputs.maniPower = power;
-        maniMotor.set(power);
+        motor1.set(power);
+        motor2.set(power);
     }
 
-    private class Inputs {
-        public double maniMotor;
-    }
 
-    private class DropperMotor {
-        public void set(double power) {
-        }
-        
-    }
 }
+
