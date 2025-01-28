@@ -30,7 +30,7 @@ public class SubsystemConstants {
             public static final double ROTATION_D = 0.0;
         }
 
-        public class TeleConstants {
+        public static class TeleConstants {
             public static final double MAX_TRANSLATION = kSpeedAt12Volts.in(MetersPerSecond);
             public static final double MAX_ANGULAR = RotationsPerSecond.of(0.75).in(RadiansPerSecond);
         }
@@ -48,5 +48,11 @@ public class SubsystemConstants {
             )
         );
         public static Limelight FRONT_LIMELIGHT = new Limelight("limelight-front");
+    }
+
+    public static class ArmevatorConstants {
+        public static final int CURRENT_LIMIT_ELEVATOR_MOTORS = 50;
+        public static final int CURRENT_LIMIT_ARM_MOTOR = 50;
+        public static final int NOMINAL_VOLTAGE = 50;
     }
 }
