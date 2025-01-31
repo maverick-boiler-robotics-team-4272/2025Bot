@@ -12,10 +12,9 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.constants.SubsystemConstants;
 import frc.robot.constants.TunerConstants;
+import frc.robot.subsystems.algaeManipulator.states.AlgaeIntake;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
 import frc.robot.subsystems.drivetrain.states.DriveState;
-import frc.robot.subsystems.manipulator.states.AlgaeMani;
-import frc.robot.subsystems.manipulator.states.CoralMani;
 
 public class RobotContainer {
     private ShuffleboardTab autoTab;
