@@ -12,12 +12,9 @@ import frc.robot.utils.hardware.VortexBuilder;
 
 public class AlgaeSubsystem extends SubsystemBase {
     private SparkFlex algaeControllerMotor;
-    final int ALGAE_MOTOR_ID = 2;
-    final int NOMINAL_VOLTAGE = 12;
 
     public AlgaeSubsystem() {
         algaeControllerMotor = VortexBuilder.create(ALGAE_MOTOR_ID)
-            .withVoltageCompensation(NOMINAL_VOLTAGE)
             .withInversion(false)
             .withCurrentLimit(80)
             .withIdleMode(IdleMode.kBrake)

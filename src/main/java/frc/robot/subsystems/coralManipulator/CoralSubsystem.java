@@ -12,12 +12,9 @@ import frc.robot.utils.hardware.VortexBuilder;
 
 public class CoralSubsystem extends SubsystemBase {
     private SparkFlex coralControllerMotor;
-    final int CORAL_MOTOR_ID = 2;
-    final int NOMINAL_VOLTAGE = 12;
 
     public CoralSubsystem() {
         coralControllerMotor = VortexBuilder.create(CORAL_MOTOR_ID)
-            .withVoltageCompensation(NOMINAL_VOLTAGE)
             .withInversion(false)
             .withCurrentLimit(80)
             .withIdleMode(IdleMode.kBrake)

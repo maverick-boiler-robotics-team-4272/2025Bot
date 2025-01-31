@@ -51,7 +51,7 @@ public class RobotContainer {
         joystick.leftBumper().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
 
 
-        //joystick.rightBumper().whileTrue(new AlgaeMani(manipulator));
+        //joystick.rightBumper().whileTrue(new AlgaeIntake(algaeManipulator));
 
 
         drivetrain.registerTelemetry(logger::telemeterize);
