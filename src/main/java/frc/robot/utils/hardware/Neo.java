@@ -22,6 +22,14 @@ public class Neo extends SparkMax implements Loggable {
         super(id, MotorType.kBrushless);
     }
 
+    public void setReference(double reference, ControlType controlType) {
+        getClosedLoopController().setReference(reference, controlType);
+    }
+
+    public void setReference(double reference) {
+        setReference(reference, ControlType.kPosition);
+    }
+
     @Override
     public void log(String subdirectory, String humanReadableName) {
         Logger.processInputs(subdirectory + "/" + humanReadableName, inputs);
