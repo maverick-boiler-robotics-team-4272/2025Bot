@@ -4,27 +4,24 @@
 
 package frc.robot.subsystems.armevator.States;
 
-import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.constants.positions.ArmevatorPosition;
 import frc.robot.subsystems.armevator.Armevator;
+import frc.robot.utils.commandUtils.State;
 
 /* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
-public class GoToPos extends Command {
+public class GoToArmevatorPoseState extends State<Armevator> {
   /** Creates a new GoToPos. */
   private ArmevatorPosition position;
-  private Armevator armevator;
    
-  public GoToPos(ArmevatorPosition position, Armevator armevator) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(armevator);
+  public GoToArmevatorPoseState(Armevator armevator, ArmevatorPosition position) {
+    super(armevator);
     this.position = position;
-    this.armevator = armevator;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    armevator.goToPos(position);
+    requiredSubsystem.goToPos(position);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

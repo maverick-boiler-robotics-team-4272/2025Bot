@@ -66,5 +66,8 @@ public class SubsystemConstants {
         public static final int CURRENT_LIMIT_ELEVATOR_MOTORS = 50;
         public static final int CURRENT_LIMIT_ARM_MOTOR = 50;
         public static final int NOMINAL_VOLTAGE = 50;
+
+        public static final double ELEVATOR_GEAR_RATIO = 1.055544;
+        public static final double ARM_GEAR_RATIO = 1 / 58.7755;
     }
 }

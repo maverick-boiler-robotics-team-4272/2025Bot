@@ -12,7 +12,11 @@ public class HardwareMap {
     // Feeder
     public static final int FEEDER_MOTOR_ID = 0;
     
-    public static final int BASE_ARMEVATOR_MOTOR_1 = 22;
-    public static final int BASE_ARMEVATOR_MOTOR_2 = 32;
-    public static final int ARM_MOTOR = 35;
+    // Elevator motors
+    public static final int BASE_ARMEVATOR_MOTOR_1 = 21;
+    public static final int BASE_ARMEVATOR_MOTOR_2 = 22;
+    
+    //Arm motors
+    public static final int ARM_MOTOR_1 = 23;
+    public static final int ARM_MOTOR_2 = 24;
 }
