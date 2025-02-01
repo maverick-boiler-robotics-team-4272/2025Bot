@@ -1,5 +1,7 @@
 package frc.robot.constants;
 
+import static edu.wpi.first.units.Units.Feet;
+import static edu.wpi.first.units.Units.Meters;
 import static edu.wpi.first.units.Units.MetersPerSecond;
 import static edu.wpi.first.units.Units.RadiansPerSecond;
 import static edu.wpi.first.units.Units.RotationsPerSecond;
@@ -63,11 +65,14 @@ public class SubsystemConstants {
     }
 
     public static class ArmevatorConstants {
-        public static final int CURRENT_LIMIT_ELEVATOR_MOTORS = 50;
-        public static final int CURRENT_LIMIT_ARM_MOTOR = 50;
-        public static final int NOMINAL_VOLTAGE = 50;
+        public static final int CURRENT_LIMIT_ELEVATOR_MOTORS = 40;
+        public static final int CURRENT_LIMIT_ARM_MOTOR = 40;
+        public static final int NOMINAL_VOLTAGE = 12;
 
         public static final double ELEVATOR_GEAR_RATIO = 1.055544;
-        public static final double ARM_GEAR_RATIO = 1 / 58.7755;
+        public static final double ARM_GEAR_RATIO = 1.0 / 58.7755;
+
+        public static final double ARM_FEEDFORWARD = 0.0;
+        public static final double MAX_ELEVATOR_HEIGHT = Meters.convertFrom(6, Feet);
     }
 }

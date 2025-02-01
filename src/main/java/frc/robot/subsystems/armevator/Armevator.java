@@ -12,7 +12,8 @@ import static frc.robot.constants.SubsystemConstants.ArmevatorConstants.*;
 import frc.robot.constants.positions.ArmevatorPosition;
 
 public class Armevator extends SubsystemBase{
-    private Vortex elevatorMotor1;    
+    private Vortex elevatorMotor1; 
+    @SuppressWarnings("unused")
     private Vortex elevatorMotor2;
     private Vortex armMotor1;
     private Vortex armMotor2;
@@ -53,7 +54,6 @@ public class Armevator extends SubsystemBase{
             .build();
     }
 
-    //TODO: implement method
     public void goToPos(ArmevatorPosition position) {
         desiredElevatorHeight = position.getElevatorHeight();
         desiredArmRotation = position.getArmAngle();
