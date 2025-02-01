@@ -16,6 +16,7 @@ public class Armevator extends SubsystemBase{
     @SuppressWarnings("unused")
     private Vortex elevatorMotor2;
     private Vortex armMotor1;
+    @SuppressWarnings("unused")
     private Vortex armMotor2;
 
     private double desiredElevatorHeight;
