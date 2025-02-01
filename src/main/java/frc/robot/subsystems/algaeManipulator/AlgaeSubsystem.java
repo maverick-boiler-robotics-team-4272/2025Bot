@@ -4,14 +4,13 @@ package frc.robot.subsystems.algaeManipulator;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.constants.HardwareMap.*;
 
-import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 
 import frc.robot.utils.hardware.VortexBuilder;
 
 public class AlgaeSubsystem extends SubsystemBase {
-    private SparkFlex algaeControllerMotor;
+    private Vortex algaeControllerMotor;
 
     public AlgaeSubsystem() {
         algaeControllerMotor = VortexBuilder.create(ALGAE_MOTOR_ID)
