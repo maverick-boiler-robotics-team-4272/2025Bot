@@ -49,7 +49,7 @@ UnderDev
 
 1 Lasercan for Coral Detection
 
-# Armivator
+# Armevator
 UnderDev
 
 ## States

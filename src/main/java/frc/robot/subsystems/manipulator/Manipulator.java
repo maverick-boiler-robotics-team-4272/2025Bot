@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.utils.hardware.Vortex;
 
 public class Manipulator extends SubsystemBase {
-  /*   private final Vortex motor;
+     private final Vortex motor;
 
     public Manipulator() {
 
@@ -25,5 +25,5 @@ public class Manipulator extends SubsystemBase {
         public void set(double power) {
         }
         
-    }*/
+    }
 }

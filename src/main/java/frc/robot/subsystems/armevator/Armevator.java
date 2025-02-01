@@ -8,14 +8,17 @@ import frc.robot.utils.hardware.VortexBuilder;
 
 import static frc.robot.constants.HardwareMap.*;
 import static frc.robot.constants.SubsystemConstants.ArmevatorConstants.*;
+import frc.robot.constants.positions.ArmevatorPosition;
 
 public class Armevator extends SubsystemBase{
-    private Vortex baseArmevatorMotor1;    
-    private Vortex baseArmevtorMotor2;
+    private Vortex elevatorMotor1;    
+    private Vortex elevatorMotor2;
     private Vortex armMotor;
 
+   //TODO: private MAVCoder2 armMAVCoder;
+
     public Armevator() {
-        baseArmevatorMotor1 = VortexBuilder.create(BASE_ARMEVATOR_MOTOR_1)
+        elevatorMotor1 = VortexBuilder.create(BASE_ARMEVATOR_MOTOR_1)
         .withVoltageCompensation(NOMINAL_VOLTAGE)
         .withPosition(0)
         .withIdleMode(IdleMode.kBrake)
@@ -23,11 +26,11 @@ public class Armevator extends SubsystemBase{
         .withCurrentLimit(CURRENT_LIMIT_ELEVATOR_MOTORS)
         .build();
 
-        baseArmevtorMotor2 = VortexBuilder.create(BASE_ARMEVATOR_MOTOR_2)
+        elevatorMotor2 = VortexBuilder.create(BASE_ARMEVATOR_MOTOR_2)
             .withVoltageCompensation(NOMINAL_VOLTAGE)
             .withPosition(0)
             .withIdleMode(IdleMode.kBrake)
-            .withInversion(false)
+            .asFollower(elevatorMotor1, true)
             .withCurrentLimit(CURRENT_LIMIT_ELEVATOR_MOTORS)
             .build();
 
@@ -35,13 +38,17 @@ public class Armevator extends SubsystemBase{
             .withCurrentLimit(CURRENT_LIMIT_ARM_MOTOR)
             .withIdleMode(IdleMode.kBrake)
             .withInversion(true)
-            .withCurrentLimit(CURRENT_LIMIT_ARM_MOTOR)
             .build();
 
     }
+    //TODO: implement method
+    public void goToPos(ArmevatorPosition position) {
+        
+    }
+
     public void up(double height){
-        baseArmevatorMotor1.set(height);
-        baseArmevtorMotor2.set(height);
+        elevatorMotor1.set(height);
+        elevatorMotor2.set(height);
     }
 
     public void arm(double speed){
