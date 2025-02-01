@@ -8,4 +8,8 @@ public class HardwareMap {
     
     // Coral Manipulator
     public static final int CORAL_MOTOR_ID = 0;
+
+    // Feeder
+    public static final int FEEDER_MOTOR_ID = 0;
+    
 }
