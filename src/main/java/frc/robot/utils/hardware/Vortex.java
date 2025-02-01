@@ -22,6 +22,14 @@ public class Vortex extends SparkFlex implements Loggable {
         super(id, MotorType.kBrushless);
     }
 
+    public void setReference(double reference, ControlType controlType) {
+        getClosedLoopController().setReference(reference, controlType);
+    }
+
+    public void setReference(double reference) {
+        setReference(reference, ControlType.kPosition);
+    }
+
     public void log(String subdirectory, String humanReadableName) {
         inputs.current = getOutputCurrent();
         inputs.rotations = getEncoder().getPosition();
