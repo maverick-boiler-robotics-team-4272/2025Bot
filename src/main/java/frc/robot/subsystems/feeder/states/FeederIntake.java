@@ -6,7 +6,6 @@ package frc.robot.subsystems.feeder.states;
 
 import frc.robot.subsystems.feeder.FeederSubsystem;
 import frc.robot.utils.commandUtils.State;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class FeederIntake extends State<FeederSubsystem> {
   

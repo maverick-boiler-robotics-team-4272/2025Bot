@@ -3,16 +3,16 @@ package frc.robot.utils.hardware;
 import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
-import com.revrobotics.spark.config.SparkFlexConfig;
+import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 public class NeoBuilder {
     private Neo motor;
-    private SparkFlexConfig config;
+    private SparkMaxConfig config;
 
     private NeoBuilder(int id) {
         motor = new Neo(id);
-        config = new SparkFlexConfig();
+        config = new SparkMaxConfig();
     }
 
     public NeoBuilder asFollower(SparkFlex motor, boolean inverted) {

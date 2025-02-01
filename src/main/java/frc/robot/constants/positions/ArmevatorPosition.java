@@ -12,8 +12,8 @@ public class ArmevatorPosition {
     private double elevatorHeight;
 
     public ArmevatorPosition(Rotation2d armAngle, double elevatorHeight) {
-            this.armAngle = armAngle;
-            this.elevatorHeight = elevatorHeight;
+        this.armAngle = armAngle;
+        this.elevatorHeight = elevatorHeight;
     }
 
     public Rotation2d getArmAngle() {

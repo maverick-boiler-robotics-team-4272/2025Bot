@@ -6,7 +6,7 @@ import static frc.robot.constants.HardwareMap.*;
 
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
-
+import frc.robot.utils.hardware.Vortex;
 import frc.robot.utils.hardware.VortexBuilder;
 
 public class AlgaeSubsystem extends SubsystemBase {
