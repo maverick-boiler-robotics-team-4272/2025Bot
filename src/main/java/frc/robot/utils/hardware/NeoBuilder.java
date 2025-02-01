@@ -7,11 +7,11 @@ import com.revrobotics.spark.config.SparkFlexConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 public class NeoBuilder {
-    private Vortex motor;
+    private Neo motor;
     private SparkFlexConfig config;
 
     private NeoBuilder(int id) {
-        motor = new Vortex(id);
+        motor = new Neo(id);
         config = new SparkFlexConfig();
     }
 
@@ -138,7 +138,7 @@ public class NeoBuilder {
     }
 
 
-    public SparkFlex build() {
+    public Neo build() {
         motor.configureAsync(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
         return motor;
     }

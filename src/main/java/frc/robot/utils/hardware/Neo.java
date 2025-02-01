@@ -3,31 +3,27 @@ package frc.robot.utils.hardware;
 import org.littletonrobotics.junction.AutoLog;
 import org.littletonrobotics.junction.Logger;
 
-import com.revrobotics.spark.SparkFlex;
+import com.revrobotics.spark.SparkMax;
 
 import frc.robot.utils.logging.Loggable;
 
-public class Vortex extends SparkFlex implements Loggable {
+public class Neo extends SparkMax implements Loggable {
     @AutoLog
-    public static class VortexInputs {
+    public static class NeoInputs {
         public double current;
         public double temperature;
         public double rotations;
         public double volts;
     }
 
-    VortexInputsAutoLogged inputs = new VortexInputsAutoLogged();
+    private NeoInputsAutoLogged inputs = new NeoInputsAutoLogged();
 
-    public Vortex(int id) {
+    public Neo(int id) {
         super(id, MotorType.kBrushless);
     }
 
+    @Override
     public void log(String subdirectory, String humanReadableName) {
-        inputs.current = getOutputCurrent();
-        inputs.rotations = getEncoder().getPosition();
-        inputs.temperature = getMotorTemperature();
-        inputs.volts = getBusVoltage();
-
         Logger.processInputs(subdirectory + "/" + humanReadableName, inputs);
     }
 }
