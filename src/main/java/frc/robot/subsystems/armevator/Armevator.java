@@ -39,21 +39,21 @@ public class Armevator extends SubsystemBase{
             .withIdleMode(IdleMode.kBrake)
             .withInversion(true)
             .build();
-
     }
+
     //TODO: implement method
     public void goToPos(ArmevatorPosition position) {
         
     }
 
-    public void up(double height){
+    public void setElevtorHeight(double height){
         elevatorMotor1.set(height);
-        elevatorMotor2.set(height);
     }
 
-    public void arm(double speed){
-        armMotor.set(speed);
+    public void setArmRotation(double rotation){
+        armMotor.set(rotation);
     }
+
     @Override
     public void periodic(){
 
