@@ -3,7 +3,6 @@ package frc.robot.subsystems.coralManipulator.states;
 
 import frc.robot.subsystems.coralManipulator.CoralSubsystem;
 import frc.robot.utils.commandUtils.State;
-import edu.wpi.first.wpilibj2.command.Command;
 
 public class CoralIntake extends State<CoralSubsystem> {
   public CoralIntake(CoralSubsystem coralSubsystem) {
