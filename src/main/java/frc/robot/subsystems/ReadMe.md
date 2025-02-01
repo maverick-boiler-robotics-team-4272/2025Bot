@@ -36,9 +36,9 @@ Under Dev
 
 ## Hardware
 Under Dev, left as an example!
-Swerve Drive Specialties MK4i using </br>
-4 NEO Brushless motors paired with Spark Max motor controller for driving (6.75:1) </br>
-4 NEO Brushless motors paired with Spark Max motor controller for module rotation (150:7)
+Swerve Drive Specialties MK4i L2 using </br>
+4 Kracken motors for driving (6.75:1) </br>
+4 Kracken motors for module rotation (150:7)
 
 # Feeder
 ## States
@@ -56,9 +56,13 @@ UnderDev
 UnderDev
 
 ## Hardware
-2 Neos Vortexs for lift #TODO: Add Gear ratio
+2 Neos Vortexs for lift 
+### Gear Ratio
+1.055544 inches per rotation
 
-1 Neo Vortex for Arm #TODO: Add Gear ratio
+1 Neo Vortex for Arm
+### Gear Ratio
+58.7755 : 1
 
 1 Mavcoder plugged into the arm motor for rotation
 
