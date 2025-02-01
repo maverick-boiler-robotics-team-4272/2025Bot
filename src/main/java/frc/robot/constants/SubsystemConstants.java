@@ -38,15 +38,27 @@ public class SubsystemConstants {
 
     public static class LimeLightConstants {
         public static Pose3d FRONT_LIMELIGHT_POSE = new Pose3d(
+            Units.inchesToMeters(9.16),
             0.0,
-            0.0,
-            0.0,
+            Units.inchesToMeters(17.795),
             new Rotation3d(
                 0, 
-                Rotation2d.fromDegrees(10).getRadians(),
-                Rotation2d.fromDegrees(0).getRadians()
+                Rotation2d.fromDegrees(5).getRadians(),
+                0
             )
         );
+        public static Pose3d BACK_LIMELIGHT_POSE = new Pose3d(
+            Units.inchesToMeters(-8.597),
+            0.0,
+            Units.inchesToMeters(18.074),
+            new Rotation3d(
+                0,
+                Rotation2d.fromDegrees(25).getRadians(),
+                Rotation2d.fromDegrees(180).getRadians()
+            )
+        );
+
         public static Limelight FRONT_LIMELIGHT = new Limelight("limelight-front");
+        public static Limelight BACK_LIMELIGHT = new Limelight("limelight-back");
     }
 }
