@@ -72,7 +72,23 @@ public class SubsystemConstants {
         public static final double ELEVATOR_GEAR_RATIO = 1.055544;
         public static final double ARM_GEAR_RATIO = 1.0 / 58.7755;
 
+        public static final double ARM_ANGLE_OFFSET = 0.0; //The offset of the mavcoder.
+
         public static final double ARM_FEEDFORWARD = 0.0;
         public static final double MAX_ELEVATOR_HEIGHT = Meters.convertFrom(6, Feet);
+
+        public static final Rotation2d SAFE_ANGLE = Rotation2d.fromDegrees(10);
+
+        // public static final double BASE_OF_STAGE_TO_PIVOT = Meters.convertFrom(3.0, Feet);
+        // public static final double ARM_LENGTH = Meters.convertFrom(1.0, Feet);
+        // public static final Rotation2d POINT_TO_PIVOT_OFFSET = Rotation2d.fromDegrees(15.0);
+        
+        // public static class BoundingBox {
+        //     public static final double X = 0.0;
+        //     public static final double Y = 0.0;
+
+        //     public static final double WIDTH = 2.0;
+        //     public static final double HEIGHT = 2.0;
+        // } Math maybe
     }
 }
