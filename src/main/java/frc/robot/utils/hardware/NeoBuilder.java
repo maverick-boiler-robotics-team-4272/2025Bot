@@ -137,6 +137,11 @@ public class NeoBuilder {
         return this;
     }
 
+    public NeoBuilder withAbsoluteEncoder() {
+        config.absoluteEncoder.setSparkMaxDataPortConfig();
+
+        return this;
+    }
 
     public Neo build() {
         motor.configureAsync(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
