@@ -27,8 +27,8 @@ public class VortexBuilder {
         return this;
     }
 
-    public VortexBuilder withCurrentLimit(int currentLimitElevatorMotors) {
-        config.smartCurrentLimit(currentLimitElevatorMotors);
+    public VortexBuilder withCurrentLimit(int currentLimit) {
+        config.smartCurrentLimit(currentLimit);
 
         return this;
     }
@@ -136,13 +136,7 @@ public class VortexBuilder {
 
         return this;
     }
-
-    public VortexBuilder withAbsoluteEncoder() {
-        config.absoluteEncoder.setSparkMaxDataPortConfig();
-        
-        return this;
-    }
-
+    
     public Vortex build() {
         motor.configureAsync(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
         return motor;
