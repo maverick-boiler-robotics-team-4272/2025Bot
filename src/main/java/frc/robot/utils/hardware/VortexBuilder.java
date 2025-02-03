@@ -138,7 +138,9 @@ public class VortexBuilder {
     }
     
     public Vortex build() {
-        motor.configureAsync(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        //TODO: Find out why this method breaks the simulation and the other doesn't;
+        // motor.configureAsync(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        motor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
         return motor;
     }
 
