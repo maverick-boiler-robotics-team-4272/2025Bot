@@ -25,7 +25,6 @@ public class FeederIntake extends State<FeederSubsystem> {
 
   @Override
   public boolean isFinished() {
-    return requiredSubsystem.lidarTripped();
-  }
+    return requiredSubsystem.lidarFrontTripped() || requiredSubsystem.lidarBackTripped(); }
   
 }

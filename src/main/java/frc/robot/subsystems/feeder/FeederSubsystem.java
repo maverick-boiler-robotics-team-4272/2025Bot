@@ -17,11 +17,14 @@ import static frc.robot.constants.HardwareMap.*;
 import frc.robot.utils.hardware.VortexBuilder;
 
 public class FeederSubsystem extends SubsystemBase {
-  private LaserCan lc;
+  private LaserCan feederCanFront;
+  private LaserCan feederCanBack;
 
   public double feederPower;
-  public boolean lidarTriggered = false;
-  public double lidarDistance;
+  public boolean lidarFrontTriggered = false;
+  public boolean lidarBackTriggered = false;
+  public double lidarFrontDistance;
+  public double lidarBackDistance;
 
   public SparkFlex feederControllerMotor;
 
@@ -40,28 +43,44 @@ public class FeederSubsystem extends SubsystemBase {
   }
 
   public void lidar() {
-    lc = new LaserCan(0);
+    feederCanFront = new LaserCan(0);
+    feederCanBack = new LaserCan(0);
     try {
-      lc.setRangingMode(LaserCan.RangingMode.SHORT);
-      lc.setRegionOfInterest(new LaserCan.RegionOfInterest(8, 8, 16, 16));
-      lc.setTimingBudget(LaserCan.TimingBudget.TIMING_BUDGET_33MS);
+      feederCanFront.setRangingMode(LaserCan.RangingMode.SHORT);
+      feederCanFront.setRegionOfInterest(new LaserCan.RegionOfInterest(8, 8, 16, 16));
+      feederCanFront.setTimingBudget(LaserCan.TimingBudget.TIMING_BUDGET_33MS);
+    } catch (ConfigurationFailedException e) {
+      System.out.println("Configuration failed! " + e);
+    }
+    try {
+      feederCanBack.setRangingMode(LaserCan.RangingMode.SHORT);
+      feederCanBack.setRegionOfInterest(new LaserCan.RegionOfInterest(8, 8, 16, 16));
+      feederCanBack.setTimingBudget(LaserCan.TimingBudget.TIMING_BUDGET_33MS);
     } catch (ConfigurationFailedException e) {
       System.out.println("Configuration failed! " + e);
     }
   }
 
-  public boolean lidarTripped() {
-      return lidarTriggered;
-
+  public boolean lidarFrontTripped() {
+      return lidarFrontTriggered;
+  }
+  public boolean lidarBackTripped() {
+      return lidarBackTriggered;
   }
 
   @Override
   public void periodic() {
-    LaserCan.Measurement measurement = lc.getMeasurement();
-    if (measurement.distance_mm <= 2) {
-      lidarTriggered = true;
+    LaserCan.Measurement measurementFront = feederCanFront.getMeasurement();
+    LaserCan.Measurement measurementBack = feederCanBack.getMeasurement();
+    if (measurementFront.distance_mm <= 2) {
+      lidarFrontTriggered = true;
     } else {
-      lidarTriggered = false;
+      lidarFrontTriggered = false;
+    }
+    if (measurementBack.distance_mm <= 2) {
+      lidarBackTriggered = true;
+    } else {
+      lidarBackTriggered = false;
     }
   }
 }
