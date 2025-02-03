@@ -2,14 +2,14 @@ package frc.robot.subsystems.armevator;
 
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.smartdashboard.Mechanism2d;
+import edu.wpi.first.wpilibj.smartdashboard.MechanismLigament2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.utils.hardware.Vortex;
 import frc.robot.utils.hardware.VortexBuilder;
 import frc.robot.utils.logging.Loggable;
 import org.littletonrobotics.junction.AutoLog;
 import org.littletonrobotics.junction.Logger;
-import org.littletonrobotics.junction.mechanism.LoggedMechanism2d;
-import org.littletonrobotics.junction.mechanism.LoggedMechanismLigament2d;
 import frc.robot.constants.positions.ArmevatorPosition;
 
 import static frc.robot.constants.HardwareMap.*;
@@ -23,10 +23,25 @@ public class Armevator extends SubsystemBase implements Loggable {
         public double setElevatorHeight;
         public Rotation2d setArmRotation;
 
-        // public LoggedMechanism2d armevatorMechanism;
     }
+    
+    private Mechanism2d armevatorMechanism;
+    private MechanismLigament2d armLigament;
+    private MechanismLigament2d elevatorLigament;
+    private ArmevatorInputsAutoLogged inputs = new ArmevatorInputsAutoLogged();
 
-    ArmevatorInputsAutoLogged inputs = new ArmevatorInputsAutoLogged();
+    private void initInputs() {
+        inputs.desiredArmRotation = new Rotation2d();
+        inputs.desiredElevatorHeight = 0.0;
+        inputs.setArmRotation = new Rotation2d();
+        inputs.setElevatorHeight = 0.0;
+
+        armevatorMechanism = new Mechanism2d(5, 5);
+        armLigament = new MechanismLigament2d("Arm", 1, 0);
+        armLigament = new MechanismLigament2d("Elevator", 4, 90);
+
+        armevatorMechanism.getRoot("armevator", 2, 0).append(elevatorLigament).append(armLigament);
+    }
 
     private Vortex elevatorMotor1; 
     @SuppressWarnings("unused")
@@ -67,7 +82,7 @@ public class Armevator extends SubsystemBase implements Loggable {
             .asFollower(armMotor1, true)
             .build();
 
-            // inputs.armevatorMechanism = new LoggedMechanism2d(5, 5);
+        initInputs();
     }
 
     public void goToPos(ArmevatorPosition position) {
@@ -79,33 +94,17 @@ public class Armevator extends SubsystemBase implements Loggable {
         elevatorMotor1.setReference(height);
 
         inputs.setElevatorHeight = height;
-        // inputs.armevatorMechanism
-        //     .getRoot("Armevator", 0, 0)
-        //     .append(new LoggedMechanismLigament2d("Elevator", height, 90));
+        elevatorLigament.setLength(height);
     }
 
     public void setArmRotation(Rotation2d rotation){
         armMotor1.setReference(rotation.getRadians());
 
         inputs.setArmRotation = rotation;
-        // inputs.armevatorMechanism
-        //     .getRoot("Armevator", 0, 0)
-        //     .append(new LoggedMechanismLigament2d("Arm", 1.0, rotation.getDegrees() - 90));
+        armLigament.setAngle(rotation);
     }
 
     public void safetyLogic() {
-        // double x = ARM_LENGTH * Math.sin(inputs.desiredArmRotation.minus(POINT_TO_PIVOT_OFFSET).getRadians());
-        // double y = inputs.desiredElevatorHeight + BASE_OF_STAGE_TO_PIVOT - ARM_LENGTH * Math.cos(inputs.desiredArmRotation.minus(POINT_TO_PIVOT_OFFSET).getRadians());
-
-        // if(
-        //     y < BoundingBox.Y + 0.5 * BoundingBox.HEIGHT &&
-        //     y > BoundingBox.Y - 0.5 * BoundingBox.HEIGHT &&
-        //     x < BoundingBox.X + 0.5 * BoundingBox.WIDTH &&
-        //     x > BoundingBox.X - 0.5 * BoundingBox.WIDTH
-        // ) {
-        //     // TODO: find safe angle and height
-        // } // Maybe math
-
         if(!(elevatorMotor1.getEncoder().getPosition() > 2 && elevatorMotor1.getEncoder().getPosition() < 20)) {
             setArmRotation(inputs.desiredArmRotation);
         } else if(inputs.desiredArmRotation.getDegrees() < SAFE_ANGLE.getDegrees()) {
@@ -126,5 +125,7 @@ public class Armevator extends SubsystemBase implements Loggable {
     @Override
     public void periodic(){
         safetyLogic();
+
+        log("Subsystems", "Armevator");
     }
 }
