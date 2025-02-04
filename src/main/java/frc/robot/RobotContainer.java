@@ -51,10 +51,17 @@ public class RobotContainer {
             )
         );
 
+        armevator.setDefaultCommand(
+            new GoToArmevatorPoseState(
+                armevator, 
+                new ArmevatorPosition(Rotation2d.kZero, 0)
+            )
+        );
+
         // reset the field-centric heading on b press
         joystick.b().onTrue(new ResetHeadingState(drivetrain));
 
-        // joystick.x().whileTrue(new GoToArmevatorPoseState(armevator, new ArmevatorPosition(Rotation2d.fromDegrees(90), 2)));
+        joystick.x().whileTrue(new GoToArmevatorPoseState(armevator, new ArmevatorPosition(Rotation2d.fromDegrees(15), 2)));
 
         // Run SysId routines when holding back/start and X/Y.
         // Note that each routine should be run exactly once in a single log.
