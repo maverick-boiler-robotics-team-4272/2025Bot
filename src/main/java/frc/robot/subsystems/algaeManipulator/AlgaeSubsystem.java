@@ -4,6 +4,7 @@ package frc.robot.subsystems.algaeManipulator;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.constants.HardwareMap.*;
 
+import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import frc.robot.utils.hardware.Vortex;
@@ -22,6 +23,10 @@ public class AlgaeSubsystem extends SubsystemBase {
 
     public void setAlgaePower(double power) {
         algaeControllerMotor.set(power);
+    }
+
+    public AbsoluteEncoder getArmEncoder() {
+        return algaeControllerMotor.getAbsoluteEncoder();
     }
 }
 

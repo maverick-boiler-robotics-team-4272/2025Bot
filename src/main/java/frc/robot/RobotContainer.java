@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.constants.TunerConstants;
 import frc.robot.constants.positions.ArmevatorPosition;
+import frc.robot.subsystems.algaeManipulator.AlgaeSubsystem;
 import frc.robot.subsystems.armevator.Armevator;
 import frc.robot.subsystems.armevator.States.GoToArmevatorPoseState;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
@@ -31,7 +32,8 @@ public class RobotContainer {
     private final CommandXboxController joystick = new CommandXboxController(0);
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
-    public final Armevator armevator = new Armevator();
+    public final AlgaeSubsystem algaeSubsystem = new AlgaeSubsystem();
+    public final Armevator armevator = new Armevator(algaeSubsystem.getArmEncoder());
 
     public RobotContainer() {
         configureBindings();
@@ -51,10 +53,17 @@ public class RobotContainer {
             )
         );
 
+        armevator.setDefaultCommand(
+            new GoToArmevatorPoseState(
+                armevator, 
+                new ArmevatorPosition(Rotation2d.kZero, 0)
+            )
+        );
+
         // reset the field-centric heading on b press
         joystick.b().onTrue(new ResetHeadingState(drivetrain));
 
-        // joystick.x().whileTrue(new GoToArmevatorPoseState(armevator, new ArmevatorPosition(Rotation2d.fromDegrees(90), 2)));
+        joystick.x().whileTrue(new GoToArmevatorPoseState(armevator, new ArmevatorPosition(Rotation2d.fromDegrees(15), 2)));
 
         // Run SysId routines when holding back/start and X/Y.
         // Note that each routine should be run exactly once in a single log.

@@ -79,16 +79,8 @@ public class SubsystemConstants {
 
         public static final Rotation2d SAFE_ANGLE = Rotation2d.fromDegrees(10);
 
-        // public static final double BASE_OF_STAGE_TO_PIVOT = Meters.convertFrom(3.0, Feet);
-        // public static final double ARM_LENGTH = Meters.convertFrom(1.0, Feet);
-        // public static final Rotation2d POINT_TO_PIVOT_OFFSET = Rotation2d.fromDegrees(15.0);
-        
-        // public static class BoundingBox {
-        //     public static final double X = 0.0;
-        //     public static final double Y = 0.0;
-
-        //     public static final double WIDTH = 2.0;
-        //     public static final double HEIGHT = 2.0;
-        // } Math maybe
+        public static final double MAV_2_MIN_OUTPUT = 0.03;
+        public static final double MAV_2_MAX_OUTPUT = 0.97;
+        public static final double MAV_2_POSITION_FACTOR = 360.0 / (MAV_2_MAX_OUTPUT - MAV_2_MIN_OUTPUT);
     }
 }

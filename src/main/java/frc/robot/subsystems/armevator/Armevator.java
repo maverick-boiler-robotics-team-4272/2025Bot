@@ -1,17 +1,19 @@
 package frc.robot.subsystems.armevator;
 
+import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.smartdashboard.Mechanism2d;
-import edu.wpi.first.wpilibj.smartdashboard.MechanismLigament2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.utils.hardware.Vortex;
 import frc.robot.utils.hardware.VortexBuilder;
 import frc.robot.utils.logging.Loggable;
 import org.littletonrobotics.junction.AutoLog;
+import org.littletonrobotics.junction.AutoLogOutput;
 import org.littletonrobotics.junction.Logger;
-import frc.robot.constants.positions.ArmevatorPosition;
+import org.littletonrobotics.junction.mechanism.LoggedMechanism2d;
+import org.littletonrobotics.junction.mechanism.LoggedMechanismLigament2d;
 
+import frc.robot.constants.positions.ArmevatorPosition;
 import static frc.robot.constants.HardwareMap.*;
 import static frc.robot.constants.SubsystemConstants.ArmevatorConstants.*;
 
@@ -22,12 +24,14 @@ public class Armevator extends SubsystemBase implements Loggable {
         public Rotation2d desiredArmRotation;
         public double setElevatorHeight;
         public Rotation2d setArmRotation;
-
     }
     
-    private Mechanism2d armevatorMechanism;
-    private MechanismLigament2d armLigament;
-    private MechanismLigament2d elevatorLigament;
+    @AutoLogOutput
+    private LoggedMechanism2d armevatorMechanism;
+
+    private LoggedMechanismLigament2d armLigament;
+    private LoggedMechanismLigament2d elevatorLigament;
+
     private ArmevatorInputsAutoLogged inputs = new ArmevatorInputsAutoLogged();
 
     private void initInputs() {
@@ -36,11 +40,13 @@ public class Armevator extends SubsystemBase implements Loggable {
         inputs.setArmRotation = new Rotation2d();
         inputs.setElevatorHeight = 0.0;
 
-        armevatorMechanism = new Mechanism2d(5, 5);
-        armLigament = new MechanismLigament2d("Arm", 1, 0);
-        armLigament = new MechanismLigament2d("Elevator", 4, 90);
+        armevatorMechanism = new LoggedMechanism2d(1, 1);
+        armLigament = new LoggedMechanismLigament2d("Arm", 0.5, 0);
+        elevatorLigament = new LoggedMechanismLigament2d("Elevator", 1.05344, 90);
 
-        armevatorMechanism.getRoot("armevator", 2, 0).append(elevatorLigament).append(armLigament);
+        armevatorMechanism.getRoot("armevator", 0.5, 0)
+            .append(elevatorLigament)
+            .append(armLigament);
     }
 
     private Vortex elevatorMotor1; 
@@ -50,9 +56,10 @@ public class Armevator extends SubsystemBase implements Loggable {
     @SuppressWarnings("unused")
     private Vortex armMotor2;
 
-   //TODO: private MAVCoder2 armMAVCoder;
+    @SuppressWarnings("unused")
+    private AbsoluteEncoder armEncoder;
 
-    public Armevator() {
+    public Armevator(AbsoluteEncoder armEncoder) {
         elevatorMotor1 = VortexBuilder.create(BASE_ARMEVATOR_MOTOR_1)
             .withVoltageCompensation(NOMINAL_VOLTAGE)
             .withPosition(0)
@@ -83,6 +90,8 @@ public class Armevator extends SubsystemBase implements Loggable {
             .build();
 
         initInputs();
+
+        this.armEncoder = armEncoder;
     }
 
     public void goToPos(ArmevatorPosition position) {
@@ -94,14 +103,14 @@ public class Armevator extends SubsystemBase implements Loggable {
         elevatorMotor1.setReference(height);
 
         inputs.setElevatorHeight = height;
-        elevatorLigament.setLength(height);
+        elevatorLigament.setLength(height + 1.05344);
     }
 
     public void setArmRotation(Rotation2d rotation){
         armMotor1.setReference(rotation.getRadians());
 
         inputs.setArmRotation = rotation;
-        armLigament.setAngle(rotation);
+        armLigament.setAngle(rotation.getDegrees() - 90);
     }
 
     public void safetyLogic() {
