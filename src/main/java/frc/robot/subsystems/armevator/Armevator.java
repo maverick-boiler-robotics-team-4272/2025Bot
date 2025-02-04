@@ -1,5 +1,6 @@
 package frc.robot.subsystems.armevator;
 
+import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.smartdashboard.Mechanism2d;
@@ -10,8 +11,8 @@ import frc.robot.utils.hardware.VortexBuilder;
 import frc.robot.utils.logging.Loggable;
 import org.littletonrobotics.junction.AutoLog;
 import org.littletonrobotics.junction.Logger;
-import frc.robot.constants.positions.ArmevatorPosition;
 
+import frc.robot.constants.positions.ArmevatorPosition;
 import static frc.robot.constants.HardwareMap.*;
 import static frc.robot.constants.SubsystemConstants.ArmevatorConstants.*;
 
@@ -50,9 +51,11 @@ public class Armevator extends SubsystemBase implements Loggable {
     @SuppressWarnings("unused")
     private Vortex armMotor2;
 
-   //TODO: private MAVCoder2 armMAVCoder;
+   //TODO: private MAVCoder2 armEncoder;
+    @SuppressWarnings("unused")
+    private AbsoluteEncoder armEncoder;
 
-    public Armevator() {
+    public Armevator(AbsoluteEncoder armEncoder) {
         elevatorMotor1 = VortexBuilder.create(BASE_ARMEVATOR_MOTOR_1)
             .withVoltageCompensation(NOMINAL_VOLTAGE)
             .withPosition(0)
@@ -83,6 +86,8 @@ public class Armevator extends SubsystemBase implements Loggable {
             .build();
 
         initInputs();
+
+        this.armEncoder = armEncoder;
     }
 
     public void goToPos(ArmevatorPosition position) {
