@@ -35,27 +35,23 @@ public class Feeder extends SubsystemBase {
         .withIdleMode(IdleMode.kBrake)
         .build();
 
-    lidar();
+    configLidar();
   }
 
   public void setFeederPower(double power) {
     feederControllerMotor.set(power);
   }
 
-  public void lidar() {
-    feederCanFront = new LaserCan(0);
-    feederCanBack = new LaserCan(0);
+  public void configLidar() {
+    configFeederCan(FEEDER_CAN_BACK_ID);
+    configFeederCan(FEEDER_CAN_FRONT_ID);
+  }
+  public void configFeederCan(int canID) {
+    LaserCan feederCan = new LaserCan(canID);
     try {
-      feederCanFront.setRangingMode(LaserCan.RangingMode.SHORT);
-      feederCanFront.setRegionOfInterest(new LaserCan.RegionOfInterest(8, 8, 16, 16));
-      feederCanFront.setTimingBudget(LaserCan.TimingBudget.TIMING_BUDGET_33MS);
-    } catch (ConfigurationFailedException e) {
-      System.out.println("Configuration failed! " + e);
-    }
-    try {
-      feederCanBack.setRangingMode(LaserCan.RangingMode.SHORT);
-      feederCanBack.setRegionOfInterest(new LaserCan.RegionOfInterest(8, 8, 16, 16));
-      feederCanBack.setTimingBudget(LaserCan.TimingBudget.TIMING_BUDGET_33MS);
+      feederCan.setRangingMode(LaserCan.RangingMode.SHORT);
+      feederCan.setRegionOfInterest(new LaserCan.RegionOfInterest(8, 8, 16, 16));
+      feederCan.setTimingBudget(LaserCan.TimingBudget.TIMING_BUDGET_33MS);
     } catch (ConfigurationFailedException e) {
       System.out.println("Configuration failed! " + e);
     }
@@ -72,12 +68,12 @@ public class Feeder extends SubsystemBase {
   public void periodic() {
     LaserCan.Measurement measurementFront = feederCanFront.getMeasurement();
     LaserCan.Measurement measurementBack = feederCanBack.getMeasurement();
-    if (measurementFront.distance_mm <= 2) {
+    if (measurementFront.distance_mm <= FEEDER_CAN_FRONT_TRIGGER_DISTANCE) {
       lidarFrontTriggered = true;
     } else {
       lidarFrontTriggered = false;
     }
-    if (measurementBack.distance_mm <= 2) {
+    if (measurementBack.distance_mm <= FEEDER_CAN_BACK_TRIGGER_DISTANCE) {
       lidarBackTriggered = true;
     } else {
       lidarBackTriggered = false;
