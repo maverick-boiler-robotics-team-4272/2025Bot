@@ -1,11 +1,11 @@
 
 package frc.robot.subsystems.algaeManipulator.states;
 
-import frc.robot.subsystems.algaeManipulator.AlgaeSubsystem;
+import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
 import frc.robot.utils.commandUtils.State;
 
-public class AlgaeIntake extends State<AlgaeSubsystem> {
-  public AlgaeIntake(AlgaeSubsystem algaeSubsystem) {
+public class AlgaeIntake extends State<AlgaeManipulator> {
+  public AlgaeIntake(AlgaeManipulator algaeSubsystem) {
     super(algaeSubsystem);
 
   }

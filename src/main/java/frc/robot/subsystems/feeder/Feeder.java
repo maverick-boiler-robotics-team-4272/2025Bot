@@ -16,7 +16,7 @@ import au.grapplerobotics.ConfigurationFailedException;
 import static frc.robot.constants.HardwareMap.*;
 import frc.robot.utils.hardware.VortexBuilder;
 
-public class FeederSubsystem extends SubsystemBase {
+public class Feeder extends SubsystemBase {
   private LaserCan feederCanFront;
   private LaserCan feederCanBack;
 
@@ -28,7 +28,7 @@ public class FeederSubsystem extends SubsystemBase {
 
   public SparkFlex feederControllerMotor;
 
-  public FeederSubsystem() {
+  public Feeder() {
     feederControllerMotor = VortexBuilder.create(FEEDER_MOTOR_ID)
         .withInversion(false)
         .withCurrentLimit(80)

@@ -1,11 +1,11 @@
 
 package frc.robot.subsystems.coralManipulator.states;
 
-import frc.robot.subsystems.coralManipulator.CoralSubsystem;
+import frc.robot.subsystems.coralManipulator.CoralManipulator;
 import frc.robot.utils.commandUtils.State;
 
-public class CoralIntake extends State<CoralSubsystem> {
-  public CoralIntake(CoralSubsystem coralSubsystem) {
+public class CoralIntake extends State<CoralManipulator> {
+  public CoralIntake(CoralManipulator coralSubsystem) {
     super(coralSubsystem);
 
   }

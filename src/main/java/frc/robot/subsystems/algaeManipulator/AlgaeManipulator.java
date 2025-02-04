@@ -10,10 +10,10 @@ import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import frc.robot.utils.hardware.Vortex;
 import frc.robot.utils.hardware.VortexBuilder;
 
-public class AlgaeSubsystem extends SubsystemBase {
+public class AlgaeManipulator extends SubsystemBase {
     private Vortex algaeControllerMotor;
 
-    public AlgaeSubsystem() {
+    public AlgaeManipulator() {
         algaeControllerMotor = VortexBuilder.create(ALGAE_MOTOR_ID)
             .withInversion(false)
             .withCurrentLimit(80)
