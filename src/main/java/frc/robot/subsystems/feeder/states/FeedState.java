@@ -7,9 +7,9 @@ package frc.robot.subsystems.feeder.states;
 import frc.robot.subsystems.feeder.Feeder;
 import frc.robot.utils.commandUtils.State;
 
-public class FeederIntake extends State<Feeder> {
+public class FeedState extends State<Feeder> {
   
-  public FeederIntake(Feeder feederSubsystem) {
+  public FeedState(Feeder feederSubsystem) {
     super(feederSubsystem);
   }
 

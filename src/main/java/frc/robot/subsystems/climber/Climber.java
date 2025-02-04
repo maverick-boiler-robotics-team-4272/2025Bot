@@ -11,11 +11,11 @@ import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class ClimberSubsystem extends SubsystemBase {
+public class Climber extends SubsystemBase {
     private Vortex climberControllerMotor;
     private AbsoluteEncoder climberEncoder;
 
-    public ClimberSubsystem() {
+    public Climber() {
         climberControllerMotor = VortexBuilder.create(CLIMBER_MOTOR_ID)
             .withInversion(false)
             .withCurrentLimit(80)

@@ -1,11 +1,11 @@
 
 package frc.robot.subsystems.climber.states;
 
-import frc.robot.subsystems.climber.ClimberSubsystem;
+import frc.robot.subsystems.climber.Climber;
 import frc.robot.utils.commandUtils.State;
 
-public class ClimberRotate extends State<ClimberSubsystem> {
-  public ClimberRotate(ClimberSubsystem climberSubsystem) {
+public class ClimbState extends State<Climber> {
+  public ClimbState(Climber climberSubsystem) {
     super(climberSubsystem);
 
   }
