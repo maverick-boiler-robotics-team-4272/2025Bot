@@ -56,7 +56,6 @@ public class Armevator extends SubsystemBase implements Loggable {
     @SuppressWarnings("unused")
     private Vortex armMotor2;
 
-   //TODO: private MAVCoder2 armEncoder;
     @SuppressWarnings("unused")
     private AbsoluteEncoder armEncoder;
 
