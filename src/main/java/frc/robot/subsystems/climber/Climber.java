@@ -1,6 +1,5 @@
 package frc.robot.subsystems.climber;
 
-import frc.robot.constants.HardwareMap;
 import frc.robot.utils.hardware.Vortex;
 import frc.robot.utils.hardware.VortexBuilder;
 
@@ -13,12 +12,13 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Climber extends SubsystemBase {
     private Vortex climberControllerMotor;
+    @SuppressWarnings("unused")
     private AbsoluteEncoder climberEncoder;
 
     public Climber() {
         climberControllerMotor = VortexBuilder.create(CLIMBER_MOTOR_ID)
             .withInversion(false)
-            .withCurrentLimit(80)
+            .withCurrentLimit(40)
             .withIdleMode(IdleMode.kBrake)
             .build();
 
