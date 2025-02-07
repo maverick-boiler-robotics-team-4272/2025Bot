@@ -2,6 +2,7 @@ package frc.robot.subsystems.armevator;
 
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
+
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.utils.hardware.Vortex;
@@ -24,6 +25,8 @@ public class Armevator extends SubsystemBase implements Loggable {
         public Rotation2d desiredArmRotation;
         public double setElevatorHeight;
         public Rotation2d setArmRotation;
+        public double currentElevatorHeight;
+        public Rotation2d currentArmRotation;
     }
     
     @AutoLogOutput
@@ -39,6 +42,8 @@ public class Armevator extends SubsystemBase implements Loggable {
         inputs.desiredElevatorHeight = 0.0;
         inputs.setArmRotation = new Rotation2d();
         inputs.setElevatorHeight = 0.0;
+        inputs.currentArmRotation = new Rotation2d();
+        inputs.currentElevatorHeight = 0.0;
 
         armevatorMechanism = new LoggedMechanism2d(1, 1);
         armLigament = new LoggedMechanismLigament2d("Arm", 0.5, 0);
@@ -56,8 +61,9 @@ public class Armevator extends SubsystemBase implements Loggable {
     @SuppressWarnings("unused")
     private Vortex armMotor2;
 
-    @SuppressWarnings("unused")
     private AbsoluteEncoder armEncoder;
+
+    // private ArmFeedforward armFeedforward = new ArmFeedforward(0, ARM_FF, 0, 0);
 
     public Armevator(AbsoluteEncoder armEncoder) {
         elevatorMotor1 = VortexBuilder.create(BASE_ARMEVATOR_MOTOR_1)
@@ -67,26 +73,29 @@ public class Armevator extends SubsystemBase implements Loggable {
             .withIdleMode(IdleMode.kBrake)
             .withInversion(false)
             .withCurrentLimit(CURRENT_LIMIT_ELEVATOR_MOTORS)
+            .withPIDParams(ELEVATOR_P, ELEVATOR_I, ELEVATOR_D)
+            // .withLimitSwitch()
             .build();
 
         elevatorMotor2 = VortexBuilder.create(BASE_ARMEVATOR_MOTOR_2)
             .withVoltageCompensation(NOMINAL_VOLTAGE)
             .withPosition(0)
             .withIdleMode(IdleMode.kBrake)
-            .asFollower(elevatorMotor1, true)
+            .asFollower(elevatorMotor1, false)
             .withCurrentLimit(CURRENT_LIMIT_ELEVATOR_MOTORS)
             .build();
 
         armMotor1 = VortexBuilder.create(ARM_MOTOR_1)
             .withCurrentLimit(CURRENT_LIMIT_ARM_MOTOR)
             .withIdleMode(IdleMode.kBrake)
-            .withInversion(true)
+            .withInversion(false)
+            .withPIDFParams(ARM_P, ARM_I, ARM_D, ARM_FF)
             .build();
 
         armMotor2 = VortexBuilder.create(ARM_MOTOR_2)
             .withCurrentLimit(CURRENT_LIMIT_ARM_MOTOR)
             .withIdleMode(IdleMode.kBrake)
-            .asFollower(armMotor1, true)
+            .asFollower(armMotor1, false)
             .build();
 
         initInputs();
@@ -107,7 +116,12 @@ public class Armevator extends SubsystemBase implements Loggable {
     }
 
     public void setArmRotation(Rotation2d rotation){
-        armMotor1.setReference(rotation.getRadians());
+        armMotor1.setReference(
+            rotation.getRadians()//, 
+            // ControlType.kPosition, 
+            // ClosedLoopSlot.kSlot0,
+            // armFeedforward.calculate(armEncoder.getPosition(), 0)
+        );
 
         inputs.setArmRotation = rotation;
         armLigament.setAngle(rotation.getDegrees() - 90);
@@ -133,6 +147,9 @@ public class Armevator extends SubsystemBase implements Loggable {
 
     @Override
     public void periodic(){
+        inputs.currentArmRotation = Rotation2d.fromRotations(armEncoder.getPosition());
+        inputs.currentElevatorHeight = elevatorMotor1.getEncoder().getPosition();
+
         safetyLogic();
 
         log("Subsystems", "Armevator");
