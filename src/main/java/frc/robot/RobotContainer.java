@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.constants.TunerConstants;
+import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
+import frc.robot.subsystems.armevator.Armevator;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
 import frc.robot.subsystems.drivetrain.states.DriveState;
 import frc.robot.subsystems.drivetrain.states.ResetHeadingState;
@@ -27,8 +29,8 @@ public class RobotContainer {
     private final CommandXboxController joystick = new CommandXboxController(0);
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
-    // public final AlgaeManipulator algaeSubsystem = new AlgaeManipulator();
-    // public final Armevator armevator = new Armevator(algaeSubsystem.getArmEncoder());
+    public final AlgaeManipulator algaeSubsystem = new AlgaeManipulator();
+    public final Armevator armevator = new Armevator(algaeSubsystem.getArmEncoder());
 
     public RobotContainer() {
         configureBindings();
