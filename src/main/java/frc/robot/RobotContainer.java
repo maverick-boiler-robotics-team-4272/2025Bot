@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -11,12 +12,18 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.constants.TunerConstants;
+import frc.robot.constants.positions.ArmevatorPosition;
 import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
 import frc.robot.subsystems.armevator.Armevator;
+import frc.robot.subsystems.armevator.States.GoToArmevatorPoseState;
+import frc.robot.subsystems.coralManipulator.CoralManipulator;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
 import frc.robot.subsystems.drivetrain.states.DriveState;
 import frc.robot.subsystems.drivetrain.states.ResetHeadingState;
 
+import static edu.wpi.first.units.Units.Inch;
+import static edu.wpi.first.units.Units.Inches;
+import static edu.wpi.first.units.Units.Meters;
 import static frc.robot.constants.FieldConstants.SIDE_CHOOSER;
 import static frc.robot.constants.SubsystemConstants.DrivetrainConstants.TeleConstants.MAX_TRANSLATION;
 
@@ -29,8 +36,8 @@ public class RobotContainer {
     private final CommandXboxController joystick = new CommandXboxController(0);
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
-    public final AlgaeManipulator algaeSubsystem = new AlgaeManipulator();
-    public final Armevator armevator = new Armevator(algaeSubsystem.getArmEncoder());
+    public final CoralManipulator coralManipulator = new CoralManipulator();
+    public final Armevator armevator = new Armevator(coralManipulator.getArmEncoder());
 
     public RobotContainer() {
         configureBindings();
@@ -50,25 +57,25 @@ public class RobotContainer {
             )
         );
 
-        // armevator.setDefaultCommand(
-        //     new GoToArmevatorPoseState(
-        //         armevator, 
-        //         new ArmevatorPosition(Rotation2d.kZero, 0)
-        //     )
-        // );
+        armevator.setDefaultCommand(
+            new GoToArmevatorPoseState(
+                armevator, 
+                new ArmevatorPosition(Rotation2d.fromDegrees(10), Meters.convertFrom(0.1, Inches))
+            )
+        );
 
         // reset the field-centric heading on b press
         joystick.b().onTrue(new ResetHeadingState(drivetrain));
 
-        // joystick.x().whileTrue(
-        //     new GoToArmevatorPoseState(
-        //         armevator, 
-        //         new ArmevatorPosition(
-        //             Rotation2d.fromDegrees(15), 
-        //             Meters.convertFrom(5, Inches)
-        //         )
-        //     )
-        // );
+        joystick.x().whileTrue(
+            new GoToArmevatorPoseState(
+                armevator, 
+                new ArmevatorPosition(
+                    Rotation2d.fromDegrees(50), 
+                    Meters.convertFrom(24, Inches)
+                )
+            )
+        );
 
         // Run SysId routines when holding back/start and X/Y.
         // Note that each routine should be run exactly once in a single log.
