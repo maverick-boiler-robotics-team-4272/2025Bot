@@ -1,8 +1,11 @@
 package frc.robot.subsystems.armevator;
 
-import com.revrobotics.AbsoluteEncoder;
+import com.revrobotics.spark.ClosedLoopSlot;
+import com.revrobotics.spark.SparkAnalogSensor;
+import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
+import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.utils.hardware.Vortex;
@@ -15,6 +18,9 @@ import org.littletonrobotics.junction.mechanism.LoggedMechanism2d;
 import org.littletonrobotics.junction.mechanism.LoggedMechanismLigament2d;
 
 import frc.robot.constants.positions.ArmevatorPosition;
+
+import static edu.wpi.first.units.Units.Inches;
+import static edu.wpi.first.units.Units.Meters;
 import static frc.robot.constants.HardwareMap.*;
 import static frc.robot.constants.SubsystemConstants.ArmevatorConstants.*;
 
@@ -27,6 +33,7 @@ public class Armevator extends SubsystemBase implements Loggable {
         public Rotation2d setArmRotation;
         public double currentElevatorHeight;
         public Rotation2d currentArmRotation;
+        public double armEncoderRotation;
     }
     
     @AutoLogOutput
@@ -44,6 +51,7 @@ public class Armevator extends SubsystemBase implements Loggable {
         inputs.setElevatorHeight = 0.0;
         inputs.currentArmRotation = new Rotation2d();
         inputs.currentElevatorHeight = 0.0;
+        inputs.armEncoderRotation = 0.0;
 
         armevatorMechanism = new LoggedMechanism2d(1, 1);
         armLigament = new LoggedMechanismLigament2d("Arm", 0.5, 0);
@@ -61,17 +69,18 @@ public class Armevator extends SubsystemBase implements Loggable {
     @SuppressWarnings("unused")
     private Vortex armMotor2;
 
-    private AbsoluteEncoder armEncoder;
+    private SparkAnalogSensor armEncoder;
 
-    // private ArmFeedforward armFeedforward = new ArmFeedforward(0, ARM_FF, 0, 0);
+    private ArmFeedforward armFeedforward = new ArmFeedforward(0, ARM_FF, 0, 0);
 
-    public Armevator(AbsoluteEncoder armEncoder) {
+    public Armevator(SparkAnalogSensor armEncoder) {
         elevatorMotor1 = VortexBuilder.create(BASE_ARMEVATOR_MOTOR_1)
             .withVoltageCompensation(NOMINAL_VOLTAGE)
             .withPosition(0)
             .withPositionConversionFactor(ELEVATOR_GEAR_RATIO)
             .withIdleMode(IdleMode.kBrake)
             .withInversion(false)
+            .withSoftLimits(MAX_ELEVATOR_HEIGHT, 0)
             .withCurrentLimit(CURRENT_LIMIT_ELEVATOR_MOTORS)
             .withPIDParams(ELEVATOR_P, ELEVATOR_I, ELEVATOR_D)
             // .withLimitSwitch()
@@ -89,7 +98,8 @@ public class Armevator extends SubsystemBase implements Loggable {
             .withCurrentLimit(CURRENT_LIMIT_ARM_MOTOR)
             .withIdleMode(IdleMode.kBrake)
             .withInversion(false)
-            .withPIDFParams(ARM_P, ARM_I, ARM_D, ARM_FF)
+            .withPIDParams(ARM_P, ARM_I, ARM_D)
+            .withPositionConversionFactor(ARM_GEAR_RATIO)
             .build();
 
         armMotor2 = VortexBuilder.create(ARM_MOTOR_2)
@@ -109,7 +119,7 @@ public class Armevator extends SubsystemBase implements Loggable {
     }
 
     public void setElevtorHeight(double height){
-        elevatorMotor1.setReference(height);
+        elevatorMotor1.setReference(height, ControlType.kPosition, ClosedLoopSlot.kSlot0, ELEVATOR_FF);
 
         inputs.setElevatorHeight = height;
         elevatorLigament.setLength(height + 1.05344);
@@ -117,18 +127,25 @@ public class Armevator extends SubsystemBase implements Loggable {
 
     public void setArmRotation(Rotation2d rotation){
         armMotor1.setReference(
-            rotation.getRadians()//, 
-            // ControlType.kPosition, 
-            // ClosedLoopSlot.kSlot0,
-            // armFeedforward.calculate(armEncoder.getPosition(), 0)
+            rotation.getRotations(), 
+            ControlType.kPosition, 
+            ClosedLoopSlot.kSlot0,
+            armFeedforward.calculate(
+                Rotation2d.fromRotations(armMotor1.getEncoder().getPosition() - 0.25).getRadians(), 
+                0
+            )
         );
 
         inputs.setArmRotation = rotation;
         armLigament.setAngle(rotation.getDegrees() - 90);
     }
 
+    public double getArmEncoderRotation() {
+        return armEncoder.getVoltage() * MAV_POSITION_FACTOR * ARM_GEAR_RATIO; //TODO: fix this
+    }
+
     public void safetyLogic() {
-        if(!(elevatorMotor1.getEncoder().getPosition() > 2 && elevatorMotor1.getEncoder().getPosition() < 20)) {
+        if(!(elevatorMotor1.getEncoder().getPosition() > Meters.convertFrom(2, Inches) && elevatorMotor1.getEncoder().getPosition() < Meters.convertFrom(20, Inches))) {
             setArmRotation(inputs.desiredArmRotation);
         } else if(inputs.desiredArmRotation.getDegrees() < SAFE_ANGLE.getDegrees()) {
             setArmRotation(SAFE_ANGLE);
@@ -147,7 +164,10 @@ public class Armevator extends SubsystemBase implements Loggable {
 
     @Override
     public void periodic(){
-        inputs.currentArmRotation = Rotation2d.fromRotations(armEncoder.getPosition());
+        // setArmRotation(Rotation2d.fromDegrees(45));
+        // setElevtorHeight(Meters.convertFrom(24, Inches));
+
+        inputs.currentArmRotation = Rotation2d.fromRotations(armMotor1.getEncoder().getPosition());
         inputs.currentElevatorHeight = elevatorMotor1.getEncoder().getPosition();
 
         safetyLogic();
