@@ -7,12 +7,11 @@ import frc.robot.utils.commandUtils.State;
 public class CoralIntake extends State<CoralManipulator> {
   public CoralIntake(CoralManipulator coralSubsystem) {
     super(coralSubsystem);
-
   }
 
   @Override
   public void initialize() {
-    requiredSubsystem.setCoralPower(1);
+    requiredSubsystem.setCoralPower(0.25);
   }
 
   @Override
