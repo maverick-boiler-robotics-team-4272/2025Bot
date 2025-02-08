@@ -4,19 +4,19 @@ package frc.robot.constants;
 public class HardwareMap {
 
     // Algae Manipulator
-    public static final int ALGAE_MOTOR_ID = 0;
+    public static final int ALGAE_MOTOR_ID = 51;
     
     // Coral Manipulator
-    public static final int CORAL_MOTOR_ID = 0;
+    public static final int CORAL_MOTOR_ID = 61;
 
     // Feeder
-    public static final int FEEDER_MOTOR_ID = 0;
+    public static final int FEEDER_MOTOR_ID = 31;
     public static final int FEEDER_CAN_FRONT_TRIGGER_DISTANCE = 2;
     public static final int FEEDER_CAN_BACK_TRIGGER_DISTANCE = 3;
-    public static final int FEEDER_CAN_BACK_ID = 0;
-    public static final int FEEDER_CAN_FRONT_ID = 1;
+    public static final int FEEDER_CAN_BACK_ID = 32;
+    public static final int FEEDER_CAN_FRONT_ID = 33;
     
-    //Climber
+    //Climber 
     public static final int CLIMBER_MOTOR_ID = 0;
 
     // Elevator motors
