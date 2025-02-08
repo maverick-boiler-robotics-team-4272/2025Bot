@@ -1,6 +1,7 @@
 package frc.robot.constants;
 
 import static edu.wpi.first.units.Units.Feet;
+import static edu.wpi.first.units.Units.Inches;
 import static edu.wpi.first.units.Units.Meters;
 import static edu.wpi.first.units.Units.MetersPerSecond;
 import static edu.wpi.first.units.Units.RadiansPerSecond;
@@ -19,7 +20,6 @@ public class SubsystemConstants {
         public static  class AutoConstants {
             public static final double TRANSLATION_MAX = 4.5;
             public static final double TRANSLATION_MAX_A = 4.0;
-            public static final double DRIVEBASE_RADIUS = Units.inchesToMeters(13.27709);
             public static final Rotation2d ROTATION_MAX = Rotation2d.fromDegrees(560.0);
             public static final Rotation2d ROTATION_MAX_A = Rotation2d.fromDegrees(720.0);
 
@@ -65,31 +65,31 @@ public class SubsystemConstants {
     }
 
     public static class ArmevatorConstants {
-        public static final int CURRENT_LIMIT_ELEVATOR_MOTORS = 40;
+        public static final int CURRENT_LIMIT_ELEVATOR_MOTORS = 60;
         public static final int CURRENT_LIMIT_ARM_MOTOR = 40;
         public static final int NOMINAL_VOLTAGE = 12;
 
-        public static final double ELEVATOR_GEAR_RATIO = 1.055544;
+        public static final double ELEVATOR_GEAR_RATIO = Meters.convertFrom(1.055544, Inches);
         public static final double ARM_GEAR_RATIO = 1.0 / 58.7755;
 
         public static final double ARM_ANGLE_OFFSET = 0.0; //The offset of the mavcoder.
 
-        public static final double ARM_FEEDFORWARD = 0.0;
         public static final double MAX_ELEVATOR_HEIGHT = Meters.convertFrom(6, Feet);
 
         public static final Rotation2d SAFE_ANGLE = Rotation2d.fromDegrees(10);
 
         public static final double MAV_2_MIN_OUTPUT = 0.03;
         public static final double MAV_2_MAX_OUTPUT = 0.97;
-        public static final double MAV_2_POSITION_FACTOR = 360.0 / (MAV_2_MAX_OUTPUT - MAV_2_MIN_OUTPUT);
+        public static final double MAV_POSITION_FACTOR = 360.0 / 3.3;
 
-        public static final double ELEVATOR_P = 1.0;
+        public static final double ELEVATOR_P = 8.0;
         public static final double ELEVATOR_I = 0.0;
         public static final double ELEVATOR_D = 0.0;
+        public static final double ELEVATOR_FF = 0.025;
 
-        public static final double ARM_P = 1.0;
+        public static final double ARM_P = 8.0;
         public static final double ARM_I = 0.0;
-        public static final double ARM_D = 0.0;
-        public static final double ARM_FF = 0.0;
+        public static final double ARM_D = 1.0;
+        public static final double ARM_FF = 0.02;
     }
 }
