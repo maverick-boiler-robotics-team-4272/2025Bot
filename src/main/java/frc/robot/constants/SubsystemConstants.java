@@ -82,7 +82,7 @@ public class SubsystemConstants {
         public static final double MAV_2_MAX_OUTPUT = 0.97;
         public static final double MAV_POSITION_FACTOR = 360.0 / 3.3;
 
-        public static final double ELEVATOR_P = 8.0;
+        public static final double ELEVATOR_P = 4.0;
         public static final double ELEVATOR_I = 0.0;
         public static final double ELEVATOR_D = 0.0;
         public static final double ELEVATOR_FF = 0.025;
