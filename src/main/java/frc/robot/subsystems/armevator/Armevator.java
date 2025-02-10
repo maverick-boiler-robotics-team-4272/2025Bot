@@ -34,6 +34,7 @@ public class Armevator extends SubsystemBase implements Loggable {
         public double currentElevatorHeight;
         public Rotation2d currentArmRotation;
         public double armEncoderRotation;
+        public boolean isSafe;
     }
     
     @AutoLogOutput
@@ -52,6 +53,8 @@ public class Armevator extends SubsystemBase implements Loggable {
         inputs.currentArmRotation = new Rotation2d();
         inputs.currentElevatorHeight = 0.0;
         inputs.armEncoderRotation = 0.0;
+
+        inputs.isSafe = false;
 
         armevatorMechanism = new LoggedMechanism2d(1, 1);
         armLigament = new LoggedMechanismLigament2d("Arm", 0.5, 0);
@@ -83,6 +86,7 @@ public class Armevator extends SubsystemBase implements Loggable {
             .withSoftLimits(MAX_ELEVATOR_HEIGHT, 0)
             .withCurrentLimit(CURRENT_LIMIT_ELEVATOR_MOTORS)
             .withPIDParams(ELEVATOR_P, ELEVATOR_I, ELEVATOR_D)
+            .withOutputRange(-0.5, 1.0)
             // .withLimitSwitch()
             .build();
 
@@ -141,16 +145,18 @@ public class Armevator extends SubsystemBase implements Loggable {
     }
 
     public double getArmEncoderRotation() {
-        return armEncoder.getVoltage() * MAV_POSITION_FACTOR * ARM_GEAR_RATIO; //TODO: fix this
+        return armEncoder.getPosition(); //TODO: fix this
     }
 
     public void safetyLogic() {
         if(!(elevatorMotor1.getEncoder().getPosition() > Meters.convertFrom(2, Inches) && elevatorMotor1.getEncoder().getPosition() < Meters.convertFrom(20, Inches))) {
             setArmRotation(inputs.desiredArmRotation);
         } else if(inputs.desiredArmRotation.getDegrees() < SAFE_ANGLE.getDegrees()) {
+            inputs.isSafe = false;
             setArmRotation(SAFE_ANGLE);
         } else {
             setArmRotation(inputs.desiredArmRotation);
+            inputs.isSafe = true;
         }
 
         setElevtorHeight(inputs.desiredElevatorHeight);
@@ -164,11 +170,9 @@ public class Armevator extends SubsystemBase implements Loggable {
 
     @Override
     public void periodic(){
-        // setArmRotation(Rotation2d.fromDegrees(45));
-        // setElevtorHeight(Meters.convertFrom(24, Inches));
-
         inputs.currentArmRotation = Rotation2d.fromRotations(armMotor1.getEncoder().getPosition());
         inputs.currentElevatorHeight = elevatorMotor1.getEncoder().getPosition();
+        inputs.armEncoderRotation = armEncoder.getPosition();
 
         safetyLogic();
 
