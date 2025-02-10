@@ -17,9 +17,13 @@ import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
 import frc.robot.subsystems.armevator.Armevator;
 import frc.robot.subsystems.armevator.States.GoToArmevatorPoseState;
 import frc.robot.subsystems.coralManipulator.CoralManipulator;
+import frc.robot.subsystems.coralManipulator.states.CoralIntakeState;
+import frc.robot.subsystems.coralManipulator.states.CoralOutakeState;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
 import frc.robot.subsystems.drivetrain.states.DriveState;
 import frc.robot.subsystems.drivetrain.states.ResetHeadingState;
+import frc.robot.subsystems.feeder.Feeder;
+import frc.robot.subsystems.feeder.states.FeedState;
 
 import static edu.wpi.first.units.Units.Inch;
 import static edu.wpi.first.units.Units.Inches;
@@ -38,6 +42,7 @@ public class RobotContainer {
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
     public final CoralManipulator coralManipulator = new CoralManipulator();
     public final Armevator armevator = new Armevator(coralManipulator.getArmEncoder());
+    public final Feeder feeder = new Feeder();
 
     public RobotContainer() {
         configureBindings();
@@ -72,9 +77,18 @@ public class RobotContainer {
                 armevator, 
                 new ArmevatorPosition(
                     Rotation2d.fromDegrees(50), 
-                    Meters.convertFrom(24, Inches)
+                    Meters.convertFrom(48, Inches)
                 )
             )
+        );
+
+        joystick.leftBumper().whileTrue(
+            new FeedState(feeder)
+                .alongWith(new CoralIntakeState(coralManipulator))
+        );
+
+        joystick.rightBumper().whileTrue(
+            new CoralOutakeState(coralManipulator)
         );
 
         // Run SysId routines when holding back/start and X/Y.
