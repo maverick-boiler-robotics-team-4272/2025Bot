@@ -59,25 +59,27 @@ public class Feeder extends SubsystemBase {
   }
 
   public boolean lidarFrontTripped() {
+      LaserCan.Measurement measurementFront = feederCanFront.getMeasurement();
+      if (measurementFront.distance_mm <= FEEDER_CAN_FRONT_TRIGGER_DISTANCE) {
+          lidarFrontTriggered = true;
+        } else {
+          lidarFrontTriggered = false;
+        }
       return lidarFrontTriggered;
   }
+
   public boolean lidarBackTripped() {
+      LaserCan.Measurement measurementBack = feederCanBack.getMeasurement();
+      if (measurementBack.distance_mm <= FEEDER_CAN_BACK_TRIGGER_DISTANCE) {
+        lidarBackTriggered = true;
+        } else {
+       lidarBackTriggered = false;
+        }
       return lidarBackTriggered;
   }
 
   @Override
   public void periodic() {
-    // LaserCan.Measurement measurementFront = feederCanFront.getMeasurement();
-    // LaserCan.Measurement measurementBack = feederCanBack.getMeasurement();
-    // if (measurementFront.distance_mm <= FEEDER_CAN_FRONT_TRIGGER_DISTANCE) {
-    //   lidarFrontTriggered = true;
-    // } else {
-    //   lidarFrontTriggered = false;
-    // }
-    // if (measurementBack.distance_mm <= FEEDER_CAN_BACK_TRIGGER_DISTANCE) {
-    //   lidarBackTriggered = true;
-    // } else {
-    //   lidarBackTriggered = false;
-    // }
+    //log?
   }
 }
