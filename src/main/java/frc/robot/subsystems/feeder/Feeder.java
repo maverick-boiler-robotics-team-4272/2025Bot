@@ -30,8 +30,8 @@ public class Feeder extends SubsystemBase {
 
   public Feeder() {
     feederControllerMotor = VortexBuilder.create(FEEDER_MOTOR_ID)
-        .withInversion(false)
-        .withCurrentLimit(80)
+        .withInversion(true)
+        .withCurrentLimit(40)
         .withIdleMode(IdleMode.kBrake)
         .build();
 
@@ -43,9 +43,10 @@ public class Feeder extends SubsystemBase {
   }
 
   public void configLidar() {
-    configFeederCan(FEEDER_CAN_BACK_ID);
-    configFeederCan(FEEDER_CAN_FRONT_ID);
+    // configFeederCan(FEEDER_CAN_BACK_ID);
+    // configFeederCan(FEEDER_CAN_FRONT_ID);
   }
+
   public void configFeederCan(int canID) {
     LaserCan feederCan = new LaserCan(canID);
     try {
@@ -66,17 +67,17 @@ public class Feeder extends SubsystemBase {
 
   @Override
   public void periodic() {
-    LaserCan.Measurement measurementFront = feederCanFront.getMeasurement();
-    LaserCan.Measurement measurementBack = feederCanBack.getMeasurement();
-    if (measurementFront.distance_mm <= FEEDER_CAN_FRONT_TRIGGER_DISTANCE) {
-      lidarFrontTriggered = true;
-    } else {
-      lidarFrontTriggered = false;
-    }
-    if (measurementBack.distance_mm <= FEEDER_CAN_BACK_TRIGGER_DISTANCE) {
-      lidarBackTriggered = true;
-    } else {
-      lidarBackTriggered = false;
-    }
+    // LaserCan.Measurement measurementFront = feederCanFront.getMeasurement();
+    // LaserCan.Measurement measurementBack = feederCanBack.getMeasurement();
+    // if (measurementFront.distance_mm <= FEEDER_CAN_FRONT_TRIGGER_DISTANCE) {
+    //   lidarFrontTriggered = true;
+    // } else {
+    //   lidarFrontTriggered = false;
+    // }
+    // if (measurementBack.distance_mm <= FEEDER_CAN_BACK_TRIGGER_DISTANCE) {
+    //   lidarBackTriggered = true;
+    // } else {
+    //   lidarBackTriggered = false;
+    // }
   }
 }

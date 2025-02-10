@@ -22,9 +22,4 @@ public class FeedState extends State<Feeder> {
   public void end(boolean interrupted) {
     requiredSubsystem.setFeederPower(0);
   }
-
-  @Override
-  public boolean isFinished() {
-    return requiredSubsystem.lidarFrontTripped() || requiredSubsystem.lidarBackTripped();
-   }
 }
