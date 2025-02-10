@@ -76,8 +76,8 @@ public class RobotContainer {
             new GoToArmevatorPoseState(
                 armevator, 
                 new ArmevatorPosition(
-                    Rotation2d.fromDegrees(50), 
-                    Meters.convertFrom(48, Inches)
+                    Rotation2d.fromDegrees(135), 
+                    Meters.convertFrom(36, Inches)
                 )
             )
         );
