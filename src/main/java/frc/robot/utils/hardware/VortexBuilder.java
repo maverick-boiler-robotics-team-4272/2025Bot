@@ -4,6 +4,7 @@ import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.config.AbsoluteEncoderConfig;
+import com.revrobotics.spark.config.AnalogSensorConfig;
 import com.revrobotics.spark.config.LimitSwitchConfig;
 import com.revrobotics.spark.config.SparkFlexConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
@@ -139,15 +140,21 @@ public class VortexBuilder {
         return this;
     }
 
-    public VortexBuilder withAbsoluteEncoderConfig(AbsoluteEncoderConfig config) {
-        config.apply(config);
+    public VortexBuilder withAbsoluteEncoderConfig(AbsoluteEncoderConfig sensorConfig) {
+        this.config.apply(sensorConfig);
+
+        return this;
+    }
+
+    public VortexBuilder withAnalogConfig(AnalogSensorConfig sensorConfig) {
+        this.config.apply(sensorConfig);
 
         return this;
     }
 
     public VortexBuilder withLimitSwitch(LimitSwitchConfig limitConfig) {
-        config.limitSwitch.setSparkMaxDataPortConfig();
-        config.apply(config);
+        this.config.limitSwitch.setSparkMaxDataPortConfig();
+        this.config.apply(limitConfig);
 
         return this;
     }
