@@ -14,17 +14,29 @@ import au.grapplerobotics.LaserCan;
 import au.grapplerobotics.ConfigurationFailedException;
 
 import static frc.robot.constants.HardwareMap.*;
-import frc.robot.utils.hardware.VortexBuilder;
 
-public class Feeder extends SubsystemBase {
+import org.littletonrobotics.junction.AutoLog;
+import org.littletonrobotics.junction.Logger;
+
+import frc.robot.utils.hardware.VortexBuilder;
+import frc.robot.utils.logging.Loggable;
+
+public class Feeder extends SubsystemBase implements Loggable {
+  @AutoLog
+  public static class FeederInputs {
+    public double frontLidarDistance;
+    public double backLidarDistance;
+  }
+
+  FeederInputsAutoLogged inputs = new FeederInputsAutoLogged();
+
+  private void initInputs() {
+    inputs.frontLidarDistance = 0.0;
+    inputs.backLidarDistance = 0.0;
+  }
+
   private LaserCan feederCanFront;
   private LaserCan feederCanBack;
-
-  public double feederPower;
-  public boolean lidarFrontTriggered = false;
-  public boolean lidarBackTriggered = false;
-  public double lidarFrontDistance;
-  public double lidarBackDistance;
 
   public SparkFlex feederControllerMotor;
 
@@ -35,6 +47,8 @@ public class Feeder extends SubsystemBase {
         .withIdleMode(IdleMode.kBrake)
         .build();
 
+    initInputs();
+
     configLidar();
   }
 
@@ -43,41 +57,46 @@ public class Feeder extends SubsystemBase {
   }
 
   public void configLidar() {
-    // configFeederCan(FEEDER_CAN_BACK_ID);
-    // configFeederCan(FEEDER_CAN_FRONT_ID);
+    feederCanBack = configFeederCan(FEEDER_CAN_BACK_ID);
+    feederCanFront = configFeederCan(FEEDER_CAN_FRONT_ID);
   }
 
-  public void configFeederCan(int canID) {
-    LaserCan feederCan = new LaserCan(canID);
+  public LaserCan configFeederCan(int canID) {
+    LaserCan laserCan = new LaserCan(canID);
     try {
-      feederCan.setRangingMode(LaserCan.RangingMode.SHORT);
-      feederCan.setRegionOfInterest(new LaserCan.RegionOfInterest(8, 8, 16, 16));
-      feederCan.setTimingBudget(LaserCan.TimingBudget.TIMING_BUDGET_33MS);
+      laserCan.setRangingMode(LaserCan.RangingMode.SHORT);
+      laserCan.setRegionOfInterest(new LaserCan.RegionOfInterest(8, 8, 16, 16));
+      laserCan.setTimingBudget(LaserCan.TimingBudget.TIMING_BUDGET_33MS);
     } catch (ConfigurationFailedException e) {
       System.out.println("Configuration failed! " + e);
     }
+
+    return laserCan;
   }
 
   public boolean lidarFrontTripped() {
-      return lidarFrontTriggered;
+    LaserCan.Measurement measurementFront = feederCanFront.getMeasurement();
+    if (measurementFront.distance_mm <= FEEDER_CAN_FRONT_TRIGGER_DISTANCE) {
+      return true;
+    }
+    return false;
   }
+
   public boolean lidarBackTripped() {
-      return lidarBackTriggered;
+    LaserCan.Measurement measurementBack = feederCanBack.getMeasurement();
+    if (measurementBack.distance_mm <= FEEDER_CAN_BACK_TRIGGER_DISTANCE) {
+      return true;
+    }
+    return false;
+  }
+
+  @Override
+  public void log(String subdirectory, String humanReadableName) {
+    Logger.processInputs(subdirectory + "/" + humanReadableName, inputs);
   }
 
   @Override
   public void periodic() {
-    // LaserCan.Measurement measurementFront = feederCanFront.getMeasurement();
-    // LaserCan.Measurement measurementBack = feederCanBack.getMeasurement();
-    // if (measurementFront.distance_mm <= FEEDER_CAN_FRONT_TRIGGER_DISTANCE) {
-    //   lidarFrontTriggered = true;
-    // } else {
-    //   lidarFrontTriggered = false;
-    // }
-    // if (measurementBack.distance_mm <= FEEDER_CAN_BACK_TRIGGER_DISTANCE) {
-    //   lidarBackTriggered = true;
-    // } else {
-    //   lidarBackTriggered = false;
-    // }
+    log("Subsystems", "Feeder");
   }
 }
