@@ -17,6 +17,9 @@ import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
 import frc.robot.subsystems.algaeManipulator.states.AlgaeIntake;
 import frc.robot.subsystems.armevator.Armevator;
 import frc.robot.subsystems.armevator.States.GoToArmevatorPoseState;
+import frc.robot.subsystems.climber.Climber;
+import frc.robot.subsystems.climber.states.LowerState;
+import frc.robot.subsystems.climber.states.ClimbState;
 import frc.robot.subsystems.coralManipulator.CoralManipulator;
 import frc.robot.subsystems.coralManipulator.states.CoralIntakeState;
 import frc.robot.subsystems.coralManipulator.states.CoralOutakeState;
@@ -45,6 +48,7 @@ public class RobotContainer {
     public final Armevator armevator = new Armevator(coralManipulator.getArmEncoder());
     public final AlgaeManipulator algaeManipulator = new AlgaeManipulator();
     public final Feeder feeder = new Feeder();
+    public final Climber climber = new Climber();
 
     public RobotContainer() {
         configureBindings();
@@ -84,6 +88,16 @@ public class RobotContainer {
             )
         );
 
+        joystick.y().whileTrue(
+            new GoToArmevatorPoseState(
+                armevator, 
+                new ArmevatorPosition(
+                    Rotation2d.fromDegrees(90), 
+                    0.01
+                )
+            )  
+        );
+
         joystick.leftBumper().whileTrue(
             new FeedState(feeder)
                 .alongWith(new CoralIntakeState(coralManipulator))
@@ -93,8 +107,21 @@ public class RobotContainer {
             new CoralOutakeState(coralManipulator)
         );
 
-        joystick.povDown().whileTrue(
+        joystick.povLeft().whileTrue(
             new AlgaeIntake(algaeManipulator)
+        );
+
+        joystick.povDown().whileTrue(
+            new LowerState(climber)  
+        );
+
+        joystick.povUp().whileTrue(
+            new ClimbState(climber).alongWith(
+                new GoToArmevatorPoseState(
+                    armevator,
+                    new ArmevatorPosition(Rotation2d.fromDegrees(210), 0.01)
+                )
+            )
         );
 
         // Run SysId routines when holding back/start and X/Y.
