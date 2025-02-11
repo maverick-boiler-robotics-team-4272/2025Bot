@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.constants.TunerConstants;
 import frc.robot.constants.positions.ArmevatorPosition;
 import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
+import frc.robot.subsystems.algaeManipulator.states.AlgaeIntake;
 import frc.robot.subsystems.armevator.Armevator;
 import frc.robot.subsystems.armevator.States.GoToArmevatorPoseState;
 import frc.robot.subsystems.coralManipulator.CoralManipulator;
@@ -42,6 +43,7 @@ public class RobotContainer {
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
     public final CoralManipulator coralManipulator = new CoralManipulator();
     public final Armevator armevator = new Armevator(coralManipulator.getArmEncoder());
+    public final AlgaeManipulator algaeManipulator = new AlgaeManipulator();
     public final Feeder feeder = new Feeder();
 
     public RobotContainer() {
@@ -89,6 +91,10 @@ public class RobotContainer {
 
         joystick.rightBumper().whileTrue(
             new CoralOutakeState(coralManipulator)
+        );
+
+        joystick.povDown().whileTrue(
+            new AlgaeIntake(algaeManipulator)
         );
 
         // Run SysId routines when holding back/start and X/Y.
