@@ -17,7 +17,7 @@ public class HardwareMap {
     public static final int FEEDER_CAN_FRONT_ID = 33;
     
     //Climber 
-    public static final int CLIMBER_MOTOR_ID = 0;
+    public static final int CLIMBER_MOTOR_ID = 41;
 
     // Elevator motors
     public static final int BASE_ARMEVATOR_MOTOR_1 = 21;
