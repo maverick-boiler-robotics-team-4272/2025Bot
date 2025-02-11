@@ -18,12 +18,12 @@ public class CoralManipulator extends SubsystemBase {
     public CoralManipulator() {
         coralControllerMotor = VortexBuilder.create(CORAL_MOTOR_ID)
             .withInversion(false)
-            .withCurrentLimit(80)
+            .withCurrentLimit(40)
             .withIdleMode(IdleMode.kBrake)
             .withAnalogConfig(
                 new AnalogSensorConfig()
                     .inverted(true)
-                    .positionConversionFactor(1.0 / MAV_POSITION_FACTOR)
+                    .positionConversionFactor(MAV_POSITION_FACTOR)
             )
             .build();
     }

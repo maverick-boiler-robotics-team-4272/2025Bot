@@ -33,7 +33,7 @@ public class Armevator extends SubsystemBase implements Loggable {
         public Rotation2d setArmRotation;
         public double currentElevatorHeight;
         public Rotation2d currentArmRotation;
-        public double armEncoderRotation;
+        public Rotation2d armEncoderRotation;
         public boolean isSafe;
     }
     
@@ -52,7 +52,7 @@ public class Armevator extends SubsystemBase implements Loggable {
         inputs.setElevatorHeight = 0.0;
         inputs.currentArmRotation = new Rotation2d();
         inputs.currentElevatorHeight = 0.0;
-        inputs.armEncoderRotation = 0.0;
+        inputs.armEncoderRotation = new Rotation2d();
 
         inputs.isSafe = false;
 
@@ -144,8 +144,8 @@ public class Armevator extends SubsystemBase implements Loggable {
         armLigament.setAngle(rotation.getDegrees() - 90);
     }
 
-    public double getArmEncoderRotation() {
-        return armEncoder.getPosition(); //TODO: fix this
+    public Rotation2d getArmEncoderRotation() {
+        return Rotation2d.fromDegrees(armEncoder.getPosition()); //TODO: fix this
     }
 
     public void safetyLogic() {
@@ -172,7 +172,7 @@ public class Armevator extends SubsystemBase implements Loggable {
     public void periodic(){
         inputs.currentArmRotation = Rotation2d.fromRotations(armMotor1.getEncoder().getPosition());
         inputs.currentElevatorHeight = elevatorMotor1.getEncoder().getPosition();
-        inputs.armEncoderRotation = armEncoder.getPosition();
+        inputs.armEncoderRotation = getArmEncoderRotation();
 
         safetyLogic();
 
