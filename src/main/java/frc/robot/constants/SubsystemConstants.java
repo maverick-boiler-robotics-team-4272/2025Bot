@@ -92,4 +92,8 @@ public class SubsystemConstants {
         public static final double ARM_D = 1.0;
         public static final double ARM_FF = 0.02;
     }
+
+    public static class ClimberConstants {
+        public static final double CLIMBER_CURRENT_LIMIT = 40.0;
+    }
 }
