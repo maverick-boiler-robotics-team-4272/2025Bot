@@ -46,7 +46,7 @@ public class Armevator extends SubsystemBase implements Loggable {
     private ArmevatorInputsAutoLogged inputs = new ArmevatorInputsAutoLogged();
 
     private void initInputs() {
-        inputs.desiredArmRotation = new Rotation2d();
+        inputs.desiredArmRotation = SAFE_ANGLE;
         inputs.desiredElevatorHeight = 0.0;
         inputs.setArmRotation = new Rotation2d();
         inputs.setElevatorHeight = 0.0;
@@ -87,7 +87,7 @@ public class Armevator extends SubsystemBase implements Loggable {
             .withCurrentLimit(CURRENT_LIMIT_ELEVATOR_MOTORS)
             .withPIDParams(ELEVATOR_P, ELEVATOR_I, ELEVATOR_D)
             .withOutputRange(-0.5, 1.0)
-            // .withLimitSwitch()
+            .maxSpeeds(0.01, 0.001)
             .build();
 
         elevatorMotor2 = VortexBuilder.create(BASE_ARMEVATOR_MOTOR_2)
@@ -96,6 +96,7 @@ public class Armevator extends SubsystemBase implements Loggable {
             .withIdleMode(IdleMode.kBrake)
             .asFollower(elevatorMotor1, false)
             .withCurrentLimit(CURRENT_LIMIT_ELEVATOR_MOTORS)
+            .withLimitSwitch()
             .build();
 
         armMotor1 = VortexBuilder.create(ARM_MOTOR_1)
@@ -148,8 +149,13 @@ public class Armevator extends SubsystemBase implements Loggable {
         return Rotation2d.fromDegrees(armEncoder.getPosition()); //TODO: fix this
     }
 
+    public boolean limitSwitch() {
+        return elevatorMotor2.getReverseLimitSwitch().isPressed();
+    }
+
     public void safetyLogic() {
         if(!(elevatorMotor1.getEncoder().getPosition() > Meters.convertFrom(2, Inches) && elevatorMotor1.getEncoder().getPosition() < Meters.convertFrom(20, Inches))) {
+            inputs.isSafe = true;
             setArmRotation(inputs.desiredArmRotation);
         } else if(inputs.desiredArmRotation.getDegrees() < SAFE_ANGLE.getDegrees()) {
             inputs.isSafe = false;

@@ -164,6 +164,12 @@ public class VortexBuilder {
 
         return this;
     }
+
+    public VortexBuilder maxSpeeds(double vel, double acc) {
+        config.closedLoop.maxMotion.maxVelocity(vel).maxAcceleration(acc);
+
+        return this;
+    }
     
     public Vortex build() {
         //TODO: Find out why this method breaks the simulation and the other doesn't;
