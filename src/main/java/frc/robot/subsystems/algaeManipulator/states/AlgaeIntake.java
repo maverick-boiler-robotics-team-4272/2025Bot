@@ -12,7 +12,7 @@ public class AlgaeIntake extends State<AlgaeManipulator> {
 
   @Override
   public void initialize() {
-    requiredSubsystem.setAlgaePower(1);
+    requiredSubsystem.setAlgaePower(0.5);
   }
 
   @Override
