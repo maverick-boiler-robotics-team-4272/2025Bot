@@ -77,10 +77,8 @@ public class SubsystemConstants {
         public static final double MAX_ELEVATOR_HEIGHT = Meters.convertFrom(6, Feet);
 
         public static final Rotation2d SAFE_ANGLE = Rotation2d.fromDegrees(10);
-
-        public static final double MAV_2_MIN_OUTPUT = 0.03;
-        public static final double MAV_2_MAX_OUTPUT = 0.97;
-        public static final double MAV_POSITION_FACTOR = 360.0 / 3.3;
+        
+        public static final double MAV_POSITION_FACTOR = 360.0 / 5.0;
 
         public static final double ELEVATOR_P = 4.0;
         public static final double ELEVATOR_I = 0.0;
