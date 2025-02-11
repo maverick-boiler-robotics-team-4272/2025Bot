@@ -1,28 +1,28 @@
 package frc.robot.subsystems.climber;
 
-import frc.robot.utils.hardware.Vortex;
-import frc.robot.utils.hardware.VortexBuilder;
-
+import static edu.wpi.first.units.Units.Amps;
 import static frc.robot.constants.HardwareMap.CLIMBER_MOTOR_ID;
 
-import com.revrobotics.AbsoluteEncoder;
-import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
-
+import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.hardware.TalonFX;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import static frc.robot.constants.SubsystemConstants.ClimberConstants.*;
+
 public class Climber extends SubsystemBase {
-    private Vortex climberControllerMotor;
-    @SuppressWarnings("unused")
-    private AbsoluteEncoder climberEncoder;
+    private TalonFX climberControllerMotor;
 
     public Climber() {
-        climberControllerMotor = VortexBuilder.create(CLIMBER_MOTOR_ID)
-            .withInversion(false)
-            .withCurrentLimit(40)
-            .withIdleMode(IdleMode.kBrake)
-            .build();
-
-        climberEncoder = climberControllerMotor.getAbsoluteEncoder();
+        TalonFXConfiguration motorConfiguration = new TalonFXConfiguration();
+        climberControllerMotor = new TalonFX(CLIMBER_MOTOR_ID);
+        climberControllerMotor.getConfigurator().apply(motorConfiguration
+            .withCurrentLimits(
+                new CurrentLimitsConfigs()
+                .withStatorCurrentLimit(Amps.of(CLIMBER_CURRENT_LIMIT))
+                .withStatorCurrentLimitEnable(true)
+            )
+        );
     }
 
     public void setClimberPower(double power) {
