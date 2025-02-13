@@ -70,7 +70,6 @@ public class Armevator extends SubsystemBase implements Loggable {
     }
 
     private Vortex elevatorMotor1; 
-    @SuppressWarnings("unused")
     private Vortex elevatorMotor2;
     private Vortex armMotor1;
     @SuppressWarnings("unused")
@@ -136,6 +135,14 @@ public class Armevator extends SubsystemBase implements Loggable {
 
         inputs.setElevatorHeight = height;
         elevatorLigament.setLength(height + 1.05344);
+    }
+    
+    public void setElevatotPower(double speed) {
+        elevatorMotor1.set(speed);
+    }
+
+    public void resetElevator(double position) {
+        elevatorMotor1.getEncoder().setPosition(0);
     }
 
     public void setArmRotation(Rotation2d rotation){
