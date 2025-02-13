@@ -154,6 +154,7 @@ public class Armevator extends SubsystemBase implements Loggable {
     }
 
     public void safetyLogic() {
+        //If the elevator is going below the safe height and the current arm position is unsafe set the elevator height to the safe position.
         if(!(elevatorMotor1.getEncoder().getPosition() > Meters.convertFrom(2, Inches) && elevatorMotor1.getEncoder().getPosition() < Meters.convertFrom(20, Inches))) {
             inputs.isSafe = true;
             setArmRotation(inputs.desiredArmRotation);
@@ -166,7 +167,6 @@ public class Armevator extends SubsystemBase implements Loggable {
         }
 
         setElevtorHeight(inputs.desiredElevatorHeight);
-        setArmRotation(inputs.desiredArmRotation);
     }
 
     @Override
