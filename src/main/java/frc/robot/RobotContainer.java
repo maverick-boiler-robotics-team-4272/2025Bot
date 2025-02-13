@@ -92,15 +92,15 @@ public class RobotContainer {
             new GoToArmevatorPoseState(
                 armevator, 
                 new ArmevatorPosition(
-                    Rotation2d.fromDegrees(90), 
-                    0.01
+                    Rotation2d.fromDegrees(0), 
+                    Meters.convertFrom(24, Inches)
                 )
             )  
         );
 
         joystick.leftBumper().whileTrue(
             new FeedState(feeder)
-                .alongWith(new CoralIntakeState(coralManipulator))
+                // .alongWith(new CoralIntakeState(coralManipulator))
         );
 
         joystick.rightBumper().whileTrue(
