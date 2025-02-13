@@ -3,6 +3,8 @@ package frc.robot.subsystems.armevator;
 import com.revrobotics.spark.ClosedLoopSlot;
 import com.revrobotics.spark.SparkAnalogSensor;
 import com.revrobotics.spark.SparkBase.ControlType;
+import com.revrobotics.spark.config.LimitSwitchConfig;
+import com.revrobotics.spark.config.LimitSwitchConfig.Type;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import edu.wpi.first.math.controller.ArmFeedforward;
@@ -35,6 +37,7 @@ public class Armevator extends SubsystemBase implements Loggable {
         public Rotation2d currentArmRotation;
         public Rotation2d armEncoderRotation;
         public boolean isSafe;
+        public boolean limitSwitch;
     }
     
     @AutoLogOutput
@@ -55,6 +58,7 @@ public class Armevator extends SubsystemBase implements Loggable {
         inputs.armEncoderRotation = new Rotation2d();
 
         inputs.isSafe = false;
+        inputs.limitSwitch = false;
 
         armevatorMechanism = new LoggedMechanism2d(1, 1);
         armLigament = new LoggedMechanismLigament2d("Arm", 0.5, 0);
@@ -96,7 +100,11 @@ public class Armevator extends SubsystemBase implements Loggable {
             .withIdleMode(IdleMode.kBrake)
             .asFollower(elevatorMotor1, false)
             .withCurrentLimit(CURRENT_LIMIT_ELEVATOR_MOTORS)
-            .withLimitSwitch()
+            .withLimitSwitch(
+                new LimitSwitchConfig()
+                    .reverseLimitSwitchType(Type.kNormallyOpen)
+                    .reverseLimitSwitchEnabled(true)
+            )
             .build();
 
         armMotor1 = VortexBuilder.create(ARM_MOTOR_1)
@@ -149,7 +157,7 @@ public class Armevator extends SubsystemBase implements Loggable {
         return Rotation2d.fromDegrees(armEncoder.getPosition()); //TODO: fix this
     }
 
-    public boolean limitSwitch() {
+    public boolean isLimitSwitchHit() {
         return elevatorMotor2.getReverseLimitSwitch().isPressed();
     }
 
@@ -179,6 +187,7 @@ public class Armevator extends SubsystemBase implements Loggable {
         inputs.currentArmRotation = Rotation2d.fromRotations(armMotor1.getEncoder().getPosition());
         inputs.currentElevatorHeight = elevatorMotor1.getEncoder().getPosition();
         inputs.armEncoderRotation = getArmEncoderRotation();
+        inputs.limitSwitch = isLimitSwitchHit();
 
         safetyLogic();
 
