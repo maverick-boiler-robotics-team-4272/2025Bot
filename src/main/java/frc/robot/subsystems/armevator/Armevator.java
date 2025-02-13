@@ -157,12 +157,28 @@ public class Armevator extends SubsystemBase implements Loggable {
         return Rotation2d.fromDegrees(armEncoder.getPosition()); //TODO: fix this
     }
 
+    public Rotation2d getArmRotation() {
+        return Rotation2d.fromRotations(armMotor1.getEncoder().getPosition());
+    }
+
+    public double getElevatorHeight() {
+        return elevatorMotor1.getEncoder().getPosition();
+    }
+
     public boolean isLimitSwitchHit() {
         return elevatorMotor2.getReverseLimitSwitch().isPressed();
     }
 
     public void safetyLogic() {
-        if(!(elevatorMotor1.getEncoder().getPosition() > Meters.convertFrom(2, Inches) && elevatorMotor1.getEncoder().getPosition() < Meters.convertFrom(20, Inches))) {
+        //If the elevator is going below the safe height and the elevator is going down and the current arm position is unsafe set the elevator height to the safe position.
+        if(getArmRotation().getDegrees() < SAFE_ANGLE.getDegrees() - 5.0 && inputs.desiredElevatorHeight <= SAFE_ELEVATOR_HEIGHT && inputs.desiredElevatorHeight < getElevatorHeight() - 0.01) {
+            inputs.isSafe = false;
+            setElevtorHeight(SAFE_ELEVATOR_HEIGHT);
+            setArmRotation(SAFE_ANGLE);
+            return;
+        }
+        
+        if(!(getElevatorHeight() > Meters.convertFrom(1.0, Inches) && getElevatorHeight() < SAFE_ELEVATOR_HEIGHT)) {
             inputs.isSafe = true;
             setArmRotation(inputs.desiredArmRotation);
         } else if(inputs.desiredArmRotation.getDegrees() < SAFE_ANGLE.getDegrees()) {
@@ -174,7 +190,6 @@ public class Armevator extends SubsystemBase implements Loggable {
         }
 
         setElevtorHeight(inputs.desiredElevatorHeight);
-        setArmRotation(inputs.desiredArmRotation);
     }
 
     @Override
