@@ -82,8 +82,8 @@ public class RobotContainer {
             new GoToArmevatorPoseState(
                 armevator, 
                 new ArmevatorPosition(
-                    Rotation2d.fromDegrees(135), 
-                    Meters.convertFrom(36, Inches)
+                    Rotation2d.fromDegrees(138), 
+                    Meters.convertFrom(30, Inches)
                 )
             )
         );
@@ -116,12 +116,7 @@ public class RobotContainer {
         );
 
         joystick.povUp().whileTrue(
-            new ClimbState(climber).alongWith(
-                new GoToArmevatorPoseState(
-                    armevator,
-                    new ArmevatorPosition(Rotation2d.fromDegrees(210), 0.01)
-                )
-            )
+            new ClimbState(climber)
         );
 
         // Run SysId routines when holding back/start and X/Y.
