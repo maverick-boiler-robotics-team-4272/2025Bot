@@ -25,7 +25,6 @@ public class Climber extends SubsystemBase {
                 .withStatorCurrentLimitEnable(true)
             )
         );
-
         climberControllerMotor.setNeutralMode(NeutralModeValue.Brake);
     }
 
