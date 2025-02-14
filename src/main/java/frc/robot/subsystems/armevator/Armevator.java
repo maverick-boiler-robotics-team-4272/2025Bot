@@ -70,11 +70,12 @@ public class Armevator extends SubsystemBase implements Loggable {
     }
 
     private Vortex elevatorMotor1; 
-    @SuppressWarnings("unused")
     private Vortex elevatorMotor2;
     private Vortex armMotor1;
     @SuppressWarnings("unused")
     private Vortex armMotor2;
+
+    private boolean disableSaftey = false;
 
     private SparkAnalogSensor armEncoder;
 
@@ -131,14 +132,23 @@ public class Armevator extends SubsystemBase implements Loggable {
         inputs.desiredArmRotation = position.getArmAngle();
     }
 
-    public void setElevtorHeight(double height){
+    private void setElevtorHeight(double height){
         elevatorMotor1.setReference(height, ControlType.kPosition, ClosedLoopSlot.kSlot0, ELEVATOR_FF);
 
         inputs.setElevatorHeight = height;
         elevatorLigament.setLength(height + 1.05344);
     }
+    
+    public void setElevatorPower(double speed) {
+        elevatorMotor1.set(speed);
+        elevatorMotor2.set(speed);
+    }
 
-    public void setArmRotation(Rotation2d rotation){
+    public void resetElevator(double position) {
+        elevatorMotor1.getEncoder().setPosition(0);
+    }
+
+    private void setArmRotation(Rotation2d rotation){
         armMotor1.setReference(
             rotation.getRotations(), 
             ControlType.kPosition, 
@@ -169,8 +179,19 @@ public class Armevator extends SubsystemBase implements Loggable {
         return elevatorMotor2.getReverseLimitSwitch().isPressed();
     }
 
+    public void disableSaftey() {
+        disableSaftey = true;
+    }
+
+    public void enableSaftey() {
+        disableSaftey = false;
+    }
+
     public void safetyLogic() {
-        //If the elevator is going below the safe height and the elevator is going down and the current arm position is unsafe set the elevator height to the safe position.
+        if(disableSaftey) {
+            return;
+        }
+
         if(getArmRotation().getDegrees() < SAFE_ANGLE.getDegrees() - 5.0 && inputs.desiredElevatorHeight <= SAFE_ELEVATOR_HEIGHT && inputs.desiredElevatorHeight < getElevatorHeight() - 0.01) {
             inputs.isSafe = false;
             setElevtorHeight(SAFE_ELEVATOR_HEIGHT);
@@ -178,7 +199,7 @@ public class Armevator extends SubsystemBase implements Loggable {
             return;
         }
         
-        if(!(getElevatorHeight() > Meters.convertFrom(1.0, Inches) && getElevatorHeight() < SAFE_ELEVATOR_HEIGHT)) {
+        if(!(getElevatorHeight() > Meters.convertFrom(0.0, Inches) && getElevatorHeight() < SAFE_ELEVATOR_HEIGHT)) {
             inputs.isSafe = true;
             setArmRotation(inputs.desiredArmRotation);
         } else if(inputs.desiredArmRotation.getDegrees() < SAFE_ANGLE.getDegrees()) {
