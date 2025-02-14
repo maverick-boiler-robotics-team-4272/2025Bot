@@ -75,6 +75,8 @@ public class Armevator extends SubsystemBase implements Loggable {
     @SuppressWarnings("unused")
     private Vortex armMotor2;
 
+    private boolean disableSaftey = false;
+
     private SparkAnalogSensor armEncoder;
 
     private ArmFeedforward armFeedforward = new ArmFeedforward(0, ARM_FF, 0, 0);
@@ -130,22 +132,23 @@ public class Armevator extends SubsystemBase implements Loggable {
         inputs.desiredArmRotation = position.getArmAngle();
     }
 
-    public void setElevtorHeight(double height){
+    private void setElevtorHeight(double height){
         elevatorMotor1.setReference(height, ControlType.kPosition, ClosedLoopSlot.kSlot0, ELEVATOR_FF);
 
         inputs.setElevatorHeight = height;
         elevatorLigament.setLength(height + 1.05344);
     }
     
-    public void setElevatotPower(double speed) {
+    public void setElevatorPower(double speed) {
         elevatorMotor1.set(speed);
+        elevatorMotor2.set(speed);
     }
 
     public void resetElevator(double position) {
         elevatorMotor1.getEncoder().setPosition(0);
     }
 
-    public void setArmRotation(Rotation2d rotation){
+    private void setArmRotation(Rotation2d rotation){
         armMotor1.setReference(
             rotation.getRotations(), 
             ControlType.kPosition, 
@@ -176,8 +179,19 @@ public class Armevator extends SubsystemBase implements Loggable {
         return elevatorMotor2.getReverseLimitSwitch().isPressed();
     }
 
+    public void disableSaftey() {
+        disableSaftey = true;
+    }
+
+    public void enableSaftey() {
+        disableSaftey = false;
+    }
+
     public void safetyLogic() {
-        //If the elevator is going below the safe height and the elevator is going down and the current arm position is unsafe set the elevator height to the safe position.
+        if(disableSaftey) {
+            return;
+        }
+
         if(getArmRotation().getDegrees() < SAFE_ANGLE.getDegrees() - 5.0 && inputs.desiredElevatorHeight <= SAFE_ELEVATOR_HEIGHT && inputs.desiredElevatorHeight < getElevatorHeight() - 0.01) {
             inputs.isSafe = false;
             setElevtorHeight(SAFE_ELEVATOR_HEIGHT);

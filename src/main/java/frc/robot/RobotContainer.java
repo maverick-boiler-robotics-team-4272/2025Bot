@@ -17,6 +17,7 @@ import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
 import frc.robot.subsystems.algaeManipulator.states.AlgaeIntake;
 import frc.robot.subsystems.armevator.Armevator;
 import frc.robot.subsystems.armevator.States.GoToArmevatorPoseState;
+import frc.robot.subsystems.armevator.States.ZeroState;
 import frc.robot.subsystems.climber.Climber;
 import frc.robot.subsystems.climber.states.LowerState;
 import frc.robot.subsystems.climber.states.ClimbState;
@@ -117,6 +118,10 @@ public class RobotContainer {
 
         joystick.povUp().whileTrue(
             new ClimbState(climber)
+        );
+
+        joystick.povRight().whileTrue(
+            new ZeroState(armevator)  
         );
 
         // Run SysId routines when holding back/start and X/Y.

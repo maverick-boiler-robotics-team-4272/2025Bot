@@ -7,9 +7,11 @@ public class ZeroState extends State<Armevator> {
     public ZeroState(Armevator armevator) {
         super(armevator);
     }
+
     @Override
     public void initialize() {
-       requiredSubsystem.setElevatotPower(-0.1);
+        requiredSubsystem.disableSaftey();
+        requiredSubsystem.setElevatorPower(-0.3);
     }
 
     @Override
@@ -19,7 +21,8 @@ public class ZeroState extends State<Armevator> {
 
     @Override
     public void end(boolean interrupted) {
-        requiredSubsystem.setElevatotPower(0);
+        requiredSubsystem.setElevatorPower(0);
         requiredSubsystem.resetElevator(0);
+        requiredSubsystem.enableSaftey();
     }
 }
