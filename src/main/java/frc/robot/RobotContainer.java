@@ -120,7 +120,7 @@ public class RobotContainer {
             new ClimbState(climber)
         );
 
-        joystick.povRight().whileTrue(
+        joystick.start().whileTrue(
             new ZeroState(armevator)  
         );
 
