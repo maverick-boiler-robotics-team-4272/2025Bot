@@ -11,6 +11,7 @@ import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import frc.robot.utils.hardware.Vortex;
 import frc.robot.utils.hardware.VortexBuilder;
+import com.revrobotics.*;
 
 public class CoralManipulator extends SubsystemBase {
     private Vortex coralControllerMotor;
@@ -25,11 +26,15 @@ public class CoralManipulator extends SubsystemBase {
                     .inverted(true)
                     .positionConversionFactor(MAV_POSITION_FACTOR)
             )
+            .withPIDParams(0, 0, 0)
             .build();
     }
 
     public void setCoralPower(double power) {
         coralControllerMotor.set(power);
+    }
+    public void setCoralRotation(double rotation) {
+        coralControllerMotor.setReference(rotation);
     }
 
     public SparkAnalogSensor getArmEncoder() {
