@@ -21,6 +21,6 @@ public class PositionState extends State<CoralManipulator> {
 
   @Override
   public void end(boolean interrupted) {
-    
+    return;
   }
 }

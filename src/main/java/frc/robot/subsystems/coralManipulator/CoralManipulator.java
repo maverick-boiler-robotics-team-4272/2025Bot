@@ -26,7 +26,7 @@ public class CoralManipulator extends SubsystemBase {
                     .inverted(true)
                     .positionConversionFactor(MAV_POSITION_FACTOR)
             )
-            .withPIDParams(0, 0, 0)
+            .withPIDParams(POSITION_CONVERSION_FACTOR, 0, 0)
             .build();
     }
 
