@@ -72,7 +72,6 @@ public class Armevator extends SubsystemBase implements Loggable {
     private Vortex elevatorMotor1; 
     private Vortex elevatorMotor2;
     private Vortex armMotor1;
-    @SuppressWarnings("unused")
     private Vortex armMotor2;
 
     private boolean disableSaftey = false;
@@ -92,7 +91,7 @@ public class Armevator extends SubsystemBase implements Loggable {
             .withCurrentLimit(CURRENT_LIMIT_ELEVATOR_MOTORS)
             .withPIDParams(ELEVATOR_P, ELEVATOR_I, ELEVATOR_D)
             .withOutputRange(-0.5, 1.0)
-            .maxSpeeds(0.01, 0.001)
+            // .maxSpeeds(0.01, 0.001)
             .build();
 
         elevatorMotor2 = VortexBuilder.create(BASE_ARMEVATOR_MOTOR_2)
@@ -114,6 +113,7 @@ public class Armevator extends SubsystemBase implements Loggable {
             .withInversion(false)
             .withPIDParams(ARM_P, ARM_I, ARM_D)
             .withPositionConversionFactor(ARM_GEAR_RATIO)
+            // .maxSpeeds(1.0, 0.5)
             .build();
 
         armMotor2 = VortexBuilder.create(ARM_MOTOR_2)
@@ -216,6 +216,11 @@ public class Armevator extends SubsystemBase implements Loggable {
     @Override
     public void log(String subdirectory, String humanReadableName) {
         Logger.processInputs(subdirectory + "/" + humanReadableName, inputs);
+
+        elevatorMotor1.log(subdirectory + "/" + humanReadableName, "elevatorMotor1");
+        elevatorMotor2.log(subdirectory + "/" + humanReadableName, "elevatorMotor2");
+        armMotor1.log(subdirectory + "/" + humanReadableName, "armMotor1");
+        armMotor2.log(subdirectory + "/" + humanReadableName, "armMotor2");
     }
 
     @Override
