@@ -182,7 +182,7 @@ public class RobotContainer {
                 feeder, 
                 coralManipulator, 
                 armevator,
-                0.5, 
+                1.0, 
                 0.2,
                 FEEDING_ARMEVATOR_POSITION //rotation of the arm, test this please
             )
