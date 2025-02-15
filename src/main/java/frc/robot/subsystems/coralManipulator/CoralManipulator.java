@@ -1,10 +1,13 @@
 package frc.robot.subsystems.coralManipulator;
 
+import edu.wpi.first.wpilibj.Encoder;
 // Hardware
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.constants.HardwareMap.*;
 import static frc.robot.constants.SubsystemConstants.ArmevatorConstants.MAV_POSITION_FACTOR;
 
+import com.revrobotics.AbsoluteEncoder;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkAnalogSensor;
 import com.revrobotics.spark.config.AnalogSensorConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
@@ -32,8 +35,14 @@ public class CoralManipulator extends SubsystemBase {
     public void setCoralPower(double power) {
         coralControllerMotor.set(power);
     }
-    public void setCoralRotation(double rotation) {
-        coralControllerMotor.setReference(rotation);
+
+    public void getEncoderRotation() {
+        AbsoluteEncoder encoder = coralControllerMotor.getAbsoluteEncoder();
+        encoder.getPosition();
+    }
+
+    public void setEncoderRotation(double meters) {
+        coralControllerMotor.setReference(CORAL_MOTOR_DISTANCE_FACTOR);
     }
 
     public SparkAnalogSensor getArmEncoder() {

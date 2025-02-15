@@ -18,7 +18,7 @@ public class PositionState extends State<CoralManipulator> {
 
   @Override
   public void initialize() {
-    requiredSubsystem.setCoralRotation(rotation);
+    requiredSubsystem.setEncoderRotation(rotation);
   }
 
   @Override
