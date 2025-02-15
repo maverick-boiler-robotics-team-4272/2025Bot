@@ -94,4 +94,9 @@ public class SubsystemConstants {
     public static class ClimberConstants {
         public static final double CLIMBER_CURRENT_LIMIT = 40.0;
     }
+
+    public static class FeederConstants {
+        public static final int FEEDER_CAN_FRONT_TRIGGER_DISTANCE = 100;
+        public static final int FEEDER_CAN_BACK_TRIGGER_DISTANCE = 150;
+    }
 }
