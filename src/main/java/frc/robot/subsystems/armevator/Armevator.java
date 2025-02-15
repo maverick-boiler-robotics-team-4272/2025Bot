@@ -3,8 +3,6 @@ package frc.robot.subsystems.armevator;
 import com.revrobotics.spark.ClosedLoopSlot;
 import com.revrobotics.spark.SparkAnalogSensor;
 import com.revrobotics.spark.SparkBase.ControlType;
-import com.revrobotics.spark.config.LimitSwitchConfig;
-import com.revrobotics.spark.config.LimitSwitchConfig.Type;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import edu.wpi.first.math.controller.ArmFeedforward;
@@ -19,7 +17,7 @@ import org.littletonrobotics.junction.Logger;
 import org.littletonrobotics.junction.mechanism.LoggedMechanism2d;
 import org.littletonrobotics.junction.mechanism.LoggedMechanismLigament2d;
 
-import frc.robot.constants.positions.ArmevatorPosition;
+import frc.robot.constants.positions.ArmevatorPositions.ArmevatorPosition;
 
 import static edu.wpi.first.units.Units.Inches;
 import static edu.wpi.first.units.Units.Meters;
@@ -81,31 +79,31 @@ public class Armevator extends SubsystemBase implements Loggable {
     private ArmFeedforward armFeedforward = new ArmFeedforward(0, ARM_FF, 0, 0);
 
     public Armevator(SparkAnalogSensor armEncoder) {
-        elevatorMotor1 = VortexBuilder.create(BASE_ARMEVATOR_MOTOR_1)
-            .withVoltageCompensation(NOMINAL_VOLTAGE)
-            .withPosition(0)
-            .withPositionConversionFactor(ELEVATOR_GEAR_RATIO)
-            .withIdleMode(IdleMode.kBrake)
-            .withInversion(false)
-            .withSoftLimits(MAX_ELEVATOR_HEIGHT, 0)
-            .withCurrentLimit(CURRENT_LIMIT_ELEVATOR_MOTORS)
-            .withPIDParams(ELEVATOR_P, ELEVATOR_I, ELEVATOR_D)
-            .withOutputRange(-0.5, 1.0)
-            // .maxSpeeds(0.01, 0.001)
-            .build();
+        elevatorMotor1 = null;//VortexBuilder.create(BASE_ARMEVATOR_MOTOR_1)
+            // .withVoltageCompensation(NOMINAL_VOLTAGE)
+            // .withPosition(0)
+            // .withPositionConversionFactor(ELEVATOR_GEAR_RATIO)
+            // .withIdleMode(IdleMode.kBrake)
+            // .withInversion(false)
+            // .withSoftLimits(MAX_ELEVATOR_HEIGHT, 0)
+            // .withCurrentLimit(CURRENT_LIMIT_ELEVATOR_MOTORS)
+            // .withPIDParams(ELEVATOR_P, ELEVATOR_I, ELEVATOR_D)
+            // .withOutputRange(-0.5, 1.0)
+            // // .maxSpeeds(0.01, 0.001)
+            // .build();
 
-        elevatorMotor2 = VortexBuilder.create(BASE_ARMEVATOR_MOTOR_2)
-            .withVoltageCompensation(NOMINAL_VOLTAGE)
-            .withPosition(0)
-            .withIdleMode(IdleMode.kBrake)
-            .asFollower(elevatorMotor1, false)
-            .withCurrentLimit(CURRENT_LIMIT_ELEVATOR_MOTORS)
-            .withLimitSwitch(
-                new LimitSwitchConfig()
-                    .reverseLimitSwitchType(Type.kNormallyOpen)
-                    .reverseLimitSwitchEnabled(true)
-            )
-            .build();
+        elevatorMotor2 = //VortexBuilder.create(BASE_ARMEVATOR_MOTOR_2)
+            // .withVoltageCompensation(NOMINAL_VOLTAGE)
+            // .withPosition(0)
+            // .withIdleMode(IdleMode.kBrake)
+            // .asFollower(elevatorMotor1, false)
+            // .withCurrentLimit(CURRENT_LIMIT_ELEVATOR_MOTORS)
+            // .withLimitSwitch(
+            //     new LimitSwitchConfig()
+            //         .reverseLimitSwitchType(Type.kNormallyOpen)
+            //         .reverseLimitSwitchEnabled(true)
+            // )
+            // .build();
 
         armMotor1 = VortexBuilder.create(ARM_MOTOR_1)
             .withCurrentLimit(CURRENT_LIMIT_ARM_MOTOR)
@@ -113,7 +111,7 @@ public class Armevator extends SubsystemBase implements Loggable {
             .withInversion(false)
             .withPIDParams(ARM_P, ARM_I, ARM_D)
             .withPositionConversionFactor(ARM_GEAR_RATIO)
-            // .maxSpeeds(1.0, 0.5)
+            .withOutputRange(-0.8, 0.8)
             .build();
 
         armMotor2 = VortexBuilder.create(ARM_MOTOR_2)
@@ -151,7 +149,7 @@ public class Armevator extends SubsystemBase implements Loggable {
     private void setArmRotation(Rotation2d rotation){
         armMotor1.setReference(
             rotation.getRotations(), 
-            ControlType.kPosition, 
+            ControlType.kMAXMotionPositionControl, 
             ClosedLoopSlot.kSlot0,
             armFeedforward.calculate(
                 Rotation2d.fromRotations(armMotor1.getEncoder().getPosition() - 0.25).getRadians(), 
@@ -217,8 +215,8 @@ public class Armevator extends SubsystemBase implements Loggable {
     public void log(String subdirectory, String humanReadableName) {
         Logger.processInputs(subdirectory + "/" + humanReadableName, inputs);
 
-        elevatorMotor1.log(subdirectory + "/" + humanReadableName, "elevatorMotor1");
-        elevatorMotor2.log(subdirectory + "/" + humanReadableName, "elevatorMotor2");
+        // elevatorMotor1.log(subdirectory + "/" + humanReadableName, "elevatorMotor1");
+        // elevatorMotor2.log(subdirectory + "/" + humanReadableName, "elevatorMotor2");
         armMotor1.log(subdirectory + "/" + humanReadableName, "armMotor1");
         armMotor2.log(subdirectory + "/" + humanReadableName, "armMotor2");
     }
@@ -226,11 +224,13 @@ public class Armevator extends SubsystemBase implements Loggable {
     @Override
     public void periodic(){
         inputs.currentArmRotation = Rotation2d.fromRotations(armMotor1.getEncoder().getPosition());
-        inputs.currentElevatorHeight = elevatorMotor1.getEncoder().getPosition();
+        // inputs.currentElevatorHeight = elevatorMotor1.getEncoder().getPosition();
         inputs.armEncoderRotation = getArmEncoderRotation();
-        inputs.limitSwitch = isLimitSwitchHit();
+        // inputs.limitSwitch = isLimitSwitchHit();
 
-        safetyLogic();
+        // safetyLogic();
+
+        setArmRotation(inputs.desiredArmRotation);
 
         log("Subsystems", "Armevator");
     }
