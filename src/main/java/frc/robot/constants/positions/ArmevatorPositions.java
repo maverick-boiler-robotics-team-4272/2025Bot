@@ -20,6 +20,8 @@ public class ArmevatorPositions {
     public static final ArmevatorPosition L3_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(30),Meters.convertFrom(3.5, Inches));
     public static final ArmevatorPosition L4_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(147.775),Meters.convertFrom(30, Inches));
 
+    public static final ArmevatorPosition ALGAE_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(0), Meters.convertFrom(0, Inches));
+
     public static class ArmevatorPosition {
         private Rotation2d armAngle;
         private double elevatorHeight;
