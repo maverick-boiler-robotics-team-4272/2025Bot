@@ -37,8 +37,10 @@ import frc.robot.utils.controllers.ButtonBoard;
 
 import static edu.wpi.first.units.Units.Inches;
 import static edu.wpi.first.units.Units.Meters;
+import static edu.wpi.first.units.Units.Rotation;
 import static frc.robot.constants.SubsystemConstants.DrivetrainConstants.TeleConstants.MAX_TRANSLATION;
 import static frc.robot.constants.FieldConstants.*;
+import static frc.robot.constants.positions.ArmevatorPositions.*;
 
 public class RobotContainer {
     private ShuffleboardTab autoTab;
@@ -179,9 +181,10 @@ public class RobotContainer {
             new FeederManipulatorCommand(
                 feeder, 
                 coralManipulator, 
+                armevator,
                 0.5, 
-                0.2, 
-                0.0
+                0.2,
+                FEEDING_ARMEVATOR_POSITION //rotation of the arm, test this please
             )
         );
 

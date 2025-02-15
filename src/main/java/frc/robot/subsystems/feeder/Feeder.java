@@ -14,6 +14,8 @@ import au.grapplerobotics.LaserCan;
 import au.grapplerobotics.ConfigurationFailedException;
 
 import static frc.robot.constants.HardwareMap.*;
+import static frc.robot.constants.SubsystemConstants.*;
+
 
 import org.littletonrobotics.junction.AutoLog;
 import org.littletonrobotics.junction.Logger;
