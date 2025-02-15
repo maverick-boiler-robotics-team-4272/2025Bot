@@ -102,5 +102,8 @@ public class Feeder extends SubsystemBase implements Loggable {
   @Override
   public void periodic() {
     log("Subsystems", "Feeder");
+
+    inputs.frontLidarDistance = feederCanBack.getMeasurement().distance_mm;
+    inputs.backLidarDistance = feederCanFront.getMeasurement().distance_mm;
   }
 }
