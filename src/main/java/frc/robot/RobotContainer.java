@@ -188,6 +188,10 @@ public class RobotContainer {
             )
         );
 
+        operatorController.getButton(13).whileTrue(
+            new FeedState(feeder, -1.0)
+        );
+
         //Reef buttons
 
         //Coral A
