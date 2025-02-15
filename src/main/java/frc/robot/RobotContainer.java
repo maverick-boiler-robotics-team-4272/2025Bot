@@ -22,6 +22,7 @@ import frc.robot.subsystems.climber.Climber;
 import frc.robot.subsystems.climber.states.LowerState;
 import frc.robot.subsystems.climber.states.ClimbState;
 import frc.robot.subsystems.coralManipulator.CoralManipulator;
+import frc.robot.subsystems.coralManipulator.states.CoralIntakeState;
 import frc.robot.subsystems.coralManipulator.states.CoralOutakeState;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
 import frc.robot.subsystems.drivetrain.states.DriveState;
@@ -101,7 +102,7 @@ public class RobotContainer {
 
         driverController.leftBumper().whileTrue(
             new FeedState(feeder)
-                // .alongWith(new CoralIntakeState(coralManipulator))
+                .alongWith(new CoralIntakeState(coralManipulator))
         );
 
         driverController.rightBumper().whileTrue(
@@ -160,8 +161,18 @@ public class RobotContainer {
             new GoToArmevatorPoseState(
                 armevator,
                 new ArmevatorPosition(
-                    Rotation2d.fromDegrees(720
-                    ), 0.0
+                    Rotation2d.fromDegrees(-210.0), 
+                    Meters.convertFrom(30, Inches)
+                )
+            )  
+        );
+
+        operatorController.getButton(6).whileTrue(
+            new GoToArmevatorPoseState(
+                armevator,
+                new ArmevatorPosition(
+                    Rotation2d.fromDegrees(210.0), 
+                    Meters.convertFrom(30, Inches)
                 )
             )  
         );
