@@ -9,6 +9,8 @@ import com.revrobotics.spark.config.LimitSwitchConfig;
 import com.revrobotics.spark.config.SparkFlexConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
+import frc.robot.Robot;
+
 public class VortexBuilder {
     private Vortex motor;
     private SparkFlexConfig config;
@@ -172,9 +174,11 @@ public class VortexBuilder {
     }
     
     public Vortex build() {
-        //TODO: Find out why this method breaks the simulation and the other doesn't;
-        // motor.configureAsync(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-        motor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        if(Robot.isReal()) {
+            motor.configureAsync(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        } else {
+            motor.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        }
         return motor;
     }
 
