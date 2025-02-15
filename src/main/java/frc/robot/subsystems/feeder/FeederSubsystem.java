@@ -21,7 +21,7 @@ import org.littletonrobotics.junction.Logger;
 import frc.robot.utils.hardware.VortexBuilder;
 import frc.robot.utils.logging.Loggable;
 
-public class Feeder extends SubsystemBase implements Loggable {
+public class FeederSubsystem extends SubsystemBase implements Loggable {
   @AutoLog
   public static class FeederInputs {
     public double frontLidarDistance;
@@ -40,7 +40,7 @@ public class Feeder extends SubsystemBase implements Loggable {
 
   public SparkFlex feederControllerMotor;
 
-  public Feeder() {
+  public FeederSubsystem() {
     feederControllerMotor = VortexBuilder.create(FEEDER_MOTOR_ID)
         .withInversion(true)
         .withCurrentLimit(40)
