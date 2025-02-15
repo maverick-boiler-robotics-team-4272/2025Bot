@@ -11,7 +11,6 @@ import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import frc.robot.utils.hardware.Vortex;
 import frc.robot.utils.hardware.VortexBuilder;
-import com.revrobotics.*;
 
 public class CoralManipulator extends SubsystemBase {
     private Vortex coralControllerMotor;

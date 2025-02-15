@@ -4,7 +4,7 @@
 
 package frc.robot.subsystems.armevator.states;
 
-import frc.robot.constants.positions.ArmevatorPosition;
+import frc.robot.constants.positions.ArmevatorPositions.ArmevatorPosition;
 import frc.robot.subsystems.armevator.Armevator;
 import frc.robot.utils.commandUtils.State;
 
