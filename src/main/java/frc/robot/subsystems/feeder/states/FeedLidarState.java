@@ -4,12 +4,12 @@
 
 package frc.robot.subsystems.feeder.states;
 
-import frc.robot.subsystems.feeder.FeederSubsystem;
+import frc.robot.subsystems.feeder.Feeder;
 import frc.robot.utils.commandUtils.State;
 
-public class FeedLidarState extends State<FeederSubsystem> {
+public class FeedLidarState extends State<Feeder> {
   
-  public FeedLidarState(FeederSubsystem feederSubsystem) {
+  public FeedLidarState(Feeder feederSubsystem) {
     super(feederSubsystem);
   }
 

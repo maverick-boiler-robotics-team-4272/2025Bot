@@ -12,10 +12,11 @@ import frc.robot.subsystems.coralManipulator.*;
 
 
 public class FeederManipulatorCommand extends SequentialCommandGroup {
-    public FeederManipulatorCommand(FeederSubsystem feed, double power) {
+    public FeederManipulatorCommand(Feeder feed, double power) {
         super(
             new ParallelRaceGroup(
-                new FeedState(feed, power)
+                new FeedState(feed, power),
+                new CoralIntakeState()
             ).until(feed::lidarFrontTripped)
         );
     }

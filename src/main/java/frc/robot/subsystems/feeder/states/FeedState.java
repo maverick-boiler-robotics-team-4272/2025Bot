@@ -4,14 +4,14 @@
 
 package frc.robot.subsystems.feeder.states;
 
-import frc.robot.subsystems.feeder.FeederSubsystem;
+import frc.robot.subsystems.feeder.Feeder;
 import frc.robot.utils.commandUtils.State;
 
-public class FeedState extends State<FeederSubsystem> {
+public class FeedState extends State<Feeder> {
 
   double power;
   
-  public FeedState(FeederSubsystem feederSubsystem, double power) {
+  public FeedState(Feeder feederSubsystem, double power) {
     super(feederSubsystem);
     this.power = power;
   }
