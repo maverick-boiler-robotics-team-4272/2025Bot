@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.commands.FeederManipulatorCommand;
 import frc.robot.constants.TunerConstants;
 import frc.robot.constants.positions.ArmevatorPositions.ArmevatorPosition;
 import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
@@ -171,6 +172,16 @@ public class RobotContainer {
                     Meters.convertFrom(30, Inches)
                 )
             )  
+        );
+
+        operatorController.getButton(14).whileTrue(
+            new FeederManipulatorCommand(
+                feeder, 
+                coralManipulator, 
+                0.2, 
+                0.2, 
+                0.0
+            )
         );
     }
 
