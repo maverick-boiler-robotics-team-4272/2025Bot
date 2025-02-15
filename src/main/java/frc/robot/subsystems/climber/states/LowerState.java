@@ -12,7 +12,7 @@ public class LowerState extends State<Climber> {
 
   @Override
   public void initialize() {
-    requiredSubsystem.setClimberPower(-0.2);
+    requiredSubsystem.setClimberPower(-0.8);
   }
 
   @Override
