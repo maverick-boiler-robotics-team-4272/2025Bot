@@ -23,5 +23,13 @@ public class AlgaeManipulator extends SubsystemBase {
     public void setAlgaePower(double power) {
         algaeControllerMotor.set(power);
     }
+
+    public double getCurrent() {
+        return algaeControllerMotor.getOutputCurrent();
+    }
+
+    public boolean hasAlgae() {
+        return getCurrent() > 0.5;
+    }
 }
 
