@@ -45,9 +45,9 @@ Swerve Drive Specialties MK4i L2 using </br>
 UnderDev
 
 ## Hardware
-2 Neo Vortexs //Todo: Add gear ratio
+1 Neo Vortexs //Todo: Add gear ratio
 
-1 Lasercan for Coral Detection
+2 Lasercan for Coral Detection
 
 # Armevator
 UnderDev
@@ -64,7 +64,7 @@ UnderDev
 ### Gear Ratio
 58.7755 : 1
 
-1 Mavcoder plugged into the arm motor for rotation
+1 Mavcoder plugged into the coral motor for rotation
 
 1 Limit Switch plugged into Neo Vortex for Elevator
 
@@ -77,9 +77,9 @@ UnderDev
 UnderDev
 
 ## Hardware
-1 Neo Vortex #TODO: Add rotation
+1 Neo Vortex
 
-1 Mavcoder for Rotation plugged
+1 lidar for distance checking
 
 # Manipulator
 UnderDev
@@ -88,10 +88,8 @@ UnderDev
 UnderDev
 
 ## Hardware
-2 Neo Vortexs
-
-
-
+1 Neo Vortex for coral
+1 Neo Vortex for algae
 
 
 # Writing Specs
