@@ -43,7 +43,7 @@ public class SubsystemConstants {
             0.201,
             0.235,
             new Rotation3d(
-                0, 
+                Rotation2d.fromDegrees(180).getRadians(), 
                 Rotation2d.fromDegrees(15.788).getRadians(),
                 0
             )
