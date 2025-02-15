@@ -1,4 +1,4 @@
-package frc.robot.subsystems.armevator.states;
+package frc.robot.subsystems.armevator.States;
 
 import frc.robot.subsystems.armevator.Armevator;
 import frc.robot.utils.commandUtils.State;
