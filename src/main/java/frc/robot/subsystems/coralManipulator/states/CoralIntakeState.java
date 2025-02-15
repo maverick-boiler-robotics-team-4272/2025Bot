@@ -7,13 +7,17 @@ import frc.robot.utils.commandUtils.State;
 
 
 public class CoralIntakeState extends State<CoralManipulator> {
-  public CoralIntakeState(CoralManipulator coralSubsystem, CoralManipulator coral) {
+
+  double coral;
+
+  public CoralIntakeState(CoralManipulator coralSubsystem, double coral) {
     super(coralSubsystem);
+    this.coral = coral;
   }
 
   @Override
   public void initialize() {
-    requiredSubsystem.setCoralPower(0.25);
+    requiredSubsystem.setCoralPower(coral);
   }
 
   @Override

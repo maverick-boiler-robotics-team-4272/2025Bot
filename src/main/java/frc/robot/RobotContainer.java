@@ -16,8 +16,8 @@ import frc.robot.constants.positions.ArmevatorPositions.ArmevatorPosition;
 import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
 import frc.robot.subsystems.algaeManipulator.states.AlgaeIntake;
 import frc.robot.subsystems.armevator.Armevator;
-import frc.robot.subsystems.armevator.States.GoToArmevatorPoseState;
-import frc.robot.subsystems.armevator.States.ZeroState;
+import frc.robot.subsystems.armevator.states.GoToArmevatorPoseState;
+import frc.robot.subsystems.armevator.states.ZeroState;
 import frc.robot.subsystems.climber.Climber;
 import frc.robot.subsystems.climber.states.LowerState;
 import frc.robot.subsystems.climber.states.ClimbState;
@@ -101,8 +101,8 @@ public class RobotContainer {
         );
 
         driverController.leftBumper().whileTrue(
-            new FeedState(feeder)
-                .alongWith(new CoralIntakeState(coralManipulator))
+            new FeedState(feeder, 1)
+                .alongWith(new CoralIntakeState(coralManipulator, 1))
         );
 
         driverController.rightBumper().whileTrue(
