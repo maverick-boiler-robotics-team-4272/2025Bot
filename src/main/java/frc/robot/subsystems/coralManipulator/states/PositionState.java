@@ -8,14 +8,17 @@ import frc.robot.subsystems.coralManipulator.CoralManipulator;
 import frc.robot.utils.commandUtils.State;
 
 public class PositionState extends State<CoralManipulator> {
+
+  double rotation;
   
-  public PositionState(CoralManipulator feederSubsystem) {
+  public PositionState(CoralManipulator feederSubsystem, double rotation) {
     super(feederSubsystem);
+    this.rotation = rotation;
   }
 
   @Override
   public void initialize() {
-    requiredSubsystem.setCoralRotation(3);
+    requiredSubsystem.setCoralRotation(rotation);
   }
 
   @Override

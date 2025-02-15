@@ -27,6 +27,8 @@ import frc.robot.subsystems.coralManipulator.states.CoralIntakeState;
 import frc.robot.subsystems.coralManipulator.states.CoralOutakeState;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
 import frc.robot.subsystems.drivetrain.states.DriveState;
+import frc.robot.subsystems.drivetrain.states.PathfindThenPathState;
+import frc.robot.subsystems.drivetrain.states.PathfindingState;
 import frc.robot.subsystems.drivetrain.states.ResetHeadingState;
 import frc.robot.subsystems.feeder.Feeder;
 import frc.robot.subsystems.feeder.states.FeedState;
@@ -82,23 +84,17 @@ public class RobotContainer {
         driverController.b().onTrue(new ResetHeadingState(drivetrain));
 
         driverController.x().whileTrue(
-            new GoToArmevatorPoseState(
-                armevator, 
-                new ArmevatorPosition(
-                    Rotation2d.fromDegrees(138), 
-                    Meters.convertFrom(30, Inches)
-                )
+            new PathfindThenPathState(
+                drivetrain, 
+                drivetrain::getNextPath
             )
         );
 
         driverController.y().whileTrue(
-            new GoToArmevatorPoseState(
-                armevator, 
-                new ArmevatorPosition(
-                    Rotation2d.fromDegrees(0), 
-                    Meters.convertFrom(24, Inches)
-                )
-            )  
+            new PathfindingState(
+                drivetrain,
+                drivetrain::getNextFeedPose
+            )
         );
 
         driverController.leftBumper().whileTrue(

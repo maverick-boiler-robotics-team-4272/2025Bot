@@ -89,6 +89,10 @@ public class Feeder extends SubsystemBase implements Loggable {
     }
     return false;
   }
+  
+  public boolean lidarBackNotTripped() {
+    return !lidarBackTripped();
+  }
 
   @Override
   public void log(String subdirectory, String humanReadableName) {
