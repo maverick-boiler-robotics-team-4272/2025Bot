@@ -238,12 +238,12 @@ public class RobotContainer {
         );
 
         //Coral K
-        operatorController.getButton(10).whileTrue(
+        operatorController.getButton(9+16).whileTrue(
             new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_KL, getGlobalPositions().CORAL_K)).ignoringDisable(true)
         );
 
         //Coral L
-        operatorController.getButton(9+16).whileTrue(
+        operatorController.getButton(10+16).whileTrue(
             new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_KL, getGlobalPositions().CORAL_L)).ignoringDisable(true)
         );
     }
