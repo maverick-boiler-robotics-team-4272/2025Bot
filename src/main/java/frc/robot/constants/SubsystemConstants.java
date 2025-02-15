@@ -10,7 +10,6 @@ import static edu.wpi.first.units.Units.RotationsPerSecond;
 import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Rotation3d;
-import edu.wpi.first.math.util.Units;
 import frc.robot.utils.limelight.Limelight;
 
 import static frc.robot.constants.TunerConstants.kSpeedAt12Volts;
@@ -40,22 +39,22 @@ public class SubsystemConstants {
 
     public static class LimeLightConstants {
         public static Pose3d FRONT_LIMELIGHT_POSE = new Pose3d(
-            Units.inchesToMeters(9.16),
-            0.0,
-            Units.inchesToMeters(17.795),
+            0.337,
+            0.201,
+            0.235,
             new Rotation3d(
                 0, 
-                Rotation2d.fromDegrees(5).getRadians(),
+                Rotation2d.fromDegrees(15.788).getRadians(),
                 0
             )
         );
         public static Pose3d BACK_LIMELIGHT_POSE = new Pose3d(
-            Units.inchesToMeters(-8.597),
-            0.0,
-            Units.inchesToMeters(18.074),
+            -0.237,
+            -0.025,
+            0.336,
             new Rotation3d(
                 0,
-                Rotation2d.fromDegrees(25).getRadians(),
+                Rotation2d.fromDegrees(24.552).getRadians(),
                 Rotation2d.fromDegrees(180).getRadians()
             )
         );
@@ -76,8 +75,8 @@ public class SubsystemConstants {
 
         public static final double MAX_ELEVATOR_HEIGHT = Meters.convertFrom(5, Feet);
 
-        public static final Rotation2d SAFE_ANGLE = Rotation2d.fromDegrees(10);
-        public static final double SAFE_ELEVATOR_HEIGHT = Meters.convertFrom(24, Inches);
+        public static final Rotation2d SAFE_ANGLE = Rotation2d.fromDegrees(5);
+        public static final double SAFE_ELEVATOR_HEIGHT = Meters.convertFrom(23, Inches);
         
         public static final double MAV_POSITION_FACTOR = 360.0 / 5.0;
 
