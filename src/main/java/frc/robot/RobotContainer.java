@@ -252,6 +252,14 @@ public class RobotContainer {
         operatorController.getButton(10+16).whileTrue(
             new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_KL, getGlobalPositions().CORAL_L)).ignoringDisable(true)
         );
+
+        operatorController.getButton(1).whileTrue(
+            new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_LEFT)).ignoringDisable(true)
+        );
+
+        operatorController.getButton(2).whileTrue(
+            new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_RIGHT)).ignoringDisable(true)
+        );
     }
 
     private void registerNamedCommands() {
