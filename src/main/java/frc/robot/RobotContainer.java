@@ -37,7 +37,6 @@ import frc.robot.utils.controllers.ButtonBoard;
 
 import static edu.wpi.first.units.Units.Inches;
 import static edu.wpi.first.units.Units.Meters;
-import static edu.wpi.first.units.Units.Rotation;
 import static frc.robot.constants.SubsystemConstants.DrivetrainConstants.TeleConstants.MAX_TRANSLATION;
 import static frc.robot.constants.FieldConstants.*;
 import static frc.robot.constants.positions.ArmevatorPositions.*;

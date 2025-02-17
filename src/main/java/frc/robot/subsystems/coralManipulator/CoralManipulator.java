@@ -1,13 +1,11 @@
 package frc.robot.subsystems.coralManipulator;
 
-import edu.wpi.first.wpilibj.Encoder;
 // Hardware
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.constants.HardwareMap.*;
 import static frc.robot.constants.SubsystemConstants.ArmevatorConstants.MAV_POSITION_FACTOR;
 
 import com.revrobotics.AbsoluteEncoder;
-import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkAnalogSensor;
 import com.revrobotics.spark.config.AnalogSensorConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
