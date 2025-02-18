@@ -198,7 +198,7 @@ public class Armevator extends SubsystemBase implements Loggable {
             return;
         }
         
-        if(!(getElevatorHeight() > Meters.convertFrom(0.0, Inches) && getElevatorHeight() < SAFE_ELEVATOR_HEIGHT)) {
+        if(!(getElevatorHeight() > Meters.convertFrom(0.1, Inches) && getElevatorHeight() < SAFE_ELEVATOR_HEIGHT)) {
             inputs.isSafe = true;
             setArmRotation(inputs.desiredArmRotation);
         } else if(inputs.desiredArmRotation.getDegrees() < SAFE_ANGLE.getDegrees()) {
