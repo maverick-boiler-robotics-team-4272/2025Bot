@@ -19,7 +19,7 @@ public class CoralManipulator extends SubsystemBase {
 
     public CoralManipulator() {
         coralControllerMotor = VortexBuilder.create(CORAL_MOTOR_ID)
-            .withInversion(false)
+            .withInversion(true)
             .withCurrentLimit(40)
             .withIdleMode(IdleMode.kBrake)
             .withAnalogConfig(
