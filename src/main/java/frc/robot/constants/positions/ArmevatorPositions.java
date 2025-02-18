@@ -13,16 +13,18 @@ import edu.wpi.first.math.geometry.Rotation2d;
 public class ArmevatorPositions {
    // public static final ArmevatorPosition example = new ArmevatorPosition(Rotation2d.fromDegrees(90), Meters.convertFrom(30, Inches));
    //barge is 50 in and 190 deg
-    public static final ArmevatorPosition BARGE_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(190), Meters.convertFrom(50,Inches));  
+    public static final ArmevatorPosition BARGE_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(160), Meters.convertFrom(50,Inches));  
 
     public static final ArmevatorPosition L1_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(47), Meters.convertFrom(0, Inches));
     public static final ArmevatorPosition L2_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(30), Meters.convertFrom(13.5, Inches));
-    public static final ArmevatorPosition L3_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(30), Meters.convertFrom(3.5, Inches));
-    public static final ArmevatorPosition L4_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(147.775), Meters.convertFrom(30, Inches));
+    public static final ArmevatorPosition L3_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(30), Meters.convertFrom(30.5, Inches));
+    public static final ArmevatorPosition L4_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(147.775 - 360.0), Meters.convertFrom(30, Inches));
+    // public static final ArmevatorPosition L4_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(147.775), Meters.convertFrom(30, Inches));
 
     public static final ArmevatorPosition FEEDING_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(2), Meters.convertFrom(0, Inches));
 
-    public static final ArmevatorPosition ALGAE_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(0), Meters.convertFrom(0, Inches));
+    public static final ArmevatorPosition ALGAE_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(40), Meters.convertFrom(4.0, Inches));
+    public static final ArmevatorPosition ALGAE_ARMEVATOR_POSITION_TWO = new ArmevatorPosition(Rotation2d.fromDegrees(40), Meters.convertFrom(15, Inches));
 
     public static class ArmevatorPosition {
         private Rotation2d armAngle;
