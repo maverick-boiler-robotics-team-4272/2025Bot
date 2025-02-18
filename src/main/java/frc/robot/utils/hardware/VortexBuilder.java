@@ -20,8 +20,14 @@ public class VortexBuilder {
         config = new SparkFlexConfig();
     }
 
-    public VortexBuilder asFollower(SparkFlex motor, boolean inverted) {
-        this.config.follow(motor, inverted);
+    public VortexBuilder asFollower(SparkFlex leaderMotor, boolean inverted) {
+        this.config.follow(leaderMotor, inverted);
+
+        return this;
+    }
+
+    public VortexBuilder asFollower(int leaderId, boolean inverted) {
+        this.config.follow(leaderId, inverted);
 
         return this;
     }
