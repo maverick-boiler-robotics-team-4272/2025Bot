@@ -1,5 +1,6 @@
 package frc.robot.subsystems.coralManipulator;
 
+import edu.wpi.first.math.geometry.Rotation2d;
 // Hardware
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.constants.HardwareMap.*;
@@ -20,7 +21,7 @@ public class CoralManipulator extends SubsystemBase {
     public CoralManipulator() {
         coralControllerMotor = VortexBuilder.create(CORAL_MOTOR_ID)
             .withInversion(true)
-            .withCurrentLimit(40)
+            .withCurrentLimit(CURRENT_LIMIT_CORAL)
             .withIdleMode(IdleMode.kBrake)
             .withAnalogConfig(
                 new AnalogSensorConfig()
@@ -47,8 +48,12 @@ public class CoralManipulator extends SubsystemBase {
         encoder.getPosition();
     }
 
-    public void setEncoderRotation(double meters) {
-        coralControllerMotor.setReference(CORAL_MOTOR_DISTANCE_FACTOR);
+    public void setWheelRotation(Rotation2d rot) {
+        coralControllerMotor.setReference(rot.getRotations());
+    }
+
+    public Rotation2d getWheelRotation() {
+        return Rotation2d.fromRotations(coralControllerMotor.getEncoder().getPosition());
     }
 
     public SparkAnalogSensor getArmEncoder() {
