@@ -66,6 +66,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     // Logging inputs
     private DrivetrainInputsAutoLogged inputs = new DrivetrainInputsAutoLogged();
 
+    // Setup all of the logged inputs to default values
     private void initInputs() {
         inputs.distanceTraveled = 0.0;
         inputs.fuseVison = false;
@@ -95,6 +96,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         BACK_LIMELIGHT.configure(BACK_LIMELIGHT_POSE);
     }
 
+    // The next path to run when the robot is pathfinding
     private PathPlannerPath nextPath;
 
     /* Blue alliance sees forward as 0 degrees (toward red alliance wall) */
@@ -172,31 +174,59 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         return run(() -> this.setControl(requestSupplier.get()));
     }
 
+    /**
+     * Sets the next pose to pathfind to and path to follow during the autoteleop gameplay for scoring
+     *
+     * @param next the pose that the robot should pathfinded to; is mainly used for logging
+     * @param path the path to follow after reaching the starting point
+     */
     public void setNextScorePose(Pose2d next, PathPlannerPath path) {
         inputs.nextScorePose = next;
         nextPath = path;
     }
 
+    /**
+     * Sets the next pose to pathfind to for scoring
+     *
+     * @param next the pose to pathfind to next
+     */
     public void setNextScorePose(Pose2d next) {
         inputs.nextScorePose = next;
     }
 
+    /**
+     * Sets the next pose to pathfind to for feeding
+     *
+     * @param next the pose to pathfind to next
+     */
     public void setNextFeedPose(Pose2d next) {
         inputs.nextFeedPose = next;
     }
 
+    /**
+     * @returns the next pose that the robot will pathfind to to score
+     */
     public Pose2d getNextScorePose() {
         return inputs.nextScorePose;
     }
 
+    /**
+     * @returns the next pose the robot with pathfind to to feed
+     */
     public Pose2d getNextFeedPose() {
         return inputs.nextFeedPose;
     }
 
+    /**
+     * @returns the next path that will run when pathfinding
+     */
     public PathPlannerPath getNextPath() {
         return nextPath;
     }
 
+    /**
+     * Configures the AutoBuilder for autos and pathfinding
+     */
     private void initPathPlanner() {
         try {
             var config = RobotConfig.fromGUISettings();
@@ -228,6 +258,9 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         PathPlannerLogging.setLogTargetPoseCallback((pose) -> setDesiredPose(pose));
     }
 
+    /**
+     * Fuses the odometry from the limelight readings
+     */
     private void fuseOdometry() {
         FRONT_LIMELIGHT.setRobotOrientation(getState().Pose.getRotation().getDegrees());
         BACK_LIMELIGHT.setRobotOrientation(getState().Pose.getRotation().getDegrees());
@@ -236,10 +269,22 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         fuseVision(FRONT_LIMELIGHT.getBotPoseEstimate());
     }
 
+    /**
+     * Sets the desired pose for the robot
+     * 
+     * Is used for logging with the AutoBuilder and pathfinding
+     *
+     * @param pose the desired pose
+     */
     public void setDesiredPose(Pose2d pose) {
         inputs.desiredPose = pose;
     }
-    
+
+    /**
+     * Fuses the vision from the limelight measurment to the estimated pose
+     * 
+     * @param limelightMeasurement the reading from the limelight
+     */
     public void fuseVision(LimelightHelpers.PoseEstimate limelightMeasurement) {
         if(limelightMeasurement != null) {
             if(
@@ -302,6 +347,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         log("Subsystems", "Drivetrain");
     }
 
+    // Below is all the drivetrain simulation stuff...
     
     private static final double kSimLoopPeriod = 0.005; // 5 ms
     private Notifier m_simNotifier = null;
