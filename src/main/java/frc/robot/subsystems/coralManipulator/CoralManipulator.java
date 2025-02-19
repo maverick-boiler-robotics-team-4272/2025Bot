@@ -7,6 +7,9 @@ import static frc.robot.constants.HardwareMap.*;
 import static frc.robot.constants.SubsystemConstants.ArmevatorConstants.MAV_POSITION_FACTOR;
 import static frc.robot.constants.SubsystemConstants.CoralManipulatorConstants.*;
 
+import org.littletonrobotics.junction.AutoLog;
+import org.littletonrobotics.junction.Logger;
+
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.spark.SparkAnalogSensor;
 import com.revrobotics.spark.config.AnalogSensorConfig;
@@ -14,8 +17,22 @@ import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import frc.robot.utils.hardware.Vortex;
 import frc.robot.utils.hardware.VortexBuilder;
+import frc.robot.utils.logging.Loggable;
 
-public class CoralManipulator extends SubsystemBase {
+public class CoralManipulator extends SubsystemBase implements Loggable {
+    @AutoLog
+    public static class CoralManipulatorInputs {
+        Rotation2d currRotation;
+        Rotation2d desiredRotation;
+    }
+
+    CoralManipulatorInputsAutoLogged inputs = new CoralManipulatorInputsAutoLogged();
+
+    private void initInputs() {
+        inputs.currRotation = new Rotation2d();
+        inputs.desiredRotation = new Rotation2d();
+    }
+ 
     private Vortex coralControllerMotor;
 
     public CoralManipulator() {
@@ -31,6 +48,8 @@ public class CoralManipulator extends SubsystemBase {
             // .asFollower(ARM_MOTOR_1, true)
             .withPIDParams(CORAL_MANIPULATOR_P, CORAL_MANIPULATOR_I, CORAL_MANIPULATOR_D)
             .build();
+
+        initInputs();
     }
 
     public void setCoralPower(double power) {
@@ -50,6 +69,7 @@ public class CoralManipulator extends SubsystemBase {
 
     public void setWheelRotation(Rotation2d rot) {
         coralControllerMotor.setReference(rot.getRotations());
+        inputs.desiredRotation = rot;
     }
 
     public Rotation2d getWheelRotation() {
@@ -58,6 +78,20 @@ public class CoralManipulator extends SubsystemBase {
 
     public SparkAnalogSensor getArmEncoder() {
         return coralControllerMotor.getAnalog();
+    }
+
+    @Override
+    public void log(String subdirectory, String humanReadableName) {
+        Logger.processInputs(subdirectory + "/" + humanReadableName, inputs);
+
+        coralControllerMotor.log(subdirectory + "/" + humanReadableName, "CoralMotor");
+    }
+
+    @Override
+    public void periodic() {
+        log("Subsystems", "CoralManipulator");
+        
+        inputs.currRotation = getWheelRotation();
     }
 }
 
