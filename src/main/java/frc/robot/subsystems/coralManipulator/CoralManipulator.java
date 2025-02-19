@@ -1,18 +1,18 @@
 package frc.robot.subsystems.coralManipulator;
 
 import edu.wpi.first.math.geometry.Rotation2d;
-// Hardware
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import static frc.robot.constants.HardwareMap.*;
-import static frc.robot.constants.SubsystemConstants.ArmevatorConstants.MAV_POSITION_FACTOR;
+import static frc.robot.constants.SubsystemConstants.ArmevatorConstants.MAVCODER_OFFSET;
 import static frc.robot.constants.SubsystemConstants.CoralManipulatorConstants.*;
 
 import org.littletonrobotics.junction.AutoLog;
 import org.littletonrobotics.junction.Logger;
 
 import com.revrobotics.AbsoluteEncoder;
-import com.revrobotics.spark.SparkAnalogSensor;
-import com.revrobotics.spark.config.AnalogSensorConfig;
+import com.revrobotics.spark.SparkAbsoluteEncoder;
+import com.revrobotics.spark.config.AbsoluteEncoderConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import frc.robot.utils.hardware.Vortex;
@@ -40,12 +40,12 @@ public class CoralManipulator extends SubsystemBase implements Loggable {
             .withInversion(true)
             .withCurrentLimit(CURRENT_LIMIT_CORAL)
             .withIdleMode(IdleMode.kBrake)
-            .withAnalogConfig(
-                new AnalogSensorConfig()
+            .withAbsoluteEncoderConfig(
+                new AbsoluteEncoderConfig()
+                    .zeroOffset(MAVCODER_OFFSET)
                     .inverted(true)
-                    .positionConversionFactor(MAV_POSITION_FACTOR)
             )
-            // .asFollower(ARM_MOTOR_1, true)
+            .withPositionConversionFactor(1 / POSITION_CONVERSION_FACTOR)
             .withPIDParams(CORAL_MANIPULATOR_P, CORAL_MANIPULATOR_I, CORAL_MANIPULATOR_D)
             .build();
 
@@ -53,13 +53,7 @@ public class CoralManipulator extends SubsystemBase implements Loggable {
     }
 
     public void setCoralPower(double power) {
-        if(power != 0.0) {
-            coralControllerMotor.pauseFollowerMode();
-        } else {
-            coralControllerMotor.resumeFollowerMode();
-        }
-
-        coralControllerMotor.set(-power);
+        coralControllerMotor.set(power);
     }
 
     public void getEncoderRotation() {
@@ -76,8 +70,8 @@ public class CoralManipulator extends SubsystemBase implements Loggable {
         return Rotation2d.fromRotations(coralControllerMotor.getEncoder().getPosition());
     }
 
-    public SparkAnalogSensor getArmEncoder() {
-        return coralControllerMotor.getAnalog();
+    public SparkAbsoluteEncoder getArmEncoder() {
+        return coralControllerMotor.getAbsoluteEncoder();
     }
 
     @Override

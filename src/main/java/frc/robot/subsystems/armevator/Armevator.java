@@ -1,7 +1,7 @@
 package frc.robot.subsystems.armevator;
 
 import com.revrobotics.spark.ClosedLoopSlot;
-import com.revrobotics.spark.SparkAnalogSensor;
+import com.revrobotics.spark.SparkAbsoluteEncoder;
 import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.config.LimitSwitchConfig;
 import com.revrobotics.spark.config.LimitSwitchConfig.Type;
@@ -76,11 +76,13 @@ public class Armevator extends SubsystemBase implements Loggable {
 
     private boolean disableSaftey = false;
 
-    private SparkAnalogSensor armEncoder;
+    private SparkAbsoluteEncoder armEncoder;
 
     private ArmFeedforward armFeedforward = new ArmFeedforward(0, ARM_FF, 0, 0);
 
-    public Armevator(SparkAnalogSensor armEncoder) {
+    public Armevator(SparkAbsoluteEncoder armEncoder) {
+        this.armEncoder = armEncoder;
+
         elevatorMotor1 = VortexBuilder.create(BASE_ARMEVATOR_MOTOR_1)
             .withVoltageCompensation(NOMINAL_VOLTAGE)
             .withPosition(0)
@@ -113,6 +115,7 @@ public class Armevator extends SubsystemBase implements Loggable {
             .withPIDParams(ARM_P, ARM_I, ARM_D)
             .withPositionConversionFactor(ARM_GEAR_RATIO)
             .withOutputRange(-0.6, 0.75)
+            .withPosition(getArmEncoderRotation().getRotations())
             .build();
 
         armMotor2 = VortexBuilder.create(ARM_MOTOR_2)
@@ -122,8 +125,6 @@ public class Armevator extends SubsystemBase implements Loggable {
             .build();
 
         initInputs();
-
-        this.armEncoder = armEncoder;
     }
 
     public void goToPos(ArmevatorPosition position) {
@@ -163,7 +164,7 @@ public class Armevator extends SubsystemBase implements Loggable {
     }
 
     public Rotation2d getArmEncoderRotation() {
-        return Rotation2d.fromDegrees(armEncoder.getPosition());
+        return Rotation2d.fromRotations(armEncoder.getPosition() - 0.25);
     }
 
     public Rotation2d getArmRotation() {
