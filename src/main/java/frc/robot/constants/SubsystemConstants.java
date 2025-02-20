@@ -107,7 +107,7 @@ public class SubsystemConstants {
         public static final double CORAL_MANIPULATOR_I = 0.001;
         public static final double CORAL_MANIPULATOR_D = 0.0;
 
-        public static final double POSITION_CONVERSION_FACTOR = 0.239389;
+        public static final double POSITION_CONVERSION_FACTOR = 11.0 / 38.0;
         public static final double CORAL_MOTOR_DISTANCE_FACTOR = POSITION_CONVERSION_FACTOR * 3.26262626262626 * 1/7168;
     }
 }
