@@ -8,7 +8,6 @@ import frc.robot.utils.commandUtils.State;
 
 public class IdleState extends State<CoralManipulator> {
     private Rotation2d startArmRotation;
-    private Rotation2d startWheelRotation;
     private Supplier<Rotation2d> currentArmRotation;
 
     public IdleState(CoralManipulator coralManipulator, Supplier<Rotation2d> armRotation) {
@@ -19,11 +18,11 @@ public class IdleState extends State<CoralManipulator> {
     @Override
     public void initialize() {
         startArmRotation = currentArmRotation.get();
-        startWheelRotation = requiredSubsystem.getWheelRotation();
+        requiredSubsystem.resetWheelRotation();
     }
 
     @Override
     public void execute() {
-        requiredSubsystem.setWheelRotation(currentArmRotation.get().minus(startArmRotation).plus(startWheelRotation));
+        requiredSubsystem.setWheelRotation(currentArmRotation.get().minus(startArmRotation).times(4));
     }
 }
