@@ -66,6 +66,10 @@ public class CoralManipulator extends SubsystemBase implements Loggable {
         inputs.desiredRotation = rot;
     }
 
+    public void resetWheelRotation() {
+        coralControllerMotor.getEncoder().setPosition(0.0);
+    }
+
     public Rotation2d getWheelRotation() {
         return Rotation2d.fromRotations(coralControllerMotor.getEncoder().getPosition());
     }
