@@ -40,7 +40,7 @@ public class SubsystemConstants {
     public static class LimeLightConstants {
         public static Pose3d FRONT_LIMELIGHT_POSE = new Pose3d(
             0.337,
-            0.201,
+            -0.201,
             0.235,
             new Rotation3d(
                 Rotation2d.fromDegrees(180).getRadians(), 
@@ -50,7 +50,7 @@ public class SubsystemConstants {
         );
         public static Pose3d BACK_LIMELIGHT_POSE = new Pose3d(
             -0.237,
-            -0.025,
+            0.025,
             0.336,
             new Rotation3d(
                 0,
