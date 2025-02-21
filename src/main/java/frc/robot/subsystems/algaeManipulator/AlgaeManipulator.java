@@ -36,7 +36,7 @@ public class AlgaeManipulator extends SubsystemBase implements Loggable {
 
     @Override
     public void log(String subdirectory, String humanReadableName) {
-        algaeControllerMotor.log(subdirectory + humanReadableName, "AlgaeMotor");
+        algaeControllerMotor.log(subdirectory + "/" + humanReadableName, "AlgaeMotor");
     }
 
     @Override
