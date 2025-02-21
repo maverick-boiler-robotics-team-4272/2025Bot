@@ -24,6 +24,7 @@ public class CoralManipulator extends SubsystemBase implements Loggable {
     public static class CoralManipulatorInputs {
         Rotation2d currRotation;
         Rotation2d desiredRotation;
+        Rotation2d rotationError;
     }
 
     CoralManipulatorInputsAutoLogged inputs = new CoralManipulatorInputsAutoLogged();
@@ -31,6 +32,7 @@ public class CoralManipulator extends SubsystemBase implements Loggable {
     private void initInputs() {
         inputs.currRotation = new Rotation2d();
         inputs.desiredRotation = new Rotation2d();
+        inputs.rotationError = new Rotation2d();
     }
  
     private Vortex coralControllerMotor;
@@ -45,8 +47,9 @@ public class CoralManipulator extends SubsystemBase implements Loggable {
                     .zeroOffset(MAVCODER_OFFSET)
                     .inverted(true)
             )
-            .withPositionConversionFactor(1 / POSITION_CONVERSION_FACTOR)
+            .withPositionConversionFactor(POSITION_CONVERSION_FACTOR)
             .withPIDParams(CORAL_MANIPULATOR_P, CORAL_MANIPULATOR_I, CORAL_MANIPULATOR_D)
+            .usingRelativeEncoder()
             .build();
 
         initInputs();
@@ -90,6 +93,7 @@ public class CoralManipulator extends SubsystemBase implements Loggable {
         log("Subsystems", "CoralManipulator");
         
         inputs.currRotation = getWheelRotation();
+        inputs.rotationError = inputs.desiredRotation.minus(inputs.currRotation);
     }
 }
 
