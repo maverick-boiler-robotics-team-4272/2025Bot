@@ -23,6 +23,6 @@ public class IdleState extends State<CoralManipulator> {
 
     @Override
     public void execute() {
-        requiredSubsystem.setWheelRotation(currentArmRotation.get().minus(startArmRotation).times(4));
+        requiredSubsystem.setWheelRotation(currentArmRotation.get().minus(startArmRotation).times(7.0));
     }
 }
