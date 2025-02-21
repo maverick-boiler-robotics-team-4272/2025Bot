@@ -252,10 +252,12 @@ public class RobotContainer {
         );
 
         operatorController.getButton(1).whileTrue(
+            // new PathfindingState(drivetrain, getGlobalPositions().CORAL_STATION_LEFT)
             new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_LEFT)).ignoringDisable(true)
         );
 
         operatorController.getButton(2).whileTrue(
+            // new PathfindingState(drivetrain, getGlobalPositions().CORAL_STATION_RIGHT)
             new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_RIGHT)).ignoringDisable(true)
         );
     }
