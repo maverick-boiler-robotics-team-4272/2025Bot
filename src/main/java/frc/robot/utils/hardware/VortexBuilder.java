@@ -7,6 +7,7 @@ import com.revrobotics.spark.config.AbsoluteEncoderConfig;
 import com.revrobotics.spark.config.AnalogSensorConfig;
 import com.revrobotics.spark.config.LimitSwitchConfig;
 import com.revrobotics.spark.config.SparkFlexConfig;
+import com.revrobotics.spark.config.ClosedLoopConfig.FeedbackSensor;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import frc.robot.Robot;
@@ -175,6 +176,12 @@ public class VortexBuilder {
 
     public VortexBuilder maxSpeeds(double vel, double acc) {
         config.closedLoop.maxMotion.maxVelocity(vel).maxAcceleration(acc);
+
+        return this;
+    }
+
+    public VortexBuilder usingRelativeEncoder() {
+        config.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder); // TODO: check
 
         return this;
     }
