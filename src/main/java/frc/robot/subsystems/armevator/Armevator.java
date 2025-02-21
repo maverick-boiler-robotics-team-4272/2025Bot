@@ -110,7 +110,7 @@ public class Armevator extends SubsystemBase implements Loggable {
 
         armMotor1 = VortexBuilder.create(ARM_MOTOR_1)
             .withCurrentLimit(CURRENT_LIMIT_ARM_MOTOR)
-            .withIdleMode(IdleMode.kBrake)
+            .withIdleMode(IdleMode.kCoast)
             .withInversion(false)
             .withPIDParams(ARM_P, ARM_I, ARM_D)
             .withPositionConversionFactor(ARM_GEAR_RATIO)
@@ -120,7 +120,7 @@ public class Armevator extends SubsystemBase implements Loggable {
 
         armMotor2 = VortexBuilder.create(ARM_MOTOR_2)
             .withCurrentLimit(CURRENT_LIMIT_ARM_MOTOR)
-            .withIdleMode(IdleMode.kBrake)
+            .withIdleMode(IdleMode.kCoast)
             .asFollower(armMotor1, false)
             .build();
 
@@ -149,15 +149,15 @@ public class Armevator extends SubsystemBase implements Loggable {
     }
 
     private void setArmRotation(Rotation2d rotation){
-        armMotor1.setReference(
-            rotation.getRotations(), 
-            ControlType.kPosition, 
-            ClosedLoopSlot.kSlot0,
-            armFeedforward.calculate(
-                Rotation2d.fromRotations(armMotor1.getEncoder().getPosition() - 0.25).getRadians(), 
-                0
-            )
-        );
+        // armMotor1.setReference(
+        //     rotation.getRotations(), 
+        //     ControlType.kPosition, 
+        //     ClosedLoopSlot.kSlot0,
+        //     armFeedforward.calculate(
+        //         Rotation2d.fromRotations(armMotor1.getEncoder().getPosition() - 0.25).getRadians(), 
+        //         0
+        //     )
+        // );
 
         inputs.setArmRotation = rotation;
         armLigament.setAngle(rotation.getDegrees() - 90);
