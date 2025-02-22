@@ -49,6 +49,7 @@ public class CoralManipulator extends SubsystemBase implements Loggable {
             )
             .withPositionConversionFactor(POSITION_CONVERSION_FACTOR)
             .withPIDParams(CORAL_MANIPULATOR_P, CORAL_MANIPULATOR_I, CORAL_MANIPULATOR_D)
+            .positionFrameMs(1)
             .build();
 
         initInputs();
