@@ -178,6 +178,32 @@ public class VortexBuilder {
 
         return this;
     }
+
+    public VortexBuilder withInputFramesMs(
+        int position,
+        int velocity,
+        int busVoltage,
+        int externalEncoder,
+        int current,
+        int warnings,
+        int faults
+    ) {
+        this.config.signals.busVoltagePeriodMs(busVoltage);
+        this.config.signals.externalOrAltEncoderPosition(externalEncoder);
+        this.config.signals.outputCurrentPeriodMs(current);
+        this.config.signals.warningsPeriodMs(warnings);
+        this.config.signals.faultsPeriodMs(faults);
+        this.config.signals.primaryEncoderPositionPeriodMs(position);
+        this.config.signals.primaryEncoderVelocityPeriodMs(velocity);
+
+        return this;
+    }
+
+    public VortexBuilder positionFrameMs(int ms) {
+        this.config.signals.primaryEncoderPositionPeriodMs(ms);
+
+        return this;
+    }
     
     public Vortex build() {
         if(Robot.isReal()) {
@@ -190,5 +216,11 @@ public class VortexBuilder {
 
     public static VortexBuilder create(int id) {
         return new VortexBuilder(id);
+    }
+
+    public static VortexBuilder createWithDefaults(int id) {
+        return new VortexBuilder(id)
+            .withCurrentLimit(40)
+            .withIdleMode(IdleMode.kBrake);
     }
 }
