@@ -49,9 +49,9 @@ public class SubsystemConstants {
             )
         );
         public static Pose3d BACK_LIMELIGHT_POSE = new Pose3d(
-            -0.237,
-            0.025,
-            0.336,
+            -0.237, //Forward to back
+            0.025, //Right to left
+            0.336, // down to up
             new Rotation3d(
                 0,
                 Rotation2d.fromDegrees(24.552).getRadians(),
