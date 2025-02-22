@@ -69,12 +69,20 @@ public class CoralManipulator extends SubsystemBase implements Loggable {
         inputs.desiredRotation = rot;
     }
 
+    public void addWheelRotations(Rotation2d rot) {
+        setWheelRotation(Rotation2d.fromRotations(rot.getRotations() + getWheelRotation().getRotations()));
+    }
+
     public Rotation2d getWheelRotation() {
         return Rotation2d.fromRotations(coralControllerMotor.getEncoder().getPosition());
     }
 
     public SparkAbsoluteEncoder getArmEncoder() {
         return coralControllerMotor.getAbsoluteEncoder();
+    }
+
+    public Rotation2d getWheelError() {
+        return Rotation2d.fromRotations(inputs.desiredRotation.getRotations() - inputs.currRotation.getRotations());
     }
 
     @Override
