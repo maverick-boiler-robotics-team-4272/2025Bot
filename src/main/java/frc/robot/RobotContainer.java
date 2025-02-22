@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.commands.AutoGameCommand;
 import frc.robot.commands.BargeScoreCommand;
 import frc.robot.commands.FeederManipulatorCommand;
 import frc.robot.constants.TunerConstants;
@@ -30,7 +31,6 @@ import frc.robot.subsystems.coralManipulator.states.CoralOutakeState;
 import frc.robot.subsystems.coralManipulator.states.IdleState;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
 import frc.robot.subsystems.drivetrain.states.DriveState;
-import frc.robot.subsystems.drivetrain.states.PathfindThenPathState;
 import frc.robot.subsystems.drivetrain.states.PathfindingState;
 import frc.robot.subsystems.drivetrain.states.ResetHeadingState;
 import frc.robot.subsystems.feeder.Feeder;
@@ -92,9 +92,11 @@ public class RobotContainer {
         driverController.b().onTrue(new ResetHeadingState(drivetrain));
 
         driverController.x().whileTrue(
-            new PathfindThenPathState(
+            new AutoGameCommand(
                 drivetrain, 
-                drivetrain::getNextPath
+                armevator, 
+                feeder, 
+                coralManipulator
             )
         );
 
@@ -150,8 +152,7 @@ public class RobotContainer {
                 coralManipulator, 
                 armevator,
                 1.0, 
-                0.2,
-                FEEDING_ARMEVATOR_POSITION //rotation of the arm, test this please
+                0.2
             )
         );
 
