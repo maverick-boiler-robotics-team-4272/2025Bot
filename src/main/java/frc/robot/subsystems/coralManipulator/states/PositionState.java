@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems.coralManipulator.states;
 
+import edu.wpi.first.math.geometry.Rotation2d;
 import frc.robot.subsystems.coralManipulator.CoralManipulator;
 import frc.robot.utils.commandUtils.State;
 
@@ -18,7 +19,7 @@ public class PositionState extends State<CoralManipulator> {
 
   @Override
   public void initialize() {
-    requiredSubsystem.setEncoderRotation(rotation);
+    requiredSubsystem.setWheelRotation(Rotation2d.fromRotations(rotation));
   }
 
   @Override

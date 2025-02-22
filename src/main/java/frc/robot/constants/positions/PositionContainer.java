@@ -40,8 +40,8 @@ public class PositionContainer {
 		CORAL_AB = new Pose2d(red ? 14.8153 : FIELD_LENGTH_METERS - 14.8153, red ? 3.9649 : FIELD_WIDTH_METERS - 3.9649, red ? Rotation2d.fromDegrees(180) : Rotation2d.fromDegrees(0));
 		CORAL_CD = new Pose2d(red ? 13.9138 : FIELD_LENGTH_METERS - 13.9138, red ? 5.5426 : FIELD_WIDTH_METERS - 5.5426, red ? Rotation2d.fromDegrees(-120) : Rotation2d.fromDegrees(60));
 		CORAL_EF = new Pose2d(red ? 12.1558 : FIELD_LENGTH_METERS - 12.1558, red ? 5.5426 : FIELD_WIDTH_METERS - 5.5426, red ? Rotation2d.fromDegrees(-60) : Rotation2d.fromDegrees(120));
-		CORAL_STATION_LEFT = new Pose2d(red ? 16.3329 : FIELD_LENGTH_METERS - 16.3329, red ? 0.9898 : FIELD_WIDTH_METERS - 0.9898, red ? Rotation2d.fromDegrees(-126) : Rotation2d.fromDegrees(55));
-		CORAL_STATION_RIGHT = new Pose2d(red ? 16.3179 : FIELD_LENGTH_METERS - 16.3179, red ? 7.1053 : FIELD_WIDTH_METERS - 7.1053, red ? Rotation2d.fromDegrees(126) : Rotation2d.fromDegrees(-55));
+		CORAL_STATION_LEFT = new Pose2d(red ? 16.3329 : FIELD_LENGTH_METERS - 16.3329, red ? 0.9898 : FIELD_WIDTH_METERS - 0.9898, red ? Rotation2d.fromDegrees(126) : Rotation2d.fromDegrees(-55));
+		CORAL_STATION_RIGHT = new Pose2d(red ? 16.3179 : FIELD_LENGTH_METERS - 16.3179, red ? 7.1053 : FIELD_WIDTH_METERS - 7.1053, red ? Rotation2d.fromDegrees(-126) : Rotation2d.fromDegrees(55));
 
         //Stop Precomputed positions here
 

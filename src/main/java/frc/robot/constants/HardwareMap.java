@@ -8,8 +8,6 @@ public class HardwareMap {
     
     // Coral Manipulator
     public static final int CORAL_MOTOR_ID = 61;
-    public static final double POSITION_CONVERSION_FACTOR = 0.239389;
-    public static final double CORAL_MOTOR_DISTANCE_FACTOR = POSITION_CONVERSION_FACTOR * 3.26262626262626 * 1/7168;
 
     // Feeder
     public static final int FEEDER_MOTOR_ID = 31;

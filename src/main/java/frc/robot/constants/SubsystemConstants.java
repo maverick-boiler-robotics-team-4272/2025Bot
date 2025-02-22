@@ -40,7 +40,7 @@ public class SubsystemConstants {
     public static class LimeLightConstants {
         public static Pose3d FRONT_LIMELIGHT_POSE = new Pose3d(
             0.337,
-            0.201,
+            -0.201,
             0.235,
             new Rotation3d(
                 Rotation2d.fromDegrees(180).getRadians(), 
@@ -49,9 +49,9 @@ public class SubsystemConstants {
             )
         );
         public static Pose3d BACK_LIMELIGHT_POSE = new Pose3d(
-            -0.237,
-            -0.025,
-            0.336,
+            -0.237, //Forward to back
+            0.025, //Right to left
+            0.336, // down to up
             new Rotation3d(
                 0,
                 Rotation2d.fromDegrees(24.552).getRadians(),
@@ -78,7 +78,7 @@ public class SubsystemConstants {
         public static final Rotation2d SAFE_ANGLE = Rotation2d.fromDegrees(5);
         public static final double SAFE_ELEVATOR_HEIGHT = Meters.convertFrom(23, Inches);
         
-        public static final double MAV_POSITION_FACTOR = 360.0 / 5.0;
+        public static final double MAVCODER_OFFSET = 268.0;
 
         public static final double ELEVATOR_P = 4.0;
         public static final double ELEVATOR_I = 0.0;
@@ -98,5 +98,16 @@ public class SubsystemConstants {
     public static class FeederConstants {
         public static final int FEEDER_CAN_FRONT_TRIGGER_DISTANCE = 100;
         public static final int FEEDER_CAN_BACK_TRIGGER_DISTANCE = 150;
+    }
+
+    public static class CoralManipulatorConstants {
+        public static final int CURRENT_LIMIT_CORAL = 40;
+
+        public static final double CORAL_MANIPULATOR_P = 4.0;
+        public static final double CORAL_MANIPULATOR_I = 0.001;
+        public static final double CORAL_MANIPULATOR_D = 0.0;
+
+        public static final double POSITION_CONVERSION_FACTOR = 11.0 / 38.0;
+        public static final double CORAL_MOTOR_DISTANCE_FACTOR = POSITION_CONVERSION_FACTOR * 3.26262626262626 * 1/7168;
     }
 }

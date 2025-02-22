@@ -8,14 +8,15 @@ import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import frc.robot.utils.hardware.Vortex;
 import frc.robot.utils.hardware.VortexBuilder;
+import frc.robot.utils.logging.Loggable;
 
-public class AlgaeManipulator extends SubsystemBase {
+public class AlgaeManipulator extends SubsystemBase implements Loggable {
     private Vortex algaeControllerMotor;
 
     public AlgaeManipulator() {
         algaeControllerMotor = VortexBuilder.create(ALGAE_MOTOR_ID)
             .withInversion(true)
-            .withCurrentLimit(40)
+            .withCurrentLimit(30)
             .withIdleMode(IdleMode.kBrake)
             .build();
     }
@@ -29,7 +30,18 @@ public class AlgaeManipulator extends SubsystemBase {
     }
 
     public boolean hasAlgae() {
-        return getCurrent() > 0.5;
+        // return getCurrent() > 40;
+        return false;
+    }
+
+    @Override
+    public void log(String subdirectory, String humanReadableName) {
+        algaeControllerMotor.log(subdirectory + "/" + humanReadableName, "AlgaeMotor");
+    }
+
+    @Override
+    public void periodic() {
+        log("Subsystems", "AlgaeManipulator");
     }
 }
 

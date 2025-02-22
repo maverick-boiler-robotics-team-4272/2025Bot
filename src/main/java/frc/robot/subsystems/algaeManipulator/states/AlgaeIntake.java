@@ -17,10 +17,10 @@ public class AlgaeIntake extends State<AlgaeManipulator> {
 
   public void execute() {
     if (requiredSubsystem.hasAlgae()) {
-      requiredSubsystem.setAlgaePower(0.1);
-      
+      requiredSubsystem.setAlgaePower(0.2);
+    } else {
+      requiredSubsystem.setAlgaePower(1.0);
     }
-    else requiredSubsystem.setAlgaePower(1.0);
   }
 
   @Override
