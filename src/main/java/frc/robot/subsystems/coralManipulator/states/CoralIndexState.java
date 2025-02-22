@@ -8,29 +8,30 @@ import frc.robot.utils.commandUtils.State;
 
 public class CoralIndexState extends State<CoralManipulator> {
     private BooleanSupplier lidarTripped;
+    private boolean tripped;
+
     public CoralIndexState(CoralManipulator coralManipulator, BooleanSupplier lidarTripped) {
         super(coralManipulator);
         this.lidarTripped = lidarTripped;
+        tripped = false;
     }
 
     @Override
     public void initialize() {
-        requiredSubsystem.setCoralPower(-0.2);
-        System.out.println("Init");
+        requiredSubsystem.setCoralPower(-0.1);
+    }
+
+    @Override
+    public void execute() {
+        if (lidarTripped.getAsBoolean()) {
+            requiredSubsystem.setCoralPower(0);
+            requiredSubsystem.addWheelRotations(Rotation2d.fromRotations(0.250));
+            tripped = true;
+        }
     }
 
     @Override
     public boolean isFinished() {
-        if (lidarTripped.getAsBoolean()) {
-            requiredSubsystem.setCoralPower(0);
-            System.out.println("Done");
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public void end(boolean interrupted) {
-        requiredSubsystem.setWheelRotation(Rotation2d.fromRotations(1));
+        return tripped && (Math.abs(requiredSubsystem.getWheelError().getDegrees()) <= 10.0);
     }
 }
