@@ -29,7 +29,6 @@ public class FeederManipulatorCommand extends SequentialCommandGroup {
                         new FeedState(feed, feedPower),
                         new CoralIntakeState(coralManipulator, coralPower)
                     ).until(feed::lidarBackNotTripped),
-                    //new PositionState(coralManipulator, -0.85),
                     new CoralIndexState(coralManipulator, feed::lidarBackTripped)
                 )
             )
