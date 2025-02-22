@@ -113,7 +113,7 @@ public class RobotContainer {
         );
 
         driverController.rightBumper().whileTrue(
-            new CoralOutakeState(coralManipulator)
+            new CoralOutakeState(coralManipulator, -1)
         );
 
         driverController.povDown().whileTrue(

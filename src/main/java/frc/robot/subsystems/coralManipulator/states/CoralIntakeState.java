@@ -22,7 +22,7 @@ public class CoralIntakeState extends State<CoralManipulator> {
 
   @Override
   public void end(boolean interrupted) {
-    requiredSubsystem.setCoralPower(0);
+    requiredSubsystem.setCoralPower(coral);
   }
 
   @Override
