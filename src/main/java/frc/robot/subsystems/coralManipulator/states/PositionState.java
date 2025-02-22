@@ -4,7 +4,6 @@
 
 package frc.robot.subsystems.coralManipulator.states;
 
-import static edu.wpi.first.units.Units.Rotation;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import frc.robot.subsystems.coralManipulator.CoralManipulator;
