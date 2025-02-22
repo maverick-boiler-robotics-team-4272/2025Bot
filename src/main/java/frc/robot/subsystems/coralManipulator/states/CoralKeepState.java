@@ -4,9 +4,13 @@ package frc.robot.subsystems.coralManipulator.states;
 import frc.robot.subsystems.coralManipulator.CoralManipulator;
 import frc.robot.utils.commandUtils.State;
 
-public class CoralOutakeState extends State<CoralManipulator> {
+
+
+public class CoralKeepState extends State<CoralManipulator> {
+
   double coral;
-  public CoralOutakeState(CoralManipulator coralSubsystem, double coral) {
+
+  public CoralKeepState(CoralManipulator coralSubsystem, double coral) {
     super(coralSubsystem);
     this.coral = coral;
   }
