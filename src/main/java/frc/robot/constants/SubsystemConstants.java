@@ -92,7 +92,7 @@ public class SubsystemConstants {
     }
 
     public static class ClimberConstants {
-        public static final int CLIMBER_CURRENT_LIMIT = 40;
+        public static final int CLIMBER_CURRENT_LIMIT = 60;
     }
 
     public static class FeederConstants {
@@ -103,7 +103,7 @@ public class SubsystemConstants {
     public static class CoralManipulatorConstants {
         public static final int CURRENT_LIMIT_CORAL = 40;
 
-        public static final double CORAL_MANIPULATOR_P = 0.5;
+        public static final double CORAL_MANIPULATOR_P = 0.4;
         public static final double CORAL_MANIPULATOR_I = 0.001;
         public static final double CORAL_MANIPULATOR_D = 0.0;
 
