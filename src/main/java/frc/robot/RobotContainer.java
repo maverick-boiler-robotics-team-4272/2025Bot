@@ -106,7 +106,7 @@ public class RobotContainer {
         );
 
         driverController.rightBumper().whileTrue(
-            new CoralOutakeState(coralManipulator)
+            new CoralOutakeState(coralManipulator, -1)
         );
 
         driverController.povLeft().whileTrue(
@@ -183,7 +183,7 @@ public class RobotContainer {
                 coralManipulator, 
                 armevator,
                 1.0, 
-                0.2,
+                0.200,
                 FEEDING_ARMEVATOR_POSITION //rotation of the arm, test this please
             )
         );

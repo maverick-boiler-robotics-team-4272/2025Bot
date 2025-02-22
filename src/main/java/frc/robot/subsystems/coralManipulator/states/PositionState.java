@@ -14,7 +14,7 @@ public class PositionState extends State<CoralManipulator> {
   public PositionState(CoralManipulator feederSubsystem, double rotation) {
     super(feederSubsystem);
     this.rotation = rotation;
-  }
+  } 
 
   @Override
   public void initialize() {
