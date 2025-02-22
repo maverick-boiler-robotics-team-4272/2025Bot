@@ -13,7 +13,7 @@ public class AutoGameCommand extends SequentialCommandGroup {
     public AutoGameCommand(CommandSwerveDrivetrain drivetrain, Armevator armevator, Feeder feeder, CoralManipulator coralManipulator) {
         super(
             new PathfindThenPathState(drivetrain, drivetrain::getNextPath),
-            new CoralOutakeState(coralManipulator).withTimeout(0.25),
+            new CoralOutakeState(coralManipulator, 0.5).withTimeout(0.25),
             new PathfindingState(drivetrain, drivetrain::getNextFeedPose),
             new FeederManipulatorCommand(feeder, coralManipulator, armevator, 1.0, 0.2)
         );
