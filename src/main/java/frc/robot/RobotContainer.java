@@ -29,6 +29,7 @@ import frc.robot.subsystems.coralManipulator.CoralManipulator;
 import frc.robot.subsystems.coralManipulator.states.CoralIntakeState;
 import frc.robot.subsystems.coralManipulator.states.CoralOutakeState;
 import frc.robot.subsystems.coralManipulator.states.IdleState;
+import frc.robot.subsystems.coralManipulator.states.PositionState;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
 import frc.robot.subsystems.drivetrain.states.DriveState;
 import frc.robot.subsystems.drivetrain.states.PathfindingState;
@@ -113,7 +114,7 @@ public class RobotContainer {
         );
 
         driverController.rightBumper().whileTrue(
-            new CoralOutakeState(coralManipulator, -1)
+            new CoralOutakeState(coralManipulator, 1)
         );
 
         driverController.povDown().whileTrue(
@@ -146,13 +147,20 @@ public class RobotContainer {
     }
 
     private void configureButtons() {
+        operatorController.getButton(7).whileTrue(
+            new PositionState(coralManipulator, 2)
+        );
+        operatorController.getButton(8).whileTrue(
+            new PositionState(coralManipulator, -2)
+        );
+
         operatorController.getButton(5).whileTrue(
             new FeederManipulatorCommand(
                 feeder, 
                 coralManipulator, 
                 armevator,
                 1.0, 
-                0.2
+                0.14
             )
         );
 
