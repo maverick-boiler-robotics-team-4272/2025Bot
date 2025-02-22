@@ -117,14 +117,6 @@ public class RobotContainer {
             new CoralOutakeState(coralManipulator, 1)
         );
 
-        driverController.povDown().whileTrue(
-            new LowerState(climber)
-        );
-
-        driverController.povUp().whileTrue(
-            new ClimbState(climber)
-        );
-
         driverController.start().whileTrue(
             new ZeroState(armevator)  
         );
@@ -148,10 +140,10 @@ public class RobotContainer {
 
     private void configureButtons() {
         operatorController.getButton(7).whileTrue(
-            new PositionState(coralManipulator, 2)
+            new ClimbState(climber)
         );
         operatorController.getButton(8).whileTrue(
-            new PositionState(coralManipulator, -2)
+            new LowerState(climber)
         );
 
         operatorController.getButton(5).whileTrue(
