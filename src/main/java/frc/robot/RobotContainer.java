@@ -29,7 +29,6 @@ import frc.robot.subsystems.coralManipulator.CoralManipulator;
 import frc.robot.subsystems.coralManipulator.states.CoralIntakeState;
 import frc.robot.subsystems.coralManipulator.states.CoralOutakeState;
 import frc.robot.subsystems.coralManipulator.states.IdleState;
-import frc.robot.subsystems.coralManipulator.states.PositionState;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
 import frc.robot.subsystems.drivetrain.states.DriveState;
 import frc.robot.subsystems.drivetrain.states.PathfindingState;
@@ -82,7 +81,7 @@ public class RobotContainer {
             new GoToArmevatorPoseState(
                 armevator, 
                 new ArmevatorPosition(Rotation2d.fromDegrees(10), Meters.convertFrom(0.1, Inches))
-            )
+            ).repeatedly()
         );
 
         coralManipulator.setDefaultCommand(
@@ -162,28 +161,28 @@ public class RobotContainer {
 
         operatorController.getButton(4 + 16).whileTrue(
             new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION)
-                .alongWith(new AlgaeIntake(algaeManipulator))
+                .alongWith(new AlgaeIntake(algaeManipulator)).repeatedly()
         );
 
         operatorController.getButton(3 + 16).whileTrue(
             new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION_TWO)
-                .alongWith(new AlgaeIntake(algaeManipulator))
+                .alongWith(new AlgaeIntake(algaeManipulator)).repeatedly()
         );
 
         operatorController.getButton(14).whileTrue(
-            new GoToArmevatorPoseState(armevator, L1_ARMEVATOR_POSITION)
+            new GoToArmevatorPoseState(armevator, L1_ARMEVATOR_POSITION).repeatedly()
         );
 
         operatorController.getButton(13).whileTrue(
-            new GoToArmevatorPoseState(armevator, L2_ARMEVATOR_POSITION)
+            new GoToArmevatorPoseState(armevator, L2_ARMEVATOR_POSITION).repeatedly()
         );
 
         operatorController.getButton(16 + 2).whileTrue(
-            new GoToArmevatorPoseState(armevator, L3_ARMEVATOR_POSITION)
+            new GoToArmevatorPoseState(armevator, L3_ARMEVATOR_POSITION).repeatedly()
         );
 
         operatorController.getButton(16 + 1).whileTrue(
-            new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION)
+            new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION).repeatedly()
         );
 
         operatorController.getButton(10).whileTrue(

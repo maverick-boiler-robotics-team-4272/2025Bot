@@ -187,6 +187,17 @@ public class Armevator extends SubsystemBase implements Loggable {
         disableSaftey = false;
     }
 
+    public boolean atDesiredPosition() {
+        if(
+            Math.abs(getElevatorHeight() - inputs.desiredElevatorHeight) < 0.05 &&
+            Math.abs(getArmRotation().getDegrees() - inputs.desiredArmRotation.getDegrees()) < 5.0
+        ) {
+            return true;
+        }
+
+        return false;
+    }
+
     public void safetyLogic() {
         if(disableSaftey) {
             return;
