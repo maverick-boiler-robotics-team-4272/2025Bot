@@ -1,34 +1,37 @@
 package frc.robot.subsystems.climber;
 
-import static edu.wpi.first.units.Units.Amps;
 import static frc.robot.constants.HardwareMap.CLIMBER_MOTOR_ID;
 
-import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
-import com.ctre.phoenix6.configs.TalonFXConfiguration;
-import com.ctre.phoenix6.hardware.TalonFX;
-import com.ctre.phoenix6.signals.NeutralModeValue;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.utils.hardware.Vortex;
+import frc.robot.utils.hardware.VortexBuilder;
+import frc.robot.utils.logging.Loggable;
 
 import static frc.robot.constants.SubsystemConstants.ClimberConstants.*;
 
-public class Climber extends SubsystemBase {
-    private TalonFX climberControllerMotor;
+public class Climber extends SubsystemBase implements Loggable {
+    private Vortex climberControllerMotor;
 
     public Climber() {
-        TalonFXConfiguration motorConfiguration = new TalonFXConfiguration();
-        climberControllerMotor = new TalonFX(CLIMBER_MOTOR_ID);
-        climberControllerMotor.getConfigurator().apply(motorConfiguration
-            .withCurrentLimits(
-                new CurrentLimitsConfigs()
-                .withStatorCurrentLimit(Amps.of(CLIMBER_CURRENT_LIMIT))
-                .withStatorCurrentLimitEnable(true)
-            )
-        );
-        climberControllerMotor.setNeutralMode(NeutralModeValue.Brake);
+        climberControllerMotor = VortexBuilder.create(CLIMBER_MOTOR_ID)
+            .withCurrentLimit(CLIMBER_CURRENT_LIMIT)
+            .withIdleMode(IdleMode.kBrake)
+            .build();
     }
 
     public void setClimberPower(double power) {
         climberControllerMotor.set(power);
+    }
+
+    @Override
+    public void log(String subdirectory, String humanReadableName) {
+        climberControllerMotor.log(subdirectory + "/" + humanReadableName, "CLimberMotor");
+    }
+
+    @Override
+    public void periodic() {
+        log("Subsystems", "Climber");
     }
 }

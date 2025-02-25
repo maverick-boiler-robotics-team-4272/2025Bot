@@ -49,6 +49,7 @@ public class CoralManipulator extends SubsystemBase implements Loggable {
             )
             .withPositionConversionFactor(POSITION_CONVERSION_FACTOR)
             .withPIDParams(CORAL_MANIPULATOR_P, CORAL_MANIPULATOR_I, CORAL_MANIPULATOR_D)
+            .positionFrameMs(1)
             .build();
 
         initInputs();
@@ -68,8 +69,8 @@ public class CoralManipulator extends SubsystemBase implements Loggable {
         inputs.desiredRotation = rot;
     }
 
-    public void resetWheelRotation() {
-        coralControllerMotor.getEncoder().setPosition(0.0);
+    public void addWheelRotations(Rotation2d rot) {
+        setWheelRotation(Rotation2d.fromRotations(rot.getRotations() + getWheelRotation().getRotations()));
     }
 
     public Rotation2d getWheelRotation() {
@@ -78,6 +79,10 @@ public class CoralManipulator extends SubsystemBase implements Loggable {
 
     public SparkAbsoluteEncoder getArmEncoder() {
         return coralControllerMotor.getAbsoluteEncoder();
+    }
+
+    public Rotation2d getWheelError() {
+        return Rotation2d.fromRotations(inputs.desiredRotation.getRotations() - inputs.currRotation.getRotations());
     }
 
     @Override
