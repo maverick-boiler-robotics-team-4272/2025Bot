@@ -4,6 +4,7 @@ import static frc.robot.constants.positions.ArmevatorPositions.HOME;
 import static frc.robot.constants.positions.ArmevatorPositions.L4_ARMEVATOR_POSITION;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.armevator.Armevator;
 import frc.robot.subsystems.armevator.states.GoToArmevatorPoseState;
 import frc.robot.subsystems.coralManipulator.CoralManipulator;
@@ -19,7 +20,8 @@ public class AutoGameCommand extends SequentialCommandGroup {
         super(
             new PathfindThenPathState(drivetrain, drivetrain::getNextPath),
             new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION)
-                .alongWith(new IdleState(coralManipulator, armevator::getArmRotation)),
+                .raceWith(new IdleState(coralManipulator, armevator::getArmRotation)),
+            new WaitCommand(0.2),
             new CoralOutakeState(coralManipulator, 0.5).withTimeout(0.25),
             new GoToArmevatorPoseState(armevator, HOME),
             new PathfindingState(drivetrain, drivetrain::getNextFeedPose),
