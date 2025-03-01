@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -18,6 +19,7 @@ import frc.robot.commands.FeederManipulatorCommand;
 import frc.robot.constants.TunerConstants;
 import frc.robot.constants.positions.ArmevatorPositions.ArmevatorPosition;
 import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
+import frc.robot.subsystems.algaeManipulator.states.AlgaeIdle;
 import frc.robot.subsystems.algaeManipulator.states.AlgaeIntake;
 import frc.robot.subsystems.armevator.Armevator;
 import frc.robot.subsystems.armevator.states.GoToArmevatorPoseState;
@@ -86,6 +88,10 @@ public class RobotContainer {
 
         coralManipulator.setDefaultCommand(
             new IdleState(coralManipulator, armevator::getArmRotation)
+        );
+
+        algaeManipulator.setDefaultCommand(
+            new AlgaeIdle(algaeManipulator)
         );
 
         // reset the field-centric heading on b press
@@ -169,19 +175,23 @@ public class RobotContainer {
         );
 
         operatorController.getButton(14).whileTrue(
-            new GoToArmevatorPoseState(armevator, L1_ARMEVATOR_POSITION).repeatedly()
+            // new GoToArmevatorPoseState(armevator, L1_ARMEVATOR_POSITION).repeatedly()
+            new InstantCommand(() -> armevator.goToPosNext(L1_ARMEVATOR_POSITION))
         );
 
         operatorController.getButton(13).whileTrue(
-            new GoToArmevatorPoseState(armevator, L2_ARMEVATOR_POSITION).repeatedly()
+            // new GoToArmevatorPoseState(armevator, L2_ARMEVATOR_POSITION).repeatedly()
+            new InstantCommand(() -> armevator.goToPosNext(L2_ARMEVATOR_POSITION))
         );
 
         operatorController.getButton(16 + 2).whileTrue(
-            new GoToArmevatorPoseState(armevator, L3_ARMEVATOR_POSITION).repeatedly()
+            // new GoToArmevatorPoseState(armevator, L3_ARMEVATOR_POSITION).repeatedly()
+            new InstantCommand(() -> armevator.goToPosNext(L3_ARMEVATOR_POSITION))
         );
 
         operatorController.getButton(16 + 1).whileTrue(
-            new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION).repeatedly()
+            // new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION).repeatedly()
+            new InstantCommand(() -> armevator.goToPosNext(L4_ARMEVATOR_POSITION))
         );
 
         operatorController.getButton(10).whileTrue(
@@ -273,7 +283,7 @@ public class RobotContainer {
     
         autoTab = Shuffleboard.getTab("Auto");
         autoTab.add("AutoChooser", autoChooser);
-        autoTab.add("SideChooser", SIDE_CHOOSER);
+        autoTab.add("SideChooser", SIDE_CHOOSER).withWidget(BuiltInWidgets.kSplitButtonChooser);
 
         // autoChooser.setDefaultOption("5 coral!!!", new PathPlannerAuto("5 coral!!!")); //ex
     }
