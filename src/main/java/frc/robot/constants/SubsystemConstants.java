@@ -39,12 +39,12 @@ public class SubsystemConstants {
 
     public static class LimeLightConstants {
         public static Pose3d FRONT_LIMELIGHT_POSE = new Pose3d(
-            0.337,
-            -0.201,
-            0.235,
+            0.368878,
+            -0.071628,
+            0.2425,
             new Rotation3d(
-                Rotation2d.fromDegrees(180).getRadians(), 
-                Rotation2d.fromDegrees(15.788).getRadians(),
+                Rotation2d.fromDegrees(90).getRadians(), 
+                Rotation2d.fromDegrees(26.471).getRadians(),
                 0
             )
         );
