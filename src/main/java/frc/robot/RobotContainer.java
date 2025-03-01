@@ -5,7 +5,6 @@
 package frc.robot;
 
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -103,7 +102,7 @@ public class RobotContainer {
                 armevator, 
                 feeder, 
                 coralManipulator
-            )
+            ).repeatedly()
         );
 
         driverController.y().whileTrue(
@@ -283,7 +282,7 @@ public class RobotContainer {
     
         autoTab = Shuffleboard.getTab("Auto");
         autoTab.add("AutoChooser", autoChooser);
-        autoTab.add("SideChooser", SIDE_CHOOSER).withWidget(BuiltInWidgets.kSplitButtonChooser);
+        autoTab.add("SideChooser", SIDE_CHOOSER);
 
         // autoChooser.setDefaultOption("5 coral!!!", new PathPlannerAuto("5 coral!!!")); //ex
     }
