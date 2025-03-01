@@ -17,7 +17,7 @@ public class AlgaeIntake extends State<AlgaeManipulator> {
 
   public void execute() {
     if (requiredSubsystem.hasAlgae()) {
-      requiredSubsystem.setAlgaePower(0.2);
+      requiredSubsystem.setAlgaePower(0.5);
     } else {
       requiredSubsystem.setAlgaePower(1.0);
     }
