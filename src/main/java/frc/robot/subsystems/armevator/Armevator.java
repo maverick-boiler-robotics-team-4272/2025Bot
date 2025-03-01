@@ -25,6 +25,7 @@ import static edu.wpi.first.units.Units.Inches;
 import static edu.wpi.first.units.Units.Meters;
 import static frc.robot.constants.HardwareMap.*;
 import static frc.robot.constants.SubsystemConstants.ArmevatorConstants.*;
+import static frc.robot.constants.positions.ArmevatorPositions.L2_ARMEVATOR_POSITION;
 
 public class Armevator extends SubsystemBase implements Loggable {
     @AutoLog
@@ -80,6 +81,8 @@ public class Armevator extends SubsystemBase implements Loggable {
 
     private ArmFeedforward armFeedforward = new ArmFeedforward(0, ARM_FF, 0, 0);
 
+    private ArmevatorPosition nextPose = L2_ARMEVATOR_POSITION;
+
     public Armevator(SparkAbsoluteEncoder armEncoder) {
         this.armEncoder = armEncoder;
 
@@ -130,6 +133,14 @@ public class Armevator extends SubsystemBase implements Loggable {
     public void goToPos(ArmevatorPosition position) {
         inputs.desiredElevatorHeight = position.getElevatorHeight();
         inputs.desiredArmRotation = position.getArmAngle();
+    }
+
+    public void goToPosNext(ArmevatorPosition position) {
+        nextPose = position;
+    }
+
+    public void goToNextPos() {
+        goToPos(nextPose);
     }
 
     private void setElevtorHeight(double height){
