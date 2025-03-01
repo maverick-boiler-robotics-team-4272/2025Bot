@@ -22,11 +22,11 @@ public class FeederManipulatorCommand extends SequentialCommandGroup {
                 new GoToArmevatorPoseState(armevator, FEEDING_ARMEVATOR_POSITION).repeatedly(),
                 new SequentialCommandGroup(
                     new ParallelRaceGroup(
-                        new FeedState(feed, feedPower),
+                        new DeJamState(feed, feedPower),
                         new CoralIntakeState(coralManipulator, coralPower)
                     ).until(feed::lidarBackTripped),
                     new ParallelRaceGroup(
-                        new FeedState(feed, feedPower),
+                        new DeJamState(feed, feedPower),
                         new CoralIntakeState(coralManipulator, coralPower)
                     ).until(feed::lidarBackNotTripped),
                     new CoralIndexState(coralManipulator, feed::lidarBackTripped)

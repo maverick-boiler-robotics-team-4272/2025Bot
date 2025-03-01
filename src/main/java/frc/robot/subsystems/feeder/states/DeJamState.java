@@ -27,15 +27,15 @@ public class DeJamState extends State<Feeder> {
     @Override
     public void execute() {
         // Start the jam clock if conditions are met
-        if (requiredSubsystem.lidarBackTripped() &&
-                requiredSubsystem.lidarFrontNotTripped() &&
+        if (requiredSubsystem.lidarFrontTripped() &&
+                requiredSubsystem.lidarBackNotTripped() &&
                 !jamClock.isRunning() &&
                 !unJamming) {
             jamClock.start();
         }
 
         // Stop the jam clock and set feeder power if necessary
-        if ((requiredSubsystem.lidarFrontTripped() || requiredSubsystem.lidarBackNotTripped()) &&
+        if ((requiredSubsystem.lidarBackTripped() || requiredSubsystem.lidarFrontNotTripped()) &&
                 jamClock.isRunning()) {
             jamClock.stop();
             requiredSubsystem.setFeederPower(power);
@@ -48,8 +48,8 @@ public class DeJamState extends State<Feeder> {
             jamClock.reset();
         }
 
-        // Reset unjamming state after a 0.2-second delay
-        if (unJamming && jamClock.hasElapsed(0.2)) {
+        // Reset unjamming state after a 0.8-second delay
+        if (unJamming && jamClock.hasElapsed(0.8)) {
             unJamming = false;
             jamClock.restart();
             requiredSubsystem.setFeederPower(power);
