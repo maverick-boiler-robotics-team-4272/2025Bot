@@ -3,8 +3,10 @@ package frc.robot.commands;
 import static frc.robot.constants.positions.ArmevatorPositions.HOME;
 
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.subsystems.armevator.Armevator;
 import frc.robot.subsystems.armevator.states.GoToArmevatorPoseState;
 import frc.robot.subsystems.armevator.states.GoToNextArmevatorPoseState;
@@ -19,7 +21,13 @@ import frc.robot.subsystems.feeder.Feeder;
 public class AutoGameCommand extends SequentialCommandGroup {
     public AutoGameCommand(CommandSwerveDrivetrain drivetrain, Armevator armevator, Feeder feeder, CoralManipulator coralManipulator) {
         super(
-            new PathfindThenPathState(drivetrain, drivetrain::getNextPath),
+            new PathfindingState(drivetrain, drivetrain::getNextFeedPose),
+            new ParallelCommandGroup(
+                new FeederManipulatorCommand(feeder, coralManipulator, armevator, 1.0, 0.2),
+                new PathfindThenPathState(drivetrain, drivetrain::getNextPath).beforeStarting(
+                    new WaitUntilCommand(feeder::lidarBackTripped)
+                )   
+            ),
             new GoToNextArmevatorPoseState(armevator)
                 .raceWith(new IdleState(coralManipulator, armevator::getArmRotation)),
             new WaitCommand(0.2),
@@ -28,9 +36,7 @@ public class AutoGameCommand extends SequentialCommandGroup {
                 new CoralOutakeState(coralManipulator, -0.5).withTimeout(0.25),
                 armevator::nextIsL4
             ),
-            new GoToArmevatorPoseState(armevator, HOME),
-            new PathfindingState(drivetrain, drivetrain::getNextFeedPose),
-            new FeederManipulatorCommand(feeder, coralManipulator, armevator, 1.0, 0.2)
+            new GoToArmevatorPoseState(armevator, HOME)
         );
     }
 }
