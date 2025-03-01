@@ -16,7 +16,8 @@ public class ArmevatorPositions {
 
     public static final ArmevatorPosition HOME = new ArmevatorPosition(Rotation2d.fromDegrees(10), Meters.convertFrom(0.1, Inches));
 
-    public static final ArmevatorPosition BARGE_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(160), Meters.convertFrom(50,Inches));  
+    public static final ArmevatorPosition BARGE_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(160), Meters.convertFrom(50,Inches));
+    public static final ArmevatorPosition BARGE_PREP_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(100), Meters.convertFrom(50,Inches));
 
     public static final ArmevatorPosition L1_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(47), Meters.convertFrom(0, Inches));
     public static final ArmevatorPosition L2_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(30), Meters.convertFrom(11.5, Inches));
