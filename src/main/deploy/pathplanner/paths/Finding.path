@@ -119,9 +119,57 @@
         "x": 16.592492928922766,
         "y": 10.655125171766198
       },
-      "nextControl": null,
+      "nextControl": {
+        "x": 16.04329474231011,
+        "y": 3.5554056501516094
+      },
       "isLocked": false,
       "linkedName": "Coral_Station_Right"
+    },
+    {
+      "anchor": {
+        "x": 9.739322916666666,
+        "y": 3.326215277777777
+      },
+      "prevControl": {
+        "x": 12.562880010043942,
+        "y": 4.370194144520241
+      },
+      "nextControl": {
+        "x": 6.915765823289389,
+        "y": 2.282236411035314
+      },
+      "isLocked": false,
+      "linkedName": "Right_Barge"
+    },
+    {
+      "anchor": {
+        "x": 9.809201388888889,
+        "y": 1.9845486111111108
+      },
+      "prevControl": {
+        "x": 8.45332561997803,
+        "y": 2.1264046638509893
+      },
+      "nextControl": {
+        "x": 11.165077157799749,
+        "y": 1.8426925583712324
+      },
+      "isLocked": false,
+      "linkedName": "Middle_Barge"
+    },
+    {
+      "anchor": {
+        "x": 9.767274305555555,
+        "y": 0.8105902777777771
+      },
+      "prevControl": {
+        "x": 10.529066356677651,
+        "y": 1.2917021819633958
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "Left_Barge"
     }
   ],
   "rotationTargets": [
@@ -159,7 +207,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -127.3570173373648
+    "rotation": 0.0
   },
   "reversed": false,
   "folder": "Field positions",

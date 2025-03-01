@@ -12,36 +12,36 @@
         "y": 6.537882619322796
       },
       "isLocked": false,
-      "linkedName": "Left Barge"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 8.128895547945206,
-        "y": 6.143621575342466
+        "x": 9.809201388888889,
+        "y": 1.9845486111111108
       },
       "prevControl": {
-        "x": 8.125424392316113,
-        "y": 7.156936384299957
+        "x": 9.805730233259796,
+        "y": 2.9978634200686027
       },
       "nextControl": {
-        "x": 8.13154221242412,
-        "y": 5.370995799549588
+        "x": 9.811848053367804,
+        "y": 1.2119228353182334
       },
       "isLocked": false,
-      "linkedName": "Middle Barge"
+      "linkedName": "Middle_Barge"
     },
     {
       "anchor": {
-        "x": 8.128895547945206,
-        "y": 5.0617722602739725
+        "x": 9.739322916666666,
+        "y": 3.326215277777777
       },
       "prevControl": {
-        "x": 8.133259026740369,
-        "y": 5.9396575475765205
+        "x": 9.743686395461829,
+        "y": 4.204100565080325
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Right Barge"
+      "linkedName": "Right_Barge"
     }
   ],
   "rotationTargets": [
