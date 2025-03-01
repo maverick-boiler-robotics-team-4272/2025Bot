@@ -30,9 +30,9 @@ public class PathfindingPoseParser {
         rotationMap.put("Coral_KL", "red ? Rotation2d.fromDegrees(120) : Rotation2d.fromDegrees(-60)");
         rotationMap.put("Coral_Station_Right", "red ? Rotation2d.fromDegrees(-126) : Rotation2d.fromDegrees(55)");
         rotationMap.put("Coral_Station_Left", "red ? Rotation2d.fromDegrees(126) : Rotation2d.fromDegrees(-55)");
-        rotationMap.put("Left_Barge", "red ? Rotation2d.fromDegrees(180) : Rotation2d.fromDegrees(0)");
-        rotationMap.put("Middle_Barge", "red ? Rotation2d.fromDegrees(180) : Rotation2d.fromDegrees(0)");
-        rotationMap.put("Right_Barge", "red ? Rotation2d.fromDegrees(180) : Rotation2d.fromDegrees(0)");
+        rotationMap.put("Left_Barge", "red ? Rotation2d.fromDegrees(0) : Rotation2d.fromDegrees(180)");
+        rotationMap.put("Middle_Barge", "red ? Rotation2d.fromDegrees(0) : Rotation2d.fromDegrees(180)");
+        rotationMap.put("Right_Barge", "red ? Rotation2d.fromDegrees(0) : Rotation2d.fromDegrees(180)");
 
         try(BufferedReader reader = new BufferedReader(new FileReader("./src/main/deploy/pathplanner/paths/Finding.path"))) {
             JSONParser parser = new JSONParser();

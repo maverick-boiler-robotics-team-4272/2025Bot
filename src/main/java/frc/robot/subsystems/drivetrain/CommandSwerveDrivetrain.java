@@ -61,6 +61,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
         public Pose2d nextScorePose; //For auto gameplay
         public Pose2d nextFeedPose;
+        public Pose2d nextBargePose;
     }
 
     // Logging inputs
@@ -90,6 +91,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
         inputs.nextScorePose = getGlobalPositions().CORAL_AB;
         inputs.nextFeedPose = getGlobalPositions().CORAL_STATION_LEFT;
+        inputs.nextBargePose = getGlobalPositions().MIDDLE_BARGE;
         nextPath = getGlobalPositions().CORAL_A;
 
         FRONT_LIMELIGHT.configure(FRONT_LIMELIGHT_POSE);
@@ -203,6 +205,10 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         inputs.nextFeedPose = next;
     }
 
+    public void setNextBargePose(Pose2d next) {
+        inputs.nextBargePose = next;
+    }
+
     /**
      * @returns the next pose that the robot will pathfind to to score
      */
@@ -217,6 +223,10 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         return inputs.nextFeedPose;
     }
 
+    public Pose2d getNextBargePose() {
+        return inputs.nextBargePose;
+    }
+    
     /**
      * @returns the next path that will run when pathfinding
      */

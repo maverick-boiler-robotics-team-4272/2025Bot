@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.commands.AutoAlgaeCommand;
 import frc.robot.commands.AutoGameCommand;
-import frc.robot.commands.BargeScoreCommand;
 import frc.robot.commands.FeederManipulatorCommand;
 import frc.robot.constants.TunerConstants;
 import frc.robot.constants.positions.ArmevatorPositions.ArmevatorPosition;
@@ -32,7 +32,6 @@ import frc.robot.subsystems.coralManipulator.states.CoralOutakeState;
 import frc.robot.subsystems.coralManipulator.states.IdleState;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
 import frc.robot.subsystems.drivetrain.states.DriveState;
-import frc.robot.subsystems.drivetrain.states.PathfindingState;
 import frc.robot.subsystems.drivetrain.states.ResetHeadingState;
 import frc.robot.subsystems.feeder.Feeder;
 import frc.robot.subsystems.feeder.states.FeedState;
@@ -106,9 +105,10 @@ public class RobotContainer {
         );
 
         driverController.y().whileTrue(
-            new PathfindingState(
-                drivetrain,
-                drivetrain::getNextFeedPose
+            new AutoAlgaeCommand(
+                drivetrain, 
+                armevator, 
+                algaeManipulator
             )
         );
 
@@ -173,6 +173,18 @@ public class RobotContainer {
                 .alongWith(new AlgaeIntake(algaeManipulator)).repeatedly()
         );
 
+        operatorController.getButton(11).onTrue(
+            new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().LEFT_BARGE)).ignoringDisable(true)
+        );
+
+        operatorController.getButton(10).onTrue(
+            new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().MIDDLE_BARGE)).ignoringDisable(true)
+        );
+
+        operatorController.getButton(9).onTrue(
+            new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().RIGHT_BARGE)).ignoringDisable(true)
+        );
+
         operatorController.getButton(14).whileTrue(
             // new GoToArmevatorPoseState(armevator, L1_ARMEVATOR_POSITION).repeatedly()
             new InstantCommand(() -> armevator.goToPosNext(L1_ARMEVATOR_POSITION))
@@ -191,10 +203,6 @@ public class RobotContainer {
         operatorController.getButton(16 + 1).whileTrue(
             // new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION).repeatedly()
             new InstantCommand(() -> armevator.goToPosNext(L4_ARMEVATOR_POSITION))
-        );
-
-        operatorController.getButton(10).whileTrue(
-            new BargeScoreCommand(armevator, algaeManipulator, () -> driverController.povLeft().getAsBoolean())
         );
 
         //Reef buttons
