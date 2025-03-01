@@ -108,8 +108,7 @@ public class RobotContainer {
         );
 
         driverController.leftBumper().whileTrue(
-            new FeedState(feeder, 1)
-                .alongWith(new CoralIntakeState(coralManipulator, 1))
+            new CoralIntakeState(coralManipulator, 0.5)
         );
 
         driverController.rightBumper().whileTrue(
