@@ -92,6 +92,7 @@ public class SubsystemConstants {
     }
 
     public static class ClimberConstants {
+        public static final double CLIMBER_LIDAR_TRIGGER_DISTANCE = 3.3;
         public static final int CLIMBER_CURRENT_LIMIT = 60;
     }
 
