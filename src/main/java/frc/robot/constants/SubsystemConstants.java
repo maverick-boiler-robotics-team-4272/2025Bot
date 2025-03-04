@@ -18,7 +18,7 @@ public class SubsystemConstants {
     public static class DrivetrainConstants {
         public static  class AutoConstants {
             public static final double TRANSLATION_MAX = 4.5;
-            public static final double TRANSLATION_MAX_A = 4.0;
+            public static final double TRANSLATION_MAX_A = 3.0;
             public static final Rotation2d ROTATION_MAX = Rotation2d.fromDegrees(560.0);
             public static final Rotation2d ROTATION_MAX_A = Rotation2d.fromDegrees(720.0);
 
@@ -49,12 +49,12 @@ public class SubsystemConstants {
             )
         );
         public static Pose3d BACK_LIMELIGHT_POSE = new Pose3d(
-            -0.237, //Forward to back
-            0.025, //Right to left
-            0.336, // down to up
+            -0.225, //Forward to back
+            0.1648, //Right to left
+            0.3058, // down to up
             new Rotation3d(
                 0,
-                Rotation2d.fromDegrees(24.552).getRadians(),
+                Rotation2d.fromDegrees(35.528).getRadians(),
                 Rotation2d.fromDegrees(180).getRadians()
             )
         );
@@ -96,8 +96,8 @@ public class SubsystemConstants {
     }
 
     public static class FeederConstants {
-        public static final int FEEDER_CAN_FRONT_TRIGGER_DISTANCE = 100;
-        public static final int FEEDER_CAN_BACK_TRIGGER_DISTANCE = 150;
+        public static final int FEEDER_CAN_FRONT_TRIGGER_DISTANCE = 170;
+        public static final int FEEDER_CAN_BACK_TRIGGER_DISTANCE = 170;
     }
 
     public static class CoralManipulatorConstants {
