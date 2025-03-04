@@ -49,7 +49,6 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         public SwerveModuleState moduleStates[]; // The module states of the robot
 
         public boolean fuseVison; // Is the odometry fusing
-        public double distanceTraveled; // How much distance has the robot traveled
 
         public boolean isRedSide;
         public Pose2d desiredPose;
@@ -69,7 +68,6 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
     // Setup all of the logged inputs to default values
     private void initInputs() {
-        inputs.distanceTraveled = 0.0;
         inputs.fuseVison = false;
         inputs.estimatedPose = new Pose2d();
         inputs.isRedSide = false;
