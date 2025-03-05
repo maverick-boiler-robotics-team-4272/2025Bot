@@ -43,6 +43,8 @@ import static frc.robot.constants.SubsystemConstants.DrivetrainConstants.TeleCon
 import static frc.robot.constants.FieldConstants.*;
 import static frc.robot.constants.positions.ArmevatorPositions.*;
 
+import com.pathplanner.lib.commands.PathPlannerAuto;
+
 public class RobotContainer {
     private ShuffleboardTab autoTab;
     private SendableChooser<Command> autoChooser;
@@ -291,6 +293,8 @@ public class RobotContainer {
         autoTab = Shuffleboard.getTab("Auto");
         autoTab.add("AutoChooser", autoChooser);
         autoTab.add("SideChooser", SIDE_CHOOSER);
+
+        autoChooser.setDefaultOption("Wheel Diam", new PathPlannerAuto("Wheel Diam"));
 
         // autoChooser.setDefaultOption("5 coral!!!", new PathPlannerAuto("5 coral!!!")); //ex
     }
