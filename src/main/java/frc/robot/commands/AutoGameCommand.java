@@ -6,6 +6,7 @@ import java.util.function.BooleanSupplier;
 
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
@@ -31,7 +32,10 @@ public class AutoGameCommand extends SequentialCommandGroup {
             new ParallelCommandGroup(
                 new FeederManipulatorCommand(feeder, coralManipulator, armevator, 1.0, 0.2),
                 new PathfindThenPathState(drivetrain, drivetrain::getNextPath).beforeStarting(
-                    new WaitUntilCommand(feeder::lidarBackTripped).unless(leaveOverride)
+                    new ParallelRaceGroup(
+                        new WaitUntilCommand(leaveOverride),
+                        new WaitUntilCommand(feeder::lidarBackTripped)
+                    )
                 )   
             ),
             new GoToNextArmevatorPoseState(armevator)
