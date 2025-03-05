@@ -102,7 +102,8 @@ public class RobotContainer {
                 drivetrain, 
                 armevator, 
                 feeder, 
-                coralManipulator
+                coralManipulator,
+                () -> driverController.a().getAsBoolean()
             ).repeatedly()
         );
 

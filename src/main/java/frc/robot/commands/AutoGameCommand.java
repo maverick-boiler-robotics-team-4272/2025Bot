@@ -2,6 +2,8 @@ package frc.robot.commands;
 
 import static frc.robot.constants.positions.ArmevatorPositions.HOME;
 
+import java.util.function.BooleanSupplier;
+
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -19,13 +21,17 @@ import frc.robot.subsystems.drivetrain.states.PathfindingState;
 import frc.robot.subsystems.feeder.Feeder;
 
 public class AutoGameCommand extends SequentialCommandGroup {
-    public AutoGameCommand(CommandSwerveDrivetrain drivetrain, Armevator armevator, Feeder feeder, CoralManipulator coralManipulator) {
+    public AutoGameCommand(CommandSwerveDrivetrain drivetrain, Armevator armevator, Feeder feeder, CoralManipulator coralManipulator, BooleanSupplier leaveOverride) {
         super(
-            new PathfindingState(drivetrain, drivetrain::getNextFeedPose),
+            new PathfindingState(drivetrain, drivetrain::getNextFeedPose).raceWith(
+                new WaitCommand(1).andThen(
+                    new FeederManipulatorCommand(feeder, coralManipulator, armevator, 1.0, 0.2)
+                )
+            ),
             new ParallelCommandGroup(
                 new FeederManipulatorCommand(feeder, coralManipulator, armevator, 1.0, 0.2),
                 new PathfindThenPathState(drivetrain, drivetrain::getNextPath).beforeStarting(
-                    new WaitUntilCommand(feeder::lidarBackTripped)
+                    new WaitUntilCommand(feeder::lidarBackTripped).unless(leaveOverride)
                 )   
             ),
             new GoToNextArmevatorPoseState(armevator)
