@@ -208,6 +208,34 @@ public class RobotContainer {
             new InstantCommand(() -> armevator.goToPosNext(L4_ARMEVATOR_POSITION))
         );
 
+        operatorController.getButton(14)
+            .and(() -> !driverController.x().getAsBoolean())
+            .and(() -> !driverController.y().getAsBoolean())
+        .whileTrue(
+            new GoToArmevatorPoseState(armevator, L1_ARMEVATOR_POSITION).repeatedly()
+        );
+
+        operatorController.getButton(13)
+            .and(() -> !driverController.x().getAsBoolean())
+            .and(() -> !driverController.y().getAsBoolean())
+        .whileTrue(
+            new GoToArmevatorPoseState(armevator, L2_ARMEVATOR_POSITION).repeatedly()
+        );
+
+        operatorController.getButton(16 + 2)
+            .and(() -> !driverController.x().getAsBoolean())
+            .and(() -> !driverController.y().getAsBoolean())
+        .whileTrue(
+            new GoToArmevatorPoseState(armevator, L3_ARMEVATOR_POSITION).repeatedly()
+        );
+
+        operatorController.getButton(16 + 1)
+            .and(() -> !driverController.x().getAsBoolean())
+            .and(() -> !driverController.y().getAsBoolean())
+        .whileTrue(
+            new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION).repeatedly()
+        );
+
         //Reef buttons
 
         //Coral A
