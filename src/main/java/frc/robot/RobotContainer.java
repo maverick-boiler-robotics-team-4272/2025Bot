@@ -16,6 +16,7 @@ import frc.robot.commands.AutoAlgaeCommand;
 import frc.robot.commands.AutoGameCommand;
 import frc.robot.commands.FeederManipulatorCommand;
 import frc.robot.constants.TunerConstants;
+import frc.robot.constants.positions.ArmevatorPositions;
 import frc.robot.constants.positions.ArmevatorPositions.ArmevatorPosition;
 import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
 import frc.robot.subsystems.algaeManipulator.states.AlgaeIdle;
@@ -43,6 +44,7 @@ import static frc.robot.constants.SubsystemConstants.DrivetrainConstants.TeleCon
 import static frc.robot.constants.FieldConstants.*;
 import static frc.robot.constants.positions.ArmevatorPositions.*;
 
+import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 
 public class RobotContainer {
@@ -311,6 +313,7 @@ public class RobotContainer {
 
     private void registerNamedCommands() {
         // NamedCommands.registerCommand("Drop", new DropState(dropper).withTimeout(0.5)); //ex
+        NamedCommands.registerCommand("L4", new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION).withTimeout(1));
     }
 
     private void setupAutos() {
@@ -323,8 +326,9 @@ public class RobotContainer {
         autoTab.add("AutoChooser", autoChooser);
         autoTab.add("SideChooser", SIDE_CHOOSER);
 
-        autoChooser.setDefaultOption("Wheel Diam", new PathPlannerAuto("Wheel Diam"));
+        //autoChooser.setDefaultOption("Wheel Diam", new PathPlannerAuto("Wheel Diam"));
 
+        autoChooser.setDefaultOption("test auto", new PathPlannerAuto("test auto"));
         // autoChooser.setDefaultOption("5 coral!!!", new PathPlannerAuto("5 coral!!!")); //ex
     }
 

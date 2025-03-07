@@ -1,0 +1,79 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Left auto start"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Find J"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "L4"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "IJ to coral"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "coral to kl"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Find K"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "L4"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "k to coral"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "coral to kl"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Find L"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "L4"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": null,
+  "choreoAuto": false
+}
