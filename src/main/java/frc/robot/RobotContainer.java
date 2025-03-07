@@ -22,6 +22,7 @@ import frc.robot.subsystems.algaeManipulator.states.AlgaeIdle;
 import frc.robot.subsystems.algaeManipulator.states.AlgaeIntake;
 import frc.robot.subsystems.armevator.Armevator;
 import frc.robot.subsystems.armevator.states.GoToArmevatorPoseState;
+import frc.robot.subsystems.armevator.states.GoToNextArmevatorPoseState;
 import frc.robot.subsystems.armevator.states.ZeroState;
 import frc.robot.subsystems.climber.Climber;
 import frc.robot.subsystems.climber.states.LowerState;
@@ -313,6 +314,10 @@ public class RobotContainer {
     private void registerNamedCommands() {
         // NamedCommands.registerCommand("Drop", new DropState(dropper).withTimeout(0.5)); //ex
         NamedCommands.registerCommand("L4", new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION).withTimeout(1));
+        NamedCommands.registerCommand("Next", 
+            new GoToNextArmevatorPoseState(armevator)
+                .raceWith(new IdleState(coralManipulator, armevator::getArmRotation))
+        );
     }
 
     private void setupAutos() {

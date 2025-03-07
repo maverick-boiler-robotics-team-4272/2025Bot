@@ -46,7 +46,7 @@ public class AutoGameCommand extends SequentialCommandGroup {
                 new CoralOutakeState(coralManipulator, -0.5).withTimeout(0.25),
                 armevator::nextIsL4
             ),
-            new GoToArmevatorPoseState(armevator, HOME)
+            new GoToArmevatorPoseState(armevator, HOME).withTimeout(0.1)
         );
     }
 }
