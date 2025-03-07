@@ -52,18 +52,18 @@ public class PositionContainer {
         //Stop Precomputed positions here
 
         try {
-            CORAL_A = !isRedSide() ? PathPlannerPath.fromPathFile("Find A").flipPath() : PathPlannerPath.fromPathFile("Find A");
-            CORAL_B = !isRedSide() ? PathPlannerPath.fromPathFile("Find B").flipPath() : PathPlannerPath.fromPathFile("Find B");
-            CORAL_C = !isRedSide() ? PathPlannerPath.fromPathFile("Find C").flipPath() : PathPlannerPath.fromPathFile("Find C");
-            CORAL_D = !isRedSide() ? PathPlannerPath.fromPathFile("Find D").flipPath() : PathPlannerPath.fromPathFile("Find D");
-            CORAL_E = !isRedSide() ? PathPlannerPath.fromPathFile("Find E").flipPath() : PathPlannerPath.fromPathFile("Find E");
-            CORAL_F = !isRedSide() ? PathPlannerPath.fromPathFile("Find F").flipPath() : PathPlannerPath.fromPathFile("Find F");
-            CORAL_G = !isRedSide() ? PathPlannerPath.fromPathFile("Find G").flipPath() : PathPlannerPath.fromPathFile("Find G");
-            CORAL_H = !isRedSide() ? PathPlannerPath.fromPathFile("Find H").flipPath() : PathPlannerPath.fromPathFile("Find H");
-            CORAL_I = !isRedSide() ? PathPlannerPath.fromPathFile("Find I").flipPath() : PathPlannerPath.fromPathFile("Find I");
-            CORAL_J = !isRedSide() ? PathPlannerPath.fromPathFile("Find J").flipPath() : PathPlannerPath.fromPathFile("Find J");
-            CORAL_K = !isRedSide() ? PathPlannerPath.fromPathFile("Find K").flipPath() : PathPlannerPath.fromPathFile("Find K");
-            CORAL_L = !isRedSide() ? PathPlannerPath.fromPathFile("Find L").flipPath() : PathPlannerPath.fromPathFile("Find L");
+            CORAL_A = isRedSide() ? PathPlannerPath.fromPathFile("Find A").flipPath() : PathPlannerPath.fromPathFile("Find A");
+            CORAL_B = isRedSide() ? PathPlannerPath.fromPathFile("Find B").flipPath() : PathPlannerPath.fromPathFile("Find B");
+            CORAL_C = isRedSide() ? PathPlannerPath.fromPathFile("Find C").flipPath() : PathPlannerPath.fromPathFile("Find C");
+            CORAL_D = isRedSide() ? PathPlannerPath.fromPathFile("Find D").flipPath() : PathPlannerPath.fromPathFile("Find D");
+            CORAL_E = isRedSide() ? PathPlannerPath.fromPathFile("Find E").flipPath() : PathPlannerPath.fromPathFile("Find E");
+            CORAL_F = isRedSide() ? PathPlannerPath.fromPathFile("Find F").flipPath() : PathPlannerPath.fromPathFile("Find F");
+            CORAL_G = isRedSide() ? PathPlannerPath.fromPathFile("Find G").flipPath() : PathPlannerPath.fromPathFile("Find G");
+            CORAL_H = isRedSide() ? PathPlannerPath.fromPathFile("Find H").flipPath() : PathPlannerPath.fromPathFile("Find H");
+            CORAL_I = isRedSide() ? PathPlannerPath.fromPathFile("Find I").flipPath() : PathPlannerPath.fromPathFile("Find I");
+            CORAL_J = isRedSide() ? PathPlannerPath.fromPathFile("Find J").flipPath() : PathPlannerPath.fromPathFile("Find J");
+            CORAL_K = isRedSide() ? PathPlannerPath.fromPathFile("Find K").flipPath() : PathPlannerPath.fromPathFile("Find K");
+            CORAL_L = isRedSide() ? PathPlannerPath.fromPathFile("Find L").flipPath() : PathPlannerPath.fromPathFile("Find L");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

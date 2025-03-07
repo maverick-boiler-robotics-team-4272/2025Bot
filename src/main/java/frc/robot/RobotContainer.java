@@ -16,7 +16,6 @@ import frc.robot.commands.AutoAlgaeCommand;
 import frc.robot.commands.AutoGameCommand;
 import frc.robot.commands.FeederManipulatorCommand;
 import frc.robot.constants.TunerConstants;
-import frc.robot.constants.positions.ArmevatorPositions;
 import frc.robot.constants.positions.ArmevatorPositions.ArmevatorPosition;
 import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
 import frc.robot.subsystems.algaeManipulator.states.AlgaeIdle;
