@@ -188,8 +188,8 @@ public class RobotContainer {
 
         operatorController.getButton(9).onTrue(
             //new InstantCommand(() -> drivetrain.testNextBargePose(getGlobalPositions().RIGHT_BARGE)).ignoringDisable(true)
-            new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().CORAL_GH, getGlobalPositions().CORAL_BARGE)).ignoringDisable(true)  
-            );
+            new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().RIGHT_BARGE, getGlobalPositions().RIGHT_BARGE_PATH)).ignoringDisable(true)  
+        );
 
         operatorController.getButton(14).whileTrue(
             // new GoToArmevatorPoseState(armevator, L1_ARMEVATOR_POSITION).repeatedly()

@@ -21,7 +21,7 @@ public class PositionContainer {
     public final Pose2d MIDDLE_BARGE;
     public final Pose2d RIGHT_BARGE;
     //public final Pose2d RIGHT_BARGE_APPROACH; 
-    public final PathPlannerPath CORAL_BARGE;
+    public final PathPlannerPath RIGHT_BARGE_PATH;
 
     public final PathPlannerPath CORAL_A;
     public final PathPlannerPath CORAL_B;
@@ -54,7 +54,7 @@ public class PositionContainer {
         //Stop Precomputed positions here
 
         try {
-            CORAL_BARGE = isRedSide() ? PathPlannerPath.fromPathFile("Find Right Barge").flipPath() : PathPlannerPath.fromPathFile("Find Right Barge");
+            RIGHT_BARGE_PATH = isRedSide() ? PathPlannerPath.fromPathFile("Find Right Barge").flipPath() : PathPlannerPath.fromPathFile("Find Right Barge");
 
             CORAL_A = isRedSide() ? PathPlannerPath.fromPathFile("Find A").flipPath() : PathPlannerPath.fromPathFile("Find A");
             CORAL_B = isRedSide() ? PathPlannerPath.fromPathFile("Find B").flipPath() : PathPlannerPath.fromPathFile("Find B");
