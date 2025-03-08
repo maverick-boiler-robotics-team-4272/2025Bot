@@ -97,6 +97,11 @@ public class Armevator extends SubsystemBase implements Loggable {
             .withCurrentLimit(CURRENT_LIMIT_ELEVATOR_MOTORS)
             .withPIDParams(ELEVATOR_P, ELEVATOR_I, ELEVATOR_D)
             .withOutputRange(-0.5, 1.0)
+            .withLimitSwitch(
+                new LimitSwitchConfig()
+                    .reverseLimitSwitchType(Type.kNormallyOpen)
+                    .reverseLimitSwitchEnabled(true)
+            )
             .build();
 
         elevatorMotor2 = VortexBuilder.create(BASE_ARMEVATOR_MOTOR_2)
@@ -105,11 +110,6 @@ public class Armevator extends SubsystemBase implements Loggable {
             .withIdleMode(IdleMode.kBrake)
             .asFollower(elevatorMotor1, false)
             .withCurrentLimit(CURRENT_LIMIT_ELEVATOR_MOTORS)
-            .withLimitSwitch(
-                new LimitSwitchConfig()
-                    .reverseLimitSwitchType(Type.kNormallyOpen)
-                    .reverseLimitSwitchEnabled(true)
-            )
             .build();
 
         armMotor1 = VortexBuilder.create(ARM_MOTOR_1)
