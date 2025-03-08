@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 8.128895547945206,
-        "y": 7.27054794520548
+        "x": 11.346527777777778,
+        "y": 1.9705729166666663
       },
       "prevControl": null,
       "nextControl": {
-        "x": 8.115938041413822,
-        "y": 6.537882619322796
+        "x": 11.931071591883118,
+        "y": 1.951610856756432
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Barge Approch"
     },
     {
       "anchor": {
@@ -20,36 +20,15 @@
         "y": 2.0264756944444433
       },
       "prevControl": {
-        "x": 9.498264955482018,
-        "y": 3.0397905034019352
-      },
-      "nextControl": {
-        "x": 9.504382775590026,
-        "y": 1.253849918651566
-      },
-      "isLocked": false,
-      "linkedName": "Middle_Barge"
-    },
-    {
-      "anchor": {
-        "x": 9.487760416666667,
-        "y": 3.1445312499999996
-      },
-      "prevControl": {
-        "x": 9.49212389546183,
-        "y": 4.022416537302547
+        "x": 9.251819064517994,
+        "y": 2.0329154011282466
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Right_Barge"
+      "linkedName": "Middle_Barge"
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 1.0,
-      "rotationDegrees": 0.0
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
@@ -66,10 +45,10 @@
     "rotation": 0.0
   },
   "reversed": false,
-  "folder": "Field positions",
+  "folder": "Approch Paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 47.93567344642121
   },
   "useDefaultConstraints": true
 }
