@@ -61,6 +61,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         public Pose2d nextScorePose; //For auto gameplay
         public Pose2d nextFeedPose;
         public Pose2d nextBargePose;
+        public Pose2d testNextBargePose;
     }
 
     // Logging inputs
@@ -98,7 +99,8 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
     // The next path to run when the robot is pathfinding
     private PathPlannerPath nextPath;
-
+    private PathPlannerPath nextBargePath;
+    
     /* Blue alliance sees forward as 0 degrees (toward red alliance wall) */
     private static final Rotation2d kBlueAlliancePerspectiveRotation = Rotation2d.kZero;
     /* Red alliance sees forward as 180 degrees (toward blue alliance wall) */
@@ -184,7 +186,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         inputs.nextScorePose = next;
         nextPath = path;
     }
-
+ 
     /**
      * Sets the next pose to pathfind to for scoring
      *
@@ -203,6 +205,23 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         inputs.nextFeedPose = next;
     }
 
+    /**
+     * Sets the next pose to pathfind to and path to follow during the autoteleop gameplay for scoring
+     *
+     * @param next the pose that the robot should pathfinded to; is mainly used for logging
+     * @param path the path to follow after reaching the starting point
+     */
+
+    public void setNextBargePose(Pose2d next, PathPlannerPath path) {
+        inputs.nextBargePose = next;
+        nextBargePath = path; 
+    }
+
+    /**
+     * Sets the next pose to pathfind to for scoring
+     *
+     * @param next the pose to pathfind to next
+     */
     public void setNextBargePose(Pose2d next) {
         inputs.nextBargePose = next;
     }
@@ -230,6 +249,10 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
      */
     public PathPlannerPath getNextPath() {
         return nextPath;
+    }
+
+    public PathPlannerPath getNextBargePath() {
+        return nextBargePath;
     }
 
     /**

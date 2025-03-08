@@ -187,8 +187,9 @@ public class RobotContainer {
         );
 
         operatorController.getButton(9).onTrue(
-            new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().RIGHT_BARGE)).ignoringDisable(true)
-        );
+            //new InstantCommand(() -> drivetrain.testNextBargePose(getGlobalPositions().RIGHT_BARGE)).ignoringDisable(true)
+            new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().CORAL_GH, getGlobalPositions().CORAL_BARGE)).ignoringDisable(true)  
+            );
 
         operatorController.getButton(14).whileTrue(
             // new GoToArmevatorPoseState(armevator, L1_ARMEVATOR_POSITION).repeatedly()
@@ -330,9 +331,9 @@ public class RobotContainer {
         autoTab.add("AutoChooser", autoChooser);
         autoTab.add("SideChooser", SIDE_CHOOSER);
 
-        //autoChooser.setDefaultOption("Wheel Diam", new PathPlannerAuto("Wheel Diam"));
+        autoChooser.setDefaultOption("Wheel Diam", new PathPlannerAuto("Wheel Diam"));
 
-        autoChooser.setDefaultOption("test auto", new PathPlannerAuto("test auto"));
+        //autoChooser.setDefaultOption("test auto", new PathPlannerAuto("test auto"));
         // autoChooser.setDefaultOption("5 coral!!!", new PathPlannerAuto("5 coral!!!")); //ex
     }
 

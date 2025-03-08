@@ -12,13 +12,13 @@ import frc.robot.subsystems.algaeManipulator.states.AlgaeOuttake;
 import frc.robot.subsystems.armevator.Armevator;
 import frc.robot.subsystems.armevator.states.GoToArmevatorPoseState;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
-import frc.robot.subsystems.drivetrain.states.PathfindingState;
+import frc.robot.subsystems.drivetrain.states.PathfindThenPathState;
 
 public class AutoAlgaeCommand extends SequentialCommandGroup {
     public AutoAlgaeCommand(CommandSwerveDrivetrain drivetrain, Armevator armevator, AlgaeManipulator algaeManipulator) {
         super(
             new SequentialCommandGroup (
-                new PathfindingState(drivetrain, drivetrain::getNextBargePose),
+                new PathfindThenPathState(drivetrain, drivetrain::getNextBargePath),
                 new GoToArmevatorPoseState(armevator, BARGE_PREP_ARMEVATOR_POSITION),
                 new WaitCommand(.05),
                 new GoToArmevatorPoseState(armevator, BARGE_ARMEVATOR_POSITION)
