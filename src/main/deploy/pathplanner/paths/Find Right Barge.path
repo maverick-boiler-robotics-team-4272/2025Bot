@@ -47,7 +47,7 @@
   "reversed": false,
   "folder": "Approch Paths",
   "idealStartingState": {
-    "velocity": 0,
+    "velocity": 1.0,
     "rotation": 47.93567344642121
   },
   "useDefaultConstraints": true

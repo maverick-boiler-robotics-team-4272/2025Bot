@@ -48,6 +48,8 @@ import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 
 public class RobotContainer {
+    private boolean elliott = false; //is elliot driving? //yes
+
     private ShuffleboardTab autoTab;
     private SendableChooser<Command> autoChooser;
 
@@ -72,14 +74,26 @@ public class RobotContainer {
     private void configureBindings() {
         // Note that X is defined as forward according to WPILib convention,
         // and Y is defined as to the left according to WPILib convention.
-        drivetrain.setDefaultCommand(
-            new DriveState(
-                drivetrain, 
-                driverController::getLeftY,
-                driverController::getLeftX,
-                driverController::getRightX
-            )
-        );
+
+        if(elliott) {
+            drivetrain.setDefaultCommand(
+                new DriveState(
+                    drivetrain, 
+                    () -> Math.pow(driverController.getLeftY(), 3),
+                    () -> Math.pow(driverController.getLeftX(), 3),
+                    () -> Math.pow(driverController.getRightX(), 3)
+                )
+            );
+        } else {
+            drivetrain.setDefaultCommand(
+                new DriveState(
+                    drivetrain, 
+                    driverController::getLeftY,
+                    driverController::getLeftX,
+                    driverController::getRightX
+                )
+            ); // Andy code cause andy built like a beast with linear.
+        }
 
         armevator.setDefaultCommand(
             new GoToArmevatorPoseState(
@@ -179,15 +193,14 @@ public class RobotContainer {
         );
 
         operatorController.getButton(11).onTrue(
-            new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().LEFT_BARGE)).ignoringDisable(true)
+            new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().LEFT_BARGE, getGlobalPositions().LEFT_BARGE_PATH)).ignoringDisable(true)
         );
 
         operatorController.getButton(10).onTrue(
-            new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().MIDDLE_BARGE)).ignoringDisable(true)
+            new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().MIDDLE_BARGE, getGlobalPositions().MIDDLE_BARGE_PATH)).ignoringDisable(true)
         );
 
         operatorController.getButton(9).onTrue(
-            //new InstantCommand(() -> drivetrain.testNextBargePose(getGlobalPositions().RIGHT_BARGE)).ignoringDisable(true)
             new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().RIGHT_BARGE, getGlobalPositions().RIGHT_BARGE_PATH)).ignoringDisable(true)  
         );
 

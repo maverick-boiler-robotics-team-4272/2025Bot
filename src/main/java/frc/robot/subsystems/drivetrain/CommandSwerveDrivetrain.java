@@ -92,6 +92,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         inputs.nextFeedPose = getGlobalPositions().CORAL_STATION_LEFT;
         inputs.nextBargePose = getGlobalPositions().MIDDLE_BARGE;
         nextPath = getGlobalPositions().CORAL_A;
+        nextBargePath = getGlobalPositions().MIDDLE_BARGE_PATH;
 
         FRONT_LIMELIGHT.configure(FRONT_LIMELIGHT_POSE);
         BACK_LIMELIGHT.configure(BACK_LIMELIGHT_POSE);
@@ -325,7 +326,8 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
             ) {
                 setVisionMeasurementStdDevs(VecBuilder.fill(.7,.7,9999999));
                 addVisionMeasurement(
-                    new Pose2d(limelightMeasurement.pose.getTranslation(), getState().Pose.getRotation()),
+                    limelightMeasurement.pose,
+                    // new Pose2d(limelightMeasurement.pose.getTranslation(), getState().Pose.getRotation()),
                     Utils.fpgaToCurrentTime(limelightMeasurement.timestampSeconds)
                 );
 

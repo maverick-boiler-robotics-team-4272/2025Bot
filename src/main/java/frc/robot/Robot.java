@@ -46,8 +46,6 @@ public class Robot extends LoggedRobot {
     m_robotContainer = new RobotContainer();
 
     PathfindingCommand.warmupCommand().schedule();
-
-    m_robotContainer.armevator.resetArm();
   }
 
   @Override
