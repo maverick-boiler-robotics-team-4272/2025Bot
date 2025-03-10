@@ -4,72 +4,291 @@
 
 package frc.robot;
 
-import static edu.wpi.first.units.Units.*;
-
-import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
-import com.ctre.phoenix6.swerve.SwerveRequest;
-
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.commands.AutoGameCommand;
+import frc.robot.commands.BargeScoreCommand;
+import frc.robot.commands.FeederManipulatorCommand;
+import frc.robot.constants.TunerConstants;
+import frc.robot.constants.positions.ArmevatorPositions.ArmevatorPosition;
+import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
+import frc.robot.subsystems.algaeManipulator.states.AlgaeIntake;
+import frc.robot.subsystems.armevator.Armevator;
+import frc.robot.subsystems.armevator.states.GoToArmevatorPoseState;
+import frc.robot.subsystems.armevator.states.ZeroState;
+import frc.robot.subsystems.climber.Climber;
+import frc.robot.subsystems.climber.states.LowerState;
+import frc.robot.subsystems.climber.states.ClimbState;
+import frc.robot.subsystems.coralManipulator.CoralManipulator;
+import frc.robot.subsystems.coralManipulator.states.CoralIntakeState;
+import frc.robot.subsystems.coralManipulator.states.CoralOutakeState;
+import frc.robot.subsystems.coralManipulator.states.IdleState;
+import frc.robot.subsystems.coralManipulator.states.PositionState;
+import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
+import frc.robot.subsystems.drivetrain.states.DriveState;
+import frc.robot.subsystems.drivetrain.states.PathfindingState;
+import frc.robot.subsystems.drivetrain.states.ResetHeadingState;
+import frc.robot.subsystems.feeder.Feeder;
+import frc.robot.subsystems.feeder.states.FeedState;
+import frc.robot.utils.controllers.ButtonBoard;
 
-import frc.robot.generated.TunerConstants;
-import frc.robot.subsystems.CommandSwerveDrivetrain;
+import static edu.wpi.first.units.Units.Inches;
+import static edu.wpi.first.units.Units.Meters;
+import static frc.robot.constants.SubsystemConstants.DrivetrainConstants.TeleConstants.MAX_TRANSLATION;
+import static frc.robot.constants.FieldConstants.*;
+import static frc.robot.constants.positions.ArmevatorPositions.*;
 
 public class RobotContainer {
-    private double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
-    private double MaxAngularRate = RotationsPerSecond.of(0.75).in(RadiansPerSecond); // 3/4 of a rotation per second max angular velocity
+    private ShuffleboardTab autoTab;
+    private SendableChooser<Command> autoChooser;
 
-    /* Setting up bindings for necessary control of the swerve drive platform */
-    private final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
-            .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
-            .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // Use open-loop control for drive motors
-    private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
-    private final SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
+    private final Telemetry logger = new Telemetry(MAX_TRANSLATION);
 
-    private final Telemetry logger = new Telemetry(MaxSpeed);
-
-    private final CommandXboxController joystick = new CommandXboxController(0);
+    private final CommandXboxController driverController = new CommandXboxController(0);
+    private final ButtonBoard operatorController = new ButtonBoard(1, 2);
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
+    public final CoralManipulator coralManipulator = new CoralManipulator();
+    public final Armevator armevator = new Armevator(coralManipulator.getArmEncoder());
+    public final AlgaeManipulator algaeManipulator = new AlgaeManipulator();
+    public final Feeder feeder = new Feeder();
+    public final Climber climber = new Climber();
 
     public RobotContainer() {
         configureBindings();
+        registerNamedCommands();
+        setupAutos();
     }
-
+        
     private void configureBindings() {
         // Note that X is defined as forward according to WPILib convention,
         // and Y is defined as to the left according to WPILib convention.
         drivetrain.setDefaultCommand(
-            // Drivetrain will execute this command periodically
-            drivetrain.applyRequest(() ->
-                drive.withVelocityX(-joystick.getLeftY() * MaxSpeed) // Drive forward with negative Y (forward)
-                    .withVelocityY(-joystick.getLeftX() * MaxSpeed) // Drive left with negative X (left)
-                    .withRotationalRate(-joystick.getRightX() * MaxAngularRate) // Drive counterclockwise with negative X (left)
+            new DriveState(
+                drivetrain, 
+                driverController::getLeftY,
+                driverController::getLeftX,
+                driverController::getRightX
             )
         );
 
-        joystick.a().whileTrue(drivetrain.applyRequest(() -> brake));
-        joystick.b().whileTrue(drivetrain.applyRequest(() ->
-            point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))
-        ));
+        armevator.setDefaultCommand(
+            new GoToArmevatorPoseState(
+                armevator, 
+                new ArmevatorPosition(Rotation2d.fromDegrees(10), Meters.convertFrom(0.1, Inches))
+            )
+        );
+
+        coralManipulator.setDefaultCommand(
+            new IdleState(coralManipulator, armevator::getArmRotation)
+        );
+
+        // reset the field-centric heading on b press
+        driverController.b().onTrue(new ResetHeadingState(drivetrain));
+
+        driverController.x().whileTrue(
+            new AutoGameCommand(
+                drivetrain, 
+                armevator, 
+                feeder, 
+                coralManipulator
+            )
+        );
+
+        driverController.y().whileTrue(
+            new PathfindingState(
+                drivetrain,
+                drivetrain::getNextFeedPose
+            )
+        );
+
+        driverController.leftBumper().whileTrue(
+            new FeedState(feeder, 1)
+                .alongWith(new CoralIntakeState(coralManipulator, 1))
+        );
+
+        driverController.rightBumper().whileTrue(
+            new CoralOutakeState(coralManipulator, 1)
+        );
+
+        driverController.povDown().whileTrue(
+            new LowerState(climber)
+        );
+
+        driverController.povUp().whileTrue(
+            new ClimbState(climber)
+        );
+
+        driverController.start().whileTrue(
+            new ZeroState(armevator)  
+        );
 
         // Run SysId routines when holding back/start and X/Y.
         // Note that each routine should be run exactly once in a single log.
-        joystick.back().and(joystick.y()).whileTrue(drivetrain.sysIdDynamic(Direction.kForward));
-        joystick.back().and(joystick.x()).whileTrue(drivetrain.sysIdDynamic(Direction.kReverse));
-        joystick.start().and(joystick.y()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kForward));
-        joystick.start().and(joystick.x()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kReverse));
+        driverController.back().and(driverController.y()).whileTrue(drivetrain.sysIdDynamic(Direction.kForward));
+        driverController.back().and(driverController.x()).whileTrue(drivetrain.sysIdDynamic(Direction.kReverse));
+        driverController.start().and(driverController.y()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kForward));
+        driverController.start().and(driverController.x()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kReverse));
 
-        // reset the field-centric heading on left bumper press
-        joystick.leftBumper().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
+        // joystick.a().whileTrue(new PathfindingState(drivetrain, getGlobalPositions().CORAL_STATION_LEFT));
+        // joystick.y().whileTrue(new PathfindingState(drivetrain, getGlobalPositions().CORAL_EF));
 
-        drivetrain.registerTelemetry(logger::telemeterize);
+        if(!Robot.isReal()) {
+            drivetrain.registerTelemetry(logger::telemeterize);
+        }
+
+        configureButtons();
+    }
+
+    private void configureButtons() {
+        operatorController.getButton(7).whileTrue(
+            new PositionState(coralManipulator, 2)
+        );
+        operatorController.getButton(8).whileTrue(
+            new PositionState(coralManipulator, -2)
+        );
+
+        operatorController.getButton(5).whileTrue(
+            new FeederManipulatorCommand(
+                feeder, 
+                coralManipulator, 
+                armevator,
+                1.0, 
+                0.14
+            )
+        );
+
+        operatorController.getButton(6).whileTrue(
+            new FeedState(feeder, -1.0)
+        );
+
+        operatorController.getButton(4 + 16).whileTrue(
+            new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION)
+                .alongWith(new AlgaeIntake(algaeManipulator))
+        );
+
+        operatorController.getButton(3 + 16).whileTrue(
+            new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION_TWO)
+                .alongWith(new AlgaeIntake(algaeManipulator))
+        );
+
+        operatorController.getButton(14).whileTrue(
+            new GoToArmevatorPoseState(armevator, L1_ARMEVATOR_POSITION)
+        );
+
+        operatorController.getButton(13).whileTrue(
+            new GoToArmevatorPoseState(armevator, L2_ARMEVATOR_POSITION)
+        );
+
+        operatorController.getButton(16 + 2).whileTrue(
+            new GoToArmevatorPoseState(armevator, L3_ARMEVATOR_POSITION)
+        );
+
+        operatorController.getButton(16 + 1).whileTrue(
+            new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION)
+        );
+
+        operatorController.getButton(10).whileTrue(
+            new BargeScoreCommand(armevator, algaeManipulator, () -> driverController.povLeft().getAsBoolean())
+        );
+
+        //Reef buttons
+
+        //Coral A
+        operatorController.getButton(11+16).whileTrue(
+            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_AB, getGlobalPositions().CORAL_A)).ignoringDisable(true)
+        );
+
+        //Coral B
+        operatorController.getButton(12+16).whileTrue(
+            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_AB, getGlobalPositions().CORAL_B)).ignoringDisable(true)
+        );
+
+        //Coral C
+        operatorController.getButton(13+16).whileTrue(
+            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_CD, getGlobalPositions().CORAL_C)).ignoringDisable(true)
+        );
+
+        //Coral D
+        operatorController.getButton(15).whileTrue(
+            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_CD, getGlobalPositions().CORAL_D)).ignoringDisable(true)
+        );
+
+        //Coral E
+        operatorController.getButton(14+16).whileTrue(
+            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_EF, getGlobalPositions().CORAL_E)).ignoringDisable(true)
+        );
+
+        //Coral F
+        operatorController.getButton(12).whileTrue(
+            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_EF, getGlobalPositions().CORAL_F)).ignoringDisable(true)
+        );
+
+        //Coral G
+        operatorController.getButton(5+16).whileTrue(
+            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_GH, getGlobalPositions().CORAL_G)).ignoringDisable(true)  
+        );
+
+        //Coral H
+        operatorController.getButton(6+16).whileTrue(
+            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_GH, getGlobalPositions().CORAL_H)).ignoringDisable(true)  
+        );
+
+        //Coral I
+        operatorController.getButton(7+16).whileTrue(
+            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_IJ, getGlobalPositions().CORAL_I)).ignoringDisable(true)  
+        );
+
+        //Coral J
+        operatorController.getButton(8+16).whileTrue(
+            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_IJ, getGlobalPositions().CORAL_J)).ignoringDisable(true)  
+        );
+
+        //Coral K
+        operatorController.getButton(9+16).whileTrue(
+            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_KL, getGlobalPositions().CORAL_K)).ignoringDisable(true)
+        );
+
+        //Coral L
+        operatorController.getButton(10+16).whileTrue(
+            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_KL, getGlobalPositions().CORAL_L)).ignoringDisable(true)
+        );
+
+        operatorController.getButton(1).whileTrue(
+            // new PathfindingState(drivetrain, getGlobalPositions().CORAL_STATION_LEFT)
+            new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_LEFT)).ignoringDisable(true)
+        );
+
+        operatorController.getButton(2).whileTrue(
+            // new PathfindingState(drivetrain, getGlobalPositions().CORAL_STATION_RIGHT)
+            new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_RIGHT)).ignoringDisable(true)
+        );
+    }
+
+    private void registerNamedCommands() {
+        // NamedCommands.registerCommand("Drop", new DropState(dropper).withTimeout(0.5)); //ex
+    }
+
+    private void setupAutos() {
+        autoChooser = new SendableChooser<>();
+
+        SIDE_CHOOSER.setDefaultOption("Red", "red");
+        SIDE_CHOOSER.addOption("Blue", "blue");
+    
+        autoTab = Shuffleboard.getTab("Auto");
+        autoTab.add("AutoChooser", autoChooser);
+        autoTab.add("SideChooser", SIDE_CHOOSER);
+
+        // autoChooser.setDefaultOption("5 coral!!!", new PathPlannerAuto("5 coral!!!")); //ex
     }
 
     public Command getAutonomousCommand() {
-        return Commands.print("No autonomous command configured");
+        return autoChooser.getSelected();
     }
 }

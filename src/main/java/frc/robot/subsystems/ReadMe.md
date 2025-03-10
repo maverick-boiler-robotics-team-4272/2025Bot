@@ -36,31 +36,35 @@ Under Dev
 
 ## Hardware
 Under Dev, left as an example!
-Swerve Drive Specialties MK4i using </br>
-4 NEO Brushless motors paired with Spark Max motor controller for driving (6.75:1) </br>
-4 NEO Brushless motors paired with Spark Max motor controller for module rotation (150:7)
+Swerve Drive Specialties MK4i L2 using </br>
+4 Kracken motors for driving (6.75:1) </br>
+4 Kracken motors for module rotation (150:7)
 
 # Feeder
 ## States
 UnderDev
 
 ## Hardware
-2 Neo Vortexs //Todo: Add gear ratio
+1 Neo Vortexs //Todo: Add gear ratio
 
-1 Lasercan for Coral Detection
+2 Lasercan for Coral Detection
 
-# Armivator
+# Armevator
 UnderDev
 
 ## States
 UnderDev
 
 ## Hardware
-2 Neos Vortexs for lift #TODO: Add Gear ratio
+2 Neos Vortexs for lift 
+### Gear Ratio
+1.055544 inches per rotation
 
-1 Neo Vortex for Arm #TODO: Add Gear ratio
+1 Neo Vortex for Arm
+### Gear Ratio
+58.7755 : 1
 
-1 Mavcoder plugged into the arm motor for rotation
+1 Mavcoder plugged into the coral motor for rotation
 
 1 Limit Switch plugged into Neo Vortex for Elevator
 
@@ -73,9 +77,9 @@ UnderDev
 UnderDev
 
 ## Hardware
-1 Neo Vortex #TODO: Add rotation
+1 Neo Vortex
 
-1 Mavcoder for Rotation plugged
+1 lidar for distance checking
 
 # Manipulator
 UnderDev
@@ -84,10 +88,8 @@ UnderDev
 UnderDev
 
 ## Hardware
-2 Neo Vortexs
-
-
-
+1 Neo Vortex for coral
+1 Neo Vortex for algae
 
 
 # Writing Specs

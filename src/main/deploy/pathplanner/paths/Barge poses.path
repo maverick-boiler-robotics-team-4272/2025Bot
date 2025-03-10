@@ -1,0 +1,75 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 8.128895547945206,
+        "y": 7.27054794520548
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 8.115938041413822,
+        "y": 6.537882619322796
+      },
+      "isLocked": false,
+      "linkedName": "Left Barge"
+    },
+    {
+      "anchor": {
+        "x": 8.128895547945206,
+        "y": 6.143621575342466
+      },
+      "prevControl": {
+        "x": 8.125424392316113,
+        "y": 7.156936384299957
+      },
+      "nextControl": {
+        "x": 8.13154221242412,
+        "y": 5.370995799549588
+      },
+      "isLocked": false,
+      "linkedName": "Middle Barge"
+    },
+    {
+      "anchor": {
+        "x": 8.128895547945206,
+        "y": 5.0617722602739725
+      },
+      "prevControl": {
+        "x": 8.133259026740369,
+        "y": 5.9396575475765205
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "Right Barge"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1.0,
+      "rotationDegrees": 0.0
+    }
+  ],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 4.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 0.0
+  },
+  "reversed": false,
+  "folder": "Field positions",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 0.0
+  },
+  "useDefaultConstraints": true
+}
