@@ -165,7 +165,7 @@ public class Armevator extends SubsystemBase implements Loggable {
     }
 
     public void resetArm() {
-        armMotor1.getEncoder().setPosition(armEncoder.getPosition());
+        armMotor1.getEncoder().setPosition(armEncoder.getPosition() - 0.25);
     }
 
     private void setArmRotation(Rotation2d rotation){
