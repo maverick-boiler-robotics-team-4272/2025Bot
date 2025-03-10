@@ -206,22 +206,22 @@ public class RobotContainer {
 
         operatorController.getButton(14).whileTrue(
             // new GoToArmevatorPoseState(armevator, L1_ARMEVATOR_POSITION).repeatedly()
-            new InstantCommand(() -> armevator.goToPosNext(L1_ARMEVATOR_POSITION))
+            new InstantCommand(() -> armevator.goToPosNext(L1_ARMEVATOR_POSITION)).ignoringDisable(true)
         );
 
         operatorController.getButton(13).whileTrue(
             // new GoToArmevatorPoseState(armevator, L2_ARMEVATOR_POSITION).repeatedly()
-            new InstantCommand(() -> armevator.goToPosNext(L2_ARMEVATOR_POSITION))
+            new InstantCommand(() -> armevator.goToPosNext(L2_ARMEVATOR_POSITION)).ignoringDisable(true)
         );
 
         operatorController.getButton(16 + 2).whileTrue(
             // new GoToArmevatorPoseState(armevator, L3_ARMEVATOR_POSITION).repeatedly()
-            new InstantCommand(() -> armevator.goToPosNext(L3_ARMEVATOR_POSITION))
+            new InstantCommand(() -> armevator.goToPosNext(L3_ARMEVATOR_POSITION)).ignoringDisable(true)
         );
 
         operatorController.getButton(16 + 1).whileTrue(
             // new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION).repeatedly()
-            new InstantCommand(() -> armevator.goToPosNext(L4_ARMEVATOR_POSITION))
+            new InstantCommand(() -> armevator.goToPosNext(L4_ARMEVATOR_POSITION)).ignoringDisable(true)
         );
 
         operatorController.getButton(14)
