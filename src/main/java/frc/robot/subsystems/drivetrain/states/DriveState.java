@@ -26,7 +26,7 @@ public class DriveState extends State<CommandSwerveDrivetrain> {
         this.theta = thetaSpeed;
 
         request = new SwerveRequest.FieldCentric()
-            .withDeadband(MAX_TRANSLATION * 0.05).withRotationalDeadband(MAX_ANGULAR * 0.05) // Add a 10% deadband
+            .withDeadband(MAX_TRANSLATION * 0.001).withRotationalDeadband(MAX_ANGULAR * 0.05)
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
     }
 
