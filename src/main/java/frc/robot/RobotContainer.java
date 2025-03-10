@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.AutoAlgaeCommand;
@@ -48,7 +50,7 @@ import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 
 public class RobotContainer {
-    private boolean elliott = false; //is elliot driving? //yes
+    private boolean elliott = true; //is elliot driving? //yes
 
     private ShuffleboardTab autoTab;
     private SendableChooser<Command> autoChooser;
@@ -327,7 +329,17 @@ public class RobotContainer {
 
     private void registerNamedCommands() {
         // NamedCommands.registerCommand("Drop", new DropState(dropper).withTimeout(0.5)); //ex
-        NamedCommands.registerCommand("L4", new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION).withTimeout(1));
+        NamedCommands.registerCommand(
+            "Score L4", 
+            new SequentialCommandGroup(
+                new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION)
+                    .raceWith(new IdleState(coralManipulator, armevator::getArmRotation)),
+                    new WaitCommand(0.2),
+                    new CoralOutakeState(coralManipulator, 0.8).withTimeout(0.2),
+                    new GoToArmevatorPoseState(armevator, HOME)
+            )
+        );
+        NamedCommands.registerCommand("Feed Command", new FeederManipulatorCommand(feeder, coralManipulator, armevator, 1, 0.2));
         NamedCommands.registerCommand("Next", 
             new GoToNextArmevatorPoseState(armevator)
                 .raceWith(new IdleState(coralManipulator, armevator::getArmRotation))
@@ -344,9 +356,9 @@ public class RobotContainer {
         autoTab.add("AutoChooser", autoChooser);
         autoTab.add("SideChooser", SIDE_CHOOSER);
 
-        autoChooser.setDefaultOption("Wheel Diam", new PathPlannerAuto("Wheel Diam"));
+        //autoChooser.setDefaultOption("Wheel Diam", new PathPlannerAuto("Wheel Diam"));
 
-        //autoChooser.setDefaultOption("test auto", new PathPlannerAuto("test auto"));
+        autoChooser.setDefaultOption("Left Auto", new PathPlannerAuto("Left auto"));
         // autoChooser.setDefaultOption("5 coral!!!", new PathPlannerAuto("5 coral!!!")); //ex
     }
 
