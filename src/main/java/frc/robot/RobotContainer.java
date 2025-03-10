@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -30,7 +31,6 @@ import frc.robot.subsystems.climber.Climber;
 import frc.robot.subsystems.climber.states.LowerState;
 import frc.robot.subsystems.climber.states.ClimbState;
 import frc.robot.subsystems.coralManipulator.CoralManipulator;
-import frc.robot.subsystems.coralManipulator.states.CoralIntakeState;
 import frc.robot.subsystems.coralManipulator.states.CoralOutakeState;
 import frc.robot.subsystems.coralManipulator.states.IdleState;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
@@ -133,12 +133,12 @@ public class RobotContainer {
             )
         );
 
-        driverController.leftBumper().whileTrue(
-            new CoralIntakeState(coralManipulator, 0.5)
-        );
-
         driverController.rightBumper().whileTrue(
-            new CoralOutakeState(coralManipulator, 1)
+            new ConditionalCommand(
+                new CoralOutakeState(coralManipulator, 0.8), 
+                new CoralOutakeState(coralManipulator, -0.8), 
+                armevator::nextIsL4
+            )
         );
 
         driverController.start().whileTrue(
