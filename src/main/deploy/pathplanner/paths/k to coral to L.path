@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 13.965904485394185,
-        "y": 2.2286028036095233
+        "x": 14.027846000821569,
+        "y": 2.2638210762893767
       },
       "isLocked": false,
       "linkedName": "RedReefK"
@@ -20,12 +20,12 @@
         "y": 1.0
       },
       "prevControl": {
-        "x": 15.367431564931271,
-        "y": 1.5036484185902075
+        "x": 15.32453496538798,
+        "y": 1.595814011896604
       },
       "nextControl": {
-        "x": 16.50392467470631,
-        "y": 0.8264866725262876
+        "x": 16.420327159461884,
+        "y": 0.8607276298674167
       },
       "isLocked": false,
       "linkedName": "RedLeftCoral"
@@ -36,8 +36,8 @@
         "y": 2.837970890410959
       },
       "prevControl": {
-        "x": 14.761928640007428,
-        "y": 2.0637786013993638
+        "x": 14.739204493946385,
+        "y": 2.09597581931284
       },
       "nextControl": null,
       "isLocked": false,
@@ -54,13 +54,24 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "feed",
-      "waypointRelativePos": 0.11904761904761901,
+      "name": "HOME",
+      "waypointRelativePos": 0.21904761904761919,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Feed Command"
+          "name": "Go home"
+        }
+      }
+    },
+    {
+      "name": "Feed to L4",
+      "waypointRelativePos": 0.3714285714285712,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Feed to L4"
         }
       }
     }
