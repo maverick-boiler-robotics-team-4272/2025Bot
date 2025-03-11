@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -16,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.AutoAlgaeCommand;
 import frc.robot.commands.AutoGameCommand;
+import frc.robot.commands.BargeScoreCommand;
 import frc.robot.commands.FeederManipulatorCommand;
 import frc.robot.constants.TunerConstants;
 import frc.robot.constants.positions.ArmevatorPositions.ArmevatorPosition;
@@ -30,7 +32,6 @@ import frc.robot.subsystems.climber.Climber;
 import frc.robot.subsystems.climber.states.LowerState;
 import frc.robot.subsystems.climber.states.ClimbState;
 import frc.robot.subsystems.coralManipulator.CoralManipulator;
-import frc.robot.subsystems.coralManipulator.states.CoralIntakeState;
 import frc.robot.subsystems.coralManipulator.states.CoralOutakeState;
 import frc.robot.subsystems.coralManipulator.states.IdleState;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
@@ -51,6 +52,7 @@ import com.pathplanner.lib.commands.PathPlannerAuto;
 
 public class RobotContainer {
     private boolean elliott = true; //is elliot driving? //yes
+    private boolean buttonBoardInUse = true; // Is an override tool if the button board does not work.
 
     private ShuffleboardTab autoTab;
     private SendableChooser<Command> autoChooser;
@@ -58,7 +60,8 @@ public class RobotContainer {
     private final Telemetry logger = new Telemetry(MAX_TRANSLATION);
 
     private final CommandXboxController driverController = new CommandXboxController(0);
-    private final ButtonBoard operatorController = new ButtonBoard(1, 2);
+    private final ButtonBoard buttonBoard = new ButtonBoard(1, 2);
+    private final CommandXboxController operatorController = new CommandXboxController(3);
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
     public final CoralManipulator coralManipulator = new CoralManipulator();
@@ -69,6 +72,13 @@ public class RobotContainer {
 
     public RobotContainer() {
         configureBindings();
+
+        if(buttonBoardInUse) {
+            configureButtons();
+        } else {
+            configureBackupBindings();
+        }
+
         registerNamedCommands();
         setupAutos();
     }
@@ -133,12 +143,22 @@ public class RobotContainer {
             )
         );
 
-        driverController.leftBumper().whileTrue(
-            new CoralIntakeState(coralManipulator, 0.5)
-        );
+        if(buttonBoardInUse) {
+            driverController.rightBumper().whileTrue(
+                new ConditionalCommand(
+                    new CoralOutakeState(coralManipulator, 0.8), 
+                    new CoralOutakeState(coralManipulator, -0.8), 
+                    armevator::nextIsL4
+                )
+            );
+        } else {
+            driverController.rightBumper().whileTrue(
+                new CoralOutakeState(coralManipulator, -0.8)
+            );
+        }
 
-        driverController.rightBumper().whileTrue(
-            new CoralOutakeState(coralManipulator, 1)
+        driverController.leftBumper().whileTrue(
+            new CoralOutakeState(coralManipulator, 0.8)
         );
 
         driverController.start().whileTrue(
@@ -158,19 +178,17 @@ public class RobotContainer {
         if(!Robot.isReal()) {
             drivetrain.registerTelemetry(logger::telemeterize);
         }
-
-        configureButtons();
     }
 
     private void configureButtons() {
-        operatorController.getButton(7).whileTrue(
+        buttonBoard.getButton(7).whileTrue(
             new ClimbState(climber)
         );
-        operatorController.getButton(8).whileTrue(
+        buttonBoard.getButton(8).whileTrue(
             new LowerState(climber)
         );
 
-        operatorController.getButton(5).whileTrue(
+        buttonBoard.getButton(5).whileTrue(
             new FeederManipulatorCommand(
                 feeder, 
                 coralManipulator, 
@@ -180,74 +198,74 @@ public class RobotContainer {
             )
         );
 
-        operatorController.getButton(6).whileTrue(
-            new FeedState(feeder, -1.0)
+        buttonBoard.getButton(6).whileTrue(
+            new FeedState(feeder, -1.0).alongWith(new CoralOutakeState(coralManipulator, 1.0))
         );
 
-        operatorController.getButton(4 + 16).whileTrue(
+        buttonBoard.getButton(4 + 16).whileTrue(
             new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION)
                 .alongWith(new AlgaeIntake(algaeManipulator)).repeatedly()
         );
 
-        operatorController.getButton(3 + 16).whileTrue(
+        buttonBoard.getButton(3 + 16).whileTrue(
             new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION_TWO)
                 .alongWith(new AlgaeIntake(algaeManipulator)).repeatedly()
         );
 
-        operatorController.getButton(11).onTrue(
+        buttonBoard.getButton(11).onTrue(
             new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().LEFT_BARGE, getGlobalPositions().LEFT_BARGE_PATH)).ignoringDisable(true)
         );
 
-        operatorController.getButton(10).onTrue(
+        buttonBoard.getButton(10).onTrue(
             new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().MIDDLE_BARGE, getGlobalPositions().MIDDLE_BARGE_PATH)).ignoringDisable(true)
         );
 
-        operatorController.getButton(9).onTrue(
+        buttonBoard.getButton(9).onTrue(
             new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().RIGHT_BARGE, getGlobalPositions().RIGHT_BARGE_PATH)).ignoringDisable(true)  
         );
 
-        operatorController.getButton(14).whileTrue(
+        buttonBoard.getButton(14).whileTrue(
             // new GoToArmevatorPoseState(armevator, L1_ARMEVATOR_POSITION).repeatedly()
             new InstantCommand(() -> armevator.goToPosNext(L1_ARMEVATOR_POSITION)).ignoringDisable(true)
         );
 
-        operatorController.getButton(13).whileTrue(
+        buttonBoard.getButton(13).whileTrue(
             // new GoToArmevatorPoseState(armevator, L2_ARMEVATOR_POSITION).repeatedly()
             new InstantCommand(() -> armevator.goToPosNext(L2_ARMEVATOR_POSITION)).ignoringDisable(true)
         );
 
-        operatorController.getButton(16 + 2).whileTrue(
+        buttonBoard.getButton(16 + 2).whileTrue(
             // new GoToArmevatorPoseState(armevator, L3_ARMEVATOR_POSITION).repeatedly()
             new InstantCommand(() -> armevator.goToPosNext(L3_ARMEVATOR_POSITION)).ignoringDisable(true)
         );
 
-        operatorController.getButton(16 + 1).whileTrue(
+        buttonBoard.getButton(16 + 1).whileTrue(
             // new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION).repeatedly()
             new InstantCommand(() -> armevator.goToPosNext(L4_ARMEVATOR_POSITION)).ignoringDisable(true)
         );
 
-        operatorController.getButton(14)
+        buttonBoard.getButton(14)
             .and(() -> !driverController.x().getAsBoolean())
             .and(() -> !driverController.y().getAsBoolean())
         .whileTrue(
             new GoToArmevatorPoseState(armevator, L1_ARMEVATOR_POSITION).repeatedly()
         );
 
-        operatorController.getButton(13)
+        buttonBoard.getButton(13)
             .and(() -> !driverController.x().getAsBoolean())
             .and(() -> !driverController.y().getAsBoolean())
         .whileTrue(
             new GoToArmevatorPoseState(armevator, L2_ARMEVATOR_POSITION).repeatedly()
         );
 
-        operatorController.getButton(16 + 2)
+        buttonBoard.getButton(16 + 2)
             .and(() -> !driverController.x().getAsBoolean())
             .and(() -> !driverController.y().getAsBoolean())
         .whileTrue(
             new GoToArmevatorPoseState(armevator, L3_ARMEVATOR_POSITION).repeatedly()
         );
 
-        operatorController.getButton(16 + 1)
+        buttonBoard.getButton(16 + 1)
             .and(() -> !driverController.x().getAsBoolean())
             .and(() -> !driverController.y().getAsBoolean())
         .whileTrue(
@@ -257,73 +275,123 @@ public class RobotContainer {
         //Reef buttons
 
         //Coral A
-        operatorController.getButton(11+16).whileTrue(
+        buttonBoard.getButton(11+16).whileTrue(
             new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_AB, getGlobalPositions().CORAL_A)).ignoringDisable(true)
         );
 
         //Coral B
-        operatorController.getButton(12+16).whileTrue(
+        buttonBoard.getButton(12+16).whileTrue(
             new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_AB, getGlobalPositions().CORAL_B)).ignoringDisable(true)
         );
 
         //Coral C
-        operatorController.getButton(13+16).whileTrue(
+        buttonBoard.getButton(13+16).whileTrue(
             new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_CD, getGlobalPositions().CORAL_C)).ignoringDisable(true)
         );
 
         //Coral D
-        operatorController.getButton(15).whileTrue(
+        buttonBoard.getButton(15).whileTrue(
             new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_CD, getGlobalPositions().CORAL_D)).ignoringDisable(true)
         );
 
         //Coral E
-        operatorController.getButton(14+16).whileTrue(
+        buttonBoard.getButton(14+16).whileTrue(
             new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_EF, getGlobalPositions().CORAL_E)).ignoringDisable(true)
         );
 
         //Coral F
-        operatorController.getButton(12).whileTrue(
+        buttonBoard.getButton(12).whileTrue(
             new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_EF, getGlobalPositions().CORAL_F)).ignoringDisable(true)
         );
 
         //Coral G
-        operatorController.getButton(5+16).whileTrue(
+        buttonBoard.getButton(5+16).whileTrue(
             new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_GH, getGlobalPositions().CORAL_G)).ignoringDisable(true)  
         );
 
         //Coral H
-        operatorController.getButton(6+16).whileTrue(
+        buttonBoard.getButton(6+16).whileTrue(
             new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_GH, getGlobalPositions().CORAL_H)).ignoringDisable(true)  
         );
 
         //Coral I
-        operatorController.getButton(7+16).whileTrue(
+        buttonBoard.getButton(7+16).whileTrue(
             new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_IJ, getGlobalPositions().CORAL_I)).ignoringDisable(true)  
         );
 
         //Coral J
-        operatorController.getButton(8+16).whileTrue(
+        buttonBoard.getButton(8+16).whileTrue(
             new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_IJ, getGlobalPositions().CORAL_J)).ignoringDisable(true)  
         );
 
         //Coral K
-        operatorController.getButton(9+16).whileTrue(
+        buttonBoard.getButton(9+16).whileTrue(
             new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_KL, getGlobalPositions().CORAL_K)).ignoringDisable(true)
         );
 
         //Coral L
-        operatorController.getButton(10+16).whileTrue(
+        buttonBoard.getButton(10+16).whileTrue(
             new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_KL, getGlobalPositions().CORAL_L)).ignoringDisable(true)
         );
 
-        operatorController.getButton(1).whileTrue(
+        buttonBoard.getButton(1).whileTrue(
             // new PathfindingState(drivetrain, getGlobalPositions().CORAL_STATION_LEFT)
             new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_LEFT)).ignoringDisable(true)
         );
 
-        operatorController.getButton(2).whileTrue(
+        buttonBoard.getButton(2).whileTrue(
             // new PathfindingState(drivetrain, getGlobalPositions().CORAL_STATION_RIGHT)
             new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_RIGHT)).ignoringDisable(true)
+        );
+    }
+
+    private void configureBackupBindings() {
+        operatorController.leftTrigger().whileTrue(
+            new FeederManipulatorCommand(feeder, coralManipulator, armevator, 1.0, 0.3)
+        );
+
+        operatorController.rightTrigger().whileTrue(
+            new FeedState(feeder, -1.0).alongWith(new CoralOutakeState(coralManipulator, 1.0))
+        );
+
+        operatorController.a().whileTrue(
+            new GoToArmevatorPoseState(armevator, L1_ARMEVATOR_POSITION).repeatedly()
+        );
+
+        operatorController.b().whileTrue(
+            new GoToArmevatorPoseState(armevator, L2_ARMEVATOR_POSITION).repeatedly()
+        );
+
+        operatorController.x().whileTrue(
+            new GoToArmevatorPoseState(armevator, L3_ARMEVATOR_POSITION).repeatedly()
+        );
+
+        operatorController.y().whileTrue(
+            new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION).repeatedly()
+        );
+
+        operatorController.rightBumper().whileTrue(
+            new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION).alongWith(
+                new AlgaeIntake(algaeManipulator)
+            )
+        );
+
+        operatorController.leftBumper().whileTrue(
+            new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION_TWO).alongWith(
+                new AlgaeIntake(algaeManipulator)
+            )
+        );
+
+        operatorController.povUp().whileTrue(
+            new LowerState(climber)
+        );
+
+        operatorController.povDown().whileTrue(
+            new ClimbState(climber)
+        );
+
+        operatorController.povLeft().whileTrue(
+            new BargeScoreCommand(armevator, algaeManipulator, () -> driverController.povLeft().getAsBoolean())
         );
     }
 
