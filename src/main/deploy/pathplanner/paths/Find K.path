@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 13.267679794520548,
-        "y": 2.6726883561643833
+        "x": 13.65,
+        "y": 2.837970890410959
       },
       "prevControl": {
-        "x": 13.513050513669919,
-        "y": 2.6248008819762303
+        "x": 13.895370719149371,
+        "y": 2.790083416222806
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RedReefK"
+      "linkedName": "RedReefL"
     }
   ],
   "rotationTargets": [],
@@ -33,8 +33,8 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 2.5,
-    "maxAcceleration": 2.0,
+    "maxVelocity": 2.0,
+    "maxAcceleration": 1.5,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -47,7 +47,7 @@
   "reversed": false,
   "folder": "Approch Paths",
   "idealStartingState": {
-    "velocity": 1.0,
+    "velocity": 1.5,
     "rotation": 118.95099520746685
   },
   "useDefaultConstraints": false

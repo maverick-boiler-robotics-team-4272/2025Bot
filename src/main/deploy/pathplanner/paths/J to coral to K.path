@@ -1,0 +1,87 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 12.336087328767123,
+        "y": 2.9581763698630135
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 13.483175332653008,
+        "y": 1.2837182147135255
+      },
+      "isLocked": false,
+      "linkedName": "RedReefJ"
+    },
+    {
+      "anchor": {
+        "x": 16.21271404109589,
+        "y": 1.0
+      },
+      "prevControl": {
+        "x": 15.562486866403882,
+        "y": 0.09739714858924142
+      },
+      "nextControl": {
+        "x": 16.49691556958239,
+        "y": 1.3945099804675467
+      },
+      "isLocked": false,
+      "linkedName": "RedLeftCoral"
+    },
+    {
+      "anchor": {
+        "x": 13.267679794520548,
+        "y": 2.6726883561643833
+      },
+      "prevControl": {
+        "x": 16.331035153324397,
+        "y": 2.631022974433446
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "RedReefK"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1.0,
+      "rotationDegrees": 124.15203128040335
+    }
+  ],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "feed",
+      "waypointRelativePos": 0.14761904761904807,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Feed Command"
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 4.0,
+    "maxAcceleration": 2.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 118.95099520746685
+  },
+  "reversed": false,
+  "folder": "Auto paths",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 58.72229713313359
+  },
+  "useDefaultConstraints": false
+}

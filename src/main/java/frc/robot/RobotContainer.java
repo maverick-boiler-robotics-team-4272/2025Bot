@@ -339,7 +339,10 @@ public class RobotContainer {
                     new GoToArmevatorPoseState(armevator, HOME)
             )
         );
-        NamedCommands.registerCommand("Feed Command", new FeederManipulatorCommand(feeder, coralManipulator, armevator, 1, 0.2));
+        NamedCommands.registerCommand("Feed Command", 
+            new FeederManipulatorCommand(
+                feeder, coralManipulator, armevator, 1, 0.2)
+        );
         NamedCommands.registerCommand("Next", 
             new GoToNextArmevatorPoseState(armevator)
                 .raceWith(new IdleState(coralManipulator, armevator::getArmRotation))

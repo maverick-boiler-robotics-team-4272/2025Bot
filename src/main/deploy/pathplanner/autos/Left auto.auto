@@ -11,9 +11,15 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "Score L4"
+          }
+        },
+        {
           "type": "path",
           "data": {
-            "pathName": "Find J"
+            "pathName": "J to coral to K"
           }
         },
         {
@@ -25,55 +31,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "IJ to coral"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Feed Command"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "coral to kl"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Find K"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Score L4"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "k to coral"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Feed Command"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "coral to kl"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Find L"
+            "pathName": "k to coral to L"
           }
         },
         {
