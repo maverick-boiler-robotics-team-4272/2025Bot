@@ -44,7 +44,7 @@ public class CoralManipulator extends SubsystemBase implements Loggable {
             .withIdleMode(IdleMode.kBrake)
             .withAbsoluteEncoderConfig(
                 new AbsoluteEncoderConfig()
-                    .zeroOffset(MAVCODER_OFFSET)
+                    .zeroOffset(MAVCODER_OFFSET / 360)
                     .inverted(true)
             )
             .withPositionConversionFactor(POSITION_CONVERSION_FACTOR)
