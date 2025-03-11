@@ -19,13 +19,19 @@
         {
           "type": "named",
           "data": {
-            "name": "L4"
+            "name": "Score L4"
           }
         },
         {
           "type": "path",
           "data": {
             "pathName": "IJ to coral"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Feed Command"
           }
         },
         {
@@ -43,13 +49,19 @@
         {
           "type": "named",
           "data": {
-            "name": "L4"
+            "name": "Score L4"
           }
         },
         {
           "type": "path",
           "data": {
             "pathName": "k to coral"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Feed Command"
           }
         },
         {
@@ -67,7 +79,7 @@
         {
           "type": "named",
           "data": {
-            "name": "L4"
+            "name": "Score L4"
           }
         }
       ]
