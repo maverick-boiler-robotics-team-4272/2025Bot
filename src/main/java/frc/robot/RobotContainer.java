@@ -51,8 +51,8 @@ import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 
 public class RobotContainer {
-    private boolean elliott = false; //is elliot driving? //yes
-    private boolean buttonBoardInUse = false; // Is an override tool if the button board does not work.
+    private boolean elliott = true; //is elliot driving? //yes
+    private boolean buttonBoardInUse = true; // Is an override tool if the button board does not work.
 
     private ShuffleboardTab autoTab;
     private SendableChooser<Command> autoChooser;
@@ -143,12 +143,22 @@ public class RobotContainer {
             )
         );
 
-        driverController.rightBumper().whileTrue(
-            new ConditionalCommand(
-                new CoralOutakeState(coralManipulator, 0.8), 
-                new CoralOutakeState(coralManipulator, -0.8), 
-                armevator::nextIsL4
-            )
+        if(buttonBoardInUse) {
+            driverController.rightBumper().whileTrue(
+                new ConditionalCommand(
+                    new CoralOutakeState(coralManipulator, 0.8), 
+                    new CoralOutakeState(coralManipulator, -0.8), 
+                    armevator::nextIsL4
+                )
+            );
+        } else {
+            driverController.rightBumper().whileTrue(
+                new CoralOutakeState(coralManipulator, -0.8)
+            );
+        }
+
+        driverController.leftBumper().whileTrue(
+            new CoralOutakeState(coralManipulator, 0.8)
         );
 
         driverController.start().whileTrue(
@@ -362,13 +372,13 @@ public class RobotContainer {
 
         operatorController.rightBumper().whileTrue(
             new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION).alongWith(
-                new AlgaeIdle(algaeManipulator)
+                new AlgaeIntake(algaeManipulator)
             )
         );
 
         operatorController.leftBumper().whileTrue(
             new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION_TWO).alongWith(
-                new AlgaeIdle(algaeManipulator)
+                new AlgaeIntake(algaeManipulator)
             )
         );
 
