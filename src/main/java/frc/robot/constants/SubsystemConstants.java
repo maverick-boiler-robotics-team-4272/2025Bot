@@ -71,14 +71,12 @@ public class SubsystemConstants {
         public static final double ELEVATOR_GEAR_RATIO = Meters.convertFrom(1.055544, Inches);
         public static final double ARM_GEAR_RATIO = 1.0 / 58.7755;
 
-        public static final double ARM_ANGLE_OFFSET = 0.0; //The offset of the mavcoder.
-
         public static final double MAX_ELEVATOR_HEIGHT = Meters.convertFrom(5, Feet);
 
         public static final Rotation2d SAFE_ANGLE = Rotation2d.fromDegrees(5);
         public static final double SAFE_ELEVATOR_HEIGHT = Meters.convertFrom(23, Inches);
         
-        public static final double MAVCODER_OFFSET = 360.0 - 1.6;
+        public static final double MAVCODER_OFFSET = 360.0 - 115.5;
 
         public static final double ELEVATOR_P = 4.0;
         public static final double ELEVATOR_I = 0.0;
