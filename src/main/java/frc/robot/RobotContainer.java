@@ -224,6 +224,27 @@ public class RobotContainer {
             new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().RIGHT_BARGE, getGlobalPositions().RIGHT_BARGE_PATH)).ignoringDisable(true)  
         );
 
+        buttonBoard.getButton(11)
+            .and(() -> !driverController.x().getAsBoolean())
+            .and(() -> !driverController.y().getAsBoolean())
+        .whileTrue(
+            new BargeScoreCommand(armevator, algaeManipulator, () -> driverController.povLeft().getAsBoolean())
+        );
+
+        buttonBoard.getButton(10)
+            .and(() -> !driverController.x().getAsBoolean())
+            .and(() -> !driverController.y().getAsBoolean())
+        .whileTrue(
+            new BargeScoreCommand(armevator, algaeManipulator, () -> driverController.povLeft().getAsBoolean())
+        );
+
+        buttonBoard.getButton(9)
+            .and(() -> !driverController.x().getAsBoolean())
+            .and(() -> !driverController.y().getAsBoolean())
+        .whileTrue(
+            new BargeScoreCommand(armevator, algaeManipulator, () -> driverController.povLeft().getAsBoolean())
+        );
+
         buttonBoard.getButton(14).whileTrue(
             // new GoToArmevatorPoseState(armevator, L1_ARMEVATOR_POSITION).repeatedly()
             new InstantCommand(() -> armevator.goToPosNext(L1_ARMEVATOR_POSITION)).ignoringDisable(true)
