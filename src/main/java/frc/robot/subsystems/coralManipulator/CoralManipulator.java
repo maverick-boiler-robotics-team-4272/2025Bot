@@ -39,7 +39,7 @@ public class CoralManipulator extends SubsystemBase implements Loggable {
 
     public CoralManipulator() {
         coralControllerMotor = VortexBuilder.create(CORAL_MOTOR_ID)
-            .withInversion(true)
+            .withInversion(false)
             .withCurrentLimit(CURRENT_LIMIT_CORAL)
             .withIdleMode(IdleMode.kBrake)
             .withAbsoluteEncoderConfig(
@@ -53,6 +53,8 @@ public class CoralManipulator extends SubsystemBase implements Loggable {
             .build();
 
         initInputs();
+
+        System.out.println("Unoffset pose: %.2f".formatted(coralControllerMotor.getAbsoluteEncoder().getPosition() * 360.0 - MAVCODER_OFFSET));
     }
 
     public void setCoralPower(double power) {
