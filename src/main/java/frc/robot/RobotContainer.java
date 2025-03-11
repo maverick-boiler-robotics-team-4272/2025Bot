@@ -332,16 +332,26 @@ public class RobotContainer {
         NamedCommands.registerCommand(
             "Score L4", 
             new SequentialCommandGroup(
-                new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION)
-                    .raceWith(new IdleState(coralManipulator, armevator::getArmRotation)),
                     new WaitCommand(0.2),
-                    new CoralOutakeState(coralManipulator, 0.8).withTimeout(0.2),
-                    new GoToArmevatorPoseState(armevator, HOME)
+                    new CoralOutakeState(coralManipulator, 0.8).withTimeout(0.2)
             )
         );
-        NamedCommands.registerCommand("Feed Command", 
-            new FeederManipulatorCommand(
-                feeder, coralManipulator, armevator, 1, 0.2)
+
+        NamedCommands.registerCommand("Go to L4", 
+            new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION)
+                .raceWith(new IdleState(coralManipulator, armevator::getArmRotation))
+        );
+
+        NamedCommands.registerCommand("Go home", new GoToArmevatorPoseState(armevator, HOME));
+
+        NamedCommands.registerCommand("Feed to L4", 
+            new SequentialCommandGroup(   
+                new FeederManipulatorCommand(
+                    feeder, coralManipulator, armevator, 1, 0.2
+                ),
+                new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION)
+                    .raceWith(new IdleState(coralManipulator, armevator::getArmRotation))
+            )
         );
         NamedCommands.registerCommand("Next", 
             new GoToNextArmevatorPoseState(armevator)
@@ -359,10 +369,9 @@ public class RobotContainer {
         autoTab.add("AutoChooser", autoChooser);
         autoTab.add("SideChooser", SIDE_CHOOSER);
 
-        //autoChooser.setDefaultOption("Wheel Diam", new PathPlannerAuto("Wheel Diam"));
-
-        autoChooser.setDefaultOption("Left Auto", new PathPlannerAuto("Left auto"));
-        // autoChooser.setDefaultOption("5 coral!!!", new PathPlannerAuto("5 coral!!!")); //ex
+        autoChooser.setDefaultOption("Left Auto", new PathPlannerAuto("Left auto", false));
+        autoChooser.addOption("Right Auto", new PathPlannerAuto("Left auto", true));
+        // autoChooser.setDefaultOption("Output name", new PathPlannerAuto("auto name", boolean mirror same field)); //ex
     }
 
     public Command getAutonomousCommand() {

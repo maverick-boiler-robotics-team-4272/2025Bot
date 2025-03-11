@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 13.483175332653008,
-        "y": 1.2837182147135255
+        "x": 14.69973483535756,
+        "y": 0.447121075698488
       },
       "isLocked": false,
       "linkedName": "RedReefJ"
@@ -20,12 +20,12 @@
         "y": 1.0
       },
       "prevControl": {
-        "x": 15.562486866403882,
-        "y": 0.09739714858924142
+        "x": 15.902072119353504,
+        "y": 0.4261289309049995
       },
       "nextControl": {
-        "x": 16.49691556958239,
-        "y": 1.3945099804675467
+        "x": 16.3545412888114,
+        "y": 1.2620076318636713
       },
       "isLocked": false,
       "linkedName": "RedLeftCoral"
@@ -36,8 +36,8 @@
         "y": 2.6726883561643833
       },
       "prevControl": {
-        "x": 16.331035153324397,
-        "y": 2.631022974433446
+        "x": 16.52024051481902,
+        "y": 2.1899003846801146
       },
       "nextControl": null,
       "isLocked": false,
@@ -46,21 +46,36 @@
   ],
   "rotationTargets": [
     {
+      "waypointRelativePos": 0.48096192384769554,
+      "rotationDegrees": 124.152
+    },
+    {
       "waypointRelativePos": 1.0,
-      "rotationDegrees": 124.15203128040335
+      "rotationDegrees": 124.152
     }
   ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "feed",
-      "waypointRelativePos": 0.14761904761904807,
+      "name": "HOME",
+      "waypointRelativePos": 0.12380952380952372,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Feed Command"
+          "name": "Go home"
+        }
+      }
+    },
+    {
+      "name": "Feed to L4",
+      "waypointRelativePos": 0.19523809523809532,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Feed to L4"
         }
       }
     }
