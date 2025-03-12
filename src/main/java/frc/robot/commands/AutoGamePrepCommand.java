@@ -18,10 +18,7 @@ import frc.robot.subsystems.feeder.Feeder;
 public class AutoGamePrepCommand extends SequentialCommandGroup {
     public AutoGamePrepCommand(CommandSwerveDrivetrain drivetrain, Armevator armevator, Feeder feeder, CoralManipulator coralManipulator) {
         super(
-            new PathfindThenPathState(drivetrain, drivetrain::getNextPath)
-                .alongWith(
-                    new FeederManipulatorCommand(feeder, coralManipulator, armevator, 1.0, 0.2)
-                ),
+            new PathfindThenPathState(drivetrain, drivetrain::getNextPath),
             new GoToNextArmevatorPoseState(armevator)
                 .raceWith(new IdleState(coralManipulator, armevator::getArmRotation)),
             new WaitCommand(0.3),
