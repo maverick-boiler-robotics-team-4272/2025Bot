@@ -168,15 +168,23 @@ public class RobotContainer {
                     armevator::nextIsL4
                 )
             );
+
+            driverController.leftBumper().whileTrue(
+                new ConditionalCommand(
+                    new CoralOutakeState(coralManipulator, -0.8), 
+                    new CoralOutakeState(coralManipulator, 0.8), 
+                    armevator::nextIsL4
+                )
+            );
         } else {
             driverController.rightBumper().whileTrue(
                 new CoralOutakeState(coralManipulator, -0.8)
             );
-        }
 
-        driverController.leftBumper().whileTrue(
-            new CoralOutakeState(coralManipulator, 0.8)
-        );
+            driverController.leftBumper().whileTrue(
+                new CoralOutakeState(coralManipulator, 0.8)
+            );
+        }
 
         driverController.start().whileTrue(
             new ZeroState(armevator)  
