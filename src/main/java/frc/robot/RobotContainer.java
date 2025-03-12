@@ -430,6 +430,7 @@ public class RobotContainer {
         );
     }
 
+    // TODO: Put this before position container
     private void registerNamedCommands() {
         // NamedCommands.registerCommand("Drop", new DropState(dropper).withTimeout(0.5)); //ex
         NamedCommands.registerCommand(
