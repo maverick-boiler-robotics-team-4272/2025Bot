@@ -12,11 +12,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.AutoAlgaeCommand;
 import frc.robot.commands.AutoGameCommand;
+import frc.robot.commands.AutoGamePrepCommand;
 import frc.robot.commands.BargeScoreCommand;
 import frc.robot.commands.FeederManipulatorCommand;
 import frc.robot.constants.TunerConstants;
@@ -51,7 +51,7 @@ import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 
 public class RobotContainer {
-    private boolean elliott = true; //is elliot driving? //yes
+    private boolean elliott = false; //is elliot driving? //yes
     private boolean buttonBoardInUse = true; // Is an override tool if the button board does not work.
 
     private ShuffleboardTab autoTab;
@@ -136,6 +136,23 @@ public class RobotContainer {
         );
 
         driverController.y().whileTrue(
+            new AutoGameCommand(
+                drivetrain, 
+                armevator, 
+                feeder, 
+                coralManipulator,
+                () -> driverController.a().getAsBoolean()
+            ).repeatedly().beforeStarting(
+                new AutoGamePrepCommand(
+                    drivetrain, 
+                    armevator, 
+                    feeder, 
+                    coralManipulator
+                )
+            )
+        );
+
+        driverController.rightStick().whileTrue(
             new AutoAlgaeCommand(
                 drivetrain, 
                 armevator, 
@@ -171,9 +188,6 @@ public class RobotContainer {
         driverController.back().and(driverController.x()).whileTrue(drivetrain.sysIdDynamic(Direction.kReverse));
         driverController.start().and(driverController.y()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kForward));
         driverController.start().and(driverController.x()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kReverse));
-
-        // joystick.a().whileTrue(new PathfindingState(drivetrain, getGlobalPositions().CORAL_STATION_LEFT));
-        // joystick.y().whileTrue(new PathfindingState(drivetrain, getGlobalPositions().CORAL_EF));
 
         if(!Robot.isReal()) {
             drivetrain.registerTelemetry(logger::telemeterize);
@@ -416,6 +430,7 @@ public class RobotContainer {
         );
     }
 
+    // TODO: Put this before position container
     private void registerNamedCommands() {
         // NamedCommands.registerCommand("Drop", new DropState(dropper).withTimeout(0.5)); //ex
         NamedCommands.registerCommand(
