@@ -99,7 +99,7 @@ public class SubsystemConstants {
     }
 
     public static class CoralManipulatorConstants {
-        public static final int CURRENT_LIMIT_CORAL = 40;
+        public static final int CURRENT_LIMIT_CORAL = 60;
 
         public static final double CORAL_MANIPULATOR_P = 5;
         public static final double CORAL_MANIPULATOR_I = 0.00;

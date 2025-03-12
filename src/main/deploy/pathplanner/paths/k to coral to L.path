@@ -16,19 +16,19 @@
     },
     {
       "anchor": {
-        "x": 16.21271404109589,
-        "y": 1.0
+        "x": 16.200000000000003,
+        "y": 1.0519662921348298
       },
       "prevControl": {
-        "x": 15.32453496538798,
-        "y": 1.595814011896604
+        "x": 15.311820924292093,
+        "y": 1.6477803040314338
       },
       "nextControl": {
-        "x": 16.420327159461884,
-        "y": 0.8607276298674167
+        "x": 16.407613118365997,
+        "y": 0.9126939220022465
       },
       "isLocked": false,
-      "linkedName": "RedLeftCoral"
+      "linkedName": null
     },
     {
       "anchor": {
@@ -47,7 +47,7 @@
   "rotationTargets": [
     {
       "waypointRelativePos": 1.0,
-      "rotationDegrees": 123.0959465140085
+      "rotationDegrees": 126.86989764584428
     }
   ],
   "constraintZones": [],
@@ -55,7 +55,7 @@
   "eventMarkers": [
     {
       "name": "HOME",
-      "waypointRelativePos": 0.21904761904761919,
+      "waypointRelativePos": 0.0,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",

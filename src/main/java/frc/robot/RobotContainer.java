@@ -398,11 +398,8 @@ public class RobotContainer {
     private void registerNamedCommands() {
         // NamedCommands.registerCommand("Drop", new DropState(dropper).withTimeout(0.5)); //ex
         NamedCommands.registerCommand(
-            "Score L4", 
-            new SequentialCommandGroup(
-                    new WaitCommand(0.2),
-                    new CoralOutakeState(coralManipulator, 0.8).withTimeout(0.2)
-            )
+            "Score L4",
+                new CoralOutakeState(coralManipulator, 1).withTimeout(0.4)
         );
 
         NamedCommands.registerCommand("Go to L4", 
