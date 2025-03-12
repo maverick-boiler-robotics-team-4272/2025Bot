@@ -40,13 +40,13 @@ public class AutoGameCommand extends SequentialCommandGroup {
             ),
             new GoToNextArmevatorPoseState(armevator)
                 .raceWith(new IdleState(coralManipulator, armevator::getArmRotation)),
-            new WaitCommand(0.3),
+            new WaitCommand(0.3).unless(() -> !armevator.nextIsL4()),
             new ConditionalCommand(
                 new CoralOutakeState(coralManipulator, 0.5).withTimeout(0.25),
                 new CoralOutakeState(coralManipulator, -0.5).withTimeout(0.25),
                 armevator::nextIsL4
             ),
-            new GoToArmevatorPoseState(armevator, HOME).withTimeout(0.1)
+            new GoToArmevatorPoseState(armevator, HOME).withTimeout(0.05)
         );
     }
 }
