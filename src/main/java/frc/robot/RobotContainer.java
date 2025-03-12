@@ -420,7 +420,7 @@ public class RobotContainer {
         // NamedCommands.registerCommand("Drop", new DropState(dropper).withTimeout(0.5)); //ex
         NamedCommands.registerCommand(
             "Score L4",
-                new CoralOutakeState(coralManipulator, 1).withTimeout(0.4)
+                new CoralOutakeState(coralManipulator, 1).withTimeout(1)
         );
 
         NamedCommands.registerCommand("Go to L4", 
@@ -443,6 +443,16 @@ public class RobotContainer {
             new GoToNextArmevatorPoseState(armevator)
                 .raceWith(new IdleState(coralManipulator, armevator::getArmRotation))
         );
+        NamedCommands.registerCommand("Go to L4", 
+            new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION)
+                .raceWith(new IdleState(coralManipulator, armevator::getArmRotation))
+        );
+
+        NamedCommands.registerCommand("Feed", 
+            new FeederManipulatorCommand(
+                feeder, coralManipulator, armevator, 1, 0.2
+            )
+        );
     }
 
     private void setupAutos() {
@@ -455,8 +465,10 @@ public class RobotContainer {
         autoTab.add("AutoChooser", autoChooser);
         autoTab.add("SideChooser", SIDE_CHOOSER);
 
-        autoChooser.setDefaultOption("Left Auto", new PathPlannerAuto("Left auto", false));
+        //autoChooser.setDefaultOption("Left Three Auto", new PathPlannerAuto("Left Three Piece auto", false));
+        autoChooser.setDefaultOption("Left Two Auto", new PathPlannerAuto("Left Two Piece auto", false));
         autoChooser.addOption("Right Auto", new PathPlannerAuto("Left auto", true));
+        
         // autoChooser.setDefaultOption("Output name", new PathPlannerAuto("auto name", boolean mirror same field)); //ex
     }
 
