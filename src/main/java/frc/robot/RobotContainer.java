@@ -443,7 +443,7 @@ public class RobotContainer {
         // NamedCommands.registerCommand("Drop", new DropState(dropper).withTimeout(0.5)); //ex
         NamedCommands.registerCommand(
             "Score L4",
-                new CoralOutakeState(coralManipulator, 1).withTimeout(1)
+                new CoralOutakeState(coralManipulator, 1).withTimeout(.5)
         );
 
         NamedCommands.registerCommand("Go to L4", 
