@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 13.958861301369863,
-        "y": 5.542594178082192
+        "x": 16.287842465753425,
+        "y": 7.000085616438356
       },
       "prevControl": null,
       "nextControl": {
-        "x": 13.95974686598741,
-        "y": 5.292595746536496
+        "x": 15.4307984610003,
+        "y": 6.375383696277515
       },
       "isLocked": false,
-      "linkedName": "Coral_CD"
+      "linkedName": "Coral_Station_Right"
     },
     {
       "anchor": {
@@ -20,8 +20,8 @@
         "y": 5.136900684931507
       },
       "prevControl": {
-        "x": 13.773872534952847,
-        "y": 5.3932793548586755
+        "x": 15.129916553864117,
+        "y": 6.102719545206608
       },
       "nextControl": null,
       "isLocked": false,
@@ -31,22 +31,10 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [
-    {
-      "name": "Uppies",
-      "waypointRelativePos": 0.01,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "Next"
-        }
-      }
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 2.5,
-    "maxAcceleration": 2.0,
+    "maxVelocity": 4.0,
+    "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -57,10 +45,10 @@
     "rotation": -119.77369562494148
   },
   "reversed": false,
-  "folder": "Approch Paths",
+  "folder": "Auto paths",
   "idealStartingState": {
-    "velocity": 1.0,
-    "rotation": -119.77369562494148
+    "velocity": 0,
+    "rotation": -125.72739822279966
   },
-  "useDefaultConstraints": false
+  "useDefaultConstraints": true
 }

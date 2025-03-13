@@ -489,8 +489,8 @@ public class RobotContainer {
         autoTab.add("SideChooser", SIDE_CHOOSER);
 
         //autoChooser.setDefaultOption("Left Three Auto", new PathPlannerAuto("Left Three Piece auto", false));
-        autoChooser.setDefaultOption("Left Auto", new PathPlannerAuto("Left Two Piece auto", false));
-        autoChooser.addOption("Right Auto", new PathPlannerAuto("Left Two Piece auto", true));
+        //autoChooser.setDefaultOption("Left Auto", new PathPlannerAuto("Left Two Piece auto", false));
+        autoChooser.setDefaultOption("Right Auto", new PathPlannerAuto("Right Two Piece auto", false));
         
         // autoChooser.setDefaultOption("Output name", new PathPlannerAuto("auto name", boolean mirror same field)); //ex
     }
