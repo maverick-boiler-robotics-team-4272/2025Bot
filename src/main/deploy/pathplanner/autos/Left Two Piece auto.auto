@@ -7,13 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "2 Left Auto Start"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Find J"
+            "pathName": "Left auto start"
           }
         },
         {
@@ -55,13 +49,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "coral to kl"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Copy of Find K Auto Period"
+            "pathName": "Left feeder to K"
           }
         },
         {
