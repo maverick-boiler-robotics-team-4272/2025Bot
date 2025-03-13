@@ -64,11 +64,11 @@ public class RobotContainer {
     private final CommandXboxController operatorController = new CommandXboxController(3);
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
-    public final CoralManipulator coralManipulator = new CoralManipulator();
-    public final Armevator armevator = new Armevator(coralManipulator.getArmEncoder());
-    public final AlgaeManipulator algaeManipulator = new AlgaeManipulator();
-    public final Feeder feeder = new Feeder();
-    public final Climber climber = new Climber();
+    public static final CoralManipulator coralManipulator = new CoralManipulator();
+    public static final Armevator armevator = new Armevator(coralManipulator.getArmEncoder());
+    public static final AlgaeManipulator algaeManipulator = new AlgaeManipulator();
+    public static final Feeder feeder = new Feeder();
+    public static final Climber climber = new Climber();
 
     public RobotContainer() {
         configureBindings();
@@ -79,7 +79,6 @@ public class RobotContainer {
             configureBackupBindings();
         }
 
-        registerNamedCommands();
         setupAutos();
     }
         
@@ -438,8 +437,7 @@ public class RobotContainer {
         );
     }
 
-    // TODO: Put this before position container
-    private void registerNamedCommands() {
+    public static void registerNamedCommands() {
         // NamedCommands.registerCommand("Drop", new DropState(dropper).withTimeout(0.5)); //ex
         NamedCommands.registerCommand(
             "Score L4",
