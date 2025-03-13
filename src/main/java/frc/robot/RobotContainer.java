@@ -451,7 +451,7 @@ public class RobotContainer {
                 .raceWith(new IdleState(coralManipulator, armevator::getArmRotation))
         );
 
-        NamedCommands.registerCommand("Go home", new GoToArmevatorPoseState(armevator, HOME));
+        NamedCommands.registerCommand("Go home", new GoToArmevatorPoseState(armevator, HOME).withTimeout(0.1));
 
         NamedCommands.registerCommand("Feed to L4", 
             new SequentialCommandGroup(   
@@ -488,10 +488,9 @@ public class RobotContainer {
         autoTab.add("AutoChooser", autoChooser);
         autoTab.add("SideChooser", SIDE_CHOOSER);
 
-        //autoChooser.setDefaultOption("Left Three Auto", new PathPlannerAuto("Left Three Piece auto", false));
-        autoChooser.setDefaultOption("Left Two Auto", new PathPlannerAuto("Left Two Piece auto", false));
-        autoChooser.addOption("Right Auto", new PathPlannerAuto("Left auto", true));
-        
+        autoChooser.addOption("Left Auto", new PathPlannerAuto("Left Two Piece auto", false));
+        autoChooser.addOption("Right Auto", new PathPlannerAuto("Right Two Piece auto", false));
+        autoChooser.setDefaultOption("Middle Auto", new PathPlannerAuto("Short Auto", false));
         // autoChooser.setDefaultOption("Output name", new PathPlannerAuto("auto name", boolean mirror same field)); //ex
     }
 
