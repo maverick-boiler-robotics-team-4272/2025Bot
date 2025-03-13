@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 11.25423801369863,
-        "y": 3.9799229452054794
+        "x": 13.331076388888889,
+        "y": 2.697309027777777
       },
       "prevControl": null,
       "nextControl": {
-        "x": 11.503960189304792,
-        "y": 3.968140118272806
+        "x": 13.882903601868652,
+        "y": 2.4054480771632383
       },
       "isLocked": false,
-      "linkedName": "Coral_GH"
+      "linkedName": "RedReefK"
     },
     {
       "anchor": {
-        "x": 11.78013698630137,
-        "y": 4.085102739726028
+        "x": 16.275842696629216,
+        "y": 1.0671348314606723
       },
       "prevControl": {
-        "x": 11.408838826021901,
-        "y": 4.093993743775396
+        "x": 15.289988599285461,
+        "y": 1.6195003721626002
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RedReefH"
+      "linkedName": "Coral_Station_Left"
     }
   ],
   "rotationTargets": [],
@@ -33,20 +33,20 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Uppies",
-      "waypointRelativePos": 0.01,
+      "name": "Feed",
+      "waypointRelativePos": 0.6095238095238092,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Next"
+          "name": "Feed"
         }
       }
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 2.5,
-    "maxAcceleration": 2.0,
+    "maxVelocity": 4.0,
+    "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -54,13 +54,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.5682415460892226
+    "rotation": 126.20340463792768
   },
   "reversed": false,
-  "folder": "Approch Paths",
+  "folder": "Auto paths",
   "idealStartingState": {
-    "velocity": 1.0,
-    "rotation": 0.5682415460892226
+    "velocity": 0,
+    "rotation": 118.95099520746685
   },
-  "useDefaultConstraints": false
+  "useDefaultConstraints": true
 }
