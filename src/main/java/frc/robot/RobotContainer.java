@@ -451,7 +451,7 @@ public class RobotContainer {
                 .raceWith(new IdleState(coralManipulator, armevator::getArmRotation))
         );
 
-        NamedCommands.registerCommand("Go home", new GoToArmevatorPoseState(armevator, HOME));
+        NamedCommands.registerCommand("Go home", new GoToArmevatorPoseState(armevator, HOME).withTimeout(0.1));
 
         NamedCommands.registerCommand("Feed to L4", 
             new SequentialCommandGroup(   
