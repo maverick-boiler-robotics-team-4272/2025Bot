@@ -71,6 +71,7 @@ public class RobotContainer {
     public final Climber climber = new Climber();
 
     public RobotContainer() {
+        setDefaultCommands();
         configureBindings();
 
         if(buttonBoardInUse) {
@@ -82,11 +83,10 @@ public class RobotContainer {
         registerNamedCommands();
         setupAutos();
     }
-        
-    private void configureBindings() {
+
+    private void setDefaultCommands() {
         // Note that X is defined as forward according to WPILib convention,
         // and Y is defined as to the left according to WPILib convention.
-
         if(elliott) {
             drivetrain.setDefaultCommand(
                 new DriveState(
@@ -121,9 +121,11 @@ public class RobotContainer {
         algaeManipulator.setDefaultCommand(
             new AlgaeIdle(algaeManipulator)
         );
-
+    }
+        
+    private void configureBindings() {
         // reset the field-centric heading on b press
-        driverController.b().onTrue(new ResetHeadingState(drivetrain));
+        driverController.b().onTrue(new ResetHeadingState(drivetrain).ignoringDisable(true));
 
         driverController.x().whileTrue(
             new AutoGameCommand(
