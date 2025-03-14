@@ -1,0 +1,54 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 11.346527777777778,
+        "y": 1.9705729166666663
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 11.931071591883118,
+        "y": 1.951610856756432
+      },
+      "isLocked": false,
+      "linkedName": "Barge Approch"
+    },
+    {
+      "anchor": {
+        "x": 9.50173611111111,
+        "y": 2.0264756944444433
+      },
+      "prevControl": {
+        "x": 9.251819064517994,
+        "y": 2.0329154011282466
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "Middle_Barge"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 4.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 0.0
+  },
+  "reversed": false,
+  "folder": "Approch Paths",
+  "idealStartingState": {
+    "velocity": 1.0,
+    "rotation": 47.93567344642121
+  },
+  "useDefaultConstraints": true
+}

@@ -3,10 +3,12 @@
   "robotLength": 0.9,
   "holonomicMode": true,
   "pathFolders": [
+    "Approch Paths",
     "Field positions",
     "Left Coral to Reef",
-    "Approch Paths",
+    "Auto paths",
     "Right Coral to Reef",
+    "Testing",
     "To Left Coral",
     "To Right Coral"
   ],
@@ -37,6 +39,7 @@
   "bumperOffsetY": 0.0,
   "robotFeatures": [
     "{\"name\":\"Feeder\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":-0.3,\"y\":-0.15},\"size\":{\"width\":0.5,\"length\":0.2},\"borderRadius\":0.05,\"strokeWidth\":0.02,\"filled\":false}}",
-    "{\"name\":\"Manipulator\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.3,\"y\":-0.3},\"size\":{\"width\":0.15,\"length\":0.2},\"borderRadius\":0.05,\"strokeWidth\":0.02,\"filled\":false}}"
+    "{\"name\":\"Manipulator\",\"type\":\"rounded_rect\",\"data\":{\"center\":{\"x\":0.3,\"y\":-0.25},\"size\":{\"width\":0.15,\"length\":0.2},\"borderRadius\":0.05,\"strokeWidth\":0.02,\"filled\":false}}",
+    "{\"name\":\"Circle\",\"type\":\"circle\",\"data\":{\"center\":{\"x\":0.0,\"y\":0.0},\"radius\":0.1,\"strokeWidth\":0.02,\"filled\":false}}"
   ]
 }

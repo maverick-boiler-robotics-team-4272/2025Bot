@@ -1,0 +1,135 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 2.569791666666666,
+        "y": 4.052951388888888
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 2.7948708139096654,
+        "y": 4.886847056633064
+      },
+      "isLocked": false,
+      "linkedName": "Reef AB"
+    },
+    {
+      "anchor": {
+        "x": 3.576041666666666,
+        "y": 5.7020833333333325
+      },
+      "prevControl": {
+        "x": 2.7613625504867283,
+        "y": 5.159387924877397
+      },
+      "nextControl": {
+        "x": 4.5158838644388,
+        "y": 6.328155654661156
+      },
+      "isLocked": false,
+      "linkedName": "Reef KL"
+    },
+    {
+      "anchor": {
+        "x": 5.448784722222221,
+        "y": 5.7020833333333325
+      },
+      "prevControl": {
+        "x": 5.130924169866677,
+        "y": 5.878257280065182
+      },
+      "nextControl": {
+        "x": 6.163282399727241,
+        "y": 5.306073589928618
+      },
+      "isLocked": false,
+      "linkedName": "Reef IJ"
+    },
+    {
+      "anchor": {
+        "x": 6.371180555555555,
+        "y": 4.052951388888888
+      },
+      "prevControl": {
+        "x": 6.387058733278334,
+        "y": 4.690855094500013
+      },
+      "nextControl": {
+        "x": 6.3475414649063255,
+        "y": 3.103254025268325
+      },
+      "isLocked": false,
+      "linkedName": "Reef GH"
+    },
+    {
+      "anchor": {
+        "x": 5.448784722222221,
+        "y": 2.38984375
+      },
+      "prevControl": {
+        "x": 5.888090045827514,
+        "y": 2.597271922019303
+      },
+      "nextControl": {
+        "x": 4.657839621294135,
+        "y": 2.0163807218111036
+      },
+      "isLocked": false,
+      "linkedName": "Reef EF"
+    },
+    {
+      "anchor": {
+        "x": 3.4502604166666657,
+        "y": 2.38984375
+      },
+      "prevControl": {
+        "x": 4.3038186842453126,
+        "y": 1.9800368302902207
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "Reef CD"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1.0,
+      "rotationDegrees": -59.34933204294707
+    },
+    {
+      "waypointRelativePos": 2.0,
+      "rotationDegrees": -119.85901616492313
+    },
+    {
+      "waypointRelativePos": 3.0,
+      "rotationDegrees": 180.0
+    },
+    {
+      "waypointRelativePos": 4.0,
+      "rotationDegrees": 120.46554491945989
+    }
+  ],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 4.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 60.25511870305777
+  },
+  "reversed": false,
+  "folder": "Field positions",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 0.0
+  },
+  "useDefaultConstraints": true
+}

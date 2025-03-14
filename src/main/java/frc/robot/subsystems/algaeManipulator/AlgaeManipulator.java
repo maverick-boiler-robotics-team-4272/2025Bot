@@ -30,8 +30,8 @@ public class AlgaeManipulator extends SubsystemBase implements Loggable {
     }
 
     public boolean hasAlgae() {
-        // return getCurrent() > 40;
-        return false;
+        return getCurrent() > 29;
+        // return false;
     }
 
     @Override

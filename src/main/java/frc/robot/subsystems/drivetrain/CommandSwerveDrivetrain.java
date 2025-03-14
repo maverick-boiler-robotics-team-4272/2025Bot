@@ -49,7 +49,6 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         public SwerveModuleState moduleStates[]; // The module states of the robot
 
         public boolean fuseVison; // Is the odometry fusing
-        public double distanceTraveled; // How much distance has the robot traveled
 
         public boolean isRedSide;
         public Pose2d desiredPose;
@@ -61,6 +60,8 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
         public Pose2d nextScorePose; //For auto gameplay
         public Pose2d nextFeedPose;
+        public Pose2d nextBargePose;
+        public Pose2d testNextBargePose;
     }
 
     // Logging inputs
@@ -68,7 +69,6 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
     // Setup all of the logged inputs to default values
     private void initInputs() {
-        inputs.distanceTraveled = 0.0;
         inputs.fuseVison = false;
         inputs.estimatedPose = new Pose2d();
         inputs.isRedSide = false;
@@ -90,7 +90,9 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
         inputs.nextScorePose = getGlobalPositions().CORAL_AB;
         inputs.nextFeedPose = getGlobalPositions().CORAL_STATION_LEFT;
+        inputs.nextBargePose = getGlobalPositions().MIDDLE_BARGE;
         nextPath = getGlobalPositions().CORAL_A;
+        nextBargePath = getGlobalPositions().MIDDLE_BARGE_PATH;
 
         FRONT_LIMELIGHT.configure(FRONT_LIMELIGHT_POSE);
         BACK_LIMELIGHT.configure(BACK_LIMELIGHT_POSE);
@@ -98,7 +100,8 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
     // The next path to run when the robot is pathfinding
     private PathPlannerPath nextPath;
-
+    private PathPlannerPath nextBargePath;
+    
     /* Blue alliance sees forward as 0 degrees (toward red alliance wall) */
     private static final Rotation2d kBlueAlliancePerspectiveRotation = Rotation2d.kZero;
     /* Red alliance sees forward as 180 degrees (toward blue alliance wall) */
@@ -184,7 +187,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         inputs.nextScorePose = next;
         nextPath = path;
     }
-
+ 
     /**
      * Sets the next pose to pathfind to for scoring
      *
@@ -204,6 +207,27 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     }
 
     /**
+     * Sets the next pose to pathfind to and path to follow during the autoteleop gameplay for scoring
+     *
+     * @param next the pose that the robot should pathfinded to; is mainly used for logging
+     * @param path the path to follow after reaching the starting point
+     */
+
+    public void setNextBargePose(Pose2d next, PathPlannerPath path) {
+        inputs.nextBargePose = next;
+        nextBargePath = path; 
+    }
+
+    /**
+     * Sets the next pose to pathfind to for scoring
+     *
+     * @param next the pose to pathfind to next
+     */
+    public void setNextBargePose(Pose2d next) {
+        inputs.nextBargePose = next;
+    }
+
+    /**
      * @returns the next pose that the robot will pathfind to to score
      */
     public Pose2d getNextScorePose() {
@@ -217,11 +241,19 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         return inputs.nextFeedPose;
     }
 
+    public Pose2d getNextBargePose() {
+        return inputs.nextBargePose;
+    }
+    
     /**
      * @returns the next path that will run when pathfinding
      */
     public PathPlannerPath getNextPath() {
         return nextPath;
+    }
+
+    public PathPlannerPath getNextBargePath() {
+        return nextBargePath;
     }
 
     /**
@@ -248,7 +280,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
                 ),
                 config,
                 // Assume the path needs to be flipped for Red vs Blue, this is normally the case
-                () -> FieldConstants.isRedSide(),
+                () -> !FieldConstants.isRedSide(),
                 this // Subsystem for requirements
             );
         } catch (Exception ex) {
@@ -294,7 +326,8 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
             ) {
                 setVisionMeasurementStdDevs(VecBuilder.fill(.7,.7,9999999));
                 addVisionMeasurement(
-                    new Pose2d(limelightMeasurement.pose.getTranslation(), getState().Pose.getRotation()),
+                    limelightMeasurement.pose,
+                    // new Pose2d(limelightMeasurement.pose.getTranslation(), getState().Pose.getRotation()),
                     Utils.fpgaToCurrentTime(limelightMeasurement.timestampSeconds)
                 );
 

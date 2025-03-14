@@ -1,0 +1,116 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 12.381164383561643,
+        "y": 2.943150684931507
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 14.74481189015208,
+        "y": 0.4320953907669818
+      },
+      "isLocked": false,
+      "linkedName": "RedReefJ"
+    },
+    {
+      "anchor": {
+        "x": 16.21271404109589,
+        "y": 1.0
+      },
+      "prevControl": {
+        "x": 15.902072119353504,
+        "y": 0.4261289309049995
+      },
+      "nextControl": {
+        "x": 16.3545412888114,
+        "y": 1.2620076318636713
+      },
+      "isLocked": false,
+      "linkedName": "RedLeftCoral"
+    },
+    {
+      "anchor": {
+        "x": 13.331076388888889,
+        "y": 2.697309027777777
+      },
+      "prevControl": {
+        "x": 16.583637109187357,
+        "y": 2.2145210562935085
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "RedReefK"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.48096192384769554,
+      "rotationDegrees": 124.152
+    },
+    {
+      "waypointRelativePos": 1.0,
+      "rotationDegrees": 124.152
+    }
+  ],
+  "constraintZones": [
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 0.24154589371980636,
+      "maxWaypointRelativePos": 1.4782608695652177,
+      "constraints": {
+        "maxVelocity": 2.0,
+        "maxAcceleration": 2.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    }
+  ],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "HOME",
+      "waypointRelativePos": 0.0,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Go home"
+        }
+      }
+    },
+    {
+      "name": "Feed to L4",
+      "waypointRelativePos": 0.19523809523809532,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Feed to L4"
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 4.0,
+    "maxAcceleration": 2.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 118.95099520746685
+  },
+  "reversed": false,
+  "folder": "Auto paths",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 58.72229713313359
+  },
+  "useDefaultConstraints": false
+}

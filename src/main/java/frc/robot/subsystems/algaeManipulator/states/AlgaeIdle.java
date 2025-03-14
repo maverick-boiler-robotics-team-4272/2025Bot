@@ -12,11 +12,13 @@ public class AlgaeIdle extends State<AlgaeManipulator> {
 
   @Override
   public void initialize() {
-    requiredSubsystem.setAlgaePower(0);
+    requiredSubsystem.setAlgaePower(0.5);
   }
 
   @Override
-  public boolean isFinished() {
-    return false;
+  public void execute() {
+      if(!requiredSubsystem.hasAlgae()) {
+        requiredSubsystem.setAlgaePower(0);
+      }
   }
 }

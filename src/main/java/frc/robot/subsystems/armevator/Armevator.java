@@ -25,6 +25,8 @@ import static edu.wpi.first.units.Units.Inches;
 import static edu.wpi.first.units.Units.Meters;
 import static frc.robot.constants.HardwareMap.*;
 import static frc.robot.constants.SubsystemConstants.ArmevatorConstants.*;
+import static frc.robot.constants.positions.ArmevatorPositions.L2_ARMEVATOR_POSITION;
+import static frc.robot.constants.positions.ArmevatorPositions.L4_ARMEVATOR_POSITION;
 
 public class Armevator extends SubsystemBase implements Loggable {
     @AutoLog
@@ -80,6 +82,8 @@ public class Armevator extends SubsystemBase implements Loggable {
 
     private ArmFeedforward armFeedforward = new ArmFeedforward(0, ARM_FF, 0, 0);
 
+    private ArmevatorPosition nextPose = L2_ARMEVATOR_POSITION;
+
     public Armevator(SparkAbsoluteEncoder armEncoder) {
         this.armEncoder = armEncoder;
 
@@ -93,6 +97,11 @@ public class Armevator extends SubsystemBase implements Loggable {
             .withCurrentLimit(CURRENT_LIMIT_ELEVATOR_MOTORS)
             .withPIDParams(ELEVATOR_P, ELEVATOR_I, ELEVATOR_D)
             .withOutputRange(-0.5, 1.0)
+            .withLimitSwitch(
+                new LimitSwitchConfig()
+                    .reverseLimitSwitchType(Type.kNormallyOpen)
+                    .reverseLimitSwitchEnabled(true)
+            )
             .build();
 
         elevatorMotor2 = VortexBuilder.create(BASE_ARMEVATOR_MOTOR_2)
@@ -101,11 +110,6 @@ public class Armevator extends SubsystemBase implements Loggable {
             .withIdleMode(IdleMode.kBrake)
             .asFollower(elevatorMotor1, false)
             .withCurrentLimit(CURRENT_LIMIT_ELEVATOR_MOTORS)
-            .withLimitSwitch(
-                new LimitSwitchConfig()
-                    .reverseLimitSwitchType(Type.kNormallyOpen)
-                    .reverseLimitSwitchEnabled(true)
-            )
             .build();
 
         armMotor1 = VortexBuilder.create(ARM_MOTOR_1)
@@ -132,6 +136,18 @@ public class Armevator extends SubsystemBase implements Loggable {
         inputs.desiredArmRotation = position.getArmAngle();
     }
 
+    public void goToPosNext(ArmevatorPosition position) {
+        nextPose = position;
+    }
+
+    public void goToNextPos() {
+        goToPos(nextPose);
+    }
+
+    public boolean nextIsL4() {
+        return nextPose == L4_ARMEVATOR_POSITION;
+    }
+
     private void setElevtorHeight(double height){
         elevatorMotor1.setReference(height, ControlType.kPosition, ClosedLoopSlot.kSlot0, ELEVATOR_FF);
 
@@ -146,6 +162,10 @@ public class Armevator extends SubsystemBase implements Loggable {
 
     public void resetElevator(double position) {
         elevatorMotor1.getEncoder().setPosition(0);
+    }
+
+    public void resetArm() {
+        armMotor1.getEncoder().setPosition(armEncoder.getPosition() - 0.25);
     }
 
     private void setArmRotation(Rotation2d rotation){
@@ -185,6 +205,17 @@ public class Armevator extends SubsystemBase implements Loggable {
 
     public void enableSaftey() {
         disableSaftey = false;
+    }
+
+    public boolean atDesiredPosition() {
+        if(
+            Math.abs(getElevatorHeight() - inputs.desiredElevatorHeight) < 0.05 &&
+            Math.abs(getArmRotation().getDegrees() - inputs.desiredArmRotation.getDegrees()) < 5.0
+        ) {
+            return true;
+        }
+
+        return false;
     }
 
     public void safetyLogic() {

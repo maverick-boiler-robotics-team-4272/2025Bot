@@ -22,4 +22,9 @@ public class GoToArmevatorPoseState extends State<Armevator> {
   public void initialize() {
     requiredSubsystem.goToPos(position);
   }
+
+  @Override
+  public boolean isFinished() {
+      return requiredSubsystem.atDesiredPosition();
+  }
 }

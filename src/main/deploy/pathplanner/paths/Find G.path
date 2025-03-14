@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 11.431887710113807,
-        "y": 4.155822306669913
+        "x": 11.452206824154377,
+        "y": 4.132593669598654
       },
       "isLocked": false,
       "linkedName": "Coral_GH"
     },
     {
       "anchor": {
-        "x": 11.737847222222221,
-        "y": 4.458246527777777
+        "x": 11.78013698630137,
+        "y": 4.385616438356164
       },
       "prevControl": {
-        "x": 11.560065802935803,
-        "y": 4.282480299632247
+        "x": 11.582183308313132,
+        "y": 4.232926093635456
       },
       "nextControl": null,
       "isLocked": false,
@@ -31,10 +31,22 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "Uppies",
+      "waypointRelativePos": 0.01,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Next"
+        }
+      }
+    }
+  ],
   "globalConstraints": {
-    "maxVelocity": 2.0,
-    "maxAcceleration": 1.5,
+    "maxVelocity": 2.5,
+    "maxAcceleration": 2.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -47,7 +59,7 @@
   "reversed": false,
   "folder": "Approch Paths",
   "idealStartingState": {
-    "velocity": 1.5,
+    "velocity": 1.0,
     "rotation": 0.5682415460892226
   },
   "useDefaultConstraints": false

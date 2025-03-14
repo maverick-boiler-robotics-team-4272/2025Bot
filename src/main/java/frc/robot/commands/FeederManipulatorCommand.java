@@ -19,7 +19,7 @@ public class FeederManipulatorCommand extends SequentialCommandGroup {
     public FeederManipulatorCommand(Feeder feed, CoralManipulator coralManipulator, Armevator armevator, double feedPower, double coralPower) {
         super(
             new ParallelRaceGroup(
-                new GoToArmevatorPoseState(armevator, FEEDING_ARMEVATOR_POSITION),
+                new GoToArmevatorPoseState(armevator, FEEDING_ARMEVATOR_POSITION).repeatedly(),
                 new SequentialCommandGroup(
                     new ParallelRaceGroup(
                         new FeedState(feed, feedPower),

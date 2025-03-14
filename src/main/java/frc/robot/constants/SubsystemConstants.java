@@ -18,7 +18,7 @@ public class SubsystemConstants {
     public static class DrivetrainConstants {
         public static  class AutoConstants {
             public static final double TRANSLATION_MAX = 4.5;
-            public static final double TRANSLATION_MAX_A = 4.0;
+            public static final double TRANSLATION_MAX_A = 2.25;//3.0;
             public static final Rotation2d ROTATION_MAX = Rotation2d.fromDegrees(560.0);
             public static final Rotation2d ROTATION_MAX_A = Rotation2d.fromDegrees(720.0);
 
@@ -39,22 +39,22 @@ public class SubsystemConstants {
 
     public static class LimeLightConstants {
         public static Pose3d FRONT_LIMELIGHT_POSE = new Pose3d(
-            0.337,
-            -0.201,
-            0.235,
+            0.368878,
+            -0.071628,
+            0.2425,
             new Rotation3d(
-                Rotation2d.fromDegrees(180).getRadians(), 
-                Rotation2d.fromDegrees(15.788).getRadians(),
+                Rotation2d.fromDegrees(90).getRadians(), 
+                Rotation2d.fromDegrees(26.471).getRadians(),
                 0
             )
         );
         public static Pose3d BACK_LIMELIGHT_POSE = new Pose3d(
-            -0.237, //Forward to back
-            0.025, //Right to left
-            0.336, // down to up
+            -0.225, //Forward to back
+            0.1648, //Right to left
+            0.3058, // down to up
             new Rotation3d(
                 0,
-                Rotation2d.fromDegrees(24.552).getRadians(),
+                Rotation2d.fromDegrees(35.528).getRadians(),
                 Rotation2d.fromDegrees(180).getRadians()
             )
         );
@@ -71,14 +71,12 @@ public class SubsystemConstants {
         public static final double ELEVATOR_GEAR_RATIO = Meters.convertFrom(1.055544, Inches);
         public static final double ARM_GEAR_RATIO = 1.0 / 58.7755;
 
-        public static final double ARM_ANGLE_OFFSET = 0.0; //The offset of the mavcoder.
-
         public static final double MAX_ELEVATOR_HEIGHT = Meters.convertFrom(5, Feet);
 
         public static final Rotation2d SAFE_ANGLE = Rotation2d.fromDegrees(5);
         public static final double SAFE_ELEVATOR_HEIGHT = Meters.convertFrom(23, Inches);
         
-        public static final double MAVCODER_OFFSET = 268.0;
+        public static final double MAVCODER_OFFSET = 360.0 - 115.5;
 
         public static final double ELEVATOR_P = 4.0;
         public static final double ELEVATOR_I = 0.0;
@@ -96,12 +94,12 @@ public class SubsystemConstants {
     }
 
     public static class FeederConstants {
-        public static final int FEEDER_CAN_FRONT_TRIGGER_DISTANCE = 100;
+        public static final int FEEDER_CAN_FRONT_TRIGGER_DISTANCE = 150;
         public static final int FEEDER_CAN_BACK_TRIGGER_DISTANCE = 150;
     }
 
     public static class CoralManipulatorConstants {
-        public static final int CURRENT_LIMIT_CORAL = 40;
+        public static final int CURRENT_LIMIT_CORAL = 60;
 
         public static final double CORAL_MANIPULATOR_P = 5;
         public static final double CORAL_MANIPULATOR_I = 0.00;

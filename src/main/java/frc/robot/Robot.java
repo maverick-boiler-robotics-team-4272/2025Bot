@@ -43,9 +43,12 @@ public class Robot extends LoggedRobot {
     Logger.start(); // Start logging! No more data receivers, r eplay sources, or metadata values may
                     // be added.
 
+    RobotContainer.registerNamedCommands();
     m_robotContainer = new RobotContainer();
 
     PathfindingCommand.warmupCommand().schedule();
+    
+    RobotContainer.armevator.resetArm();
   }
 
   @Override

@@ -10,8 +10,13 @@ public class FieldConstants {
     public static final double FIELD_LENGTH_METERS = Meters.convertFrom(57.5, Feet);
     public static final SendableChooser<String> SIDE_CHOOSER = new SendableChooser<>();
 
-    public static final PositionContainer RED_POSITIONS = new PositionContainer(true);
-    public static final PositionContainer BLUE_POSITIONS = new PositionContainer(false);
+    public static final PositionContainer RED_POSITIONS;
+    public static final PositionContainer BLUE_POSITIONS;
+
+    static {
+        RED_POSITIONS = new PositionContainer(true);
+        BLUE_POSITIONS = new PositionContainer(false);
+    }
 
     public static PositionContainer getGlobalPositions() {
         return isRedSide() ? RED_POSITIONS : BLUE_POSITIONS;

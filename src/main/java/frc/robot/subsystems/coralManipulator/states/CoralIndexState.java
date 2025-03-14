@@ -25,7 +25,7 @@ public class CoralIndexState extends State<CoralManipulator> {
     public void execute() {
         if (lidarTripped.getAsBoolean()) {
             requiredSubsystem.setCoralPower(0);
-            requiredSubsystem.addWheelRotations(Rotation2d.fromRotations(0.250));
+            requiredSubsystem.addWheelRotations(Rotation2d.fromRotations(0.125));
             tripped = true;
         }
     }
