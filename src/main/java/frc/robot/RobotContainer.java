@@ -488,7 +488,6 @@ public class RobotContainer {
         autoChooser.addOption("Left Auto", new PathPlannerAuto("Left Two Piece auto", false));
         autoChooser.addOption("Right Auto", new PathPlannerAuto("Right Two Piece auto", false));
         autoChooser.setDefaultOption("Middle Auto", new PathPlannerAuto("Short Auto", false));
-        autoChooser.setDefaultOption("Push left Robot", new PathPlannerAuto("Push left Robot", false));
         // autoChooser.setDefaultOption("Output name", new PathPlannerAuto("auto name", boolean mirror same field)); //ex
     }
 
