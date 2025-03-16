@@ -165,7 +165,11 @@ public class RobotContainer {
             driverController.rightBumper().whileTrue(
                 new ConditionalCommand(
                     new CoralOutakeState(coralManipulator, 0.8), 
-                    new CoralOutakeState(coralManipulator, -0.8), 
+                    new ConditionalCommand(
+                        new CoralOutakeState(coralManipulator, -0.25), 
+                        new CoralOutakeState(coralManipulator, -0.8),
+                        armevator::nextIsL1
+                    ),
                     armevator::nextIsL4
                 )
             );
