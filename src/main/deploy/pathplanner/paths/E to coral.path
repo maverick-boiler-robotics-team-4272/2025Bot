@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 12.816909246575342,
-        "y": 5.362285958904109
+        "x": 12.7267551369863,
+        "y": 5.347260273972603
       },
       "prevControl": null,
       "nextControl": {
-        "x": 13.565599036592918,
-        "y": 5.830650705014545
+        "x": 13.475444927003876,
+        "y": 5.815625020083039
       },
       "isLocked": false,
-      "linkedName": "RedReefE"
+      "linkedName": "AutoReefE"
     },
     {
       "anchor": {

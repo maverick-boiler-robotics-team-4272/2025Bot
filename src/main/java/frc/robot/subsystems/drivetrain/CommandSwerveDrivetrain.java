@@ -295,9 +295,9 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
      */
     private void fuseOdometry() {
         FRONT_LIMELIGHT.setRobotOrientation(getState().Pose.getRotation().getDegrees());
-        BACK_LIMELIGHT.setRobotOrientation(getState().Pose.getRotation().getDegrees());
+        // BACK_LIMELIGHT.setRobotOrientation(getState().Pose.getRotation().getDegrees());
 
-        fuseVision(BACK_LIMELIGHT.getBotPoseEstimate());
+        // fuseVision(BACK_LIMELIGHT.getBotPoseEstimate());
         fuseVision(FRONT_LIMELIGHT.getBotPoseEstimate());
     }
 
