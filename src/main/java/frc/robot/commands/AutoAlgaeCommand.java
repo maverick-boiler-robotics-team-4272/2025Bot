@@ -24,7 +24,7 @@ public class AutoAlgaeCommand extends SequentialCommandGroup {
                 new GoToArmevatorPoseState(armevator, BARGE_ARMEVATOR_POSITION)
             ).raceWith(new AlgaeIntake(algaeManipulator)),
             new AlgaeOuttake(algaeManipulator),
-            new GoToArmevatorPoseState(armevator, HOME)
+            new GoToArmevatorPoseState(armevator, HOME).withTimeout(0.05)
         );
     }
 }

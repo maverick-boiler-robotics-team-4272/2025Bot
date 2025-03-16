@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
+import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
 import frc.robot.subsystems.armevator.Armevator;
 import frc.robot.subsystems.armevator.states.GoToArmevatorPoseState;
 import frc.robot.subsystems.armevator.states.GoToNextArmevatorPoseState;
@@ -22,7 +23,7 @@ import frc.robot.subsystems.drivetrain.states.PathfindingState;
 import frc.robot.subsystems.feeder.Feeder;
 
 public class AutoGameCommand extends SequentialCommandGroup {
-    public AutoGameCommand(CommandSwerveDrivetrain drivetrain, Armevator armevator, Feeder feeder, CoralManipulator coralManipulator, BooleanSupplier leaveOverride) {
+    public AutoGameCommand(CommandSwerveDrivetrain drivetrain, Armevator armevator, Feeder feeder, CoralManipulator coralManipulator, AlgaeManipulator algaeManipulator, BooleanSupplier leaveOverride) {
         super(
             new PathfindingState(drivetrain, drivetrain::getNextFeedPose).raceWith(
                 new WaitCommand(1).andThen(
@@ -46,7 +47,14 @@ public class AutoGameCommand extends SequentialCommandGroup {
                 new CoralOutakeState(coralManipulator, -0.5).withTimeout(0.25),
                 armevator::nextIsL4
             ),
-            new GoToArmevatorPoseState(armevator, HOME).withTimeout(0.05)
+            new ConditionalCommand(
+                new SequentialCommandGroup(
+                    new PathfindThenPathState(drivetrain, drivetrain::getNextAlgaePath),
+                    new AutoAlgaeCommand(drivetrain, armevator, algaeManipulator)
+                ), 
+                new GoToArmevatorPoseState(armevator, HOME).withTimeout(0.05), 
+                drivetrain::getAlgae
+            )
         );
     }
 }

@@ -132,6 +132,7 @@ public class RobotContainer {
                 armevator, 
                 feeder, 
                 coralManipulator,
+                algaeManipulator,
                 () -> driverController.a().getAsBoolean()
             ).repeatedly()
         );
@@ -142,6 +143,7 @@ public class RobotContainer {
                 armevator, 
                 feeder, 
                 coralManipulator,
+                algaeManipulator,
                 () -> driverController.a().getAsBoolean()
             ).repeatedly().beforeStarting(
                 new AutoGamePrepCommand(
@@ -254,6 +256,10 @@ public class RobotContainer {
         buttonBoard.getButton(4 + 16).whileTrue(
             new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION)
                 .alongWith(new AlgaeIntake(algaeManipulator)).repeatedly()
+        );
+
+        buttonBoard.getButton(4 + 16).onTrue(
+            new InstantCommand(drivetrain::toggleAlgae)  
         );
 
         buttonBoard.getButton(3 + 16).whileTrue(
