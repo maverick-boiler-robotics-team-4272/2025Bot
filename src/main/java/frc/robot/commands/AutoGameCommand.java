@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
-import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
 import frc.robot.subsystems.armevator.Armevator;
 import frc.robot.subsystems.armevator.states.GoToArmevatorPoseState;
 import frc.robot.subsystems.armevator.states.GoToNextArmevatorPoseState;
@@ -23,7 +22,7 @@ import frc.robot.subsystems.drivetrain.states.PathfindingState;
 import frc.robot.subsystems.feeder.Feeder;
 
 public class AutoGameCommand extends SequentialCommandGroup {
-    public AutoGameCommand(CommandSwerveDrivetrain drivetrain, Armevator armevator, Feeder feeder, CoralManipulator coralManipulator, AlgaeManipulator algaeManipulator, BooleanSupplier leaveOverride) {
+    public AutoGameCommand(CommandSwerveDrivetrain drivetrain, Armevator armevator, Feeder feeder, CoralManipulator coralManipulator, BooleanSupplier leaveOverride) {
         super(
             new PathfindingState(drivetrain, drivetrain::getNextFeedPose).raceWith(
                 new WaitCommand(1).andThen(

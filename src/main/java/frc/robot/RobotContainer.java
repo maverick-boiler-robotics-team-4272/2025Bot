@@ -132,7 +132,6 @@ public class RobotContainer {
                 armevator, 
                 feeder, 
                 coralManipulator,
-                algaeManipulator,
                 () -> driverController.a().getAsBoolean()
             ).repeatedly()
         );
@@ -143,7 +142,6 @@ public class RobotContainer {
                 armevator, 
                 feeder, 
                 coralManipulator,
-                algaeManipulator,
                 () -> driverController.a().getAsBoolean()
             ).repeatedly().beforeStarting(
                 new AutoGamePrepCommand(
