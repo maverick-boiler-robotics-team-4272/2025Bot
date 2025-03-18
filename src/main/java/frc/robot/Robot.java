@@ -9,9 +9,11 @@ import org.littletonrobotics.junction.Logger;
 import org.littletonrobotics.junction.networktables.NT4Publisher;
 import org.littletonrobotics.junction.wpilog.WPILOGWriter;
 
+import com.ctre.phoenix6.SignalLogger;
 import com.pathplanner.lib.commands.PathfindingCommand;
 
 import au.grapplerobotics.CanBridge;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.utils.commandUtils.PeriodicalUtil;
@@ -30,10 +32,13 @@ public class Robot extends LoggedRobot {
 
     try {
       if(isReal()) {
-        Logger.addDataReceiver(new WPILOGWriter()); // Log to a USB stick ("/U/logs")
+        Logger.addDataReceiver(new WPILOGWriter("/U/Logs")); // Log to a USB stick ("/U/logs")
+        SignalLogger.setPath("/U/Logs");
       }
     } catch (Exception e) {
-      // DriverStation.reportWarning(e.getMessage());
+      DriverStation.reportWarning(e.getMessage(), e.getStackTrace());
+
+      Logger.addDataReceiver(new WPILOGWriter("/logs"));
     }
     
     Logger.addDataReceiver(new NT4Publisher()); // Publish data to NetworkTables

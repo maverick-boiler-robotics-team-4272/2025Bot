@@ -25,6 +25,7 @@ import static edu.wpi.first.units.Units.Inches;
 import static edu.wpi.first.units.Units.Meters;
 import static frc.robot.constants.HardwareMap.*;
 import static frc.robot.constants.SubsystemConstants.ArmevatorConstants.*;
+import static frc.robot.constants.positions.ArmevatorPositions.L1_ARMEVATOR_POSITION;
 import static frc.robot.constants.positions.ArmevatorPositions.L2_ARMEVATOR_POSITION;
 import static frc.robot.constants.positions.ArmevatorPositions.L4_ARMEVATOR_POSITION;
 
@@ -146,6 +147,10 @@ public class Armevator extends SubsystemBase implements Loggable {
 
     public boolean nextIsL4() {
         return nextPose == L4_ARMEVATOR_POSITION;
+    }
+
+    public boolean nextIsL1() {
+        return nextPose == L1_ARMEVATOR_POSITION;
     }
 
     private void setElevtorHeight(double height){

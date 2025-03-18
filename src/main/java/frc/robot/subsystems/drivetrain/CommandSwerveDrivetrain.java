@@ -61,7 +61,8 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         public Pose2d nextScorePose; //For auto gameplay
         public Pose2d nextFeedPose;
         public Pose2d nextBargePose;
-        public Pose2d testNextBargePose;
+
+        public boolean getAlgae;
     }
 
     // Logging inputs
@@ -93,6 +94,9 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         inputs.nextBargePose = getGlobalPositions().MIDDLE_BARGE;
         nextPath = getGlobalPositions().CORAL_A;
         nextBargePath = getGlobalPositions().MIDDLE_BARGE_PATH;
+        nextAlgaePath = getGlobalPositions().CORAL_A; //TODO: change to an actual path...
+
+        inputs.getAlgae = false;
 
         FRONT_LIMELIGHT.configure(FRONT_LIMELIGHT_POSE);
         BACK_LIMELIGHT.configure(BACK_LIMELIGHT_POSE);
@@ -101,6 +105,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     // The next path to run when the robot is pathfinding
     private PathPlannerPath nextPath;
     private PathPlannerPath nextBargePath;
+    private PathPlannerPath nextAlgaePath;
     
     /* Blue alliance sees forward as 0 degrees (toward red alliance wall) */
     private static final Rotation2d kBlueAlliancePerspectiveRotation = Rotation2d.kZero;
@@ -175,6 +180,22 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
      */
     public Command applyRequest(Supplier<SwerveRequest> requestSupplier) {
         return run(() -> this.setControl(requestSupplier.get()));
+    }
+
+    public void toggleAlgae() {
+        if(inputs.getAlgae) {
+            inputs.getAlgae = false;
+        } else {
+            inputs.getAlgae = true;
+        }
+    }
+
+    public boolean getAlgae() {
+        return inputs.getAlgae;
+    }
+
+    public PathPlannerPath getNextAlgaePath() {
+        return nextAlgaePath;
     }
 
     /**
@@ -295,9 +316,9 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
      */
     private void fuseOdometry() {
         FRONT_LIMELIGHT.setRobotOrientation(getState().Pose.getRotation().getDegrees());
-        BACK_LIMELIGHT.setRobotOrientation(getState().Pose.getRotation().getDegrees());
+        // BACK_LIMELIGHT.setRobotOrientation(getState().Pose.getRotation().getDegrees());
 
-        fuseVision(BACK_LIMELIGHT.getBotPoseEstimate());
+        // fuseVision(BACK_LIMELIGHT.getBotPoseEstimate());
         fuseVision(FRONT_LIMELIGHT.getBotPoseEstimate());
     }
 
@@ -321,7 +342,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         if(limelightMeasurement != null) {
             if(
                 limelightMeasurement.tagCount > 0 && 
-                limelightMeasurement.avgTagDist < 2.0 && 
+                limelightMeasurement.avgTagDist < 3.0 && 
                 Units.radiansToRotations(getState().Speeds.omegaRadiansPerSecond) < 2.0
             ) {
                 setVisionMeasurementStdDevs(VecBuilder.fill(.7,.7,9999999));

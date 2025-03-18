@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 16.21271404109589,
-        "y": 1.0
+        "x": 16.377996575342465,
+        "y": 1.0198630136986298
       },
       "prevControl": null,
       "nextControl": {
-        "x": 14.110822795103227,
-        "y": 2.2244916945863427
+        "x": 14.276105329349802,
+        "y": 2.2443547082849724
       },
       "isLocked": false,
-      "linkedName": "RedLeftCoral"
+      "linkedName": "Coral_Station_Left"
     },
     {
       "anchor": {
@@ -29,7 +29,21 @@
     }
   ],
   "rotationTargets": [],
-  "constraintZones": [],
+  "constraintZones": [
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 0.8599439775910357,
+      "maxWaypointRelativePos": 1.0,
+      "constraints": {
+        "maxVelocity": 4.0,
+        "maxAcceleration": 2.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    }
+  ],
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
@@ -48,7 +62,7 @@
   "folder": "Auto paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 125.45355462550692
+    "rotation": 126.20340463792768
   },
   "useDefaultConstraints": true
 }
