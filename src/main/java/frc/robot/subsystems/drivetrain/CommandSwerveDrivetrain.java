@@ -342,7 +342,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         if(limelightMeasurement != null) {
             if(
                 limelightMeasurement.tagCount > 0 && 
-                limelightMeasurement.avgTagDist < 2.0 && 
+                limelightMeasurement.avgTagDist < 3.0 && 
                 Units.radiansToRotations(getState().Speeds.omegaRadiansPerSecond) < 2.0
             ) {
                 setVisionMeasurementStdDevs(VecBuilder.fill(.7,.7,9999999));
