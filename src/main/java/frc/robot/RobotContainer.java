@@ -237,7 +237,7 @@ public class RobotContainer {
             )
         );
 
-        buttonBoard.getButton(6).onTrue(
+        buttonBoard.getButton(6).whileTrue(
             new ConditionalCommand(
                 new CoralOutakeState(coralManipulator, -0.8), 
                 new CoralOutakeState(coralManipulator, 0.8),
