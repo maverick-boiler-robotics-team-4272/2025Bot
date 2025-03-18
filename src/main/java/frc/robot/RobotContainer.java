@@ -25,6 +25,7 @@ import frc.robot.subsystems.armevator.states.ZeroState;
 import frc.robot.subsystems.climber.Climber;
 import frc.robot.subsystems.climber.states.LowerState;
 import frc.robot.subsystems.climber.states.ClimbState;
+import frc.robot.subsystems.climber.states.ClimbLidarState;
 import frc.robot.subsystems.coralManipulator.CoralManipulator;
 import frc.robot.subsystems.coralManipulator.states.CoralIntakeState;
 import frc.robot.subsystems.coralManipulator.states.CoralOutakeState;
@@ -121,8 +122,11 @@ public class RobotContainer {
             new LowerState(climber)
         );
 
-        driverController.povUp().whileTrue(
+        /*driverController.povUp().whileTrue(
             new ClimbState(climber)
+        );*/
+        driverController.povUp().whileTrue(
+            new ClimbLidarState(climber)
         );
 
         driverController.start().whileTrue(
