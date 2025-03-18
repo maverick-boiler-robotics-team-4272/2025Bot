@@ -163,17 +163,15 @@ public class RobotContainer {
             )
         );
 
-        driverController.rightTrigger().whileTrue(
+        driverController.leftTrigger().whileTrue(
             new FeederManipulatorCommand(
                 feeder, 
                 coralManipulator, 
-                armevator, 
-                1.0, 
-                0.5
+                armevator
             )
         );
 
-        driverController.leftTrigger().whileTrue(
+        driverController.rightTrigger().whileTrue(
             new FeedState(feeder, -1.0)
                 .alongWith(new CoralOutakeState(coralManipulator, 0.5))
         );
@@ -236,21 +234,23 @@ public class RobotContainer {
             new LowerState(climber)
         );
 
-        buttonBoard.getButton(5)
+        buttonBoard.getButton(6)
             .and(() -> driverController.x().getAsBoolean())
             .and(() -> driverController.y().getAsBoolean())
         .whileTrue(
-            new FeederManipulatorCommand(
-                feeder, 
-                coralManipulator, 
-                armevator,
-                1.0, 
-                0.14
+            new ConditionalCommand(
+                new CoralOutakeState(coralManipulator, 0.8), 
+                new ConditionalCommand(
+                    new CoralOutakeState(coralManipulator, -0.25), 
+                    new CoralOutakeState(coralManipulator, -0.8),
+                    armevator::nextIsL1
+                ),
+                armevator::nextIsL4
             )
         );
 
-        buttonBoard.getButton(6).whileTrue(
-            new FeedState(feeder, -1.0).alongWith(new CoralOutakeState(coralManipulator, 1.0))
+        buttonBoard.getButton(5).whileTrue(
+            new CoralOutakeState(coralManipulator, 0.8)
         );
 
         buttonBoard.getButton(4 + 16).whileTrue(
