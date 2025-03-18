@@ -47,7 +47,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Feed",
+      "name": "Autonomous Feed",
       "waypointRelativePos": 0.6690821256038656,
       "endWaypointRelativePos": null,
       "command": {
