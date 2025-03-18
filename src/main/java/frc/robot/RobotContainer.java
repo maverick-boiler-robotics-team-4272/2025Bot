@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.AutoAlgaeCommand;
 import frc.robot.commands.AutoGameCommand;
 import frc.robot.commands.AutoGamePrepCommand;
+import frc.robot.commands.AutonomousFeedTillFirstLidar;
 import frc.robot.commands.BargeScoreCommand;
 import frc.robot.commands.FeederManipulatorCommand;
 import frc.robot.constants.TunerConstants;
@@ -481,6 +482,12 @@ public class RobotContainer {
 
         NamedCommands.registerCommand("Feed", 
             new FeederManipulatorCommand(
+                feeder, coralManipulator, armevator, 1, 0.2
+            )
+        );
+
+        NamedCommands.registerCommand("Autonomous Feed", 
+            new AutonomousFeedTillFirstLidar(
                 feeder, coralManipulator, armevator, 1, 0.2
             )
         );
