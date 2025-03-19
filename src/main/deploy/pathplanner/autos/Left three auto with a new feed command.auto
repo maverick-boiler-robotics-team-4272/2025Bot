@@ -13,18 +13,6 @@
         {
           "type": "named",
           "data": {
-            "name": "Go to L4"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.3
-          }
-        },
-        {
-          "type": "named",
-          "data": {
             "name": "Score L4"
           }
         },

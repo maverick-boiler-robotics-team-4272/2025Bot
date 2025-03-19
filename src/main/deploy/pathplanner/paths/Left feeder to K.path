@@ -48,9 +48,14 @@
   "eventMarkers": [
     {
       "name": "Feed to L4",
-      "waypointRelativePos": 0,
+      "waypointRelativePos": 0.0,
       "endWaypointRelativePos": null,
-      "command": null
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Feed to L4"
+        }
+      }
     }
   ],
   "globalConstraints": {
