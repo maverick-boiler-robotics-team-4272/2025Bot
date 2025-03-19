@@ -94,7 +94,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         inputs.nextBargePose = getGlobalPositions().MIDDLE_BARGE;
         nextPath = getGlobalPositions().CORAL_A;
         nextBargePath = getGlobalPositions().MIDDLE_BARGE_PATH;
-        nextAlgaePath = getGlobalPositions().CORAL_A; //TODO: change to an actual path...
+        nextAlgaePath = getGlobalPositions().ALGAE_AB;
 
         inputs.getAlgae = false;
 
