@@ -3,47 +3,35 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 13.331076388888889,
-        "y": 2.697309027777777
+        "x": 14.815325342465753,
+        "y": 3.9648972602739723
       },
       "prevControl": null,
       "nextControl": {
-        "x": 13.882903601868652,
-        "y": 2.4054480771632383
+        "x": 15.07682504984822,
+        "y": 4.035899436700899
       },
       "isLocked": false,
-      "linkedName": "RedReefK"
+      "linkedName": "Coral_AB"
     },
     {
       "anchor": {
-        "x": 16.377996575342465,
-        "y": 1.0198630136986298
+        "x": 14.43515625,
+        "y": 3.787413194444444
       },
       "prevControl": {
-        "x": 15.39214247799871,
-        "y": 1.5722285544005576
+        "x": 14.125560070483415,
+        "y": 3.6781451229588926
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Coral_Station_Left"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [
-    {
-      "name": "Feed",
-      "waypointRelativePos": 0.6095238095238092,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "Feed"
-        }
-      }
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 4.0,
     "maxAcceleration": 3.0,
@@ -54,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 126.20340463792768
+    "rotation": -178.93908830973578
   },
   "reversed": false,
-  "folder": "Auto paths",
+  "folder": "Approch Paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 118.95099520746685
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }
