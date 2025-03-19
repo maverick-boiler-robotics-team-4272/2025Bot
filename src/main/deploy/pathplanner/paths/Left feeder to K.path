@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 16.275842696629216,
-        "y": 1.0671348314606723
+        "x": 16.33125,
+        "y": 1.0317499999999995
       },
       "prevControl": null,
       "nextControl": {
-        "x": 14.173951450636553,
-        "y": 2.291626526047015
+        "x": 14.229358754007338,
+        "y": 2.256241694586342
       },
       "isLocked": false,
-      "linkedName": "Coral_Station_Left"
+      "linkedName": "New left Coral station"
     },
     {
       "anchor": {
