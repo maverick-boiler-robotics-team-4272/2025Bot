@@ -20,9 +20,4 @@ public class CoralOutakeState extends State<CoralManipulator> {
   public void end(boolean interrupted) {
     requiredSubsystem.setCoralPower(-coral);
   }
-
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
 }
