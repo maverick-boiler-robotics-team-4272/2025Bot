@@ -5,7 +5,6 @@ import static frc.robot.constants.positions.ArmevatorPositions.BARGE_PREP_ARMEVA
 import static frc.robot.constants.positions.ArmevatorPositions.HOME;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
 import frc.robot.subsystems.algaeManipulator.states.AlgaeIntake;
 import frc.robot.subsystems.algaeManipulator.states.AlgaeOuttake;
@@ -20,7 +19,7 @@ public class AutoAlgaeCommand extends SequentialCommandGroup {
             new SequentialCommandGroup (
                 new PathfindingState(drivetrain, drivetrain::getNextBargePose),
                 new GoToArmevatorPoseState(armevator, BARGE_PREP_ARMEVATOR_POSITION),
-                new WaitCommand(.05),
+                // new WaitCommand(.05),
                 new GoToArmevatorPoseState(armevator, BARGE_ARMEVATOR_POSITION)
             ).raceWith(new AlgaeIntake(algaeManipulator)),
             new AlgaeOuttake(algaeManipulator),
