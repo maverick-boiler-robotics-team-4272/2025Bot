@@ -46,7 +46,15 @@ public class AutoGameCommand extends SequentialCommandGroup {
                 new CoralOutakeState(coralManipulator, -0.5).withTimeout(0.25),
                 armevator::nextIsL4
             ),
-            new GoToArmevatorPoseState(armevator, HOME).withTimeout(0.05)
+            // new ConditionalCommand(
+            //     new SequentialCommandGroup(
+            //         new PathfindThenPathState(drivetrain, drivetrain::getNextAlgaePath)
+            //             .alongWith(new GoToArmevatorPosAndGrip(armevator, coralManipulator, HOME)),
+            //         new AutoAlgaeCommand(drivetrain, armevator, algaeManipulator)
+            //     ), 
+                new GoToArmevatorPoseState(armevator, HOME).withTimeout(0.05)//, 
+                // drivetrain::getAlgae
+            // )
         );
     }
 }

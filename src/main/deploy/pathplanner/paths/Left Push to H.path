@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 16.332919520547946,
-        "y": 7.075214041095891
+        "x": 10.412799657534247,
+        "y": 3.1985873287671236
       },
       "prevControl": null,
       "nextControl": {
-        "x": 15.475875515794822,
-        "y": 6.45051212093505
+        "x": 11.301264698530785,
+        "y": 3.7149936409689084
       },
       "isLocked": false,
-      "linkedName": "Coral_Station_Right"
+      "linkedName": "pushing a robot"
     },
     {
       "anchor": {
-        "x": 13.778553082191781,
-        "y": 5.136900684931507
+        "x": 11.78013698630137,
+        "y": 4.085102739726028
       },
       "prevControl": {
-        "x": 15.129916553864117,
-        "y": 6.102719545206608
+        "x": 11.549910487757735,
+        "y": 3.987656552687551
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RedReefD"
+      "linkedName": "RedReefH"
     }
   ],
   "rotationTargets": [],
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -119.77369562494148
+    "rotation": 0.5682415460892226
   },
   "reversed": false,
   "folder": "Auto paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -125.72739822279966
+    "rotation": -46.43209618416465
   },
   "useDefaultConstraints": true
 }
