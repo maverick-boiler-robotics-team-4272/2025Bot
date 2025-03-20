@@ -50,25 +50,27 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
         public boolean fuseVison; // Is the odometry fusing
 
-        public boolean isRedSide;
-        public Pose2d desiredPose;
+        public boolean isRedSide; // Is the robot on red side
+        public Pose2d desiredPose; // The desired pose of pathplanner
 
-        public double driveCurrents[];
-        public double steerCurrents[];
-        public double driveTemperatures[];
-        public double steerTemperatures[];
+        public double driveCurrents[]; // The current draw from all of the drive motors
+        public double steerCurrents[]; // The current draw from all of the steer motors
+        public double driveTemperatures[]; // The temperatures of the drive motors
+        public double steerTemperatures[]; // The temperatures of the steer motors
 
-        public Pose2d nextScorePose; //For auto gameplay
-        public Pose2d nextFeedPose;
-        public Pose2d nextBargePose;
+        public Pose2d nextScorePose; // The next pose to score coral
+        public Pose2d nextFeedPose; // The next pose to feed from
+        public Pose2d nextBargePose; // The next barge pose to score algae
 
-        public boolean getAlgae;
+        public boolean getAlgae; // Should the robot grab the algae after scoring a coral
     }
 
     // Logging inputs
     private DrivetrainInputsAutoLogged inputs = new DrivetrainInputsAutoLogged();
 
-    // Setup all of the logged inputs to default values
+    /**
+     * Initializes the inputs for logging
+     */
     private void initInputs() {
         inputs.fuseVison = false;
         inputs.estimatedPose = new Pose2d();
@@ -182,6 +184,9 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         return run(() -> this.setControl(requestSupplier.get()));
     }
 
+    /**
+     * Toggles if algae should be grabbed next cycle
+     */
     public void toggleAlgae() {
         if(inputs.getAlgae) {
             inputs.getAlgae = false;
@@ -190,10 +195,16 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         }
     }
 
+    /**
+     * @return if algae should be grabbed next cycle
+     */
     public boolean getAlgae() {
         return inputs.getAlgae;
     }
 
+    /**
+     * @return the next path to grab algae with
+     */
     public PathPlannerPath getNextAlgaePath() {
         return nextAlgaePath;
     }
@@ -262,6 +273,9 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         return inputs.nextFeedPose;
     }
 
+    /**
+     * @return The next barge scoring pose
+     */
     public Pose2d getNextBargePose() {
         return inputs.nextBargePose;
     }
@@ -273,6 +287,9 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         return nextPath;
     }
 
+    /**
+     * @return the next path to score in the barge
+     */
     public PathPlannerPath getNextBargePath() {
         return nextBargePath;
     }
@@ -359,11 +376,18 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         }
     }
 
+    /**
+     * @param subdirectory The subdirectory name
+     * @param humanReadableName the name of the subsystem or item
+     */
     @Override
     public void log(String subdirectory, String humanReadableName) {
         Logger.processInputs(subdirectory + "/" + humanReadableName, inputs);
     }
 
+    /**
+     * The periodic method in the subsystem base
+     */
     @Override
     public void periodic() {
         boolean isRed = FieldConstants.isRedSide();
