@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 16.275842696629216,
-        "y": 1.0671348314606723
+        "x": 16.35,
+        "y": 1.031
       },
       "prevControl": null,
       "nextControl": {
-        "x": 15.311924568776366,
-        "y": 1.6941171795470513
+        "x": 15.431885761614272,
+        "y": 1.6243787709713684
       },
       "isLocked": false,
-      "linkedName": "Coral_Station_Left"
+      "linkedName": "New left Coral station"
     },
     {
       "anchor": {
-        "x": 13.65,
-        "y": 2.837970890410959
+        "x": 13.729908221817261,
+        "y": 2.8014975898688306
       },
       "prevControl": {
-        "x": 14.281339965943163,
-        "y": 2.4194731151165327
+        "x": 14.363179432110154,
+        "y": 2.36549050920788
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RedReefL"
+      "linkedName": "AutoperiodReefL"
     }
   ],
   "rotationTargets": [],
@@ -54,7 +54,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 118.95099520746685
+    "rotation": 120.9869625978407
   },
   "reversed": false,
   "folder": "Auto paths",

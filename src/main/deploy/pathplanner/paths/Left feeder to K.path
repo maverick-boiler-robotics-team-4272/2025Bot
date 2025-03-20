@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 16.33125,
-        "y": 1.0317499999999995
+        "x": 16.35,
+        "y": 1.031
       },
       "prevControl": null,
       "nextControl": {
-        "x": 14.229358754007338,
-        "y": 2.256241694586342
+        "x": 14.248108754007339,
+        "y": 2.2554916945863432
       },
       "isLocked": false,
       "linkedName": "New left Coral station"
     },
     {
       "anchor": {
-        "x": 13.331076388888889,
-        "y": 2.697309027777777
+        "x": 13.391884457828862,
+        "y": 2.6572550978504546
       },
       "prevControl": {
-        "x": 15.08328583307945,
-        "y": 1.6758728861847487
+        "x": 15.144093902019424,
+        "y": 1.6358189562574261
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RedReefK"
+      "linkedName": "AutoReefK"
     }
   ],
   "rotationTargets": [],
