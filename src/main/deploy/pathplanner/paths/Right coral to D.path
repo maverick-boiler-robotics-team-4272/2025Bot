@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 16.332919520547946,
-        "y": 7.075214041095891
+        "x": 16.27990413524546,
+        "y": 7.059063838008319
       },
       "prevControl": null,
       "nextControl": {
-        "x": 15.475875515794822,
-        "y": 6.45051212093505
+        "x": 15.422860130492335,
+        "y": 6.434361917847478
       },
       "isLocked": false,
-      "linkedName": "Coral_Station_Right"
+      "linkedName": "Autonomous right coral station"
     },
     {
       "anchor": {
-        "x": 13.82,
-        "y": 5.187
+        "x": 13.93,
+        "y": 5.31
       },
       "prevControl": {
-        "x": 15.171363471672336,
-        "y": 6.152818860275101
+        "x": 15.281363471672336,
+        "y": 6.2758188602751
       },
       "nextControl": null,
       "isLocked": false,
@@ -31,7 +31,19 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "Feed to L4",
+      "waypointRelativePos": 0.0,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Feed to L4"
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 4.0,
     "maxAcceleration": 3.0,

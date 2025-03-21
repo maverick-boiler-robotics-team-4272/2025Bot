@@ -448,8 +448,13 @@ public class RobotContainer {
         // NamedCommands.registerCommand("Drop", new DropState(dropper).withTimeout(0.5)); //ex
         NamedCommands.registerCommand(
             "Score L4",
-                new WaitCommand(0.4).andThen(
-                new CoralOutakeState(coralManipulator, 1).withTimeout(.25))
+            new SequentialCommandGroup(
+                new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION)
+                    .raceWith(new IdleState(coralManipulator, armevator::getArmRotation)), 
+                new WaitCommand(0.2),
+                new CoralOutakeState(coralManipulator, 1).withTimeout(.25)
+            )
+                
         );
 
         NamedCommands.registerCommand("Go to L4", 
@@ -499,7 +504,8 @@ public class RobotContainer {
         autoChooser.addOption("Wheel Diam", new PathPlannerAuto("Wheel Diam"));
         autoChooser.addOption("Left Auto", new PathPlannerAuto("Left Two Piece auto", false));
         autoChooser.addOption("Right Auto", new PathPlannerAuto("Right Two Piece auto", false));
-        autoChooser.setDefaultOption("Left three auto with a new feed command", new PathPlannerAuto("Left three auto with a new feed command"));
+        autoChooser.addOption("Right three piece auto", new PathPlannerAuto("Right three piece auto"));
+        autoChooser.setDefaultOption("Left three piece auto", new PathPlannerAuto("Left three piece auto"));
         //autoChooser.setDefaultOption("Middle Auto", new PathPlannerAuto("Short Auto", false));
         autoChooser.addOption("Odometry test", new PathPlannerAuto("Wheel Diam"));
         // autoChooser.setDefaultOption("Output name", new PathPlannerAuto("auto name", boolean mirror same field)); //ex

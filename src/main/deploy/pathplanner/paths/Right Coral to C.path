@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 13.958861301369863,
-        "y": 5.542594178082192
+        "x": 16.27990413524546,
+        "y": 7.059063838008319
       },
       "prevControl": null,
       "nextControl": {
-        "x": 13.95974686598741,
-        "y": 5.292595746536496
+        "x": 15.419071174435613,
+        "y": 6.24624813763898
       },
       "isLocked": false,
-      "linkedName": "Coral_CD"
+      "linkedName": "Autonomous right coral station"
     },
     {
       "anchor": {
-        "x": 13.93,
-        "y": 5.31
+        "x": 14.13,
+        "y": 5.06
       },
       "prevControl": {
-        "x": 13.925319452761066,
-        "y": 5.5663786699271665
+        "x": 14.973206667744014,
+        "y": 5.840713248999266
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RedReefD"
+      "linkedName": "AutoPeriodReefC"
     }
   ],
   "rotationTargets": [],
@@ -33,20 +33,20 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Uppies",
-      "waypointRelativePos": 0.01,
+      "name": "Feed to L4",
+      "waypointRelativePos": 0.0,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Next"
+          "name": "Feed to L4"
         }
       }
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 2.5,
-    "maxAcceleration": 2.0,
+    "maxVelocity": 4.0,
+    "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -57,10 +57,10 @@
     "rotation": -119.77369562494148
   },
   "reversed": false,
-  "folder": "Approch Paths",
+  "folder": "Auto paths",
   "idealStartingState": {
-    "velocity": 1.0,
-    "rotation": -119.77369562494148
+    "velocity": 0,
+    "rotation": -125.72739822279966
   },
-  "useDefaultConstraints": false
+  "useDefaultConstraints": true
 }
