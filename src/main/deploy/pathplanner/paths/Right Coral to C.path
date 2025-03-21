@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 16.27990413524546,
-        "y": 7.059063838008319
+        "x": 16.419,
+        "y": 7.164499999999999
       },
       "prevControl": null,
       "nextControl": {
-        "x": 15.419071174435613,
-        "y": 6.24624813763898
+        "x": 15.558167039190154,
+        "y": 6.35168429963066
       },
       "isLocked": false,
       "linkedName": "Autonomous right coral station"

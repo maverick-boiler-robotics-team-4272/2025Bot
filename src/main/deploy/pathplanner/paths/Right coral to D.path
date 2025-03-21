@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 16.27990413524546,
-        "y": 7.059063838008319
+        "x": 16.419,
+        "y": 7.164499999999999
       },
       "prevControl": null,
       "nextControl": {
-        "x": 15.422860130492335,
-        "y": 6.434361917847478
+        "x": 15.561955995246876,
+        "y": 6.539798079839159
       },
       "isLocked": false,
       "linkedName": "Autonomous right coral station"
@@ -25,7 +25,7 @@
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RedReefD"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
