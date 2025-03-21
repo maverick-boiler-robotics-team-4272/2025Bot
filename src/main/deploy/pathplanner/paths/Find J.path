@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 12.295839750955118,
-        "y": 2.800953880299432
+        "x": 12.288428575835168,
+        "y": 2.7734635052620638
       },
       "isLocked": false,
       "linkedName": "Coral_IJ"
@@ -20,12 +20,12 @@
         "y": 2.943150684931507
       },
       "prevControl": {
-        "x": 12.191259528310292,
-        "y": 2.6946252138686075
+        "x": 12.164122979057332,
+        "y": 2.6948921434494943
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RedReefJ"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],

@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 11.78013698630137,
+        "x": 11.68,
         "y": 4.085102739726028
       },
       "prevControl": {
-        "x": 11.408838826021901,
+        "x": 11.30870183972053,
         "y": 4.093993743775396
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RedReefH"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],

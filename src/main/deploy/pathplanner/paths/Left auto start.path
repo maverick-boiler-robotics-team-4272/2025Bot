@@ -8,20 +8,36 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 11.791597463150149,
-        "y": 2.44079533617859
+        "x": 11.160362554101566,
+        "y": 1.8949325595670623
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 12.226500000000001,
-        "y": 3.0109999999999992
+        "x": 11.74875,
+        "y": 2.31875
       },
       "prevControl": {
-        "x": 11.272001948273193,
-        "y": 2.4802031105341866
+        "x": 11.137962392683738,
+        "y": 1.9219524969154895
+      },
+      "nextControl": {
+        "x": 11.958394530532072,
+        "y": 2.454945340661811
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 12.265500000000001,
+        "y": 2.8842499999999998
+      },
+      "prevControl": {
+        "x": 11.924840564668132,
+        "y": 2.353929104663916
       },
       "nextControl": null,
       "isLocked": false,
@@ -30,7 +46,11 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.9269776876267724,
+      "waypointRelativePos": 1,
+      "rotationDegrees": 54.32359177813785
+    },
+    {
+      "waypointRelativePos": 1.85,
       "rotationDegrees": 59.70860708335683
     }
   ],
@@ -39,7 +59,7 @@
   "eventMarkers": [
     {
       "name": "Go to L4",
-      "waypointRelativePos": 0.5995037220843666,
+      "waypointRelativePos": 1.0004962779156334,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",

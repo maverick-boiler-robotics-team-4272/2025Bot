@@ -20,7 +20,7 @@ public class AutonomousFeedTillFirstLidar extends SequentialCommandGroup{
                     new ParallelRaceGroup(
                         new FeedState(feed, feedPower),
                         new CoralIntakeState(coralManipulator, coralPower)
-                    ).until(feed::lidarFrontTripped)
+                    ).until(() -> (feed.lidarFrontTripped() || feed.lidarBackTripped()))
                 )
             )
         );
