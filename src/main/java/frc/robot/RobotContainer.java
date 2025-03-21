@@ -12,12 +12,14 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.Command.InterruptionBehavior;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.AutoAlgaeCommand;
 import frc.robot.commands.AutoGameCommand;
 import frc.robot.commands.AutoGamePrepCommand;
+import frc.robot.commands.AutonomousFeedTillFirstLidar;
 import frc.robot.commands.BargeScoreCommand;
 import frc.robot.commands.FeederManipulatorCommand;
 import frc.robot.constants.TunerConstants;
@@ -446,7 +448,13 @@ public class RobotContainer {
         // NamedCommands.registerCommand("Drop", new DropState(dropper).withTimeout(0.5)); //ex
         NamedCommands.registerCommand(
             "Score L4",
-                new CoralOutakeState(coralManipulator, 1).withTimeout(.5)
+            new SequentialCommandGroup(
+                new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION)
+                    .raceWith(new IdleState(coralManipulator, armevator::getArmRotation)), 
+                new WaitCommand(0.2),
+                new CoralOutakeState(coralManipulator, 1).withTimeout(.25)
+            )
+                
         );
 
         NamedCommands.registerCommand("Go to L4", 
@@ -475,6 +483,12 @@ public class RobotContainer {
                 feeder, coralManipulator, armevator, 1, 0.2
             )
         );
+
+        NamedCommands.registerCommand("Autonomous Feed", 
+            new AutonomousFeedTillFirstLidar(
+                feeder, coralManipulator, armevator, 1, 0.2
+            )
+        );
     }
 
     private void setupAutos() {
@@ -490,8 +504,10 @@ public class RobotContainer {
         autoChooser.addOption("Wheel Diam", new PathPlannerAuto("Wheel Diam"));
         autoChooser.addOption("Left Auto", new PathPlannerAuto("Left Two Piece auto", false));
         autoChooser.addOption("Right Auto", new PathPlannerAuto("Right Two Piece auto", false));
-        autoChooser.addOption("Left Robot Push", new PathPlannerAuto("Push Left Robot", false));
-        autoChooser.setDefaultOption("Middle Auto", new PathPlannerAuto("Short Auto", false));
+        autoChooser.addOption("Right three piece auto", new PathPlannerAuto("Right three piece auto"));
+        autoChooser.setDefaultOption("Left three piece auto", new PathPlannerAuto("Left three piece auto"));
+        //autoChooser.setDefaultOption("Middle Auto", new PathPlannerAuto("Short Auto", false));
+        autoChooser.addOption("Odometry test", new PathPlannerAuto("Wheel Diam"));
         // autoChooser.setDefaultOption("Output name", new PathPlannerAuto("auto name", boolean mirror same field)); //ex
     }
 

@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 13.331076388888889,
-        "y": 2.697309027777777
+        "x": 16.35,
+        "y": 1.031
       },
       "prevControl": null,
       "nextControl": {
-        "x": 13.882903601868652,
-        "y": 2.4054480771632383
+        "x": 15.431885761614272,
+        "y": 1.6243787709713684
       },
       "isLocked": false,
-      "linkedName": "RedReefK"
+      "linkedName": "New left Coral station"
     },
     {
       "anchor": {
-        "x": 16.377996575342465,
-        "y": 1.0198630136986298
+        "x": 13.729908221817261,
+        "y": 2.8014975898688306
       },
       "prevControl": {
-        "x": 15.39214247799871,
-        "y": 1.5722285544005576
+        "x": 14.363179432110154,
+        "y": 2.36549050920788
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Coral_Station_Left"
+      "linkedName": "AutoperiodReefL"
     }
   ],
   "rotationTargets": [],
@@ -33,13 +33,13 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Feed",
-      "waypointRelativePos": 0.6095238095238092,
+      "name": "Feed to L4",
+      "waypointRelativePos": 0.0,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Feed"
+          "name": "Feed to L4"
         }
       }
     }
@@ -54,13 +54,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 126.20340463792768
+    "rotation": 120.9869625978407
   },
   "reversed": false,
   "folder": "Auto paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 118.95099520746685
+    "rotation": 126.20340463792768
   },
   "useDefaultConstraints": true
 }

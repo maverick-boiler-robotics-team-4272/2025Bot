@@ -7,19 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Left auto start"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Go to L4"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.3
+            "pathName": "Right Auto start"
           }
         },
         {
@@ -29,15 +17,9 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "Go home"
-          }
-        },
-        {
           "type": "path",
           "data": {
-            "pathName": "J to Left Coral"
+            "pathName": "E to right coral"
           }
         },
         {
@@ -49,19 +31,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Left feeder to K"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Go to L4"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.3
+            "pathName": "Right coral to D"
           }
         },
         {
@@ -71,21 +41,27 @@
           }
         },
         {
+          "type": "path",
+          "data": {
+            "pathName": "D to right coral"
+          }
+        },
+        {
           "type": "named",
           "data": {
-            "name": "Go home"
+            "name": "Autonomous Feed"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "K to left coral"
+            "pathName": "Right Coral to C"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Feed"
+            "name": "Score L4"
           }
         }
       ]

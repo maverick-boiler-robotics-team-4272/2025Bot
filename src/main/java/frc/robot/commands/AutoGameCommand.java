@@ -34,7 +34,8 @@ public class AutoGameCommand extends SequentialCommandGroup {
                 new PathfindThenPathState(drivetrain, drivetrain::getNextPath).beforeStarting(
                     new ParallelRaceGroup(
                         new WaitUntilCommand(leaveOverride),
-                        new WaitUntilCommand(feeder::lidarBackTripped)
+                        new WaitUntilCommand(feeder::lidarBackTripped),
+                        new WaitUntilCommand(feeder::lidarFrontTripped)
                     )
                 )   
             ),

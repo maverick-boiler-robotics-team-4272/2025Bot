@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 13.82,
-        "y": 5.187
+        "x": 13.93,
+        "y": 5.31
       },
       "prevControl": null,
       "nextControl": {
-        "x": 14.479797678799368,
-        "y": 5.64098816882467
+        "x": 14.589797678799368,
+        "y": 5.763988168824669
       },
       "isLocked": false,
       "linkedName": "RedReefD"
     },
     {
       "anchor": {
-        "x": 16.332919520547946,
-        "y": 7.075214041095891
+        "x": 16.27990413524546,
+        "y": 7.059063838008319
       },
       "prevControl": {
-        "x": 15.691440409418702,
-        "y": 6.580499958609133
+        "x": 15.638425024116215,
+        "y": 6.564349755521561
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Coral_Station_Right"
+      "linkedName": "Autonomous right coral station"
     }
   ],
   "rotationTargets": [],
@@ -33,13 +33,24 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Feed",
+      "name": "Go home",
+      "waypointRelativePos": 0.04,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Go home"
+        }
+      }
+    },
+    {
+      "name": "Autonomous Feed",
       "waypointRelativePos": 0.5857142857142857,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Feed"
+          "name": "Autonomous Feed"
         }
       }
     }

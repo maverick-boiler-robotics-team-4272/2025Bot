@@ -11,15 +11,9 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "Go to L4"
-          }
-        },
-        {
           "type": "wait",
           "data": {
-            "waitTime": 0.3
+            "waitTime": 1.0
           }
         },
         {
@@ -29,39 +23,21 @@
           }
         },
         {
+          "type": "path",
+          "data": {
+            "pathName": "E to right coral"
+          }
+        },
+        {
           "type": "named",
           "data": {
-            "name": "Go home"
+            "name": "Autonomous Feed"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "E to coral"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Feed"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Coral to D"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Go to L4"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.3
+            "pathName": "Right coral to D"
           }
         },
         {
@@ -71,21 +47,15 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "Go home"
-          }
-        },
-        {
           "type": "path",
           "data": {
-            "pathName": "D to coral"
+            "pathName": "D to right coral"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Feed"
+            "name": "Autonomous Feed"
           }
         }
       ]
