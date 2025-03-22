@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 16.374279475866743,
-        "y": 7.181747549948384
+        "x": 16.32014104566188,
+        "y": 7.09195695078876
       },
       "prevControl": {
-        "x": 15.557096202473165,
-        "y": 6.778392250884946
+        "x": 15.502957772268303,
+        "y": 6.688601651725322
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "AutoPeriodRightCoralStation"
     }
   ],
   "rotationTargets": [],
