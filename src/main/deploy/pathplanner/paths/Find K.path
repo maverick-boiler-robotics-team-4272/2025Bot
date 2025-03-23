@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 13.325151789020637,
-        "y": 2.6420726866966606
+        "x": 13.35,
+        "y": 2.64
       },
       "prevControl": {
-        "x": 13.571811670756706,
-        "y": 2.601343056917481
+        "x": 13.596659881736068,
+        "y": 2.5992703702208204
       },
       "nextControl": null,
       "isLocked": false,
@@ -54,7 +54,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 118.95099520746685
+    "rotation": 120.23833531329764
   },
   "reversed": false,
   "folder": "Approch Paths",
