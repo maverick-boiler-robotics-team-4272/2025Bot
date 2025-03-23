@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 12.667413596598287,
-        "y": 5.43484091709872
+        "x": 12.740545551362855,
+        "y": 5.402314652566589
       },
       "prevControl": null,
       "nextControl": {
-        "x": 13.416103386615863,
-        "y": 5.903205663209156
+        "x": 13.48923534138043,
+        "y": 5.870679398677025
       },
       "isLocked": false,
-      "linkedName": "AutoReefE"
+      "linkedName": "TautoE"
     },
     {
       "anchor": {
