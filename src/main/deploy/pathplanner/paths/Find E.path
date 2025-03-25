@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 12.958997592589812,
-        "y": 5.341611206004849
+        "x": 12.711752884904097,
+        "y": 5.411491918942861
       },
       "isLocked": false,
       "linkedName": "Coral_EF"
     },
     {
       "anchor": {
-        "x": 12.776241319444441,
-        "y": 5.409991319444445
+        "x": 12.740545551362855,
+        "y": 5.402314652566589
       },
       "prevControl": {
-        "x": 12.51535952352798,
-        "y": 5.4834552890980515
+        "x": 12.424690332137079,
+        "y": 5.49490410234598
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "TautoE"
     }
   ],
   "rotationTargets": [],

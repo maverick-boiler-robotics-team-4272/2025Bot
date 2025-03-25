@@ -169,7 +169,7 @@ public class RobotContainer {
                 feeder, 
                 coralManipulator, 
                 armevator
-            )
+            ).withInterruptBehavior(InterruptionBehavior.kCancelIncoming)
         );
 
         driverController.rightTrigger().whileTrue(
@@ -501,13 +501,13 @@ public class RobotContainer {
         autoTab.add("AutoChooser", autoChooser);
         autoTab.add("SideChooser", SIDE_CHOOSER);
 
-        autoChooser.addOption("Wheel Diam", new PathPlannerAuto("Wheel Diam"));
+        // autoChooser.addOption("Wheel Diam", new PathPlannerAuto("Wheel Diam"));
         autoChooser.addOption("Left Auto", new PathPlannerAuto("Left Two Piece auto", false));
         autoChooser.addOption("Right Auto", new PathPlannerAuto("Right Two Piece auto", false));
         autoChooser.addOption("Right three piece auto", new PathPlannerAuto("Right three piece auto"));
         autoChooser.setDefaultOption("Left three piece auto", new PathPlannerAuto("Left three piece auto"));
-        //autoChooser.setDefaultOption("Middle Auto", new PathPlannerAuto("Short Auto", false));
-        autoChooser.addOption("Odometry test", new PathPlannerAuto("Wheel Diam"));
+        autoChooser.setDefaultOption("Middle Auto", new PathPlannerAuto("Short Auto", false));
+        // autoChooser.addOption("Odometry test", new PathPlannerAuto("Wheel Diam"));
         // autoChooser.setDefaultOption("Output name", new PathPlannerAuto("auto name", boolean mirror same field)); //ex
     }
 

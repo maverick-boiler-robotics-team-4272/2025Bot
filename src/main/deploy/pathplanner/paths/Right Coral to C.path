@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 16.27990413524546,
-        "y": 7.059063838008319
+        "x": 16.32014104566188,
+        "y": 7.09195695078876
       },
       "prevControl": null,
       "nextControl": {
-        "x": 15.419071174435613,
-        "y": 6.24624813763898
+        "x": 15.459308084852035,
+        "y": 6.279141250419421
       },
       "isLocked": false,
-      "linkedName": "Autonomous right coral station"
+      "linkedName": "AutoPeriodRightCoralStation"
     },
     {
       "anchor": {

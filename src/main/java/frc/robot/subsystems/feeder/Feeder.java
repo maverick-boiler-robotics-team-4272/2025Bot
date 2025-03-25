@@ -28,6 +28,8 @@ public class Feeder extends SubsystemBase implements Loggable {
   public static class FeederInputs {
     public double frontLidarDistance;
     public double backLidarDistance;
+    public boolean frontLidarIsTripped;
+    public boolean backLidarIsTripped;
   }
 
   FeederInputsAutoLogged inputs = new FeederInputsAutoLogged();
@@ -35,6 +37,8 @@ public class Feeder extends SubsystemBase implements Loggable {
   private void initInputs() {
     inputs.frontLidarDistance = 0.0;
     inputs.backLidarDistance = 0.0;
+    inputs.frontLidarIsTripped = false;
+    inputs.backLidarIsTripped = false;
   }
 
   private LaserCan feederCanFront;
@@ -111,5 +115,7 @@ public class Feeder extends SubsystemBase implements Loggable {
 
     inputs.frontLidarDistance = feederCanBack.getMeasurement().distance_mm;
     inputs.backLidarDistance = feederCanFront.getMeasurement().distance_mm;
+    inputs.frontLidarIsTripped = lidarFrontTripped();
+    inputs.backLidarIsTripped = lidarBackTripped();
   }
 }
