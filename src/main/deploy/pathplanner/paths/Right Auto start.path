@@ -8,27 +8,32 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 11.578768267427375,
-        "y": 5.9507921445831435
+        "x": 13.157711227852154,
+        "y": 5.293272796041313
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 12.667413596598287,
-        "y": 5.43484091709872
+        "x": 12.740545551362855,
+        "y": 5.402314652566589
       },
       "prevControl": {
-        "x": 11.67709921886345,
-        "y": 5.782726702963217
+        "x": 12.355027270927245,
+        "y": 5.503106387856003
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "AutoReefE"
+      "linkedName": "TautoE"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.49792531120332145,
+      "rotationDegrees": -59.99999999999999
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [
