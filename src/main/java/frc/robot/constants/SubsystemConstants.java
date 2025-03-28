@@ -48,19 +48,29 @@ public class SubsystemConstants {
                 0
             )
         );
-        public static Pose3d BACK_LIMELIGHT_POSE = new Pose3d(
-            -0.225, //Forward to back
-            0.1648, //Right to left
-            0.3058, // down to up
+        public static Pose3d FRONT_LIMELIGHT_2_POSE = new Pose3d(
+            -0.034556,
+            -0.280792,
+            0.211222,
             new Rotation3d(
-                0,
-                Rotation2d.fromDegrees(35.528).getRadians(),
-                Rotation2d.fromDegrees(180).getRadians()
+                Rotation2d.fromDegrees(270).getRadians(),
+                0, 
+                0
             )
         );
-
+        public static Pose3d ELEVATOR_LIMELIGHT_POSE = new Pose3d(
+            0.308471, //Forward to back
+            0.107326, //Right to left
+            0.984077, // down to up
+            new Rotation3d(
+                Rotation2d.fromDegrees(0).getRadians(),
+                Rotation2d.fromDegrees(50).getRadians(),//?
+                0
+            )
+        );
         public static Limelight FRONT_LIMELIGHT = new Limelight("limelight-front");
-        public static Limelight BACK_LIMELIGHT = new Limelight("limelight-back");
+        public static Limelight ELEVATOR_LIMELIGHT = new Limelight("limelight-elevate");
+        public static Limelight FRONT_2_LIMELIGHT = new Limelight("limelight-middle");
     }
 
     public static class ArmevatorConstants {

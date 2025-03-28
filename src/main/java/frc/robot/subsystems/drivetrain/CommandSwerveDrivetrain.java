@@ -101,7 +101,8 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         inputs.getAlgae = false;
 
         FRONT_LIMELIGHT.configure(FRONT_LIMELIGHT_POSE);
-        BACK_LIMELIGHT.configure(BACK_LIMELIGHT_POSE);
+        ELEVATOR_LIMELIGHT.configure(ELEVATOR_LIMELIGHT_POSE);
+        FRONT_2_LIMELIGHT.configure(FRONT_LIMELIGHT_2_POSE);
     }
 
     // The next path to run when the robot is pathfinding
@@ -333,9 +334,11 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
      */
     private void fuseOdometry() {
         FRONT_LIMELIGHT.setRobotOrientation(getState().Pose.getRotation().getDegrees());
-        // BACK_LIMELIGHT.setRobotOrientation(getState().Pose.getRotation().getDegrees());
+        FRONT_2_LIMELIGHT.setRobotOrientation(getState().Pose.getRotation().getDegrees());
+        ELEVATOR_LIMELIGHT.setRobotOrientation(getState().Pose.getRotation().getDegrees());
 
-        // fuseVision(BACK_LIMELIGHT.getBotPoseEstimate());
+        fuseVision(FRONT_2_LIMELIGHT.getBotPoseEstimate());
+        fuseVision(ELEVATOR_LIMELIGHT.getBotPoseEstimate());
         fuseVision(FRONT_LIMELIGHT.getBotPoseEstimate());
     }
 
