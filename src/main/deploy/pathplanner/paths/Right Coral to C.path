@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 14.13,
-        "y": 5.06
+        "x": 14.067963571725647,
+        "y": 5.014577684244903
       },
       "prevControl": {
-        "x": 14.973206667744014,
-        "y": 5.840713248999266
+        "x": 14.91117023946966,
+        "y": 5.795290933244169
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "AutoPeriodReefC"
+      "linkedName": "TautoC"
     }
   ],
   "rotationTargets": [],
