@@ -105,8 +105,8 @@ public class SubsystemConstants {
     }
 
     public static class FeederConstants {
-        public static final int FEEDER_CAN_FRONT_TRIGGER_DISTANCE = 420;
-        public static final int FEEDER_CAN_BACK_TRIGGER_DISTANCE = 140;
+        public static final int FEEDER_CAN_FRONT_TRIGGER_DISTANCE = 140;
+        public static final int FEEDER_CAN_BACK_TRIGGER_DISTANCE = 440;
     }
 
     public static class CoralManipulatorConstants {
