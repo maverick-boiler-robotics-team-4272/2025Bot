@@ -14,6 +14,7 @@ import com.pathplanner.lib.commands.PathfindingCommand;
 
 import au.grapplerobotics.CanBridge;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.utils.commandUtils.PeriodicalUtil;
@@ -55,6 +56,8 @@ public class Robot extends LoggedRobot {
     PathfindingCommand.warmupCommand().schedule();
     
     RobotContainer.armevator.resetArm();
+
+    RobotController.setBrownoutVoltage(6.0);
   }
 
   @Override
