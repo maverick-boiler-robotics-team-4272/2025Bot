@@ -30,7 +30,9 @@ public class AutoGameCommand extends SequentialCommandGroup {
                 )
             ),
             new ParallelCommandGroup(
-                new FeederManipulatorCommand(feeder, coralManipulator, armevator, 1.0, 0.2),
+                new FeederManipulatorCommand(feeder, coralManipulator, armevator, 1.0, 0.2).andThen(
+                    new GoToNextArmevatorPoseState(armevator)
+                ),
                 new PathfindThenPathState(drivetrain, drivetrain::getNextPath).beforeStarting(
                     new ParallelRaceGroup(
                         new WaitUntilCommand(leaveOverride),
@@ -41,7 +43,8 @@ public class AutoGameCommand extends SequentialCommandGroup {
             ),
             new GoToNextArmevatorPoseState(armevator)
                 .raceWith(new IdleState(coralManipulator, armevator::getArmRotation)),
-            new WaitCommand(0.3).unless(() -> !armevator.nextIsL4()),
+            // new WaitCommand(0.3).unless(() -> !armevator.nextIsL4()),
+            new WaitUntilCommand(drivetrain::notRocking),
             new ConditionalCommand(
                 new CoralOutakeState(coralManipulator, 0.5).withTimeout(0.25),
                 new CoralOutakeState(coralManipulator, -0.5).withTimeout(0.25),
