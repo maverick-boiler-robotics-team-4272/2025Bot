@@ -17,13 +17,13 @@ import static frc.robot.constants.TunerConstants.kSpeedAt12Volts;
 public class SubsystemConstants {
     public static class DrivetrainConstants {
         public static  class AutoConstants {
-            public static final double TRANSLATION_MAX = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond);
-            public static final double TRANSLATION_MAX_A = 2.25;//3.0;
+            public static final double TRANSLATION_MAX = 4.5;
+            public static final double TRANSLATION_MAX_A = 2.75;//3.0;
             public static final Rotation2d ROTATION_MAX = Rotation2d.fromDegrees(560.0);
             public static final Rotation2d ROTATION_MAX_A = Rotation2d.fromDegrees(720.0);
 
             public static final double TRANSLATION_P = 10.0;
-            public static final double TRANSLATION_I = 0.0;
+            public static final double TRANSLATION_I = 0.00005; // This has to be greater that 0 I think
             public static final double TRANSLATION_D = 0.0;
 
             public static final double ROTATION_P = 10.0;
