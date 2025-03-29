@@ -11,8 +11,8 @@ public class HardwareMap {
 
     // Feeder
     public static final int FEEDER_MOTOR_ID = 31;
-    public static final int FEEDER_CAN_BACK_ID = 33;
-    public static final int FEEDER_CAN_FRONT_ID = 32;
+    public static final int FEEDER_CAN_BACK_ID = 32;
+    public static final int FEEDER_CAN_FRONT_ID = 33;
     
     //Climber 
     public static final int CLIMBER_MOTOR_ID = 41;
