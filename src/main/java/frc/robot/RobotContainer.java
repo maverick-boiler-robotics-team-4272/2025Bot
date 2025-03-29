@@ -135,7 +135,7 @@ public class RobotContainer {
                 armevator, 
                 feeder, 
                 coralManipulator,
-                () -> driverController.a().getAsBoolean()
+                () -> driverController.getHID().getAButtonPressed()
             ).repeatedly().withInterruptBehavior(InterruptionBehavior.kCancelIncoming)
         );
 
@@ -145,7 +145,7 @@ public class RobotContainer {
                 armevator, 
                 feeder, 
                 coralManipulator,
-                () -> driverController.a().getAsBoolean()
+                () -> driverController.getHID().getAButtonPressed()
             ).repeatedly().beforeStarting(
                 new AutoGamePrepCommand(
                     drivetrain, 
@@ -261,10 +261,6 @@ public class RobotContainer {
                 .alongWith(new AlgaeIntake(algaeManipulator)).repeatedly()
         );
 
-        buttonBoard.getButton(11).onTrue(
-            new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().LEFT_BARGE, getGlobalPositions().LEFT_BARGE_PATH)).ignoringDisable(true)
-        );
-
         buttonBoard.getButton(10).onTrue(
             new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().MIDDLE_BARGE, getGlobalPositions().MIDDLE_BARGE_PATH)).ignoringDisable(true)
         );
@@ -274,15 +270,7 @@ public class RobotContainer {
         );
 
         buttonBoard.getButton(11).whileTrue(
-            new BargeScoreCommand(armevator, algaeManipulator, () -> driverController.povLeft().getAsBoolean())
-        );
-
-        buttonBoard.getButton(10).whileTrue(
-            new BargeScoreCommand(armevator, algaeManipulator, () -> driverController.povLeft().getAsBoolean())
-        );
-
-        buttonBoard.getButton(9).whileTrue(
-            new BargeScoreCommand(armevator, algaeManipulator, () -> driverController.povLeft().getAsBoolean())
+            new BargeScoreCommand(armevator, algaeManipulator, () -> driverController.getHID().getPOV() == 270)
         );
 
         buttonBoard.getButton(14).whileTrue(
@@ -306,19 +294,27 @@ public class RobotContainer {
         );
 
         buttonBoard.getButton(14).whileTrue(
-            new GoToArmevatorPoseState(armevator, L1_ARMEVATOR_POSITION).repeatedly()
+            new GoToArmevatorPoseState(armevator, L1_ARMEVATOR_POSITION).repeatedly().beforeStarting(
+                new WaitCommand(0.1)
+            )
         );
 
         buttonBoard.getButton(13).whileTrue(
-            new GoToArmevatorPoseState(armevator, L2_ARMEVATOR_POSITION).repeatedly()
+            new GoToArmevatorPoseState(armevator, L2_ARMEVATOR_POSITION).repeatedly().beforeStarting(
+                new WaitCommand(0.1)
+            )
         );
 
         buttonBoard.getButton(16 + 2).whileTrue(
-            new GoToArmevatorPoseState(armevator, L3_ARMEVATOR_POSITION).repeatedly()
+            new GoToArmevatorPoseState(armevator, L3_ARMEVATOR_POSITION).repeatedly().beforeStarting(
+                new WaitCommand(0.1)
+            )
         );
 
         buttonBoard.getButton(16 + 1).whileTrue(
-            new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION).repeatedly()
+            new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION).repeatedly().beforeStarting(
+                new WaitCommand(0.1)
+            )
         );
 
         //Reef buttons
@@ -507,7 +503,7 @@ public class RobotContainer {
         autoChooser.addOption("Right three piece auto", new PathPlannerAuto("Right three piece auto"));
         autoChooser.setDefaultOption("Left three piece auto", new PathPlannerAuto("Left three piece auto"));
         autoChooser.setDefaultOption("Middle Auto", new PathPlannerAuto("Short Auto", false));
-        // autoChooser.addOption("Odometry test", new PathPlannerAuto("Wheel Diam"));
+        autoChooser.addOption("Odometry test", new PathPlannerAuto("Wheel Diam"));
         // autoChooser.setDefaultOption("Output name", new PathPlannerAuto("auto name", boolean mirror same field)); //ex
     }
 
