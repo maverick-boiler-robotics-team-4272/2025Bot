@@ -84,7 +84,7 @@ public class SubsystemConstants {
 
         public static final double MAX_ELEVATOR_HEIGHT = Meters.convertFrom(5, Feet);
 
-        public static final Rotation2d SAFE_ANGLE = Rotation2d.fromDegrees(0);
+        public static final Rotation2d SAFE_ANGLE = Rotation2d.fromDegrees(5);
         public static final double SAFE_ELEVATOR_HEIGHT = Meters.convertFrom(23, Inches);
         
         public static final double MAVCODER_OFFSET = 360.0 - 115.5;
