@@ -4,8 +4,12 @@
 
 package frc.robot.subsystems.feeder;
 
-import com.revrobotics.spark.SparkFlex;
-import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
+import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
+import com.ctre.phoenix6.configs.MotorOutputConfigs;
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.InvertedValue;
+import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -13,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import au.grapplerobotics.LaserCan;
 import au.grapplerobotics.ConfigurationFailedException;
 
+import static edu.wpi.first.units.Units.Amps;
 import static frc.robot.constants.HardwareMap.*;
 import static frc.robot.constants.SubsystemConstants.FeederConstants.*;
 
@@ -20,7 +25,6 @@ import static frc.robot.constants.SubsystemConstants.FeederConstants.*;
 import org.littletonrobotics.junction.AutoLog;
 import org.littletonrobotics.junction.Logger;
 
-import frc.robot.utils.hardware.VortexBuilder;
 import frc.robot.utils.logging.Loggable;
 
 public class Feeder extends SubsystemBase implements Loggable {
@@ -44,14 +48,23 @@ public class Feeder extends SubsystemBase implements Loggable {
   private LaserCan feederCanFront;
   private LaserCan feederCanBack;
 
-  public SparkFlex feederControllerMotor;
+  public TalonFX feederControllerMotor;
 
   public Feeder() {
-    feederControllerMotor = VortexBuilder.create(FEEDER_MOTOR_ID)
-        .withInversion(true)
-        .withCurrentLimit(60)
-        .withIdleMode(IdleMode.kBrake)
-        .build();
+    TalonFXConfiguration motorConfiguration = new TalonFXConfiguration()
+      .withCurrentLimits(
+            new CurrentLimitsConfigs()
+                .withStatorCurrentLimit(Amps.of(60))
+                .withStatorCurrentLimitEnable(true)
+      )
+      .withMotorOutput(
+        new MotorOutputConfigs()
+          .withNeutralMode(NeutralModeValue.Brake)
+          .withInverted(InvertedValue.CounterClockwise_Positive)
+      );
+
+    feederControllerMotor = new TalonFX(FEEDER_MOTOR_ID);
+    feederControllerMotor.getConfigurator().apply(motorConfiguration);
 
     initInputs();
 
