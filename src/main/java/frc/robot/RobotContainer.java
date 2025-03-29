@@ -261,10 +261,6 @@ public class RobotContainer {
                 .alongWith(new AlgaeIntake(algaeManipulator)).repeatedly()
         );
 
-        buttonBoard.getButton(11).onTrue(
-            new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().LEFT_BARGE, getGlobalPositions().LEFT_BARGE_PATH)).ignoringDisable(true)
-        );
-
         buttonBoard.getButton(10).onTrue(
             new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().MIDDLE_BARGE, getGlobalPositions().MIDDLE_BARGE_PATH)).ignoringDisable(true)
         );
