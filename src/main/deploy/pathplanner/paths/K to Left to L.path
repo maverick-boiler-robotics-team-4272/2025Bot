@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 13.943711670808625,
-        "y": 2.3653941472359157
+        "x": 14.249318662788005,
+        "y": 2.166394380958615
       },
       "isLocked": false,
       "linkedName": "AutoReefK"
@@ -20,21 +20,42 @@
         "y": 1.0466144480373771
       },
       "prevControl": {
-        "x": 15.251226573730765,
-        "y": 1.598979988739305
+        "x": 15.793341787726161,
+        "y": 1.2852887456841786
+      },
+      "nextControl": {
+        "x": 16.68081955442288,
+        "y": 0.8079401503905757
+      },
+      "isLocked": false,
+      "linkedName": "New left Coral station"
+    },
+    {
+      "anchor": {
+        "x": 13.729908221817261,
+        "y": 2.8014975898688306
+      },
+      "prevControl": {
+        "x": 14.751824146569685,
+        "y": 1.7683775011296925
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "New left Coral station"
+      "linkedName": "AutoperiodReefL"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1.0,
+      "rotationDegrees": 126.46200000000002
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [
     {
       "name": "Go home",
-      "waypointRelativePos": 0.04,
+      "waypointRelativePos": 0.10941609679116224,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -44,20 +65,20 @@
       }
     },
     {
-      "name": "Autonomous Feed",
-      "waypointRelativePos": 0.6095238095238092,
+      "name": "Feed to L4",
+      "waypointRelativePos": 0.48395581273014204,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Feed"
+          "name": "Feed to L4"
         }
       }
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 4.0,
-    "maxAcceleration": 3.0,
+    "maxVelocity": 4.25,
+    "maxAcceleration": 2.75,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -65,13 +86,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 126.46233721780271
+    "rotation": 120.9869625978407
   },
   "reversed": false,
-  "folder": "Auto paths",
+  "folder": "test auto paths",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 118.95099520746685
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

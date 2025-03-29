@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 12.110702054794519,
-        "y": 2.552482876712329
+        "x": 10.58514344262295,
+        "y": 2.898155737704918
       },
       "prevControl": null,
       "nextControl": {
-        "x": 12.288428575835168,
-        "y": 2.7734635052620638
+        "x": 11.58514344262295,
+        "y": 2.898155737704918
       },
       "isLocked": false,
-      "linkedName": "Coral_IJ"
+      "linkedName": null
     },
     {
       "anchor": {
@@ -20,8 +20,8 @@
         "y": 2.902047561866002
       },
       "prevControl": {
-        "x": 12.110764880680527,
-        "y": 2.6537890203839893
+        "x": 11.327806285184838,
+        "y": 2.902047561866002
       },
       "nextControl": null,
       "isLocked": false,
@@ -33,20 +33,20 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Uppies",
-      "waypointRelativePos": 0.01,
+      "name": "Go to L4",
+      "waypointRelativePos": 0.47343503419252814,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Next"
+          "name": "Go to L4"
         }
       }
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 2.5,
-    "maxAcceleration": 2.0,
+    "maxVelocity": 4.25,
+    "maxAcceleration": 2.75,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -57,10 +57,10 @@
     "rotation": 59.87476341053948
   },
   "reversed": false,
-  "folder": "Approch Paths",
+  "folder": "test auto paths",
   "idealStartingState": {
-    "velocity": 2.0,
-    "rotation": 58.72229713313359
+    "velocity": 0,
+    "rotation": 57.449996507806624
   },
   "useDefaultConstraints": false
 }

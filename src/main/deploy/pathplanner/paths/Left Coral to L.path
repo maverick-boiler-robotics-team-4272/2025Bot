@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 16.35,
-        "y": 1.031
+        "x": 16.23708067107452,
+        "y": 1.0466144480373771
       },
       "prevControl": null,
       "nextControl": {
-        "x": 15.431885761614272,
-        "y": 1.6243787709713682
+        "x": 15.31896643268879,
+        "y": 1.6399932190087454
       },
       "isLocked": false,
       "linkedName": "New left Coral station"
@@ -60,7 +60,7 @@
   "folder": "Auto paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 126.20340463792768
+    "rotation": 126.46233721780271
   },
   "useDefaultConstraints": true
 }
