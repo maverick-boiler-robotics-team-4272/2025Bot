@@ -94,6 +94,7 @@ public class Feeder extends SubsystemBase implements Loggable {
   }
 
   public boolean lidarFrontTripped() {
+    // TODO: make sure it doesnt die if no lidar
     LaserCan.Measurement measurementFront = feederCanFront.getMeasurement();
     if (measurementFront.distance_mm <= FEEDER_CAN_FRONT_TRIGGER_DISTANCE) {
       return true;
