@@ -34,6 +34,7 @@ public class Robot extends LoggedRobot {
       if(isReal()) {
         Logger.addDataReceiver(new WPILOGWriter("/U/Logs")); // Log to a USB stick ("/U/logs")
         SignalLogger.setPath("/U/Logs");
+        SignalLogger.stop();
       }
     } catch (Exception e) {
       DriverStation.reportWarning(e.getMessage(), e.getStackTrace());
