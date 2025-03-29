@@ -60,7 +60,7 @@ public class Feeder extends SubsystemBase implements Loggable {
       .withMotorOutput(
         new MotorOutputConfigs()
           .withNeutralMode(NeutralModeValue.Brake)
-          .withInverted(InvertedValue.CounterClockwise_Positive)
+          .withInverted(InvertedValue.Clockwise_Positive)
       );
 
     feederControllerMotor = new TalonFX(FEEDER_MOTOR_ID);
