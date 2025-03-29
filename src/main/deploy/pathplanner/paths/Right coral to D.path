@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 13.93,
-        "y": 5.31
+        "x": 13.839553122020725,
+        "y": 5.177285481346994
       },
       "prevControl": {
-        "x": 15.281363471672336,
-        "y": 6.2758188602751
+        "x": 15.19091659369306,
+        "y": 6.143104341622094
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "RedReefD"
     }
   ],
   "rotationTargets": [],
@@ -54,7 +54,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -121.05337038982837
+    "rotation": -119.77369562494148
   },
   "reversed": false,
   "folder": "Auto paths",

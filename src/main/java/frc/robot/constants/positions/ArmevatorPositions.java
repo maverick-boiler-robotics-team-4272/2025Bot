@@ -25,7 +25,7 @@ public class ArmevatorPositions {
     public static final ArmevatorPosition L4_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(147.775 - 360.0), Meters.convertFrom(30, Inches));
     // public static final ArmevatorPosition L4_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(147.775), Meters.convertFrom(30, Inches));
 
-    public static final ArmevatorPosition FEEDING_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(2), Meters.convertFrom(0, Inches));
+    public static final ArmevatorPosition FEEDING_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(0), Meters.convertFrom(0.0, Inches));
 
     public static final ArmevatorPosition ALGAE_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(37), Meters.convertFrom(4.0, Inches));
     public static final ArmevatorPosition ALGAE_ARMEVATOR_POSITION_TWO = new ArmevatorPosition(Rotation2d.fromDegrees(40), Meters.convertFrom(15, Inches));
