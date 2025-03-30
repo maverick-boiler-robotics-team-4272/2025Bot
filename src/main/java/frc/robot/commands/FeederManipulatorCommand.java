@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.coralManipulator.states.*;
 import frc.robot.subsystems.feeder.states.*;
-import frc.robot.subsystems.armevator.states.*;
+import frc.robot.subsystems.armevator.States.*;
 
 // Subsystems
 import frc.robot.subsystems.feeder.*;

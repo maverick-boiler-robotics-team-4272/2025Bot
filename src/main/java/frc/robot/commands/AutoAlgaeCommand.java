@@ -9,7 +9,7 @@ import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
 import frc.robot.subsystems.algaeManipulator.states.AlgaeIntake;
 import frc.robot.subsystems.algaeManipulator.states.AlgaeOuttake;
 import frc.robot.subsystems.armevator.Armevator;
-import frc.robot.subsystems.armevator.states.GoToArmevatorPoseState;
+import frc.robot.subsystems.armevator.States.GoToArmevatorPoseState;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
 import frc.robot.subsystems.drivetrain.states.PathfindingState;
 

@@ -5,7 +5,7 @@ import static frc.robot.constants.positions.ArmevatorPositions.FEEDING_ARMEVATOR
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.armevator.Armevator;
-import frc.robot.subsystems.armevator.states.GoToArmevatorPoseState;
+import frc.robot.subsystems.armevator.States.GoToArmevatorPoseState;
 import frc.robot.subsystems.coralManipulator.CoralManipulator;
 import frc.robot.subsystems.coralManipulator.states.CoralIntakeState;
 import frc.robot.subsystems.feeder.Feeder;
