@@ -507,8 +507,8 @@ public class RobotContainer {
         autoChooser.addOption("Right three piece auto", new PathPlannerAuto("Right three piece auto"));
         autoChooser.addOption("Left three piece auto", new PathPlannerAuto("Left three piece auto"));
         autoChooser.addOption("Middle Auto", new PathPlannerAuto("Short Auto", false));
-        autoChooser.addOption("Left four piece", new PathPlannerAuto("Left four piece"));
-        autoChooser.addOption("Right four piece", new PathPlannerAuto("Right four piece"));
+        autoChooser.addOption("Left four piece", new PathPlannerAuto("Left four piece auto"));
+        autoChooser.addOption("Right four piece", new PathPlannerAuto("Right four piece auto"));
         autoChooser.addOption("Odometry test", new PathPlannerAuto("Wheel Diam"));
         // autoChooser.setDefaultOption("Output name", new PathPlannerAuto("auto name", boolean mirror same field)); //ex
     }
