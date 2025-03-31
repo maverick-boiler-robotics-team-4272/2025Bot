@@ -36,6 +36,6 @@ public class FeederManipulatorCommand extends SequentialCommandGroup {
     }
 
     public FeederManipulatorCommand(Feeder feed, CoralManipulator coralManipulator, Armevator armevator) {
-        this(feed, coralManipulator, armevator, 1.0, 0.35);
+        this(feed, coralManipulator, armevator, 0.5, 0.35);
     }
 }
