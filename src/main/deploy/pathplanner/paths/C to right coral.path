@@ -3,48 +3,54 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 10.412799657534247,
-        "y": 6.143621575342466
+        "x": 14.067963571725647,
+        "y": 5.014577684244903
       },
       "prevControl": null,
       "nextControl": {
-        "x": 13.157711227852154,
-        "y": 5.293272796041313
+        "x": 14.73500892305946,
+        "y": 5.61159327057367
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "TautoC"
     },
     {
       "anchor": {
-        "x": 12.740545551362855,
-        "y": 5.402314652566589
+        "x": 16.32014104566188,
+        "y": 7.09195695078876
       },
       "prevControl": {
-        "x": 12.355027270927245,
-        "y": 5.503106387856003
+        "x": 15.63124858223107,
+        "y": 6.45871385156764
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "TautoE"
+      "linkedName": "AutoPeriodRightCoralStation"
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.49792531120332145,
-      "rotationDegrees": -59.99999999999999
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Go to L4",
-      "waypointRelativePos": 0.5,
+      "name": "Go home",
+      "waypointRelativePos": 0.04,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Go to L4"
+          "name": "Go home"
+        }
+      }
+    },
+    {
+      "name": "Autonomous Feed",
+      "waypointRelativePos": 0.5857142857142857,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Autonomous Feed"
         }
       }
     }
@@ -59,13 +65,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -60.068488159492176
+    "rotation": -125.72739822279966
   },
   "reversed": false,
   "folder": "Auto paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -119.77369562494148
   },
   "useDefaultConstraints": true
 }

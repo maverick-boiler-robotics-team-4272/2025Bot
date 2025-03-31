@@ -3,35 +3,47 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 15.476455479452055,
-        "y": 2.056635273972603
+        "x": 16.32014104566188,
+        "y": 7.09195695078876
       },
       "prevControl": null,
       "nextControl": {
-        "x": 15.472374293399296,
-        "y": 1.709103627171646
+        "x": 15.870145731333677,
+        "y": 6.246844019056951
       },
       "isLocked": false,
-      "linkedName": "TAG_LEFT_CORAL_STATION"
+      "linkedName": "AutoPeriodRightCoralStation"
     },
     {
       "anchor": {
-        "x": 15.476455479452055,
-        "y": 0.39131944444351463
+        "x": 14.425,
+        "y": 3.9047945205479455
       },
       "prevControl": {
-        "x": 15.481254048821429,
-        "y": 1.265873593842332
+        "x": 14.88881900499158,
+        "y": 4.629095687314909
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "TautoB"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "Feed to L4",
+      "waypointRelativePos": 0.0,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Feed to L4"
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 4.5,
     "maxAcceleration": 2.7,
@@ -42,13 +54,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 127.92646232503866
+    "rotation": -179.51853419416167
   },
   "reversed": false,
-  "folder": "Approch Paths",
+  "folder": "Auto paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 127.50414236027015
+    "rotation": -125.72739822279966
   },
   "useDefaultConstraints": true
 }
