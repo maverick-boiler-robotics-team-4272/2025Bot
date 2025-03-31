@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 16.23708067107452,
-        "y": 1.0466144480373771
+        "x": 16.29225,
+        "y": 1.0025
       },
       "prevControl": {
-        "x": 15.793341787726161,
-        "y": 1.2852887456841786
+        "x": 15.848511116651641,
+        "y": 1.2411742976468014
       },
       "nextControl": {
-        "x": 16.68081955442288,
-        "y": 0.8079401503905757
+        "x": 16.73598888334836,
+        "y": 0.7638257023531985
       },
       "isLocked": false,
       "linkedName": "New left Coral station"
@@ -92,7 +92,7 @@
   "folder": "test auto paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 119.99999999999999
+    "rotation": 118.95099520746685
   },
   "useDefaultConstraints": false
 }

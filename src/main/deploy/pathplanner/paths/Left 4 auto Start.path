@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 10.58514344262295,
-        "y": 2.902
+        "x": 10.43,
+        "y": 2.898155737704918
       },
       "prevControl": null,
       "nextControl": {
-        "x": 11.58514344262295,
-        "y": 2.902
+        "x": 11.43,
+        "y": 2.898155737704918
       },
       "isLocked": false,
       "linkedName": null
@@ -34,7 +34,7 @@
   "eventMarkers": [
     {
       "name": "Go to L4",
-      "waypointRelativePos": 0.12834224598930474,
+      "waypointRelativePos": 0.47343503419252814,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -59,8 +59,8 @@
   "reversed": false,
   "folder": "test auto paths",
   "idealStartingState": {
-    "velocity": 0.0,
-    "rotation": 59.99999999999999
+    "velocity": 0,
+    "rotation": 0.0
   },
   "useDefaultConstraints": false
 }
