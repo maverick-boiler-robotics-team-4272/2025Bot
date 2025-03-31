@@ -11,6 +11,7 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
+import edu.wpi.first.math.filter.MedianFilter;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 // Check if this version of LaserCan is correct
@@ -32,6 +33,7 @@ public class Feeder extends SubsystemBase implements Loggable {
   public static class FeederInputs {
     public double frontLidarDistance;
     public double backLidarDistance;
+    public double averageBackLidarDistance;
     public boolean frontLidarIsTripped;
     public boolean backLidarIsTripped;
   }
@@ -48,7 +50,9 @@ public class Feeder extends SubsystemBase implements Loggable {
   private LaserCan feederCanFront;
   private LaserCan feederCanBack;
 
-  public TalonFX feederControllerMotor;
+  private TalonFX feederControllerMotor;
+
+  private MedianFilter backLidarFilter = new MedianFilter(10);
 
   public Feeder() {
     TalonFXConfiguration motorConfiguration = new TalonFXConfiguration()
@@ -95,8 +99,7 @@ public class Feeder extends SubsystemBase implements Loggable {
 
   public boolean lidarFrontTripped() {
     // TODO: make sure it doesnt die if no lidar
-    LaserCan.Measurement measurementFront = feederCanFront.getMeasurement();
-    if (measurementFront.distance_mm <= FEEDER_CAN_FRONT_TRIGGER_DISTANCE) {
+    if (inputs.frontLidarDistance <= FEEDER_CAN_FRONT_TRIGGER_DISTANCE) {
       return true;
     }
     return false;
@@ -107,8 +110,7 @@ public class Feeder extends SubsystemBase implements Loggable {
   }
 
   public boolean lidarBackTripped() {
-    LaserCan.Measurement measurementBack = feederCanBack.getMeasurement();
-    if (measurementBack.distance_mm <= FEEDER_CAN_BACK_TRIGGER_DISTANCE) {
+    if (inputs.averageBackLidarDistance <= FEEDER_CAN_BACK_TRIGGER_DISTANCE) {
       return true;
     }
     return false;
@@ -127,8 +129,10 @@ public class Feeder extends SubsystemBase implements Loggable {
   public void periodic() {
     log("Subsystems", "Feeder");
 
-    inputs.frontLidarDistance = feederCanBack.getMeasurement().distance_mm;
-    inputs.backLidarDistance = feederCanFront.getMeasurement().distance_mm;
+    inputs.frontLidarDistance = feederCanFront.getMeasurement().distance_mm;
+    inputs.backLidarDistance = feederCanBack.getMeasurement().distance_mm;
+    inputs.averageBackLidarDistance = backLidarFilter.calculate(inputs.backLidarDistance);
+    inputs.frontLidarIsTripped = lidarFrontTripped();
     inputs.backLidarIsTripped = lidarBackTripped();
   }
 }
