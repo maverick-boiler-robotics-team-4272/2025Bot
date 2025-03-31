@@ -28,14 +28,14 @@ public class FeederManipulatorCommand extends SequentialCommandGroup {
                     new ParallelRaceGroup(
                         new FeedState(feed, feedPower),
                         new CoralIntakeState(coralManipulator, coralPower)
-                    ).until(feed::lidarBackNotTripped),
-                    new CoralIndexState(coralManipulator, feed::lidarBackTripped)
+                    ).until(feed::lidarBackNotTripped)//,
+                    // new CoralIndexState(coralManipulator, feed::lidarBackTripped)
                 )
             )
         );
     }
 
     public FeederManipulatorCommand(Feeder feed, CoralManipulator coralManipulator, Armevator armevator) {
-        this(feed, coralManipulator, armevator, 0.5, 0.35);
+        this(feed, coralManipulator, armevator, 0.5, 0.2);
     }
 }

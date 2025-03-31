@@ -26,11 +26,11 @@ public class AutoGameCommand extends SequentialCommandGroup {
         super(
             new PathfindingState(drivetrain, drivetrain::getNextFeedPose).raceWith(
                 new WaitCommand(1).andThen(
-                    new FeederManipulatorCommand(feeder, coralManipulator, armevator, 1.0, 0.2)
+                    new FeederManipulatorCommand(feeder, coralManipulator, armevator)
                 )
             ),
             new ParallelCommandGroup(
-                new FeederManipulatorCommand(feeder, coralManipulator, armevator, 1.0, 0.2).andThen(
+                new FeederManipulatorCommand(feeder, coralManipulator, armevator).andThen(
                     new GoToNextArmevatorPoseState(armevator)
                 ),
                 new PathfindThenPathState(drivetrain, drivetrain::getNextPath).beforeStarting(

@@ -392,7 +392,7 @@ public class RobotContainer {
 
     private void configureBackupBindings() {
         operatorController.leftTrigger().whileTrue(
-            new FeederManipulatorCommand(feeder, coralManipulator, armevator, 1.0, 0.3)
+            new FeederManipulatorCommand(feeder, coralManipulator, armevator)
         );
 
         operatorController.rightTrigger().whileTrue(
@@ -463,7 +463,7 @@ public class RobotContainer {
         NamedCommands.registerCommand("Feed to L4", 
             new SequentialCommandGroup(   
                 new FeederManipulatorCommand(
-                    feeder, coralManipulator, armevator, 1, 0.2
+                    feeder, coralManipulator, armevator
                 ),
                 new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION)
                     .raceWith(new IdleState(coralManipulator, armevator::getArmRotation))
@@ -476,7 +476,7 @@ public class RobotContainer {
 
         NamedCommands.registerCommand("Feed", 
             new FeederManipulatorCommand(
-                feeder, coralManipulator, armevator, 1, 0.2
+                feeder, coralManipulator, armevator
             )
         );
 
