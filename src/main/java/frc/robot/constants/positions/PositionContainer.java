@@ -36,7 +36,7 @@ public class PositionContainer {
     public final PathPlannerPath CORAL_K;
     public final PathPlannerPath CORAL_L;
 
-    public final PathPlannerPath ALGAE_AB;
+    public final PathPlannerPath SCORE_AB;
 
     public PositionContainer(boolean red) {
         //Variable = new Pose2d(red ? FIELD_LENGTH_METERS - x : x, y, red ? Rotation2d.fromDegrees(red degrees) : Rotation2d.fromDegrees(blue Degrees))
@@ -72,7 +72,8 @@ public class PositionContainer {
             CORAL_J = isRedSide() ? PathPlannerPath.fromPathFile("Find J").flipPath() : PathPlannerPath.fromPathFile("Find J");
             CORAL_K = isRedSide() ? PathPlannerPath.fromPathFile("Find K").flipPath() : PathPlannerPath.fromPathFile("Find K");
             CORAL_L = isRedSide() ? PathPlannerPath.fromPathFile("Find L").flipPath() : PathPlannerPath.fromPathFile("Find L");
-            ALGAE_AB = isRedSide() ? PathPlannerPath.fromPathFile("Find AB").flipPath() : PathPlannerPath.fromPathFile("Find AB");
+            
+            SCORE_AB = isRedSide() ? PathPlannerPath.fromPathFile("Find AB").flipPath() : PathPlannerPath.fromPathFile("Find AB");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

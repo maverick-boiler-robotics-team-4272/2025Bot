@@ -33,13 +33,24 @@ public class AutoGameCommand extends SequentialCommandGroup {
                 new FeederManipulatorCommand(feeder, coralManipulator, armevator).andThen(
                     new GoToNextArmevatorPoseState(armevator)
                 ),
-                new PathfindThenPathState(drivetrain, drivetrain::getNextPath).beforeStarting(
-                    new ParallelRaceGroup(
-                        new WaitUntilCommand(leaveOverride),
-                        new WaitUntilCommand(feeder::lidarBackTripped),
-                        new WaitUntilCommand(feeder::lidarFrontTripped)
-                    )
-                )   
+                new ConditionalCommand(
+                    new PathfindThenPathState(drivetrain, drivetrain::getNextPath).beforeStarting(
+                        new ParallelRaceGroup(
+                            new WaitUntilCommand(leaveOverride),
+                            new WaitUntilCommand(feeder::lidarBackTripped),
+                            new WaitUntilCommand(feeder::lidarFrontTripped)
+                        )
+                    ), 
+                    new PathfindThenPathState(drivetrain, drivetrain::getNextMiddlePath).beforeStarting(
+                        new ParallelRaceGroup(
+                            new WaitUntilCommand(leaveOverride),
+                            new WaitUntilCommand(feeder::lidarBackTripped),
+                            new WaitUntilCommand(feeder::lidarFrontTripped)
+                        )
+                    ),
+                    armevator::nextIsL1
+                )
+                   
             ),
             new GoToNextArmevatorPoseState(armevator)
                 .raceWith(new IdleState(coralManipulator, armevator::getArmRotation)),
