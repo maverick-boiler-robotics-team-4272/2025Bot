@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.Command.InterruptionBehavior;
@@ -30,8 +29,8 @@ import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
 import frc.robot.subsystems.algaeManipulator.states.AlgaeIdle;
 import frc.robot.subsystems.algaeManipulator.states.AlgaeIntake;
 import frc.robot.subsystems.armevator.Armevator;
-import frc.robot.subsystems.armevator.states.GoToArmevatorPoseState;
-import frc.robot.subsystems.armevator.states.ZeroState;
+import frc.robot.subsystems.armevator.States.GoToArmevatorPoseState;
+import frc.robot.subsystems.armevator.States.ZeroState;
 import frc.robot.subsystems.climber.Climber;
 import frc.robot.subsystems.climber.states.LowerState;
 import frc.robot.subsystems.climber.states.ClimbState;
@@ -136,7 +135,7 @@ public class RobotContainer {
                 armevator, 
                 feeder, 
                 coralManipulator,
-                () -> driverController.a().getAsBoolean()
+                () -> driverController.getHID().getAButtonPressed()
             ).repeatedly().withInterruptBehavior(InterruptionBehavior.kCancelIncoming)
         );
 
@@ -146,7 +145,7 @@ public class RobotContainer {
                 armevator, 
                 feeder, 
                 coralManipulator,
-                () -> driverController.a().getAsBoolean()
+                () -> driverController.getHID().getAButtonPressed()
             ).repeatedly().beforeStarting(
                 new AutoGamePrepCommand(
                     drivetrain, 
@@ -262,10 +261,6 @@ public class RobotContainer {
                 .alongWith(new AlgaeIntake(algaeManipulator)).repeatedly()
         );
 
-        buttonBoard.getButton(11).onTrue(
-            new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().LEFT_BARGE, getGlobalPositions().LEFT_BARGE_PATH)).ignoringDisable(true)
-        );
-
         buttonBoard.getButton(10).onTrue(
             new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().MIDDLE_BARGE, getGlobalPositions().MIDDLE_BARGE_PATH)).ignoringDisable(true)
         );
@@ -275,15 +270,7 @@ public class RobotContainer {
         );
 
         buttonBoard.getButton(11).whileTrue(
-            new BargeScoreCommand(armevator, algaeManipulator, () -> driverController.povLeft().getAsBoolean())
-        );
-
-        buttonBoard.getButton(10).whileTrue(
-            new BargeScoreCommand(armevator, algaeManipulator, () -> driverController.povLeft().getAsBoolean())
-        );
-
-        buttonBoard.getButton(9).whileTrue(
-            new BargeScoreCommand(armevator, algaeManipulator, () -> driverController.povLeft().getAsBoolean())
+            new BargeScoreCommand(armevator, algaeManipulator, () -> driverController.getHID().getPOV() == 270)
         );
 
         buttonBoard.getButton(14).whileTrue(
@@ -307,19 +294,27 @@ public class RobotContainer {
         );
 
         buttonBoard.getButton(14).whileTrue(
-            new GoToArmevatorPoseState(armevator, L1_ARMEVATOR_POSITION).repeatedly()
+            new GoToArmevatorPoseState(armevator, L1_ARMEVATOR_POSITION).repeatedly().beforeStarting(
+                new WaitCommand(0.1)
+            )
         );
 
         buttonBoard.getButton(13).whileTrue(
-            new GoToArmevatorPoseState(armevator, L2_ARMEVATOR_POSITION).repeatedly()
+            new GoToArmevatorPoseState(armevator, L2_ARMEVATOR_POSITION).repeatedly().beforeStarting(
+                new WaitCommand(0.1)
+            )
         );
 
         buttonBoard.getButton(16 + 2).whileTrue(
-            new GoToArmevatorPoseState(armevator, L3_ARMEVATOR_POSITION).repeatedly()
+            new GoToArmevatorPoseState(armevator, L3_ARMEVATOR_POSITION).repeatedly().beforeStarting(
+                new WaitCommand(0.1)
+            )
         );
 
         buttonBoard.getButton(16 + 1).whileTrue(
-            new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION).repeatedly()
+            new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION).repeatedly().beforeStarting(
+                new WaitCommand(0.1)
+            )
         );
 
         //Reef buttons
@@ -487,43 +482,6 @@ public class RobotContainer {
                 feeder, coralManipulator, armevator, 1, 0.2
             )
         );
-
-        NamedCommands.registerCommand("Auto Algee",
-            new ParallelCommandGroup(
-                new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION),
-                new AlgaeIntake(algaeManipulator)
-            )
-        );
-
-        NamedCommands.registerCommand("Auto Algee two",
-        new ParallelCommandGroup(
-            new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION_TWO),
-            new AlgaeIntake(algaeManipulator)
-        )
-    );
-
-        NamedCommands.registerCommand("Auto Algee High",
-            new ParallelCommandGroup(
-                new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION_TWO),
-                new AlgaeIntake(algaeManipulator)
-            ).withTimeout(1.5)
-        );
-
-        NamedCommands.registerCommand("Auto Algee Low",
-            new ParallelCommandGroup(
-                new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION),
-                new AlgaeIntake(algaeManipulator)
-            ).withTimeout(1.5)
-        );
-        
-        NamedCommands.registerCommand("Auto Algee Barge",
-            new ParallelCommandGroup(
-                new GoToArmevatorPoseState(armevator, BARGE_PREP_ARMEVATOR_POSITION).andThen(
-                    new GoToArmevatorPoseState(armevator, BARGE_ARMEVATOR_POSITION)
-                ),
-                new AlgaeIntake(algaeManipulator)
-            ).withTimeout(2.5)
-        );
     }
 
     private void setupAutos() {
@@ -538,13 +496,10 @@ public class RobotContainer {
 
         // autoChooser.addOption("Wheel Diam", new PathPlannerAuto("Wheel Diam"));
         autoChooser.addOption("Left Auto", new PathPlannerAuto("Left Two Piece auto", false));
-        autoChooser.setDefaultOption("Right Auto", new PathPlannerAuto("Right Two Piece auto", false));
+        autoChooser.addOption("Right Auto", new PathPlannerAuto("Right Two Piece auto", false));
         autoChooser.addOption("Right three piece auto", new PathPlannerAuto("Right three piece auto"));
-        autoChooser.addOption("Left three piece auto", new PathPlannerAuto("Left three piece auto"));
-        autoChooser.addOption("Middle Auto", new PathPlannerAuto("Short Auto", false));
-        autoChooser.addOption("Left four piece", new PathPlannerAuto("Left four piece auto"));
-        autoChooser.addOption("Right four piece", new PathPlannerAuto("Right four piece auto"));
-        autoChooser.addOption("One Coral Two Algee auto", new PathPlannerAuto("One Coral Two Algee auto"));
+        autoChooser.setDefaultOption("Left three piece auto", new PathPlannerAuto("Left three piece auto"));
+        autoChooser.setDefaultOption("Middle Auto", new PathPlannerAuto("Short Auto", false));
         autoChooser.addOption("Odometry test", new PathPlannerAuto("Wheel Diam"));
         // autoChooser.setDefaultOption("Output name", new PathPlannerAuto("auto name", boolean mirror same field)); //ex
     }
