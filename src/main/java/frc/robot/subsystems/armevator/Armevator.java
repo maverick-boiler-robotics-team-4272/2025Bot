@@ -100,7 +100,7 @@ public class Armevator extends SubsystemBase implements Loggable {
             .withInversion(false)
             .withPIDParams(ARM_P, ARM_I, ARM_D)
             .withPositionConversionFactor(ARM_GEAR_RATIO)
-            .withOutputRange(-0.8, 0.75)
+            .withOutputRange(-0.7, 0.75)
             .withPosition(getArmEncoderRotation().getRotations())
             .build();
 
