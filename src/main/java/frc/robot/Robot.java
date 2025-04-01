@@ -57,7 +57,7 @@ public class Robot extends LoggedRobot {
     
     RobotContainer.armevator.resetArm();
 
-    RobotController.setBrownoutVoltage(6.0);
+    RobotController.setBrownoutVoltage(6.25);
   }
 
   @Override
