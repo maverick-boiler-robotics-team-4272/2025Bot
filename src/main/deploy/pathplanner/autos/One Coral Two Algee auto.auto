@@ -31,13 +31,43 @@
         {
           "type": "named",
           "data": {
+            "name": "Auto Algee Low"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "GH Algee to Barge"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Auto Algee Barge "
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Barge to IJ Algee"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
             "name": "Auto Algee High"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": null
+            "pathName": "IJ Algee to Barge"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Auto Algee Barge "
           }
         }
       ]

@@ -491,19 +491,42 @@ public class RobotContainer {
             )
         );
 
-        NamedCommands.registerCommand("Auto Algee High",
+        NamedCommands.registerCommand("Auto Algee",
             new ParallelCommandGroup(
-                new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION_TWO),
+                new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION),
                 new AlgaeIntake(algaeManipulator)
             )
         );
 
-        NamedCommands.registerCommand("Auto Algee Low",
+        NamedCommands.registerCommand("Auto Algee two",
         new ParallelCommandGroup(
-            new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION),
+            new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION_TWO),
             new AlgaeIntake(algaeManipulator)
         )
     );
+
+        NamedCommands.registerCommand("Auto Algee High",
+            new ParallelCommandGroup(
+                new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION_TWO),
+                new AlgaeIntake(algaeManipulator)
+            ).withTimeout(1.5)
+        );
+
+        NamedCommands.registerCommand("Auto Algee Low",
+            new ParallelCommandGroup(
+                new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION),
+                new AlgaeIntake(algaeManipulator)
+            ).withTimeout(1.5)
+        );
+        
+        NamedCommands.registerCommand("Auto Algee Barge",
+            new ParallelCommandGroup(
+                new GoToArmevatorPoseState(armevator, BARGE_PREP_ARMEVATOR_POSITION).andThen(
+                    new GoToArmevatorPoseState(armevator, BARGE_ARMEVATOR_POSITION)
+                ),
+                new AlgaeIntake(algaeManipulator)
+            ).withTimeout(2.5)
+        );
     }
 
     private void setupAutos() {
