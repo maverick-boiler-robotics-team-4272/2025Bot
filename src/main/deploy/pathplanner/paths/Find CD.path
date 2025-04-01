@@ -4,24 +4,24 @@
     {
       "anchor": {
         "x": 13.958861301369863,
-        "y": 2.5374571917808213
+        "y": 5.542594178082192
       },
       "prevControl": null,
       "nextControl": {
-        "x": 13.712216874420127,
-        "y": 2.5782803060010284
+        "x": 14.041883173696968,
+        "y": 5.257508603924497
       },
       "isLocked": false,
-      "linkedName": "Coral_KL"
+      "linkedName": "Coral_CD"
     },
     {
       "anchor": {
-        "x": 13.40291095890411,
-        "y": 2.6714459984876533
+        "x": 13.986780298402577,
+        "y": 5.0775525215437645
       },
       "prevControl": {
-        "x": 13.649570840640179,
-        "y": 2.6307163687084736
+        "x": 13.94375156318482,
+        "y": 5.358750621767119
       },
       "nextControl": null,
       "isLocked": false,
@@ -31,22 +31,10 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [
-    {
-      "name": "Uppies",
-      "waypointRelativePos": 0.01,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "Next"
-        }
-      }
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 2.0,
-    "maxAcceleration": 1.5,
+    "maxVelocity": 4.0,
+    "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -54,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 120.23833531329764
+    "rotation": -119.99999999999999
   },
   "reversed": false,
   "folder": "Approch Paths",
   "idealStartingState": {
-    "velocity": 1.5,
-    "rotation": 119.99999999999999
+    "velocity": 0,
+    "rotation": -119.99999999999999
   },
-  "useDefaultConstraints": false
+  "useDefaultConstraints": true
 }

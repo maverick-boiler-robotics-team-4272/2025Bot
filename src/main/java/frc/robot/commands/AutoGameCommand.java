@@ -34,14 +34,14 @@ public class AutoGameCommand extends SequentialCommandGroup {
                     new GoToNextArmevatorPoseState(armevator)
                 ),
                 new ConditionalCommand(
-                    new PathfindThenPathState(drivetrain, drivetrain::getNextPath).beforeStarting(
+                    new PathfindThenPathState(drivetrain, drivetrain::getNextMiddlePath).beforeStarting(
                         new ParallelRaceGroup(
                             new WaitUntilCommand(leaveOverride),
                             new WaitUntilCommand(feeder::lidarBackTripped),
                             new WaitUntilCommand(feeder::lidarFrontTripped)
                         )
                     ), 
-                    new PathfindThenPathState(drivetrain, drivetrain::getNextMiddlePath).beforeStarting(
+                    new PathfindThenPathState(drivetrain, drivetrain::getNextPath).beforeStarting(
                         new ParallelRaceGroup(
                             new WaitUntilCommand(leaveOverride),
                             new WaitUntilCommand(feeder::lidarBackTripped),

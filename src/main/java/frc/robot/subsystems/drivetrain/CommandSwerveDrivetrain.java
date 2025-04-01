@@ -98,7 +98,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         inputs.nextBargePose = getGlobalPositions().MIDDLE_BARGE;
         nextPath = getGlobalPositions().CORAL_A;
         nextBargePath = getGlobalPositions().MIDDLE_BARGE_PATH;
-        nextAlgaePath = getGlobalPositions().ALGAE_AB;
+        nextAlgaePath = getGlobalPositions().SCORE_AB;
 
         inputs.getAlgae = false;
 
@@ -218,7 +218,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         return nextAlgaePath;
     }
 
-    public PathPlannerPath setNextMiddlePath(PathPlannerPath path) {
+    public void setNextMiddlePath(PathPlannerPath path) {
         nextPath = path;
     }
     /**

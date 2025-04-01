@@ -339,52 +339,81 @@ public class RobotContainer {
 
         //Coral C/CD
         buttonBoard.getButton(13+16).whileTrue(
-            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_CD, getGlobalPositions().CORAL_C)).ignoringDisable(true)
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().SCORE_CD)).ignoringDisable(true), 
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_CD, getGlobalPositions().CORAL_C)).ignoringDisable(true)
+            )        
         );
 
         //Coral D/CD
         buttonBoard.getButton(15).whileTrue(
-            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_CD, getGlobalPositions().CORAL_D)).ignoringDisable(true)
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().SCORE_CD)).ignoringDisable(true), 
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_CD, getGlobalPositions().CORAL_D)).ignoringDisable(true)
+            )
         );
 
         //Coral E/EF
         buttonBoard.getButton(14+16).whileTrue(
-            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_EF, getGlobalPositions().CORAL_E)).ignoringDisable(true)
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().SCORE_EF)).ignoringDisable(true), 
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_EF, getGlobalPositions().CORAL_E)).ignoringDisable(true)
+            )
         );
 
         //Coral F/EF
         buttonBoard.getButton(12).whileTrue(
-            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_EF, getGlobalPositions().CORAL_F)).ignoringDisable(true)
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().SCORE_EF)).ignoringDisable(true), 
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_EF, getGlobalPositions().CORAL_F)).ignoringDisable(true)
+            )
         );
 
         //Coral G/GH
         buttonBoard.getButton(5+16).whileTrue(
-            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_GH, getGlobalPositions().CORAL_G)).ignoringDisable(true)  
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().SCORE_GH)).ignoringDisable(true), 
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_GH, getGlobalPositions().CORAL_G)).ignoringDisable(true)
+            )
         );
 
         //Coral H/GH
         buttonBoard.getButton(6+16).whileTrue(
-            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_GH, getGlobalPositions().CORAL_H)).ignoringDisable(true)  
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().SCORE_GH)).ignoringDisable(true), 
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_GH, getGlobalPositions().CORAL_H)).ignoringDisable(true)
+            )
         );
 
         //Coral I/IJ
         buttonBoard.getButton(7+16).whileTrue(
-            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_IJ, getGlobalPositions().CORAL_I)).ignoringDisable(true)  
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().SCORE_IJ)).ignoringDisable(true), 
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_IJ, getGlobalPositions().CORAL_I)).ignoringDisable(true)
+            )        
         );
 
         //Coral J/IJ
         buttonBoard.getButton(8+16).whileTrue(
-            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_IJ, getGlobalPositions().CORAL_J)).ignoringDisable(true)  
-        );
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().SCORE_IJ)).ignoringDisable(true), 
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_IJ, getGlobalPositions().CORAL_J)).ignoringDisable(true)
+            )        );
 
         //Coral K/KL
         buttonBoard.getButton(9+16).whileTrue(
-            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_KL, getGlobalPositions().CORAL_K)).ignoringDisable(true)
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().SCORE_KL)).ignoringDisable(true), 
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_KL, getGlobalPositions().CORAL_K)).ignoringDisable(true)
+            )        
         );
 
         //Coral L/KL
         buttonBoard.getButton(10+16).whileTrue(
-            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_KL, getGlobalPositions().CORAL_L)).ignoringDisable(true)
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().SCORE_KL)).ignoringDisable(true), 
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_KL, getGlobalPositions().CORAL_L)).ignoringDisable(true)
+            )        
         );
 
         buttonBoard.getButton(1).whileTrue(

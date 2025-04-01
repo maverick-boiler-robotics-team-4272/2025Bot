@@ -221,7 +221,7 @@
   "folder": "Field positions",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.5682415460892226
+    "rotation": 0.0
   },
   "useDefaultConstraints": true
 }
