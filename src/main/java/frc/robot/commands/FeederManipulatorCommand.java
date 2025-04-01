@@ -26,7 +26,7 @@ public class FeederManipulatorCommand extends SequentialCommandGroup {
                         new CoralIntakeState(coralManipulator, coralPower)
                     ).until(feed::lidarBackTripped),
                     new ParallelRaceGroup(
-                        new FeedState(feed, feedPower),
+                        new FeedState(feed, 1.0),
                         new CoralIntakeState(coralManipulator, coralPower)
                     ).until(feed::lidarBackNotTripped),
                     new IdleState(coralManipulator, armevator::getArmRotation).withTimeout(0.1)
@@ -36,6 +36,6 @@ public class FeederManipulatorCommand extends SequentialCommandGroup {
     }
 
     public FeederManipulatorCommand(Feeder feed, CoralManipulator coralManipulator, Armevator armevator) {
-        this(feed, coralManipulator, armevator, 0.5, 0.1);
+        this(feed, coralManipulator, armevator, 0.65, 0.1);
     }
 }
