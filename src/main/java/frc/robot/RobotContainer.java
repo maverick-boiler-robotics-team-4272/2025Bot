@@ -23,15 +23,15 @@ import frc.robot.commands.AutoGamePrepCommand;
 import frc.robot.commands.AutonomousFeedTillFirstLidar;
 import frc.robot.commands.BargeScoreCommand;
 import frc.robot.commands.FeederManipulatorCommand;
+import frc.robot.commands.GoToArmevatorPosAndGrip;
 import frc.robot.constants.TunerConstants;
 import frc.robot.constants.positions.ArmevatorPositions.ArmevatorPosition;
 import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
 import frc.robot.subsystems.algaeManipulator.states.AlgaeIdle;
 import frc.robot.subsystems.algaeManipulator.states.AlgaeIntake;
 import frc.robot.subsystems.armevator.Armevator;
-import frc.robot.subsystems.armevator.States.GoToArmevatorPoseState;
-import frc.robot.subsystems.armevator.States.GoToNextArmevatorPoseState;
-import frc.robot.subsystems.armevator.States.ZeroState;
+import frc.robot.subsystems.armevator.states.GoToArmevatorPoseState;
+import frc.robot.subsystems.armevator.states.ZeroState;
 import frc.robot.subsystems.climber.Climber;
 import frc.robot.subsystems.climber.states.LowerState;
 import frc.robot.subsystems.climber.states.ClimbState;
@@ -450,8 +450,7 @@ public class RobotContainer {
         NamedCommands.registerCommand(
             "Score L4",
             new SequentialCommandGroup(
-                new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION)
-                    .raceWith(new IdleState(coralManipulator, armevator::getArmRotation)), 
+                new GoToArmevatorPosAndGrip(armevator, coralManipulator, L4_ARMEVATOR_POSITION),
                 new WaitCommand(0.2),
                 new CoralOutakeState(coralManipulator, 1).withTimeout(.25)
             )
@@ -470,13 +469,11 @@ public class RobotContainer {
                 new FeederManipulatorCommand(
                     feeder, coralManipulator, armevator
                 ),
-                new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION)
-                    .raceWith(new IdleState(coralManipulator, armevator::getArmRotation))
+                new GoToArmevatorPosAndGrip(armevator, coralManipulator, L4_ARMEVATOR_POSITION)
             )
         );
         NamedCommands.registerCommand("Next", 
-            new GoToNextArmevatorPoseState(armevator)
-                .raceWith(new IdleState(coralManipulator, armevator::getArmRotation))
+            new GoToArmevatorPosAndGrip(armevator, coralManipulator)
         );
 
         NamedCommands.registerCommand("Feed", 
