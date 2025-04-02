@@ -36,14 +36,19 @@ public class PositionContainer {
     public final PathPlannerPath CORAL_K;
     public final PathPlannerPath CORAL_L;
 
-    public final PathPlannerPath ALGAE_AB;
+    public final PathPlannerPath SCORE_AB;
+    public final PathPlannerPath SCORE_CD;
+    public final PathPlannerPath SCORE_EF;
+    public final PathPlannerPath SCORE_GH;
+    public final PathPlannerPath SCORE_IJ;
+    public final PathPlannerPath SCORE_KL;
 
     public PositionContainer(boolean red) {
         //Variable = new Pose2d(red ? FIELD_LENGTH_METERS - x : x, y, red ? Rotation2d.fromDegrees(red degrees) : Rotation2d.fromDegrees(blue Degrees))
         //Insert Precomputed positions here
 		CORAL_GH = new Pose2d(red ? 11.2542 : FIELD_LENGTH_METERS - 11.2542, red ? 3.9799 : FIELD_WIDTH_METERS - 3.9799, red ? Rotation2d.fromDegrees(0) : Rotation2d.fromDegrees(180));
 		CORAL_IJ = new Pose2d(red ? 12.1107 : FIELD_LENGTH_METERS - 12.1107, red ? 2.5525 : FIELD_WIDTH_METERS - 2.5525, red ? Rotation2d.fromDegrees(60) : Rotation2d.fromDegrees(-120));
-		CORAL_KL = new Pose2d(red ? 13.9589 : FIELD_LENGTH_METERS - 13.9589, red ? 2.5375 : FIELD_WIDTH_METERS - 2.5375, red ? Rotation2d.fromDegrees(120) : Rotation2d.fromDegrees(-60));
+		CORAL_KL = new Pose2d(red ? 14.7471 : FIELD_LENGTH_METERS - 14.7471, red ? 3.8581 : FIELD_WIDTH_METERS - 3.8581, red ? Rotation2d.fromDegrees(120) : Rotation2d.fromDegrees(-60));
 		CORAL_AB = new Pose2d(red ? 14.8153 : FIELD_LENGTH_METERS - 14.8153, red ? 3.9649 : FIELD_WIDTH_METERS - 3.9649, red ? Rotation2d.fromDegrees(180) : Rotation2d.fromDegrees(0));
 		CORAL_CD = new Pose2d(red ? 13.9589 : FIELD_LENGTH_METERS - 13.9589, red ? 5.5426 : FIELD_WIDTH_METERS - 5.5426, red ? Rotation2d.fromDegrees(-120) : Rotation2d.fromDegrees(60));
 		CORAL_EF = new Pose2d(red ? 12.1558 : FIELD_LENGTH_METERS - 12.1558, red ? 5.5426 : FIELD_WIDTH_METERS - 5.5426, red ? Rotation2d.fromDegrees(-60) : Rotation2d.fromDegrees(120));
@@ -72,7 +77,13 @@ public class PositionContainer {
             CORAL_J = isRedSide() ? PathPlannerPath.fromPathFile("Find J").flipPath() : PathPlannerPath.fromPathFile("Find J");
             CORAL_K = isRedSide() ? PathPlannerPath.fromPathFile("Find K").flipPath() : PathPlannerPath.fromPathFile("Find K");
             CORAL_L = isRedSide() ? PathPlannerPath.fromPathFile("Find L").flipPath() : PathPlannerPath.fromPathFile("Find L");
-            ALGAE_AB = isRedSide() ? PathPlannerPath.fromPathFile("Find AB").flipPath() : PathPlannerPath.fromPathFile("Find AB");
+            
+            SCORE_AB = isRedSide() ? PathPlannerPath.fromPathFile("Find AB").flipPath() : PathPlannerPath.fromPathFile("Find AB");
+            SCORE_CD = isRedSide() ? PathPlannerPath.fromPathFile("Find CD").flipPath() : PathPlannerPath.fromPathFile("Find CD");
+            SCORE_EF = isRedSide() ? PathPlannerPath.fromPathFile("Find EF").flipPath() : PathPlannerPath.fromPathFile("Find EF");
+            SCORE_GH = isRedSide() ? PathPlannerPath.fromPathFile("Find GH").flipPath() : PathPlannerPath.fromPathFile("Find GH");
+            SCORE_IJ = isRedSide() ? PathPlannerPath.fromPathFile("Find IJ").flipPath() : PathPlannerPath.fromPathFile("Find IJ");
+            SCORE_KL = isRedSide() ? PathPlannerPath.fromPathFile("Find KL").flipPath() : PathPlannerPath.fromPathFile("Find KL");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

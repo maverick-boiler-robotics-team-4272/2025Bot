@@ -23,6 +23,8 @@ import static frc.robot.constants.HardwareMap.*;
 import static frc.robot.constants.SubsystemConstants.ArmevatorConstants.*;
 import static frc.robot.constants.positions.ArmevatorPositions.L1_ARMEVATOR_POSITION;
 import static frc.robot.constants.positions.ArmevatorPositions.L4_ARMEVATOR_POSITION;
+import static frc.robot.constants.positions.ArmevatorPositions.ALGAE_ARMEVATOR_POSITION;
+import static frc.robot.constants.positions.ArmevatorPositions.ALGAE_ARMEVATOR_POSITION_TWO;
 
 public class Armevator extends SubsystemBase implements Loggable {
     @AutoLog
@@ -128,6 +130,14 @@ public class Armevator extends SubsystemBase implements Loggable {
 
     public boolean nextIsL4() {
         return nextPose == L4_ARMEVATOR_POSITION;
+    }
+
+    public boolean nextIsAlgae1() {
+        return nextPose == ALGAE_ARMEVATOR_POSITION;
+    }
+
+    public boolean nextIsAlgae2() {
+        return nextPose == ALGAE_ARMEVATOR_POSITION_TWO;
     }
 
     public boolean nextIsL1() {

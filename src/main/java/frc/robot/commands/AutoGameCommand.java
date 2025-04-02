@@ -41,13 +41,24 @@ public class AutoGameCommand extends SequentialCommandGroup {
                         armevator::nextIsL4
                     )
                 ),
-                new PathfindThenPathState(drivetrain, drivetrain::getNextPath).beforeStarting(
-                    new ParallelRaceGroup(
-                        new WaitUntilCommand(leaveOverride),
-                        new WaitUntilCommand(feeder::lidarBackTripped),
-                        new WaitUntilCommand(feeder::lidarFrontTripped)
-                    )
-                )   
+                new ConditionalCommand(
+                    new PathfindThenPathState(drivetrain, drivetrain::getNextMiddlePath).beforeStarting(
+                        new ParallelRaceGroup(
+                            new WaitUntilCommand(leaveOverride),
+                            new WaitUntilCommand(feeder::lidarBackTripped),
+                            new WaitUntilCommand(feeder::lidarFrontTripped)
+                        )
+                    ), 
+                    new PathfindThenPathState(drivetrain, drivetrain::getNextPath).beforeStarting(
+                        new ParallelRaceGroup(
+                            new WaitUntilCommand(leaveOverride),
+                            new WaitUntilCommand(feeder::lidarBackTripped),
+                            new WaitUntilCommand(feeder::lidarFrontTripped)
+                        )
+                    ),
+                    armevator::nextIsL1
+                )
+                   
             ),
             new GoToArmevatorPosAndGrip(armevator, coralManipulator),
             new WaitCommand(0.3).unless(() -> !armevator.nextIsL4()),

@@ -96,7 +96,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         inputs.nextBargePose = getGlobalPositions().MIDDLE_BARGE;
         nextPath = getGlobalPositions().CORAL_A;
         nextBargePath = getGlobalPositions().MIDDLE_BARGE_PATH;
-        nextAlgaePath = getGlobalPositions().ALGAE_AB;
+        nextAlgaePath = getGlobalPositions().SCORE_AB;
 
         inputs.getAlgae = false;
 
@@ -107,6 +107,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
     // The next path to run when the robot is pathfinding
     private PathPlannerPath nextPath;
+    private PathPlannerPath nextMiddlePath;
     private PathPlannerPath nextBargePath;
     private PathPlannerPath nextAlgaePath;
     
@@ -209,7 +210,15 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     public PathPlannerPath getNextAlgaePath() {
         return nextAlgaePath;
     }
-
+    /**
+     * Sets the next pose to pathfind to and path to follow during the autoteleop gameplay for scoring
+     *
+     * @param path the path to follow after reaching the starting point
+     */
+    public void setNextMiddlePath(Pose2d next, PathPlannerPath path) {
+        inputs.nextScorePose = next;
+        nextMiddlePath = path;
+    }
     /**
      * Sets the next pose to pathfind to and path to follow during the autoteleop gameplay for scoring
      *
@@ -229,7 +238,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     public void setNextScorePose(Pose2d next) {
         inputs.nextScorePose = next;
     }
-
+    
     /**
      * Sets the next pose to pathfind to for feeding
      *
@@ -286,6 +295,10 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
      */
     public PathPlannerPath getNextPath() {
         return nextPath;
+    }
+
+    public PathPlannerPath getNextMiddlePath() {
+        return nextMiddlePath;
     }
 
     /**
