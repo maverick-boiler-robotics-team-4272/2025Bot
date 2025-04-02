@@ -24,7 +24,6 @@ import frc.robot.commands.AutoGamePrepCommand;
 import frc.robot.commands.AutonomousFeedTillFirstLidar;
 import frc.robot.commands.BargeScoreCommand;
 import frc.robot.commands.FeederManipulatorCommand;
-import frc.robot.commands.GoToArmevatorPosAndGrip;
 import frc.robot.constants.TunerConstants;
 import frc.robot.constants.positions.ArmevatorPositions.ArmevatorPosition;
 import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
@@ -32,6 +31,7 @@ import frc.robot.subsystems.algaeManipulator.states.AlgaeIdle;
 import frc.robot.subsystems.algaeManipulator.states.AlgaeIntake;
 import frc.robot.subsystems.armevator.Armevator;
 import frc.robot.subsystems.armevator.states.GoToArmevatorPoseState;
+import frc.robot.subsystems.armevator.states.GoToNextArmevatorPoseState;
 import frc.robot.subsystems.armevator.states.ZeroState;
 import frc.robot.subsystems.climber.Climber;
 import frc.robot.subsystems.climber.states.LowerState;
@@ -350,19 +350,17 @@ public class RobotContainer {
 
         //Coral A/AB
         buttonBoard.getButton(11+16).whileTrue(
-            new ConditionalCommand(
-                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_AB, getGlobalPositions().SCORE_AB)).ignoringDisable(true),
-                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_AB, getGlobalPositions().CORAL_A)).ignoringDisable(true),
-                armevator::nextIsL1
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().CORAL_AB, getGlobalPositions().SCORE_AB)).ignoringDisable(true),
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_AB, getGlobalPositions().CORAL_A)).ignoringDisable(true)
             )
         );
 
         //Coral B/AB
         buttonBoard.getButton(12+16).whileTrue(
-            new ConditionalCommand(
-                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_AB, getGlobalPositions().SCORE_AB)).ignoringDisable(true),
-                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_AB, getGlobalPositions().CORAL_B)).ignoringDisable(true),
-                armevator::nextIsL1
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().CORAL_AB, getGlobalPositions().SCORE_AB)).ignoringDisable(true),
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_AB, getGlobalPositions().CORAL_B)).ignoringDisable(true)
             )        
         );
 
@@ -511,7 +509,8 @@ public class RobotContainer {
         NamedCommands.registerCommand(
             "Score L4",
             new SequentialCommandGroup(
-                new GoToArmevatorPosAndGrip(armevator, coralManipulator, L4_ARMEVATOR_POSITION),
+                new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION)
+                    .raceWith(new IdleState(coralManipulator, armevator::getArmRotation)), 
                 new WaitCommand(0.2),
                 new CoralOutakeState(coralManipulator, 1).withTimeout(.25)
             )
@@ -530,11 +529,13 @@ public class RobotContainer {
                 new FeederManipulatorCommand(
                     feeder, coralManipulator, armevator
                 ),
-                new GoToArmevatorPosAndGrip(armevator, coralManipulator, L4_ARMEVATOR_POSITION)
+                new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION)
+                    .raceWith(new IdleState(coralManipulator, armevator::getArmRotation))
             )
         );
         NamedCommands.registerCommand("Next", 
-            new GoToArmevatorPosAndGrip(armevator, coralManipulator)
+            new GoToNextArmevatorPoseState(armevator)
+                .raceWith(new IdleState(coralManipulator, armevator::getArmRotation))
         );
 
         NamedCommands.registerCommand("Feed", 
