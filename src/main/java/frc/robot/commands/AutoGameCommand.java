@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.subsystems.armevator.Armevator;
-import frc.robot.subsystems.armevator.States.GoToArmevatorPoseState;
+import frc.robot.subsystems.armevator.states.GoToArmevatorPoseState;
 import frc.robot.subsystems.coralManipulator.CoralManipulator;
 import frc.robot.subsystems.coralManipulator.states.CoralOutakeState;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
