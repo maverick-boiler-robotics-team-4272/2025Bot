@@ -7,7 +7,6 @@ import java.util.function.BooleanSupplier;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
-import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
@@ -35,8 +34,8 @@ public class AutoGameCommand extends SequentialCommandGroup {
                 new SequentialCommandGroup( 
                     new FeederManipulatorCommand(feeder, coralManipulator, armevator),
                     new ConditionalCommand(
-                        // new GoToArmevatorPosAndGrip(armevator, coralManipulator, L4_PREP_POSITION), 
-                        new PrintCommand("Hello :)"),
+                        new GoToArmevatorPosAndGrip(armevator, coralManipulator, L4_PREP_POSITION), 
+                        // new PrintCommand("Hello :)"),
                         new GoToArmevatorPosAndGrip(armevator, coralManipulator), 
                         armevator::nextIsL4
                     )
