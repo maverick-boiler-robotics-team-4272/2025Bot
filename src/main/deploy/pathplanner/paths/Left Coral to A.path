@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 16.287831510306265,
-        "y": 7.063592737048541
+        "x": 16.29225,
+        "y": 1.0025
       },
       "prevControl": null,
       "nextControl": {
-        "x": 15.430787505553141,
-        "y": 6.4388908168877
+        "x": 15.741779008672971,
+        "y": 1.815698359203188
       },
       "isLocked": false,
-      "linkedName": "AutoPeriodRightCoralStation"
+      "linkedName": "New left Coral station"
     },
     {
       "anchor": {
-        "x": 13.839553122020725,
-        "y": 5.177285481346994
+        "x": 14.409631849315069,
+        "y": 3.6493578767123283
       },
       "prevControl": {
-        "x": 15.19091659369306,
-        "y": 6.143104341622094
+        "x": 14.919339687096901,
+        "y": 2.9083934877832567
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RedReefD"
+      "linkedName": "AutoA"
     }
   ],
   "rotationTargets": [],
@@ -45,8 +45,8 @@
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 4.5,
-    "maxAcceleration": 2.7,
+    "maxVelocity": 4.0,
+    "maxAcceleration": 2.4,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -54,13 +54,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -119.77369562494148
+    "rotation": -179.51853419416167
   },
   "reversed": false,
   "folder": "Auto paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -125.72739822279966
+    "rotation": 126.46233721780271
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

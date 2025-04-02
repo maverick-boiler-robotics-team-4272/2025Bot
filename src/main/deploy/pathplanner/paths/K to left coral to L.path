@@ -12,7 +12,7 @@
         "y": 2.3653941472359157
       },
       "isLocked": false,
-      "linkedName": "AutoReefK"
+      "linkedName": "FourPieceK"
     },
     {
       "anchor": {
@@ -20,16 +20,51 @@
         "y": 1.0025
       },
       "prevControl": {
-        "x": 15.306395902656245,
-        "y": 1.554865540701928
+        "x": 15.247316291800766,
+        "y": 1.4327668210232087
+      },
+      "nextControl": {
+        "x": 16.523419524618678,
+        "y": 0.9073125486864272
+      },
+      "isLocked": false,
+      "linkedName": "New left Coral station"
+    },
+    {
+      "anchor": {
+        "x": 13.729908221817261,
+        "y": 2.8014975898688306
+      },
+      "prevControl": {
+        "x": 15.017460270489137,
+        "y": 1.691689819517867
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "New left Coral station"
+      "linkedName": "FourPieceL"
     }
   ],
-  "rotationTargets": [],
-  "constraintZones": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1,
+      "rotationDegrees": 125.4633642415405
+    }
+  ],
+  "constraintZones": [
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 0.750891089108911,
+      "maxWaypointRelativePos": 1.3877227722772276,
+      "constraints": {
+        "maxVelocity": 3.0,
+        "maxAcceleration": 2.4,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    }
+  ],
   "pointTowardsZones": [],
   "eventMarkers": [
     {
@@ -53,6 +88,17 @@
           "name": "Feed to L4"
         }
       }
+    },
+    {
+      "name": "Feed to L4",
+      "waypointRelativePos": 1.0,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Feed to L4"
+        }
+      }
     }
   ],
   "globalConstraints": {
@@ -65,7 +111,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 126.46233721780271
+    "rotation": 120.9869625978407
   },
   "reversed": false,
   "folder": "Auto paths",

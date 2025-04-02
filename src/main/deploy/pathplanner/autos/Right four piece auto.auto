@@ -23,12 +23,6 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "Autonomous Feed"
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "Right coral to D"
@@ -44,12 +38,6 @@
           "type": "path",
           "data": {
             "pathName": "D to right coral"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Autonomous Feed"
           }
         },
         {
@@ -71,15 +59,15 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "Score L4"
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "Right Coral to B"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score L4"
           }
         }
       ]

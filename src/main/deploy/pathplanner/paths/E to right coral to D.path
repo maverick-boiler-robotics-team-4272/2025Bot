@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 13.520738401128686,
-        "y": 5.862982801665991
+        "x": 13.568521829948503,
+        "y": 6.034658627411747
       },
       "isLocked": false,
       "linkedName": "TautoE"
@@ -20,20 +20,41 @@
         "y": 7.063592737048541
       },
       "prevControl": {
-        "x": 15.470648236912687,
-        "y": 6.660237437985103
+        "x": 15.740253364216088,
+        "y": 6.741099526192813
+      },
+      "nextControl": {
+        "x": 16.503248256226993,
+        "y": 7.190461273640262
+      },
+      "isLocked": false,
+      "linkedName": "AutoPeriodRightCoralStation"
+    },
+    {
+      "anchor": {
+        "x": 13.826822479995478,
+        "y": 5.183228964938442
+      },
+      "prevControl": {
+        "x": 15.023544431148078,
+        "y": 6.193208588111617
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "AutoPeriodRightCoralStation"
+      "linkedName": "FourPieceD"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1,
+      "rotationDegrees": -126.24720176406709
+    }
+  ],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.6333333333333336,
-      "maxWaypointRelativePos": 1.0,
+      "minWaypointRelativePos": 0.7984158415841581,
+      "maxWaypointRelativePos": 1.3116831683168317,
       "constraints": {
         "maxVelocity": 3.0,
         "maxAcceleration": 2.0,
@@ -58,7 +79,7 @@
       }
     },
     {
-      "name": "Autonomous Feed",
+      "name": "Feed to L4",
       "waypointRelativePos": 0.5785714285714283,
       "endWaypointRelativePos": null,
       "command": {
@@ -79,7 +100,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -125.72739822279966
+    "rotation": -119.77369562494148
   },
   "reversed": false,
   "folder": "Auto paths",

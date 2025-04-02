@@ -19,13 +19,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "J to Left Coral"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Left feeder to K"
+            "pathName": "J to Left Coral to K"
           }
         },
         {
@@ -37,13 +31,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "K to left coral"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Left Coral to L"
+            "pathName": "K to left coral to L"
           }
         },
         {
@@ -55,13 +43,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "L to left coral"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Left Coral to A"
+            "pathName": "L to left coral to A"
           }
         },
         {

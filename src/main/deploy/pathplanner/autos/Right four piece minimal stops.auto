@@ -7,7 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Left auto start"
+            "pathName": "Right Auto start"
           }
         },
         {
@@ -19,13 +19,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "J to Left Coral"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Left feeder to K"
+            "pathName": "E to right coral to D"
           }
         },
         {
@@ -37,13 +31,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "K to left coral"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Left Coral to L"
+            "pathName": "D to right coral to C"
           }
         },
         {
@@ -55,25 +43,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "L to left coral"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Left Coral to A"
+            "pathName": "C to right coral to B"
           }
         },
         {
           "type": "named",
           "data": {
             "name": "Score L4"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Go home"
           }
         }
       ]

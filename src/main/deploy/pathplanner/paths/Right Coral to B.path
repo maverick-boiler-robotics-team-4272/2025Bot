@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 16.32014104566188,
-        "y": 7.09195695078876
+        "x": 16.287831510306265,
+        "y": 7.063592737048541
       },
       "prevControl": null,
       "nextControl": {
-        "x": 15.870145731333677,
-        "y": 6.246844019056951
+        "x": 15.837836195978062,
+        "y": 6.218479805316732
       },
       "isLocked": false,
       "linkedName": "AutoPeriodRightCoralStation"
     },
     {
       "anchor": {
-        "x": 14.425,
-        "y": 3.9047945205479455
+        "x": 14.393229166666668,
+        "y": 3.9690972222222216
       },
       "prevControl": {
-        "x": 14.88881900499158,
-        "y": 4.629095687314909
+        "x": 14.857048171658247,
+        "y": 4.693398388989184
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "TautoB"
+      "linkedName": "ReefB"
     }
   ],
   "rotationTargets": [],

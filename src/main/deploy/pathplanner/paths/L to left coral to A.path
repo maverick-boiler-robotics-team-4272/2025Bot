@@ -1,0 +1,123 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 13.729908221817261,
+        "y": 2.8014975898688306
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 14.330023847769851,
+        "y": 2.2790574416382707
+      },
+      "isLocked": false,
+      "linkedName": "FourPieceL"
+    },
+    {
+      "anchor": {
+        "x": 16.29225,
+        "y": 1.0025
+      },
+      "prevControl": {
+        "x": 15.517536273224918,
+        "y": 1.7332133534624607
+      },
+      "nextControl": {
+        "x": 16.474115830919704,
+        "y": 0.8309633580138478
+      },
+      "isLocked": false,
+      "linkedName": "New left Coral station"
+    },
+    {
+      "anchor": {
+        "x": 14.409631849315069,
+        "y": 3.6493578767123283
+      },
+      "prevControl": {
+        "x": 15.366204848683331,
+        "y": 2.2050587982385297
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "FourPieceA"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1,
+      "rotationDegrees": 126.17362904577196
+    }
+  ],
+  "constraintZones": [
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 0.7477227722772277,
+      "maxWaypointRelativePos": 1.359207920792079,
+      "constraints": {
+        "maxVelocity": 3.0,
+        "maxAcceleration": 2.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    }
+  ],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "Go home",
+      "waypointRelativePos": 0.04,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Go home"
+        }
+      }
+    },
+    {
+      "name": "Feed to L4",
+      "waypointRelativePos": 0.6095238095238092,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Feed to L4"
+        }
+      }
+    },
+    {
+      "name": "Feed to L4",
+      "waypointRelativePos": 1.0,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Feed to L4"
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 4.0,
+    "maxAcceleration": 2.4,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -179.51853419416167
+  },
+  "reversed": false,
+  "folder": "Auto paths",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 120.9869625978407
+  },
+  "useDefaultConstraints": false
+}
