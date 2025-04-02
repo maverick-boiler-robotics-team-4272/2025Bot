@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 13.958861301369863,
-        "y": 2.5374571917808213
+        "x": 14.747079683050199,
+        "y": 3.8581313681262115
       },
       "prevControl": null,
       "nextControl": {
-        "x": 13.863693867063361,
-        "y": 2.7686349576829894
+        "x": 14.651912248743697,
+        "y": 4.08930913402838
       },
       "isLocked": false,
       "linkedName": "Coral_KL"
@@ -60,7 +60,7 @@
   "folder": "Approch Paths",
   "idealStartingState": {
     "velocity": 1.0,
-    "rotation": 118.95099520746685
+    "rotation": -148.64291477599002
   },
   "useDefaultConstraints": false
 }

@@ -54,7 +54,7 @@ public class Feeder extends SubsystemBase implements Loggable {
   private TalonFX feederControllerMotor;
 
   private MedianFilter backLidarFilter = new MedianFilter(11);
-  private MedianFilter frontLidarFilter = new MedianFilter(11);
+  private MedianFilter frontLidarFilter = new MedianFilter(5);
 
   public Feeder() {
     TalonFXConfiguration motorConfiguration = new TalonFXConfiguration()
