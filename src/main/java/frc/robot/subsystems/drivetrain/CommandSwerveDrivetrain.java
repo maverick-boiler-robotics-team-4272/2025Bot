@@ -210,9 +210,14 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     public PathPlannerPath getNextAlgaePath() {
         return nextAlgaePath;
     }
-
-    public void setNextMiddlePath(PathPlannerPath path) {
-        nextPath = path;
+    /**
+     * Sets the next pose to pathfind to and path to follow during the autoteleop gameplay for scoring
+     *
+     * @param path the path to follow after reaching the starting point
+     */
+    public void setNextMiddlePath(Pose2d next, PathPlannerPath path) {
+        inputs.nextScorePose = next;
+        nextMiddlePath = path;
     }
     /**
      * Sets the next pose to pathfind to and path to follow during the autoteleop gameplay for scoring
