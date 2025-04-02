@@ -488,9 +488,7 @@ public class RobotContainer {
 
         NamedCommands.registerCommand("Feed to L4", 
             new SequentialCommandGroup(   
-                new FeederManipulatorCommand(
-                    feeder, coralManipulator, armevator
-                ),
+                new FeederManipulatorCommand(feeder, coralManipulator, armevator),
                 new GoToArmevatorPosAndGrip(armevator, coralManipulator, L4_ARMEVATOR_POSITION)
             )
         );
