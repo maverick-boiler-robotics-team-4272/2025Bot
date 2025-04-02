@@ -16,6 +16,10 @@ public class FeedState extends State<Feeder> {
     this.power = power;
   }
 
+  public FeedState(Feeder feeder) {
+    this(feeder, 0.5);
+  }
+
   @Override
   public void initialize() {
     requiredSubsystem.setFeederPower(power);

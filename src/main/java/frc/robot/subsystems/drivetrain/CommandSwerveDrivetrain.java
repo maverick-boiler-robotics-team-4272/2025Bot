@@ -7,7 +7,6 @@ import java.util.function.Supplier;
 import org.littletonrobotics.junction.AutoLog;
 import org.littletonrobotics.junction.Logger;
 import com.ctre.phoenix6.SignalLogger;
-import com.ctre.phoenix6.StatusSignal;
 import com.ctre.phoenix6.Utils;
 import com.ctre.phoenix6.swerve.SwerveDrivetrainConstants;
 import com.ctre.phoenix6.swerve.SwerveModuleConstants;
@@ -18,7 +17,6 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.util.Units;
-import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.RobotController;
@@ -105,8 +103,6 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         FRONT_LIMELIGHT.configure(FRONT_LIMELIGHT_POSE);
         ELEVATOR_LIMELIGHT.configure(ELEVATOR_LIMELIGHT_POSE);
         FRONT_2_LIMELIGHT.configure(FRONT_LIMELIGHT_2_POSE);
-
-        rockingStatus = getPigeon2().getAngularVelocityYDevice();
     }
 
     // The next path to run when the robot is pathfinding
@@ -121,9 +117,6 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     private static final Rotation2d kRedAlliancePerspectiveRotation = Rotation2d.k180deg;
     /* Keep track if we've ever applied the operator perspective before or not */
     private boolean m_hasAppliedOperatorPerspective = false;
-
-    // The status of if the robot is rocking or not
-    private StatusSignal<AngularVelocity> rockingStatus;
 
     /* Swerve requests to apply during SysId characterization */
     private final SwerveRequest.SysIdSwerveTranslation m_translationCharacterization = new SwerveRequest.SysIdSwerveTranslation();
@@ -308,13 +301,6 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
      */
     public PathPlannerPath getNextBargePath() {
         return nextBargePath;
-    }
-
-    /**
-     * @return true if the robot is not rocking
-     */
-    public boolean notRocking() {
-        return Math.abs(rockingStatus.getValueAsDouble()) < 0.5;
     }
 
     /**

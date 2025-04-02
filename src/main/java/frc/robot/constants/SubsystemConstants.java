@@ -18,7 +18,7 @@ public class SubsystemConstants {
     public static class DrivetrainConstants {
         public static  class AutoConstants {
             public static final double TRANSLATION_MAX = 4.5;
-            public static final double TRANSLATION_MAX_A = 2.75;//3.0;
+            public static final double TRANSLATION_MAX_A = 2.5;//3.0;
             public static final Rotation2d ROTATION_MAX = Rotation2d.fromDegrees(560.0);
             public static final Rotation2d ROTATION_MAX_A = Rotation2d.fromDegrees(720.0);
 
@@ -105,7 +105,7 @@ public class SubsystemConstants {
     }
 
     public static class FeederConstants {
-        public static final int FEEDER_CAN_FRONT_TRIGGER_DISTANCE = 420;
+        public static final int FEEDER_CAN_FRONT_TRIGGER_DISTANCE = 200;
         public static final int FEEDER_CAN_BACK_TRIGGER_DISTANCE = 135;
     }
 

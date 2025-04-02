@@ -34,6 +34,7 @@ public class Feeder extends SubsystemBase implements Loggable {
     public double frontLidarDistance;
     public double backLidarDistance;
     public double averageBackLidarDistance;
+    public double averageFrontLidarDistance;
     public boolean frontLidarIsTripped;
     public boolean backLidarIsTripped;
   }
@@ -52,7 +53,8 @@ public class Feeder extends SubsystemBase implements Loggable {
 
   private TalonFX feederControllerMotor;
 
-  private MedianFilter backLidarFilter = new MedianFilter(10);
+  private MedianFilter backLidarFilter = new MedianFilter(11);
+  private MedianFilter frontLidarFilter = new MedianFilter(11);
 
   public Feeder() {
     TalonFXConfiguration motorConfiguration = new TalonFXConfiguration()
@@ -99,7 +101,7 @@ public class Feeder extends SubsystemBase implements Loggable {
 
   public boolean lidarFrontTripped() {
     // TODO: make sure it doesnt die if no lidar
-    if (inputs.frontLidarDistance <= FEEDER_CAN_FRONT_TRIGGER_DISTANCE) {
+    if (inputs.averageFrontLidarDistance <= FEEDER_CAN_FRONT_TRIGGER_DISTANCE) {
       return true;
     }
     return false;
@@ -132,6 +134,7 @@ public class Feeder extends SubsystemBase implements Loggable {
     inputs.frontLidarDistance = feederCanFront.getMeasurement().distance_mm;
     inputs.backLidarDistance = feederCanBack.getMeasurement().distance_mm;
     inputs.averageBackLidarDistance = backLidarFilter.calculate(inputs.backLidarDistance);
+    inputs.averageFrontLidarDistance = frontLidarFilter.calculate(inputs.frontLidarDistance);
     inputs.frontLidarIsTripped = lidarFrontTripped();
     inputs.backLidarIsTripped = lidarBackTripped();
   }
