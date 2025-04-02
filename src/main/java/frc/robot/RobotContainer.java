@@ -129,33 +129,6 @@ public class RobotContainer {
         // reset the field-centric heading on b press
         driverController.b().onTrue(new ResetHeadingState(drivetrain).ignoringDisable(true));
 
-        driverController.x().whileTrue(
-            new AutoGameCommand(
-                drivetrain, 
-                armevator, 
-                feeder, 
-                coralManipulator,
-                () -> driverController.getHID().getAButtonPressed()
-            ).repeatedly().withInterruptBehavior(InterruptionBehavior.kCancelIncoming)
-        );
-
-        driverController.y().whileTrue(
-            new AutoGameCommand(
-                drivetrain, 
-                armevator, 
-                feeder, 
-                coralManipulator,
-                () -> driverController.getHID().getAButtonPressed()
-            ).repeatedly().beforeStarting(
-                new AutoGamePrepCommand(
-                    drivetrain, 
-                    armevator, 
-                    feeder, 
-                    coralManipulator
-                )
-            ).withInterruptBehavior(InterruptionBehavior.kCancelIncoming)
-        );
-
         driverController.rightStick().whileTrue(
             new AutoAlgaeCommand(
                 drivetrain, 
@@ -196,6 +169,60 @@ public class RobotContainer {
                     new CoralOutakeState(coralManipulator, 0.8), 
                     armevator::nextIsL4
                 )
+            );
+
+            driverController.x().whileTrue(
+                new AutoGameCommand(
+                    drivetrain, 
+                    armevator, 
+                    feeder, 
+                    coralManipulator,
+                    () -> driverController.getHID().getAButtonPressed()
+                ).repeatedly().withInterruptBehavior(InterruptionBehavior.kCancelIncoming)
+            );
+
+            driverController.y().whileTrue(
+                new AutoGameCommand(
+                    drivetrain, 
+                    armevator, 
+                    feeder, 
+                    coralManipulator,
+                    () -> driverController.getHID().getAButtonPressed()
+                ).repeatedly().beforeStarting(
+                    new AutoGamePrepCommand(
+                        drivetrain, 
+                        armevator, 
+                        feeder, 
+                        coralManipulator
+                    )
+                ).withInterruptBehavior(InterruptionBehavior.kCancelIncoming)
+            );
+        } else {
+            driverController.leftBumper().whileTrue(
+                new AutoGameCommand(
+                    drivetrain, 
+                    armevator, 
+                    feeder, 
+                    coralManipulator,
+                    () -> driverController.getHID().getAButtonPressed()
+                ).repeatedly().withInterruptBehavior(InterruptionBehavior.kCancelIncoming)
+            );
+
+            driverController.rightBumper().whileTrue(
+                new AutoGameCommand(
+                    drivetrain, 
+                    armevator, 
+                    feeder, 
+                    coralManipulator,
+                    () -> driverController.getHID().getAButtonPressed()
+                ).repeatedly().beforeStarting(
+                    new AutoGamePrepCommand(
+                        drivetrain, 
+                        armevator, 
+                        feeder, 
+                        coralManipulator
+                    )
+                ).withInterruptBehavior(InterruptionBehavior.kCancelIncoming)
             );
         }
 
