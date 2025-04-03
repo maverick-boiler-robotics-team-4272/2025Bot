@@ -25,7 +25,7 @@ public class AutoGameCommand extends SequentialCommandGroup {
     public AutoGameCommand(CommandSwerveDrivetrain drivetrain, Armevator armevator, Feeder feeder, CoralManipulator coralManipulator, BooleanSupplier leaveOverride) {
         super(
             new PathfindingState(drivetrain, drivetrain::getNextFeedPose).raceWith(
-                new WaitCommand(1).andThen(
+                new WaitCommand(0.5).andThen(
                     new FeedState(feeder).alongWith(
                         new GoToArmevatorPoseState(armevator, HOME)
                     )
