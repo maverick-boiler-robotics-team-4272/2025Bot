@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 16.29225,
-        "y": 1.0025
+        "x": 14.387487365927717,
+        "y": 3.601702867813861
       },
       "prevControl": null,
       "nextControl": {
-        "x": 15.369305074933711,
-        "y": 1.6895975633296567
+        "x": 15.576869605289371,
+        "y": 1.8458884601730141
       },
       "isLocked": false,
-      "linkedName": "New left Coral station"
+      "linkedName": "AutoA"
     },
     {
       "anchor": {
-        "x": 13.729908221817261,
-        "y": 2.8014975898688306
+        "x": 16.29225,
+        "y": 1.0025
       },
       "prevControl": {
-        "x": 14.349596239869726,
-        "y": 2.3299340682564624
+        "x": 15.783860844566693,
+        "y": 1.6862773142877248
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "AutoperiodReefL"
+      "linkedName": "New left Coral station"
     }
   ],
   "rotationTargets": [],
@@ -33,8 +33,19 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
+      "name": "Go home",
+      "waypointRelativePos": 0.03771712158808921,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Go home"
+        }
+      }
+    },
+    {
       "name": "Feed to L4",
-      "waypointRelativePos": 0.0,
+      "waypointRelativePos": 0.39900744416873274,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -54,13 +65,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 120.9869625978407
+    "rotation": 126.46233721780271
   },
   "reversed": false,
   "folder": "Auto paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 126.46233721780271
+    "rotation": -179.51853419416167
   },
   "useDefaultConstraints": false
 }

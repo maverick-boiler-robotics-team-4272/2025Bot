@@ -43,7 +43,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Left Coral to L"
+            "pathName": "Left Coral to A"
           }
         },
         {
@@ -55,13 +55,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "L to left coral"
+            "pathName": "A to Left Coral"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Left Coral to A"
+            "pathName": "Left Coral to L"
           }
         },
         {
