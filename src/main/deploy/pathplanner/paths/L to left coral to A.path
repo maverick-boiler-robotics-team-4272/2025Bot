@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 13.757225921719458,
-        "y": 2.793017506979745
+        "x": 13.759500949135777,
+        "y": 2.698393092655117
       },
       "prevControl": null,
       "nextControl": {
-        "x": 14.357341547672048,
-        "y": 2.2705773587491853
+        "x": 14.359616575088367,
+        "y": 2.1759529444245573
       },
       "isLocked": false,
       "linkedName": "FourPieceL"
@@ -117,7 +117,7 @@
   "folder": "Auto paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 120.9869625978407
+    "rotation": 118.18737376457598
   },
   "useDefaultConstraints": false
 }
