@@ -24,6 +24,7 @@ import frc.robot.commands.AutoGamePrepCommand;
 import frc.robot.commands.AutonomousFeedTillFirstLidar;
 import frc.robot.commands.BargeScoreCommand;
 import frc.robot.commands.FeederManipulatorCommand;
+import frc.robot.commands.GoToArmevatorPosAndGrip;
 import frc.robot.constants.TunerConstants;
 import frc.robot.constants.positions.ArmevatorPositions.ArmevatorPosition;
 import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
@@ -526,11 +527,8 @@ public class RobotContainer {
 
         NamedCommands.registerCommand("Feed to L4", 
             new SequentialCommandGroup(   
-                new FeederManipulatorCommand(
-                    feeder, coralManipulator, armevator
-                ),
-                new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION)
-                    .raceWith(new IdleState(coralManipulator, armevator::getArmRotation))
+                new FeederManipulatorCommand(feeder, coralManipulator, armevator),
+                new GoToArmevatorPosAndGrip(armevator, coralManipulator, L4_ARMEVATOR_POSITION)
             )
         );
         NamedCommands.registerCommand("Next", 
@@ -567,6 +565,10 @@ public class RobotContainer {
         autoChooser.addOption("Right three piece auto", new PathPlannerAuto("Right three piece auto"));
         autoChooser.setDefaultOption("Left three piece auto", new PathPlannerAuto("Left three piece auto"));
         autoChooser.setDefaultOption("Middle Auto", new PathPlannerAuto("Short Auto", false));
+        autoChooser.addOption("Left Four Piece", new PathPlannerAuto("Left four piece auto", false));
+        autoChooser.addOption("right Four Piece", new PathPlannerAuto("Right four piece auto", false));
+        autoChooser.addOption("Right four piece minimal stops", new PathPlannerAuto("Right four piece minimal stops", false));
+        autoChooser.addOption("Left four piece minimal stops", new PathPlannerAuto("Left four piece minimal stops auto", false));
         autoChooser.addOption("Odometry test", new PathPlannerAuto("Wheel Diam"));
         // autoChooser.setDefaultOption("Output name", new PathPlannerAuto("auto name", boolean mirror same field)); //ex
     }

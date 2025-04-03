@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 15.430787505553141,
-        "y": 6.4388908168877
+        "x": 15.837836195978062,
+        "y": 6.218479805316732
       },
       "isLocked": false,
       "linkedName": "AutoPeriodRightCoralStation"
     },
     {
       "anchor": {
-        "x": 13.839553122020725,
-        "y": 5.177285481346994
+        "x": 14.393229166666668,
+        "y": 3.9690972222222216
       },
       "prevControl": {
-        "x": 15.19091659369306,
-        "y": 6.143104341622094
+        "x": 14.857048171658247,
+        "y": 4.693398388989184
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RedReefD"
+      "linkedName": "ReefB"
     }
   ],
   "rotationTargets": [],
@@ -54,7 +54,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -119.77369562494148
+    "rotation": -179.51853419416167
   },
   "reversed": false,
   "folder": "Auto paths",

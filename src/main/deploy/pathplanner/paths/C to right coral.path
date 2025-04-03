@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 16.287831510306265,
-        "y": 7.063592737048541
+        "x": 14.067963571725647,
+        "y": 5.014577684244903
       },
       "prevControl": null,
       "nextControl": {
-        "x": 15.430787505553141,
-        "y": 6.4388908168877
+        "x": 14.73500892305946,
+        "y": 5.61159327057367
       },
       "isLocked": false,
-      "linkedName": "AutoPeriodRightCoralStation"
+      "linkedName": "TautoC"
     },
     {
       "anchor": {
-        "x": 13.839553122020725,
-        "y": 5.177285481346994
+        "x": 16.287831510306265,
+        "y": 7.063592737048541
       },
       "prevControl": {
-        "x": 15.19091659369306,
-        "y": 6.143104341622094
+        "x": 15.598939046875454,
+        "y": 6.430349637827421
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RedReefD"
+      "linkedName": "AutoPeriodRightCoralStation"
     }
   ],
   "rotationTargets": [],
@@ -33,13 +33,24 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Feed to L4",
-      "waypointRelativePos": 0.0,
+      "name": "Go home",
+      "waypointRelativePos": 0.04,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Feed to L4"
+          "name": "Go home"
+        }
+      }
+    },
+    {
+      "name": "Autonomous Feed",
+      "waypointRelativePos": 0.5857142857142857,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Autonomous Feed"
         }
       }
     }
@@ -54,13 +65,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -119.77369562494148
+    "rotation": -125.72739822279966
   },
   "reversed": false,
   "folder": "Auto paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -125.72739822279966
+    "rotation": -119.77369562494148
   },
   "useDefaultConstraints": true
 }

@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 16.287831510306265,
-        "y": 7.063592737048541
+        "x": 9.487760416666667,
+        "y": 3.1445312499999996
       },
       "prevControl": null,
       "nextControl": {
-        "x": 15.430787505553141,
-        "y": 6.4388908168877
+        "x": 10.566165349248827,
+        "y": 2.9920734461234137
       },
       "isLocked": false,
-      "linkedName": "AutoPeriodRightCoralStation"
+      "linkedName": "Right_Barge"
     },
     {
       "anchor": {
-        "x": 13.839553122020725,
-        "y": 5.177285481346994
+        "x": 12.145725327175422,
+        "y": 2.9617853227888506
       },
       "prevControl": {
-        "x": 15.19091659369306,
-        "y": 6.143104341622094
+        "x": 11.553749999995784,
+        "y": 2.435749999999091
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RedReefD"
+      "linkedName": "Auto Algee IJ"
     }
   ],
   "rotationTargets": [],
@@ -33,13 +33,13 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Feed to L4",
-      "waypointRelativePos": 0.0,
+      "name": "Auto Algee",
+      "waypointRelativePos": 0,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Feed to L4"
+          "name": "Auto Algee"
         }
       }
     }
@@ -54,13 +54,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -119.77369562494148
+    "rotation": 58.72229713313359
   },
   "reversed": false,
   "folder": "Auto paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -125.72739822279966
+    "rotation": 0.0
   },
   "useDefaultConstraints": true
 }

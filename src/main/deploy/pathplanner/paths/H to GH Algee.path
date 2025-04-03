@@ -3,47 +3,35 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 16.287831510306265,
-        "y": 7.063592737048541
+        "x": 11.78013698630137,
+        "y": 4.085102739726028
       },
       "prevControl": null,
       "nextControl": {
-        "x": 15.430787505553141,
-        "y": 6.4388908168877
+        "x": 11.390970979606346,
+        "y": 4.074073554954167
       },
       "isLocked": false,
-      "linkedName": "AutoPeriodRightCoralStation"
+      "linkedName": "RedReefH"
     },
     {
       "anchor": {
-        "x": 13.839553122020725,
-        "y": 5.177285481346994
+        "x": 11.736818439268967,
+        "y": 4.261830237984019
       },
       "prevControl": {
-        "x": 15.19091659369306,
-        "y": 6.143104341622094
+        "x": 10.986582260239606,
+        "y": 4.088426079889935
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RedReefD"
+      "linkedName": "Auto Algee GH"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [
-    {
-      "name": "Feed to L4",
-      "waypointRelativePos": 0.0,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "Feed to L4"
-        }
-      }
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 4.5,
     "maxAcceleration": 2.7,
@@ -54,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -119.77369562494148
+    "rotation": 0.5682415460892226
   },
   "reversed": false,
   "folder": "Auto paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -125.72739822279966
+    "rotation": 0.5682415460892226
   },
   "useDefaultConstraints": true
 }
