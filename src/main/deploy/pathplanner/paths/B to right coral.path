@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 16.287831510306265,
-        "y": 7.063592737048541
-      },
-      "prevControl": null,
-      "nextControl": {
-        "x": 15.837836195978062,
-        "y": 6.218479805316732
-      },
-      "isLocked": false,
-      "linkedName": "AutoPeriodRightCoralStation"
-    },
-    {
-      "anchor": {
         "x": 14.416925547562862,
         "y": 3.9373483376399157
       },
+      "prevControl": null,
+      "nextControl": {
+        "x": 14.878541931132386,
+        "y": 4.769580627625768
+      },
+      "isLocked": false,
+      "linkedName": "AutoB"
+    },
+    {
+      "anchor": {
+        "x": 16.287831510306265,
+        "y": 7.063592737048541
+      },
       "prevControl": {
-        "x": 14.880744552554441,
-        "y": 4.661649504406878
+        "x": 15.930066319256436,
+        "y": 6.4471686507903545
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "AutoB"
+      "linkedName": "AutoPeriodRightCoralStation"
     }
   ],
   "rotationTargets": [],
@@ -33,13 +33,24 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Feed to L4",
-      "waypointRelativePos": 0.0,
+      "name": "Go home",
+      "waypointRelativePos": 0.04,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Feed to L4"
+          "name": "Go home"
+        }
+      }
+    },
+    {
+      "name": "Autonomous Feed",
+      "waypointRelativePos": 0.5857142857142857,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Autonomous Feed"
         }
       }
     }
@@ -54,13 +65,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -179.51853419416167
+    "rotation": -125.72739822279966
   },
   "reversed": false,
   "folder": "Auto paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -125.72739822279966
+    "rotation": -179.51853419416167
   },
   "useDefaultConstraints": true
 }
