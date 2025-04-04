@@ -1,0 +1,77 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 14.416925547562862,
+        "y": 3.9373483376399157
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 14.878541931132386,
+        "y": 4.769580627625768
+      },
+      "isLocked": false,
+      "linkedName": "AutoB"
+    },
+    {
+      "anchor": {
+        "x": 16.287831510306265,
+        "y": 7.063592737048541
+      },
+      "prevControl": {
+        "x": 15.930066319256436,
+        "y": 6.4471686507903545
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "AutoPeriodRightCoralStation"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "Go home",
+      "waypointRelativePos": 0.04,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Go home"
+        }
+      }
+    },
+    {
+      "name": "Autonomous Feed",
+      "waypointRelativePos": 0.5857142857142857,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Autonomous Feed"
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 4.5,
+    "maxAcceleration": 2.7,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -125.72739822279966
+  },
+  "reversed": false,
+  "folder": "Auto paths",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -179.51853419416167
+  },
+  "useDefaultConstraints": true
+}

@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 16.32014104566188,
-        "y": 7.09195695078876
+        "x": 16.287831510306265,
+        "y": 7.063592737048541
       },
       "prevControl": null,
       "nextControl": {
-        "x": 15.459308084852035,
-        "y": 6.279141250419421
+        "x": 15.42699854949642,
+        "y": 6.250777036679202
       },
       "isLocked": false,
       "linkedName": "AutoPeriodRightCoralStation"
     },
     {
       "anchor": {
-        "x": 14.13,
-        "y": 5.06
+        "x": 14.067963571725647,
+        "y": 5.014577684244903
       },
       "prevControl": {
-        "x": 14.973206667744014,
-        "y": 5.840713248999266
+        "x": 14.91117023946966,
+        "y": 5.795290933244169
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "AutoPeriodReefC"
+      "linkedName": "TautoC"
     }
   ],
   "rotationTargets": [],
@@ -45,8 +45,8 @@
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 4.0,
-    "maxAcceleration": 3.0,
+    "maxVelocity": 4.5,
+    "maxAcceleration": 2.7,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,

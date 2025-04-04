@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 16.32014104566188,
-        "y": 7.09195695078876
+        "x": 16.287831510306265,
+        "y": 7.063592737048541
       },
       "prevControl": null,
       "nextControl": {
-        "x": 15.463097040908757,
-        "y": 6.4672550306279195
+        "x": 15.430787505553141,
+        "y": 6.4388908168877
       },
       "isLocked": false,
       "linkedName": "AutoPeriodRightCoralStation"
     },
     {
       "anchor": {
-        "x": 13.93,
-        "y": 5.31
+        "x": 13.839553122020725,
+        "y": 5.177285481346994
       },
       "prevControl": {
-        "x": 15.281363471672336,
-        "y": 6.2758188602751
+        "x": 15.19091659369306,
+        "y": 6.143104341622094
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "RedReefD"
     }
   ],
   "rotationTargets": [],
@@ -45,8 +45,8 @@
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 4.0,
-    "maxAcceleration": 3.0,
+    "maxVelocity": 4.5,
+    "maxAcceleration": 2.7,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -54,7 +54,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -121.05337038982837
+    "rotation": -119.77369562494148
   },
   "reversed": false,
   "folder": "Auto paths",

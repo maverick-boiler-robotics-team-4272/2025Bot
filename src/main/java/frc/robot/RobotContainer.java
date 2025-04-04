@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
@@ -11,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.Command.InterruptionBehavior;
@@ -22,6 +24,7 @@ import frc.robot.commands.AutoGamePrepCommand;
 import frc.robot.commands.AutonomousFeedTillFirstLidar;
 import frc.robot.commands.BargeScoreCommand;
 import frc.robot.commands.FeederManipulatorCommand;
+import frc.robot.commands.GoToArmevatorPosAndGrip;
 import frc.robot.constants.TunerConstants;
 import frc.robot.constants.positions.ArmevatorPositions.ArmevatorPosition;
 import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
@@ -129,33 +132,6 @@ public class RobotContainer {
         // reset the field-centric heading on b press
         driverController.b().onTrue(new ResetHeadingState(drivetrain).ignoringDisable(true));
 
-        driverController.x().whileTrue(
-            new AutoGameCommand(
-                drivetrain, 
-                armevator, 
-                feeder, 
-                coralManipulator,
-                () -> driverController.a().getAsBoolean()
-            ).repeatedly().withInterruptBehavior(InterruptionBehavior.kCancelIncoming)
-        );
-
-        driverController.y().whileTrue(
-            new AutoGameCommand(
-                drivetrain, 
-                armevator, 
-                feeder, 
-                coralManipulator,
-                () -> driverController.a().getAsBoolean()
-            ).repeatedly().beforeStarting(
-                new AutoGamePrepCommand(
-                    drivetrain, 
-                    armevator, 
-                    feeder, 
-                    coralManipulator
-                )
-            ).withInterruptBehavior(InterruptionBehavior.kCancelIncoming)
-        );
-
         driverController.rightStick().whileTrue(
             new AutoAlgaeCommand(
                 drivetrain, 
@@ -196,6 +172,60 @@ public class RobotContainer {
                     new CoralOutakeState(coralManipulator, 0.8), 
                     armevator::nextIsL4
                 )
+            );
+
+            driverController.x().whileTrue(
+                new AutoGameCommand(
+                    drivetrain, 
+                    armevator, 
+                    feeder, 
+                    coralManipulator,
+                    () -> driverController.getHID().getAButtonPressed()
+                ).repeatedly().withInterruptBehavior(InterruptionBehavior.kCancelIncoming)
+            );
+
+            driverController.y().whileTrue(
+                new AutoGameCommand(
+                    drivetrain, 
+                    armevator, 
+                    feeder, 
+                    coralManipulator,
+                    () -> driverController.getHID().getAButtonPressed()
+                ).repeatedly().beforeStarting(
+                    new AutoGamePrepCommand(
+                        drivetrain, 
+                        armevator, 
+                        feeder, 
+                        coralManipulator
+                    )
+                ).withInterruptBehavior(InterruptionBehavior.kCancelIncoming)
+            );
+        } else {
+            driverController.leftBumper().whileTrue(
+                new AutoGameCommand(
+                    drivetrain, 
+                    armevator, 
+                    feeder, 
+                    coralManipulator,
+                    () -> driverController.getHID().getAButtonPressed()
+                ).repeatedly().withInterruptBehavior(InterruptionBehavior.kCancelIncoming)
+            );
+
+            driverController.rightBumper().whileTrue(
+                new AutoGameCommand(
+                    drivetrain, 
+                    armevator, 
+                    feeder, 
+                    coralManipulator,
+                    () -> driverController.getHID().getAButtonPressed()
+                ).repeatedly().beforeStarting(
+                    new AutoGamePrepCommand(
+                        drivetrain, 
+                        armevator, 
+                        feeder, 
+                        coralManipulator
+                    )
+                ).withInterruptBehavior(InterruptionBehavior.kCancelIncoming)
             );
         }
 
@@ -261,10 +291,6 @@ public class RobotContainer {
                 .alongWith(new AlgaeIntake(algaeManipulator)).repeatedly()
         );
 
-        buttonBoard.getButton(11).onTrue(
-            new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().LEFT_BARGE, getGlobalPositions().LEFT_BARGE_PATH)).ignoringDisable(true)
-        );
-
         buttonBoard.getButton(10).onTrue(
             new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().MIDDLE_BARGE, getGlobalPositions().MIDDLE_BARGE_PATH)).ignoringDisable(true)
         );
@@ -274,15 +300,7 @@ public class RobotContainer {
         );
 
         buttonBoard.getButton(11).whileTrue(
-            new BargeScoreCommand(armevator, algaeManipulator, () -> driverController.povLeft().getAsBoolean())
-        );
-
-        buttonBoard.getButton(10).whileTrue(
-            new BargeScoreCommand(armevator, algaeManipulator, () -> driverController.povLeft().getAsBoolean())
-        );
-
-        buttonBoard.getButton(9).whileTrue(
-            new BargeScoreCommand(armevator, algaeManipulator, () -> driverController.povLeft().getAsBoolean())
+            new BargeScoreCommand(armevator, algaeManipulator, () -> driverController.getHID().getPOV() == 270)
         );
 
         buttonBoard.getButton(14).whileTrue(
@@ -306,81 +324,124 @@ public class RobotContainer {
         );
 
         buttonBoard.getButton(14).whileTrue(
-            new GoToArmevatorPoseState(armevator, L1_ARMEVATOR_POSITION).repeatedly()
+            new GoToArmevatorPoseState(armevator, L1_ARMEVATOR_POSITION).repeatedly().beforeStarting(
+                new WaitCommand(0.1)
+            )
         );
 
         buttonBoard.getButton(13).whileTrue(
-            new GoToArmevatorPoseState(armevator, L2_ARMEVATOR_POSITION).repeatedly()
+            new GoToArmevatorPoseState(armevator, L2_ARMEVATOR_POSITION).repeatedly().beforeStarting(
+                new WaitCommand(0.1)
+            )
         );
 
         buttonBoard.getButton(16 + 2).whileTrue(
-            new GoToArmevatorPoseState(armevator, L3_ARMEVATOR_POSITION).repeatedly()
+            new GoToArmevatorPoseState(armevator, L3_ARMEVATOR_POSITION).repeatedly().beforeStarting(
+                new WaitCommand(0.1)
+            )
         );
 
         buttonBoard.getButton(16 + 1).whileTrue(
-            new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION).repeatedly()
+            new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION).repeatedly().beforeStarting(
+                new WaitCommand(0.1)
+            )
         );
 
         //Reef buttons
 
-        //Coral A
+        //Coral A/AB
         buttonBoard.getButton(11+16).whileTrue(
-            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_AB, getGlobalPositions().CORAL_A)).ignoringDisable(true)
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().CORAL_AB, getGlobalPositions().SCORE_AB)).ignoringDisable(true),
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_AB, getGlobalPositions().CORAL_A)).ignoringDisable(true)
+            )
         );
 
-        //Coral B
+        //Coral B/AB
         buttonBoard.getButton(12+16).whileTrue(
-            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_AB, getGlobalPositions().CORAL_B)).ignoringDisable(true)
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().CORAL_AB, getGlobalPositions().SCORE_AB)).ignoringDisable(true),
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_AB, getGlobalPositions().CORAL_B)).ignoringDisable(true)
+            )        
         );
 
-        //Coral C
+        //Coral C/CD
         buttonBoard.getButton(13+16).whileTrue(
-            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_CD, getGlobalPositions().CORAL_C)).ignoringDisable(true)
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().CORAL_CD, getGlobalPositions().SCORE_CD)).ignoringDisable(true), 
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_CD, getGlobalPositions().CORAL_C)).ignoringDisable(true)
+            )        
         );
 
-        //Coral D
+        //Coral D/CD
         buttonBoard.getButton(15).whileTrue(
-            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_CD, getGlobalPositions().CORAL_D)).ignoringDisable(true)
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().CORAL_CD, getGlobalPositions().SCORE_CD)).ignoringDisable(true), 
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_CD, getGlobalPositions().CORAL_D)).ignoringDisable(true)
+            )
         );
 
-        //Coral E
+        //Coral E/EF
         buttonBoard.getButton(14+16).whileTrue(
-            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_EF, getGlobalPositions().CORAL_E)).ignoringDisable(true)
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().CORAL_EF, getGlobalPositions().SCORE_EF)).ignoringDisable(true), 
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_EF, getGlobalPositions().CORAL_E)).ignoringDisable(true)
+            )
         );
 
-        //Coral F
+        //Coral F/EF
         buttonBoard.getButton(12).whileTrue(
-            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_EF, getGlobalPositions().CORAL_F)).ignoringDisable(true)
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().CORAL_EF, getGlobalPositions().SCORE_EF)).ignoringDisable(true), 
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_EF, getGlobalPositions().CORAL_F)).ignoringDisable(true)
+            )
         );
 
-        //Coral G
+        //Coral G/GH
         buttonBoard.getButton(5+16).whileTrue(
-            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_GH, getGlobalPositions().CORAL_G)).ignoringDisable(true)  
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().CORAL_GH, getGlobalPositions().SCORE_GH)).ignoringDisable(true), 
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_GH, getGlobalPositions().CORAL_G)).ignoringDisable(true)
+            )
         );
 
-        //Coral H
+        //Coral H/GH
         buttonBoard.getButton(6+16).whileTrue(
-            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_GH, getGlobalPositions().CORAL_H)).ignoringDisable(true)  
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().CORAL_GH, getGlobalPositions().SCORE_GH)).ignoringDisable(true), 
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_GH, getGlobalPositions().CORAL_H)).ignoringDisable(true)
+            )
         );
 
-        //Coral I
+        //Coral I/IJ
         buttonBoard.getButton(7+16).whileTrue(
-            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_IJ, getGlobalPositions().CORAL_I)).ignoringDisable(true)  
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().CORAL_IJ, getGlobalPositions().SCORE_IJ)).ignoringDisable(true), 
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_IJ, getGlobalPositions().CORAL_I)).ignoringDisable(true)
+            )        
         );
 
-        //Coral J
+        //Coral J/IJ
         buttonBoard.getButton(8+16).whileTrue(
-            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_IJ, getGlobalPositions().CORAL_J)).ignoringDisable(true)  
-        );
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().CORAL_IJ, getGlobalPositions().SCORE_IJ)).ignoringDisable(true), 
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_IJ, getGlobalPositions().CORAL_J)).ignoringDisable(true)
+            )        );
 
-        //Coral K
+        //Coral K/KL
         buttonBoard.getButton(9+16).whileTrue(
-            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_KL, getGlobalPositions().CORAL_K)).ignoringDisable(true)
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().CORAL_KL, getGlobalPositions().SCORE_KL)).ignoringDisable(true), 
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_KL, getGlobalPositions().CORAL_K)).ignoringDisable(true)
+            )        
         );
 
-        //Coral L
+        //Coral L/KL
         buttonBoard.getButton(10+16).whileTrue(
-            new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_KL, getGlobalPositions().CORAL_L)).ignoringDisable(true)
+            new ParallelCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextMiddlePath(getGlobalPositions().CORAL_KL, getGlobalPositions().SCORE_KL)).ignoringDisable(true), 
+                new InstantCommand(() -> drivetrain.setNextScorePose(getGlobalPositions().CORAL_KL, getGlobalPositions().CORAL_L)).ignoringDisable(true)
+            )        
         );
 
         buttonBoard.getButton(1).whileTrue(
@@ -396,7 +457,7 @@ public class RobotContainer {
 
     private void configureBackupBindings() {
         operatorController.leftTrigger().whileTrue(
-            new FeederManipulatorCommand(feeder, coralManipulator, armevator, 1.0, 0.3)
+            new FeederManipulatorCommand(feeder, coralManipulator, armevator)
         );
 
         operatorController.rightTrigger().whileTrue(
@@ -466,11 +527,8 @@ public class RobotContainer {
 
         NamedCommands.registerCommand("Feed to L4", 
             new SequentialCommandGroup(   
-                new FeederManipulatorCommand(
-                    feeder, coralManipulator, armevator, 1, 0.2
-                ),
-                new GoToArmevatorPoseState(armevator, L4_ARMEVATOR_POSITION)
-                    .raceWith(new IdleState(coralManipulator, armevator::getArmRotation))
+                new FeederManipulatorCommand(feeder, coralManipulator, armevator),
+                new GoToArmevatorPosAndGrip(armevator, coralManipulator, L4_ARMEVATOR_POSITION)
             )
         );
         NamedCommands.registerCommand("Next", 
@@ -480,7 +538,7 @@ public class RobotContainer {
 
         NamedCommands.registerCommand("Feed", 
             new FeederManipulatorCommand(
-                feeder, coralManipulator, armevator, 1, 0.2
+                feeder, coralManipulator, armevator
             )
         );
 
@@ -507,6 +565,10 @@ public class RobotContainer {
         autoChooser.addOption("Right three piece auto", new PathPlannerAuto("Right three piece auto"));
         autoChooser.setDefaultOption("Left three piece auto", new PathPlannerAuto("Left three piece auto"));
         autoChooser.setDefaultOption("Middle Auto", new PathPlannerAuto("Short Auto", false));
+        autoChooser.addOption("Left Four Piece", new PathPlannerAuto("Left four piece auto", false));
+        autoChooser.addOption("right Four Piece", new PathPlannerAuto("Right four piece auto", false));
+        // autoChooser.addOption("Right four piece minimal stops", new PathPlannerAuto("Right four piece minimal stops", false));
+        // autoChooser.addOption("Left four piece minimal stops", new PathPlannerAuto("Left four piece minimal stops auto", false));
         // autoChooser.addOption("Odometry test", new PathPlannerAuto("Wheel Diam"));
         // autoChooser.setDefaultOption("Output name", new PathPlannerAuto("auto name", boolean mirror same field)); //ex
     }

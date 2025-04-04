@@ -1,0 +1,112 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 14.097638517379716,
+        "y": 5.027962567025466
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 14.824131850220569,
+        "y": 5.712364094461614
+      },
+      "isLocked": false,
+      "linkedName": "FourPieceC"
+    },
+    {
+      "anchor": {
+        "x": 16.287831510306265,
+        "y": 7.063592737048541
+      },
+      "prevControl": {
+        "x": 15.780331825362147,
+        "y": 6.449610022352055
+      },
+      "nextControl": {
+        "x": 16.527942792716754,
+        "y": 7.354083906555136
+      },
+      "isLocked": false,
+      "linkedName": "AutoPeriodRightCoralStation"
+    },
+    {
+      "anchor": {
+        "x": 14.537249999999998,
+        "y": 3.9957499999999997
+      },
+      "prevControl": {
+        "x": 15.755999999999998,
+        "y": 3.752
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "FourPieceB"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1,
+      "rotationDegrees": -124.81163681237517
+    }
+  ],
+  "constraintZones": [
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 0.7382178217821769,
+      "maxWaypointRelativePos": 1.3180198019801976,
+      "constraints": {
+        "maxVelocity": 3.0,
+        "maxAcceleration": 2.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    }
+  ],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "Go home",
+      "waypointRelativePos": 0.04,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Go home"
+        }
+      }
+    },
+    {
+      "name": "Feed to L4",
+      "waypointRelativePos": 0.5857142857142857,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Autonomous Feed"
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 4.5,
+    "maxAcceleration": 2.7,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -179.51853419416167
+  },
+  "reversed": false,
+  "folder": "Auto paths",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -119.77369562494148
+  },
+  "useDefaultConstraints": true
+}

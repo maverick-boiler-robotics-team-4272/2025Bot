@@ -1,0 +1,77 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 14.387487365927717,
+        "y": 3.601702867813861
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 15.576869605289371,
+        "y": 1.8458884601730141
+      },
+      "isLocked": false,
+      "linkedName": "AutoA"
+    },
+    {
+      "anchor": {
+        "x": 16.29225,
+        "y": 1.0025
+      },
+      "prevControl": {
+        "x": 15.783860844566693,
+        "y": 1.6862773142877248
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "New left Coral station"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "Go home",
+      "waypointRelativePos": 0.03771712158808921,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Go home"
+        }
+      }
+    },
+    {
+      "name": "Feed to L4",
+      "waypointRelativePos": 0.39900744416873274,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Feed to L4"
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 4.0,
+    "maxAcceleration": 2.4,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 126.46233721780271
+  },
+  "reversed": false,
+  "folder": "Auto paths",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -179.51853419416167
+  },
+  "useDefaultConstraints": false
+}

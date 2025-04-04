@@ -14,11 +14,7 @@ import frc.robot.utils.hardware.Vortex;
 import frc.robot.utils.hardware.VortexBuilder;
 import frc.robot.utils.logging.Loggable;
 import org.littletonrobotics.junction.AutoLog;
-import org.littletonrobotics.junction.AutoLogOutput;
 import org.littletonrobotics.junction.Logger;
-import org.littletonrobotics.junction.mechanism.LoggedMechanism2d;
-import org.littletonrobotics.junction.mechanism.LoggedMechanismLigament2d;
-
 import frc.robot.constants.positions.ArmevatorPositions.ArmevatorPosition;
 
 import static edu.wpi.first.units.Units.Inches;
@@ -26,8 +22,9 @@ import static edu.wpi.first.units.Units.Meters;
 import static frc.robot.constants.HardwareMap.*;
 import static frc.robot.constants.SubsystemConstants.ArmevatorConstants.*;
 import static frc.robot.constants.positions.ArmevatorPositions.L1_ARMEVATOR_POSITION;
-import static frc.robot.constants.positions.ArmevatorPositions.L2_ARMEVATOR_POSITION;
 import static frc.robot.constants.positions.ArmevatorPositions.L4_ARMEVATOR_POSITION;
+import static frc.robot.constants.positions.ArmevatorPositions.ALGAE_ARMEVATOR_POSITION;
+import static frc.robot.constants.positions.ArmevatorPositions.ALGAE_ARMEVATOR_POSITION_TWO;
 
 public class Armevator extends SubsystemBase implements Loggable {
     @AutoLog
@@ -42,12 +39,6 @@ public class Armevator extends SubsystemBase implements Loggable {
         public boolean isSafe;
         public boolean limitSwitch;
     }
-    
-    @AutoLogOutput
-    private LoggedMechanism2d armevatorMechanism;
-
-    private LoggedMechanismLigament2d armLigament;
-    private LoggedMechanismLigament2d elevatorLigament;
 
     private ArmevatorInputsAutoLogged inputs = new ArmevatorInputsAutoLogged();
 
@@ -62,14 +53,6 @@ public class Armevator extends SubsystemBase implements Loggable {
 
         inputs.isSafe = false;
         inputs.limitSwitch = false;
-
-        armevatorMechanism = new LoggedMechanism2d(1, 1);
-        armLigament = new LoggedMechanismLigament2d("Arm", 0.5, 0);
-        elevatorLigament = new LoggedMechanismLigament2d("Elevator", 1.05344, 90);
-
-        armevatorMechanism.getRoot("armevator", 0.5, 0)
-            .append(elevatorLigament)
-            .append(armLigament);
     }
 
     private Vortex elevatorMotor1; 
@@ -83,7 +66,7 @@ public class Armevator extends SubsystemBase implements Loggable {
 
     private ArmFeedforward armFeedforward = new ArmFeedforward(0, ARM_FF, 0, 0);
 
-    private ArmevatorPosition nextPose = L2_ARMEVATOR_POSITION;
+    private ArmevatorPosition nextPose = L4_ARMEVATOR_POSITION;
 
     public Armevator(SparkAbsoluteEncoder armEncoder) {
         this.armEncoder = armEncoder;
@@ -119,7 +102,7 @@ public class Armevator extends SubsystemBase implements Loggable {
             .withInversion(false)
             .withPIDParams(ARM_P, ARM_I, ARM_D)
             .withPositionConversionFactor(ARM_GEAR_RATIO)
-            .withOutputRange(-0.6, 0.75)
+            .withOutputRange(-0.7, 0.75)
             .withPosition(getArmEncoderRotation().getRotations())
             .build();
 
@@ -149,6 +132,14 @@ public class Armevator extends SubsystemBase implements Loggable {
         return nextPose == L4_ARMEVATOR_POSITION;
     }
 
+    public boolean nextIsAlgae1() {
+        return nextPose == ALGAE_ARMEVATOR_POSITION;
+    }
+
+    public boolean nextIsAlgae2() {
+        return nextPose == ALGAE_ARMEVATOR_POSITION_TWO;
+    }
+
     public boolean nextIsL1() {
         return nextPose == L1_ARMEVATOR_POSITION;
     }
@@ -157,7 +148,6 @@ public class Armevator extends SubsystemBase implements Loggable {
         elevatorMotor1.setReference(height, ControlType.kPosition, ClosedLoopSlot.kSlot0, ELEVATOR_FF);
 
         inputs.setElevatorHeight = height;
-        elevatorLigament.setLength(height + 1.05344);
     }
     
     public void setElevatorPower(double speed) {
@@ -185,7 +175,6 @@ public class Armevator extends SubsystemBase implements Loggable {
         );
 
         inputs.setArmRotation = rotation;
-        armLigament.setAngle(rotation.getDegrees() - 90);
     }
 
     public Rotation2d getArmEncoderRotation() {

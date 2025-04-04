@@ -4,15 +4,21 @@
 
 package frc.robot.subsystems.feeder;
 
-import com.revrobotics.spark.SparkFlex;
-import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
+import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
+import com.ctre.phoenix6.configs.MotorOutputConfigs;
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.InvertedValue;
+import com.ctre.phoenix6.signals.NeutralModeValue;
 
+import edu.wpi.first.math.filter.MedianFilter;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 // Check if this version of LaserCan is correct
 import au.grapplerobotics.LaserCan;
 import au.grapplerobotics.ConfigurationFailedException;
 
+import static edu.wpi.first.units.Units.Amps;
 import static frc.robot.constants.HardwareMap.*;
 import static frc.robot.constants.SubsystemConstants.FeederConstants.*;
 
@@ -20,7 +26,6 @@ import static frc.robot.constants.SubsystemConstants.FeederConstants.*;
 import org.littletonrobotics.junction.AutoLog;
 import org.littletonrobotics.junction.Logger;
 
-import frc.robot.utils.hardware.VortexBuilder;
 import frc.robot.utils.logging.Loggable;
 
 public class Feeder extends SubsystemBase implements Loggable {
@@ -28,6 +33,8 @@ public class Feeder extends SubsystemBase implements Loggable {
   public static class FeederInputs {
     public double frontLidarDistance;
     public double backLidarDistance;
+    public double averageBackLidarDistance;
+    public double averageFrontLidarDistance;
     public boolean frontLidarIsTripped;
     public boolean backLidarIsTripped;
   }
@@ -44,14 +51,26 @@ public class Feeder extends SubsystemBase implements Loggable {
   private LaserCan feederCanFront;
   private LaserCan feederCanBack;
 
-  public SparkFlex feederControllerMotor;
+  private TalonFX feederControllerMotor;
+
+  private MedianFilter backLidarFilter = new MedianFilter(11);
+  private MedianFilter frontLidarFilter = new MedianFilter(5);
 
   public Feeder() {
-    feederControllerMotor = VortexBuilder.create(FEEDER_MOTOR_ID)
-        .withInversion(true)
-        .withCurrentLimit(60)
-        .withIdleMode(IdleMode.kBrake)
-        .build();
+    TalonFXConfiguration motorConfiguration = new TalonFXConfiguration()
+      .withCurrentLimits(
+            new CurrentLimitsConfigs()
+                .withStatorCurrentLimit(Amps.of(60))
+                .withStatorCurrentLimitEnable(true)
+      )
+      .withMotorOutput(
+        new MotorOutputConfigs()
+          .withNeutralMode(NeutralModeValue.Brake)
+          .withInverted(InvertedValue.Clockwise_Positive)
+      );
+
+    feederControllerMotor = new TalonFX(FEEDER_MOTOR_ID);
+    feederControllerMotor.getConfigurator().apply(motorConfiguration);
 
     initInputs();
 
@@ -81,8 +100,8 @@ public class Feeder extends SubsystemBase implements Loggable {
   }
 
   public boolean lidarFrontTripped() {
-    LaserCan.Measurement measurementFront = feederCanFront.getMeasurement();
-    if (measurementFront.distance_mm <= FEEDER_CAN_FRONT_TRIGGER_DISTANCE) {
+    // TODO: make sure it doesnt die if no lidar
+    if (inputs.averageFrontLidarDistance <= FEEDER_CAN_FRONT_TRIGGER_DISTANCE) {
       return true;
     }
     return false;
@@ -93,8 +112,7 @@ public class Feeder extends SubsystemBase implements Loggable {
   }
 
   public boolean lidarBackTripped() {
-    LaserCan.Measurement measurementBack = feederCanBack.getMeasurement();
-    if (measurementBack.distance_mm <= FEEDER_CAN_BACK_TRIGGER_DISTANCE) {
+    if (inputs.averageBackLidarDistance <= FEEDER_CAN_BACK_TRIGGER_DISTANCE) {
       return true;
     }
     return false;
@@ -113,8 +131,10 @@ public class Feeder extends SubsystemBase implements Loggable {
   public void periodic() {
     log("Subsystems", "Feeder");
 
-    inputs.frontLidarDistance = feederCanBack.getMeasurement().distance_mm;
-    inputs.backLidarDistance = feederCanFront.getMeasurement().distance_mm;
+    inputs.frontLidarDistance = feederCanFront.getMeasurement().distance_mm;
+    inputs.backLidarDistance = feederCanBack.getMeasurement().distance_mm;
+    inputs.averageBackLidarDistance = backLidarFilter.calculate(inputs.backLidarDistance);
+    inputs.averageFrontLidarDistance = frontLidarFilter.calculate(inputs.frontLidarDistance);
     inputs.frontLidarIsTripped = lidarFrontTripped();
     inputs.backLidarIsTripped = lidarBackTripped();
   }

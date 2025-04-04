@@ -18,12 +18,12 @@ public class SubsystemConstants {
     public static class DrivetrainConstants {
         public static  class AutoConstants {
             public static final double TRANSLATION_MAX = 4.5;
-            public static final double TRANSLATION_MAX_A = 2.25;//3.0;
+            public static final double TRANSLATION_MAX_A = 2.7;//3.0;
             public static final Rotation2d ROTATION_MAX = Rotation2d.fromDegrees(560.0);
             public static final Rotation2d ROTATION_MAX_A = Rotation2d.fromDegrees(720.0);
 
             public static final double TRANSLATION_P = 10.0;
-            public static final double TRANSLATION_I = 0.0;
+            public static final double TRANSLATION_I = 0.00005; // This has to be greater that 0 I think
             public static final double TRANSLATION_D = 0.0;
 
             public static final double ROTATION_P = 10.0;
@@ -48,19 +48,30 @@ public class SubsystemConstants {
                 0
             )
         );
-        public static Pose3d BACK_LIMELIGHT_POSE = new Pose3d(
-            -0.225, //Forward to back
-            0.1648, //Right to left
-            0.3058, // down to up
+        public static Pose3d FRONT_LIMELIGHT_2_POSE = new Pose3d(
+            -0.034556,
+            0.280792,
+            0.211222,
             new Rotation3d(
-                0,
-                Rotation2d.fromDegrees(35.528).getRadians(),
+                Rotation2d.fromDegrees(90).getRadians(),
+                0, 
+
+                0
+            )
+        );
+        public static Pose3d ELEVATOR_LIMELIGHT_POSE = new Pose3d(
+            0.308471, //Forward to back
+            -0.107326, //Right to left
+            0.984077, // down to up
+            new Rotation3d(
+                Rotation2d.fromDegrees(0).getRadians(),
+                Rotation2d.fromDegrees(50).getRadians(),//?
                 Rotation2d.fromDegrees(180).getRadians()
             )
         );
-
         public static Limelight FRONT_LIMELIGHT = new Limelight("limelight-front");
-        public static Limelight BACK_LIMELIGHT = new Limelight("limelight-back");
+        public static Limelight ELEVATOR_LIMELIGHT = new Limelight("limelight-elevate");
+        public static Limelight FRONT_2_LIMELIGHT = new Limelight("limelight-mid");
     }
 
     public static class ArmevatorConstants {
@@ -94,8 +105,8 @@ public class SubsystemConstants {
     }
 
     public static class FeederConstants {
-        public static final int FEEDER_CAN_FRONT_TRIGGER_DISTANCE = 150;
-        public static final int FEEDER_CAN_BACK_TRIGGER_DISTANCE = 150;
+        public static final int FEEDER_CAN_FRONT_TRIGGER_DISTANCE = 200;
+        public static final int FEEDER_CAN_BACK_TRIGGER_DISTANCE = 135;
     }
 
     public static class CoralManipulatorConstants {

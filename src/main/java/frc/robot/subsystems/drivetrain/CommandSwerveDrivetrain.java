@@ -96,16 +96,18 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         inputs.nextBargePose = getGlobalPositions().MIDDLE_BARGE;
         nextPath = getGlobalPositions().CORAL_A;
         nextBargePath = getGlobalPositions().MIDDLE_BARGE_PATH;
-        nextAlgaePath = getGlobalPositions().ALGAE_AB;
+        nextAlgaePath = getGlobalPositions().SCORE_AB;
 
         inputs.getAlgae = false;
 
         FRONT_LIMELIGHT.configure(FRONT_LIMELIGHT_POSE);
-        BACK_LIMELIGHT.configure(BACK_LIMELIGHT_POSE);
+        ELEVATOR_LIMELIGHT.configure(ELEVATOR_LIMELIGHT_POSE);
+        FRONT_2_LIMELIGHT.configure(FRONT_LIMELIGHT_2_POSE);
     }
 
     // The next path to run when the robot is pathfinding
     private PathPlannerPath nextPath;
+    private PathPlannerPath nextMiddlePath;
     private PathPlannerPath nextBargePath;
     private PathPlannerPath nextAlgaePath;
     
@@ -172,7 +174,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
         initPathPlanner();
         initInputs();
-    }      
+    }   
 
     /**
      * Returns a command that applies the specified control request to this swerve drivetrain.
@@ -208,7 +210,15 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     public PathPlannerPath getNextAlgaePath() {
         return nextAlgaePath;
     }
-
+    /**
+     * Sets the next pose to pathfind to and path to follow during the autoteleop gameplay for scoring
+     *
+     * @param path the path to follow after reaching the starting point
+     */
+    public void setNextMiddlePath(Pose2d next, PathPlannerPath path) {
+        inputs.nextScorePose = next;
+        nextMiddlePath = path;
+    }
     /**
      * Sets the next pose to pathfind to and path to follow during the autoteleop gameplay for scoring
      *
@@ -228,7 +238,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     public void setNextScorePose(Pose2d next) {
         inputs.nextScorePose = next;
     }
-
+    
     /**
      * Sets the next pose to pathfind to for feeding
      *
@@ -287,6 +297,10 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         return nextPath;
     }
 
+    public PathPlannerPath getNextMiddlePath() {
+        return nextMiddlePath;
+    }
+
     /**
      * @return the next path to score in the barge
      */
@@ -333,9 +347,11 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
      */
     private void fuseOdometry() {
         FRONT_LIMELIGHT.setRobotOrientation(getState().Pose.getRotation().getDegrees());
-        // BACK_LIMELIGHT.setRobotOrientation(getState().Pose.getRotation().getDegrees());
+        FRONT_2_LIMELIGHT.setRobotOrientation(getState().Pose.getRotation().getDegrees());
+        ELEVATOR_LIMELIGHT.setRobotOrientation(getState().Pose.getRotation().getDegrees());
 
-        // fuseVision(BACK_LIMELIGHT.getBotPoseEstimate());
+        fuseVision(FRONT_2_LIMELIGHT.getBotPoseEstimate());
+        fuseVision(ELEVATOR_LIMELIGHT.getBotPoseEstimate());
         fuseVision(FRONT_LIMELIGHT.getBotPoseEstimate());
     }
 

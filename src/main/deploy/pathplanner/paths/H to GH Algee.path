@@ -1,0 +1,54 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 11.78013698630137,
+        "y": 4.085102739726028
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 11.390970979606346,
+        "y": 4.074073554954167
+      },
+      "isLocked": false,
+      "linkedName": "RedReefH"
+    },
+    {
+      "anchor": {
+        "x": 11.736818439268967,
+        "y": 4.261830237984019
+      },
+      "prevControl": {
+        "x": 10.986582260239606,
+        "y": 4.088426079889935
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "Auto Algee GH"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [],
+  "globalConstraints": {
+    "maxVelocity": 4.5,
+    "maxAcceleration": 2.7,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 0.5682415460892226
+  },
+  "reversed": false,
+  "folder": "Auto paths",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 0.5682415460892226
+  },
+  "useDefaultConstraints": true
+}

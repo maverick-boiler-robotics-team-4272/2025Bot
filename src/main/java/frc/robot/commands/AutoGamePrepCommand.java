@@ -18,16 +18,20 @@ import frc.robot.subsystems.feeder.Feeder;
 public class AutoGamePrepCommand extends SequentialCommandGroup {
     public AutoGamePrepCommand(CommandSwerveDrivetrain drivetrain, Armevator armevator, Feeder feeder, CoralManipulator coralManipulator) {
         super(
-            new PathfindThenPathState(drivetrain, drivetrain::getNextPath),
+            new ConditionalCommand(
+                new PathfindThenPathState(drivetrain, drivetrain::getNextMiddlePath), 
+                new PathfindThenPathState(drivetrain, drivetrain::getNextPath), 
+                armevator::nextIsL1
+            ),
             new GoToNextArmevatorPoseState(armevator)
                 .raceWith(new IdleState(coralManipulator, armevator::getArmRotation)),
-            new WaitCommand(0.3),
+            new WaitCommand(0.3).unless(() -> !armevator.nextIsL4()),
             new ConditionalCommand(
                 new CoralOutakeState(coralManipulator, 0.5).withTimeout(0.25),
                 new CoralOutakeState(coralManipulator, -0.5).withTimeout(0.25),
                 armevator::nextIsL4
             ),
-            new GoToArmevatorPoseState(armevator, HOME).withTimeout(0.1)
+            new GoToArmevatorPoseState(armevator, HOME).withTimeout(0.1).unless(() -> !armevator.nextIsL4())
         );
     }
 }

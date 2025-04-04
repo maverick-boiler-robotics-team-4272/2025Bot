@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 12.381164383561643,
-        "y": 2.943150684931507
+        "x": 12.327806285184838,
+        "y": 2.902047561866002
       },
       "prevControl": {
-        "x": 12.164122979057332,
-        "y": 2.6948921434494943
+        "x": 12.110764880680527,
+        "y": 2.6537890203839893
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "TautoJ"
     }
   ],
   "rotationTargets": [],
@@ -54,13 +54,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 58.72229713313359
+    "rotation": 59.99999999999999
   },
   "reversed": false,
   "folder": "Approch Paths",
   "idealStartingState": {
     "velocity": 2.0,
-    "rotation": 58.72229713313359
+    "rotation": 59.99999999999999
   },
   "useDefaultConstraints": false
 }

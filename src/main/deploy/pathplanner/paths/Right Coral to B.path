@@ -1,0 +1,66 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 16.287831510306265,
+        "y": 7.063592737048541
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 15.837836195978062,
+        "y": 6.218479805316732
+      },
+      "isLocked": false,
+      "linkedName": "AutoPeriodRightCoralStation"
+    },
+    {
+      "anchor": {
+        "x": 14.416925547562862,
+        "y": 3.9373483376399157
+      },
+      "prevControl": {
+        "x": 14.880744552554441,
+        "y": 4.661649504406878
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "AutoB"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "Feed to L4",
+      "waypointRelativePos": 0.0,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Feed to L4"
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 4.5,
+    "maxAcceleration": 2.7,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -179.51853419416167
+  },
+  "reversed": false,
+  "folder": "Auto paths",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -125.72739822279966
+  },
+  "useDefaultConstraints": true
+}

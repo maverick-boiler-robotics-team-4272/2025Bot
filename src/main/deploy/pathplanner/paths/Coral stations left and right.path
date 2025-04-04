@@ -32,16 +32,16 @@
     },
     {
       "anchor": {
-        "x": 16.21271404109589,
-        "y": 1.0
+        "x": 16.319060195211947,
+        "y": 1.0185724342565368
       },
       "prevControl": {
-        "x": 9.117138698630137,
-        "y": 1.0426583904109576
+        "x": 9.223484852746195,
+        "y": 1.0612308246674944
       },
       "nextControl": {
-        "x": 23.308289383561643,
-        "y": 0.9573416095890424
+        "x": 23.4146355376777,
+        "y": 0.9759140438455791
       },
       "isLocked": false,
       "linkedName": "RedLeftCoral"
@@ -82,8 +82,8 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 4.0,
-    "maxAcceleration": 3.0,
+    "maxVelocity": 4.5,
+    "maxAcceleration": 2.7,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,

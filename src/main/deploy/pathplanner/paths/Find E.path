@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 12.740545551362855,
-        "y": 5.402314652566589
+        "x": 12.77204861111111,
+        "y": 5.394618055555555
       },
       "prevControl": {
-        "x": 12.424690332137079,
-        "y": 5.49490410234598
+        "x": 12.456193391885334,
+        "y": 5.487207505334946
       },
       "nextControl": null,
       "isLocked": false,
@@ -60,7 +60,7 @@
   "folder": "Approch Paths",
   "idealStartingState": {
     "velocity": 1.0,
-    "rotation": -60.068488159492176
+    "rotation": -59.99999999999999
   },
   "useDefaultConstraints": false
 }

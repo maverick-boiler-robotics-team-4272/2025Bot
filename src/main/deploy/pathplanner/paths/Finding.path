@@ -40,8 +40,8 @@
         "y": 1.993245665667808
       },
       "nextControl": {
-        "x": 15.971181707512843,
-        "y": 3.0816687178938347
+        "x": 15.971181707512844,
+        "y": 3.081668717893834
       },
       "isLocked": false,
       "linkedName": "Coral_KL"
@@ -96,32 +96,32 @@
     },
     {
       "anchor": {
-        "x": 16.377996575342465,
-        "y": 1.0198630136986298
+        "x": 16.321875,
+        "y": 1.0901041666666662
       },
       "prevControl": {
-        "x": 15.749025661457075,
-        "y": -0.11684514427959636
+        "x": 15.69290408611461,
+        "y": -0.0466039913115599
       },
       "nextControl": {
-        "x": 17.006967489227854,
-        "y": 2.1565711716768554
+        "x": 16.950845913885388,
+        "y": 2.226812324644892
       },
       "isLocked": false,
       "linkedName": "Coral_Station_Left"
     },
     {
       "anchor": {
-        "x": 16.332919520547946,
-        "y": 7.075214041095891
+        "x": 16.279947916666668,
+        "y": 7.001822916666666
       },
       "prevControl": {
-        "x": 16.607518613854275,
-        "y": 10.625073801903184
+        "x": 16.554547009972996,
+        "y": 10.551682677473961
       },
       "nextControl": {
-        "x": 16.05832042724162,
-        "y": 3.525354280288597
+        "x": 16.00534882336034,
+        "y": 3.4519631558593717
       },
       "isLocked": false,
       "linkedName": "Coral_Station_Right"
@@ -206,8 +206,8 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 4.0,
-    "maxAcceleration": 3.0,
+    "maxVelocity": 4.5,
+    "maxAcceleration": 2.7,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -221,7 +221,7 @@
   "folder": "Field positions",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.5682415460892226
+    "rotation": 0.0
   },
   "useDefaultConstraints": true
 }
