@@ -547,6 +547,28 @@ public class RobotContainer {
                 feeder, coralManipulator, armevator, 1, 0.2
             )
         );
+
+        NamedCommands.registerCommand("Auto Algee Low",
+            new ParallelCommandGroup(
+                new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION),
+                new AlgaeIntake(algaeManipulator)
+            ).withTimeout(1)
+        );
+
+        NamedCommands.registerCommand("Auto Algee High",
+            new ParallelCommandGroup(
+                new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION_TWO),
+                new AlgaeIntake(algaeManipulator)
+            ).withTimeout(1)
+        );
+
+        NamedCommands.registerCommand("Auto Algee Barge",
+            new ParallelCommandGroup(
+                new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION),
+                new AlgaeIntake(algaeManipulator)
+            ).withTimeout(1)
+        );
+
     }
 
     private void setupAutos() {

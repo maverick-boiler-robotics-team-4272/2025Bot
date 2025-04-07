@@ -33,7 +33,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Auto Algee",
+      "name": "Auto Algee High",
       "waypointRelativePos": 0,
       "endWaypointRelativePos": null,
       "command": {
