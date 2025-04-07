@@ -567,10 +567,11 @@ public class RobotContainer {
         autoChooser.setDefaultOption("Middle Auto", new PathPlannerAuto("Short Auto", false));
         autoChooser.addOption("Left Four Piece", new PathPlannerAuto("Left four piece auto", false));
         autoChooser.addOption("right Four Piece", new PathPlannerAuto("Right four piece auto", false));
-        // autoChooser.addOption("Right four piece minimal stops", new PathPlannerAuto("Right four piece minimal stops", false));
-        // autoChooser.addOption("Left four piece minimal stops", new PathPlannerAuto("Left four piece minimal stops auto", false));
-        // autoChooser.addOption("Odometry test", new PathPlannerAuto("Wheel Diam"));
-        // autoChooser.setDefaultOption("Output name", new PathPlannerAuto("auto name", boolean mirror same field)); //ex
+        autoChooser.addOption("Right four piece minimal stops", new PathPlannerAuto("Right four piece minimal stops", false));
+        autoChooser.addOption("Left four piece minimal stops", new PathPlannerAuto("Left four piece minimal stops auto", false));
+        autoChooser.addOption("", new PathPlannerAuto("", false));
+        autoChooser.addOption("Odometry test", new PathPlannerAuto("Wheel Diam"));
+        //autoChooser.setDefaultOption("Output name", new PathPlannerAuto("auto name", boolean mirror same field)); //ex
     }
 
     public Command getAutonomousCommand() {
