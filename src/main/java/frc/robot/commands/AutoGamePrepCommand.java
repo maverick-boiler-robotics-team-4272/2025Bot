@@ -26,11 +26,19 @@ public class AutoGamePrepCommand extends SequentialCommandGroup {
             new GoToNextArmevatorPoseState(armevator)
                 .raceWith(new IdleState(coralManipulator, armevator::getArmRotation)),
             new WaitCommand(0.3).unless(() -> !armevator.nextIsL4()),
-            new ConditionalCommand(
-                new CoralOutakeState(coralManipulator, 0.5).withTimeout(0.25),
-                new CoralOutakeState(coralManipulator, -0.5).withTimeout(0.25),
+             new ConditionalCommand(
+                new CoralOutakeState(coralManipulator, 1.0).withTimeout(0.2),
+                new ConditionalCommand(
+                    new CoralOutakeState(coralManipulator, -0.2).withTimeout(0.25), 
+                    new CoralOutakeState(coralManipulator, -1.0).withTimeout(0.1), 
+                    armevator::nextIsL1
+                ),
                 armevator::nextIsL4
             ),
+
+
+
+            
             new GoToArmevatorPoseState(armevator, HOME).withTimeout(0.1).unless(() -> !armevator.nextIsL4())
         );
     }

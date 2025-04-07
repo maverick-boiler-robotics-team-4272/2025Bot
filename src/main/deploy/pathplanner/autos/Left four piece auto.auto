@@ -11,6 +11,12 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.3
+          }
+        },
+        {
           "type": "named",
           "data": {
             "name": "Score L4"
@@ -20,24 +26,6 @@
           "type": "path",
           "data": {
             "pathName": "J to Left Coral"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Left feeder to K"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Score L4"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "K to left coral"
           }
         },
         {
@@ -56,6 +44,24 @@
           "type": "path",
           "data": {
             "pathName": "A to Left Coral"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Left feeder to K"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score L4"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "K to left coral"
           }
         },
         {
