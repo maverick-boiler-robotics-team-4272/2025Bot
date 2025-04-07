@@ -181,11 +181,11 @@
       },
       "prevControl": {
         "x": 16.642829762519018,
-        "y": 6.466621173943048
+        "y": 6.4666211739430475
       },
       "nextControl": {
         "x": 17.033157079586243,
-        "y": 6.779102510267476
+        "y": 6.779102510267477
       },
       "isLocked": false,
       "linkedName": "Coral_Station_Right_Close"
@@ -197,11 +197,107 @@
       },
       "prevControl": {
         "x": 18.856606410075845,
-        "y": 5.588092531967459
+        "y": 5.588092531967458
+      },
+      "nextControl": {
+        "x": 14.800137010976787,
+        "y": -2.830033321441142
+      },
+      "isLocked": false,
+      "linkedName": "Coral_Station_Left_Close"
+    },
+    {
+      "anchor": {
+        "x": 13.512760416666667,
+        "y": 2.6833333333333327
+      },
+      "prevControl": {
+        "x": 14.191387949932839,
+        "y": -0.25503402183168244
+      },
+      "nextControl": {
+        "x": 12.834132883400496,
+        "y": 5.621700688498349
+      },
+      "isLocked": false,
+      "linkedName": "Algae_KL"
+    },
+    {
+      "anchor": {
+        "x": 12.157118055555557,
+        "y": 2.9628472222222215
+      },
+      "prevControl": {
+        "x": 13.068628941700249,
+        "y": 4.292273955360285
+      },
+      "nextControl": {
+        "x": 11.245607169410865,
+        "y": 1.6334204890841575
+      },
+      "isLocked": false,
+      "linkedName": "Algae_IJ"
+    },
+    {
+      "anchor": {
+        "x": 11.695920138888889,
+        "y": 4.2765625
+      },
+      "prevControl": {
+        "x": 12.127621293038766,
+        "y": 3.6467883695420795
+      },
+      "nextControl": {
+        "x": 11.264218984739012,
+        "y": 4.90633663045792
+      },
+      "isLocked": false,
+      "linkedName": "Algae_GH"
+    },
+    {
+      "anchor": {
+        "x": 12.604340277777778,
+        "y": 5.352690972222222
+      },
+      "prevControl": {
+        "x": 12.947517478480618,
+        "y": 5.136501648562293
+      },
+      "nextControl": {
+        "x": 12.261163077074938,
+        "y": 5.568880295882151
+      },
+      "isLocked": false,
+      "linkedName": "Algae_EF"
+    },
+    {
+      "anchor": {
+        "x": 13.946006944444443,
+        "y": 5.115104166666666
+      },
+      "prevControl": {
+        "x": 13.096597163537467,
+        "y": 4.496462717385519
+      },
+      "nextControl": {
+        "x": 14.79541672535142,
+        "y": 5.733745615947813
+      },
+      "isLocked": false,
+      "linkedName": "Algae_CD"
+    },
+    {
+      "anchor": {
+        "x": 14.43515625,
+        "y": 3.731510416666666
+      },
+      "prevControl": {
+        "x": 14.685164959897932,
+        "y": 4.64178600241835
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Coral_Station_Left_Close"
+      "linkedName": "Algae_AB"
     }
   ],
   "rotationTargets": [
@@ -236,6 +332,30 @@
     {
       "waypointRelativePos": 11.0,
       "rotationDegrees": -125.00000000000001
+    },
+    {
+      "waypointRelativePos": 12.0,
+      "rotationDegrees": 125.00000000000001
+    },
+    {
+      "waypointRelativePos": 13.0,
+      "rotationDegrees": 119.99999999999999
+    },
+    {
+      "waypointRelativePos": 14.0,
+      "rotationDegrees": 59.99999999999999
+    },
+    {
+      "waypointRelativePos": 15.0,
+      "rotationDegrees": 0.0
+    },
+    {
+      "waypointRelativePos": 16.0,
+      "rotationDegrees": -59.99999999999999
+    },
+    {
+      "waypointRelativePos": 17,
+      "rotationDegrees": -119.99999999999999
     }
   ],
   "constraintZones": [],
@@ -251,7 +371,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 125.00000000000001
+    "rotation": 180.0
   },
   "reversed": false,
   "folder": "Field positions",
