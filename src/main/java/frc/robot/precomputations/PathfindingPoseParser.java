@@ -28,8 +28,10 @@ public class PathfindingPoseParser {
         rotationMap.put("Coral_GH", "red ? Rotation2d.fromDegrees(0) : Rotation2d.fromDegrees(180)");
         rotationMap.put("Coral_IJ", "red ? Rotation2d.fromDegrees(60) : Rotation2d.fromDegrees(-120)");
         rotationMap.put("Coral_KL", "red ? Rotation2d.fromDegrees(120) : Rotation2d.fromDegrees(-60)");
-        rotationMap.put("Coral_Station_Right", "red ? Rotation2d.fromDegrees(-126) : Rotation2d.fromDegrees(55)");
-        rotationMap.put("Coral_Station_Left", "red ? Rotation2d.fromDegrees(126) : Rotation2d.fromDegrees(-55)");
+        rotationMap.put("Coral_Station_Right_Close", "red ? Rotation2d.fromDegrees(-126) : Rotation2d.fromDegrees(55)");
+        rotationMap.put("Coral_Station_Right_Far", "red ? Rotation2d.fromDegrees(-126) : Rotation2d.fromDegrees(55)");
+        rotationMap.put("Coral_Station_Left_Close", "red ? Rotation2d.fromDegrees(126) : Rotation2d.fromDegrees(-55)");
+        rotationMap.put("Coral_Station_Left_Far", "red ? Rotation2d.fromDegrees(126) : Rotation2d.fromDegrees(-55)");
         rotationMap.put("Left_Barge", "red ? Rotation2d.fromDegrees(0) : Rotation2d.fromDegrees(180)");
         rotationMap.put("Middle_Barge", "red ? Rotation2d.fromDegrees(0) : Rotation2d.fromDegrees(180)");
         rotationMap.put("Right_Barge", "red ? Rotation2d.fromDegrees(0) : Rotation2d.fromDegrees(180)");

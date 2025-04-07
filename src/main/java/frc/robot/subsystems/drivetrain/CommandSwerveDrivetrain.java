@@ -92,7 +92,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         }
 
         inputs.nextScorePose = getGlobalPositions().CORAL_AB;
-        inputs.nextFeedPose = getGlobalPositions().CORAL_STATION_LEFT;
+        inputs.nextFeedPose = getGlobalPositions().CORAL_STATION_LEFT_FAR;
         inputs.nextBargePose = getGlobalPositions().MIDDLE_BARGE;
         nextPath = getGlobalPositions().CORAL_A;
         nextBargePath = getGlobalPositions().MIDDLE_BARGE_PATH;

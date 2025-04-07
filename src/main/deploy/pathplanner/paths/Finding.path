@@ -96,35 +96,35 @@
     },
     {
       "anchor": {
-        "x": 16.321875,
-        "y": 1.0901041666666662
+        "x": 15.962417763157895,
+        "y": 0.763240131578948
       },
       "prevControl": {
-        "x": 15.69290408611461,
-        "y": -0.0466039913115599
+        "x": 15.333446849272505,
+        "y": -0.3734680263992781
       },
       "nextControl": {
-        "x": 16.950845913885388,
-        "y": 2.226812324644892
+        "x": 16.59138867704328,
+        "y": 1.899948289557174
       },
       "isLocked": false,
-      "linkedName": "Coral_Station_Left"
+      "linkedName": "Coral_Station_Left_Far"
     },
     {
       "anchor": {
-        "x": 16.279947916666668,
-        "y": 7.001822916666666
+        "x": 15.895065789473684,
+        "y": 7.286759868421052
       },
       "prevControl": {
-        "x": 16.554547009972996,
-        "y": 10.551682677473961
+        "x": 16.169664882780005,
+        "y": 10.83661962922835
       },
       "nextControl": {
-        "x": 16.00534882336034,
-        "y": 3.4519631558593717
+        "x": 15.620466696167355,
+        "y": 3.7369001076137582
       },
       "isLocked": false,
-      "linkedName": "Coral_Station_Right"
+      "linkedName": "Coral_Station_Right_Far"
     },
     {
       "anchor": {
@@ -167,9 +167,41 @@
         "x": 10.277503856677653,
         "y": 1.3615806541856177
       },
-      "nextControl": null,
+      "nextControl": {
+        "x": 8.75391975443346,
+        "y": 0.39935684581437997
+      },
       "isLocked": false,
       "linkedName": "Left_Barge"
+    },
+    {
+      "anchor": {
+        "x": 16.83799342105263,
+        "y": 6.622861842105262
+      },
+      "prevControl": {
+        "x": 16.642829762519018,
+        "y": 6.466621173943048
+      },
+      "nextControl": {
+        "x": 17.033157079586243,
+        "y": 6.779102510267476
+      },
+      "isLocked": false,
+      "linkedName": "Coral_Station_Right_Close"
+    },
+    {
+      "anchor": {
+        "x": 16.828371710526316,
+        "y": 1.3790296052631583
+      },
+      "prevControl": {
+        "x": 18.856606410075845,
+        "y": 5.588092531967459
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "Coral_Station_Left_Close"
     }
   ],
   "rotationTargets": [
@@ -200,6 +232,10 @@
     {
       "waypointRelativePos": 7,
       "rotationDegrees": -125.00000000000001
+    },
+    {
+      "waypointRelativePos": 11.0,
+      "rotationDegrees": -125.00000000000001
     }
   ],
   "constraintZones": [],
@@ -215,7 +251,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 125.00000000000001
   },
   "reversed": false,
   "folder": "Field positions",

@@ -446,12 +446,21 @@ public class RobotContainer {
 
         buttonBoard.getButton(1).whileTrue(
             // new PathfindingState(drivetrain, getGlobalPositions().CORAL_STATION_LEFT)
-            new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_LEFT)).ignoringDisable(true)
+            new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_LEFT_FAR)).ignoringDisable(true)
+        );
+        
+        buttonBoard.getButton(3).whileTrue(
+            new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_LEFT_CLOSE)).ignoringDisable(true)
         );
 
         buttonBoard.getButton(2).whileTrue(
             // new PathfindingState(drivetrain, getGlobalPositions().CORAL_STATION_RIGHT)
-            new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_RIGHT)).ignoringDisable(true)
+            new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_RIGHT_FAR)).ignoringDisable(true)
+        );
+
+        buttonBoard.getButton(4).whileTrue(
+            // new PathfindingState(drivetrain, getGlobalPositions().CORAL_STATION_RIGHT)
+            new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_RIGHT_CLOSE)).ignoringDisable(true)
         );
     }
 
