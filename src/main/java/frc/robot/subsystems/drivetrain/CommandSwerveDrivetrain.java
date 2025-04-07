@@ -96,7 +96,6 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         inputs.nextBargePose = getGlobalPositions().MIDDLE_BARGE;
         nextPath = getGlobalPositions().CORAL_A;
         nextBargePath = getGlobalPositions().MIDDLE_BARGE_PATH;
-        nextAlgaePath = getGlobalPositions().SCORE_AB;
 
         inputs.getAlgae = false;
 
@@ -109,7 +108,6 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     private PathPlannerPath nextPath;
     private PathPlannerPath nextMiddlePath;
     private PathPlannerPath nextBargePath;
-    private PathPlannerPath nextAlgaePath;
     
     /* Blue alliance sees forward as 0 degrees (toward red alliance wall) */
     private static final Rotation2d kBlueAlliancePerspectiveRotation = Rotation2d.kZero;
@@ -203,13 +201,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     public boolean getAlgae() {
         return inputs.getAlgae;
     }
-
-    /**
-     * @return the next path to grab algae with
-     */
-    public PathPlannerPath getNextAlgaePath() {
-        return nextAlgaePath;
-    }
+    
     /**
      * Sets the next pose to pathfind to and path to follow during the autoteleop gameplay for scoring
      *
