@@ -19,7 +19,6 @@ public class AutoAlgaeScoreCommand extends SequentialCommandGroup {
             new SequentialCommandGroup (
                 new PathfindingState(drivetrain, drivetrain::getNextBargePose),
                 new GoToArmevatorPoseState(armevator, BARGE_PREP_ARMEVATOR_POSITION),
-                // new WaitCommand(.05),
                 new GoToArmevatorPoseState(armevator, BARGE_ARMEVATOR_POSITION)
             ).raceWith(new AlgaeIntake(algaeManipulator)),
             new AlgaeOuttake(algaeManipulator).withTimeout(0.2),

@@ -5,19 +5,20 @@ import frc.robot.subsystems.coralManipulator.CoralManipulator;
 import frc.robot.utils.commandUtils.State;
 
 public class CoralOutakeState extends State<CoralManipulator> {
-  double coral;
-  public CoralOutakeState(CoralManipulator coralSubsystem, double coral) {
+  double coralPower;
+
+  public CoralOutakeState(CoralManipulator coralSubsystem, double power) {
     super(coralSubsystem);
-    this.coral = coral;
+    this.coralPower = power;
   }
 
   @Override
   public void initialize() {
-    requiredSubsystem.setCoralPower(-coral);
+    requiredSubsystem.setCoralPower(-coralPower);
   }
 
   @Override
   public void end(boolean interrupted) {
-    requiredSubsystem.setCoralPower(-coral);
+    requiredSubsystem.setCoralPower(-coralPower);
   }
 }

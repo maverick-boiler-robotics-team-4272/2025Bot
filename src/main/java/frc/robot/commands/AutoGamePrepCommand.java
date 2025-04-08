@@ -17,6 +17,8 @@ import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
 import frc.robot.subsystems.drivetrain.states.PathfindThenPathState;
 import frc.robot.subsystems.feeder.Feeder;
 
+// TODO: Clean up with comments
+
 public class AutoGamePrepCommand extends SequentialCommandGroup {
     public AutoGamePrepCommand(CommandSwerveDrivetrain drivetrain, Armevator armevator, Feeder feeder, CoralManipulator coralManipulator, AlgaeManipulator algaeManipulator) {
         super(

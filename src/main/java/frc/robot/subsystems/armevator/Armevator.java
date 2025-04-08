@@ -21,10 +21,7 @@ import static edu.wpi.first.units.Units.Inches;
 import static edu.wpi.first.units.Units.Meters;
 import static frc.robot.constants.HardwareMap.*;
 import static frc.robot.constants.SubsystemConstants.ArmevatorConstants.*;
-import static frc.robot.constants.positions.ArmevatorPositions.L1_ARMEVATOR_POSITION;
-import static frc.robot.constants.positions.ArmevatorPositions.L4_ARMEVATOR_POSITION;
-import static frc.robot.constants.positions.ArmevatorPositions.ALGAE_ARMEVATOR_POSITION;
-import static frc.robot.constants.positions.ArmevatorPositions.ALGAE_ARMEVATOR_POSITION_TWO;
+import static frc.robot.constants.positions.ArmevatorPositions.*;
 
 public class Armevator extends SubsystemBase implements Loggable {
     @AutoLog
@@ -230,7 +227,11 @@ public class Armevator extends SubsystemBase implements Loggable {
             return;
         }
 
-        if(getArmRotation().getDegrees() < SAFE_ANGLE.getDegrees() - 5.0 && inputs.desiredElevatorHeight <= SAFE_ELEVATOR_HEIGHT && inputs.desiredElevatorHeight < getElevatorHeight() - 0.01) {
+        if(
+            getArmRotation().getDegrees() < SAFE_ANGLE.getDegrees() - 5.0 && 
+            inputs.desiredElevatorHeight <= SAFE_ELEVATOR_HEIGHT && 
+            inputs.desiredElevatorHeight < getElevatorHeight() - 0.01
+        ) {
             inputs.isSafe = false;
             setElevtorHeight(SAFE_ELEVATOR_HEIGHT);
             setArmRotation(SAFE_ANGLE);

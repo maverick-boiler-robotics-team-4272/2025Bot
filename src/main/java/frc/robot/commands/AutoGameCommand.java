@@ -23,6 +23,8 @@ import frc.robot.subsystems.drivetrain.states.PathfindingState;
 import frc.robot.subsystems.feeder.Feeder;
 import frc.robot.subsystems.feeder.states.FeedState;
 
+// TODO: Clean up with comments
+
 public class AutoGameCommand extends SequentialCommandGroup {
     public AutoGameCommand(CommandSwerveDrivetrain drivetrain, Armevator armevator, Feeder feeder, CoralManipulator coralManipulator, AlgaeManipulator algaeManipulator, BooleanSupplier leaveOverride) {
         super(

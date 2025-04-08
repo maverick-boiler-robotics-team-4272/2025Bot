@@ -44,6 +44,8 @@ public class Feeder extends SubsystemBase implements Loggable {
   private void initInputs() {
     inputs.frontLidarDistance = 0.0;
     inputs.backLidarDistance = 0.0;
+    inputs.averageBackLidarDistance = 0.0;
+    inputs.averageFrontLidarDistance = 0.0;
     inputs.frontLidarIsTripped = false;
     inputs.backLidarIsTripped = false;
   }
@@ -131,10 +133,15 @@ public class Feeder extends SubsystemBase implements Loggable {
   public void periodic() {
     log("Subsystems", "Feeder");
 
-    inputs.frontLidarDistance = feederCanFront.getMeasurement().distance_mm;
-    inputs.backLidarDistance = feederCanBack.getMeasurement().distance_mm;
-    inputs.averageBackLidarDistance = backLidarFilter.calculate(inputs.backLidarDistance);
-    inputs.averageFrontLidarDistance = frontLidarFilter.calculate(inputs.frontLidarDistance);
+    try {
+      inputs.frontLidarDistance = feederCanFront.getMeasurement().distance_mm;
+      inputs.backLidarDistance = feederCanBack.getMeasurement().distance_mm;
+      inputs.averageBackLidarDistance = backLidarFilter.calculate(inputs.backLidarDistance);
+      inputs.averageFrontLidarDistance = frontLidarFilter.calculate(inputs.frontLidarDistance);
+    } catch(Exception e) {
+      // Cry about it...
+    }
+
     inputs.frontLidarIsTripped = lidarFrontTripped();
     inputs.backLidarIsTripped = lidarBackTripped();
   }

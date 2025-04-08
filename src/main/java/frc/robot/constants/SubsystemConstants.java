@@ -18,7 +18,7 @@ public class SubsystemConstants {
     public static class DrivetrainConstants {
         public static  class AutoConstants {
             public static final double TRANSLATION_MAX = 4.5;
-            public static final double TRANSLATION_MAX_A = 3.05;//3.0;
+            public static final double TRANSLATION_MAX_A = 3.05; //2.7;
             public static final Rotation2d ROTATION_MAX = Rotation2d.fromDegrees(560.0);
             public static final Rotation2d ROTATION_MAX_A = Rotation2d.fromDegrees(720.0);
 

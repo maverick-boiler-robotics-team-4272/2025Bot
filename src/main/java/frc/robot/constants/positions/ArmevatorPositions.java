@@ -9,10 +9,9 @@ import static edu.wpi.first.units.Units.Meters;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 
-/** Add your docs here. */
 public class ArmevatorPositions {
    // public static final ArmevatorPosition example = new ArmevatorPosition(Rotation2d.fromDegrees(90), Meters.convertFrom(30, Inches));
-   //barge is 50 in and 190 deg
+   // example is 30 in and 90 deg
 
     public static final ArmevatorPosition HOME = new ArmevatorPosition(Rotation2d.fromDegrees(5), Meters.convertFrom(0.1, Inches));
 

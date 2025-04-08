@@ -56,7 +56,7 @@ public class PositionContainer {
     public final PathPlannerPath SCORE_IJ;
     public final PathPlannerPath SCORE_KL;
 
-    public ArrayList<Pose2d> ALGAE_POSES;
+    public ArrayList<Pose2d> ALGAE_POSES = new ArrayList<>(6);
 
     public PositionContainer(boolean red) {
         //Variable = new Pose2d(red ? FIELD_LENGTH_METERS - x : x, y, red ? Rotation2d.fromDegrees(red degrees) : Rotation2d.fromDegrees(blue Degrees))

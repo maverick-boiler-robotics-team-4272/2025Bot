@@ -8,9 +8,7 @@ import frc.robot.constants.positions.ArmevatorPositions.ArmevatorPosition;
 import frc.robot.subsystems.armevator.Armevator;
 import frc.robot.utils.commandUtils.State;
 
-/* You should consider using the more terse Command factories API instead https://docs.wpilib.org/en/stable/docs/software/commandbased/organizing-command-based.html#defining-commands */
 public class GoToArmevatorPoseState extends State<Armevator> {
-  /** Creates a new GoToPos. */
   private ArmevatorPosition position;
    
   public GoToArmevatorPoseState(Armevator armevator, ArmevatorPosition position) {
