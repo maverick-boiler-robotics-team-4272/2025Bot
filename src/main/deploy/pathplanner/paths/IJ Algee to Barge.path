@@ -33,13 +33,13 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Auto Algee High",
+      "name": "Hold Algae High",
       "waypointRelativePos": 0,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Auto Algee"
+          "name": "Hold Algae High"
         }
       }
     }

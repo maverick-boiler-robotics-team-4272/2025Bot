@@ -30,6 +30,7 @@ import frc.robot.constants.positions.ArmevatorPositions.ArmevatorPosition;
 import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
 import frc.robot.subsystems.algaeManipulator.states.AlgaeIdle;
 import frc.robot.subsystems.algaeManipulator.states.AlgaeIntake;
+import frc.robot.subsystems.algaeManipulator.states.AlgaeOuttake;
 import frc.robot.subsystems.armevator.Armevator;
 import frc.robot.subsystems.armevator.states.GoToArmevatorPoseState;
 import frc.robot.subsystems.armevator.states.GoToNextArmevatorPoseState;
@@ -42,6 +43,7 @@ import frc.robot.subsystems.coralManipulator.states.CoralOutakeState;
 import frc.robot.subsystems.coralManipulator.states.IdleState;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
 import frc.robot.subsystems.drivetrain.states.DriveState;
+import frc.robot.subsystems.drivetrain.states.PathfindingState;
 import frc.robot.subsystems.drivetrain.states.ResetHeadingState;
 import frc.robot.subsystems.feeder.Feeder;
 import frc.robot.subsystems.feeder.states.FeedState;
@@ -552,23 +554,37 @@ public class RobotContainer {
             new ParallelCommandGroup(
                 new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION),
                 new AlgaeIntake(algaeManipulator)
-            ).withTimeout(1)
+            ).until(algaeManipulator::hasAlgae)
         );
 
         NamedCommands.registerCommand("Auto Algee High",
             new ParallelCommandGroup(
                 new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION_TWO),
                 new AlgaeIntake(algaeManipulator)
-            ).withTimeout(1)
+            ).until(algaeManipulator::hasAlgae)
         );
 
-        NamedCommands.registerCommand("Auto Algee Barge",
+        NamedCommands.registerCommand("Barge",
+            new SequentialCommandGroup(
+                new GoToArmevatorPoseState(armevator, BARGE_PREP_ARMEVATOR_POSITION),
+                new GoToArmevatorPoseState(armevator, BARGE_ARMEVATOR_POSITION)
+            ).raceWith(new AlgaeIntake(algaeManipulator))
+            .andThen(new AlgaeOuttake(algaeManipulator)).withTimeout(0.5)
+        );
+
+        NamedCommands.registerCommand("Hold Algae Low",
             new ParallelCommandGroup(
                 new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION),
                 new AlgaeIntake(algaeManipulator)
-            ).withTimeout(1)
+            )        
         );
-
+        
+        NamedCommands.registerCommand("Hold Algae High",
+        new ParallelCommandGroup(
+            new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION_TWO),
+            new AlgaeIntake(algaeManipulator)
+        )        
+    );
     }
 
     private void setupAutos() {
@@ -593,6 +609,7 @@ public class RobotContainer {
         autoChooser.addOption("Left four piece minimal stops", new PathPlannerAuto("Left four piece minimal stops auto", false));
         autoChooser.addOption("One Coral Two Algee auto", new PathPlannerAuto("One Coral Two Algee auto", false));
         autoChooser.addOption("Odometry test", new PathPlannerAuto("Wheel Diam"));
+        autoChooser.addOption("Barge Test", new PathPlannerAuto("Barge Test"));
         //autoChooser.setDefaultOption("Output name", new PathPlannerAuto("auto name", boolean mirror same field)); //ex
     }
 
