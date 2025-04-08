@@ -79,7 +79,7 @@ public class PositionContainer {
 		ALGAE_GH = new Pose2d(red ? 11.6959 : FIELD_LENGTH_METERS - 11.6959, red ? 4.2766 : FIELD_WIDTH_METERS - 4.2766, red ? Rotation2d.fromDegrees(0) : Rotation2d.fromDegrees(180));
 		ALGAE_EF = new Pose2d(red ? 12.6043 : FIELD_LENGTH_METERS - 12.6043, red ? 5.3527 : FIELD_WIDTH_METERS - 5.3527, red ? Rotation2d.fromDegrees(-60) : Rotation2d.fromDegrees(120));
 		ALGAE_CD = new Pose2d(red ? 13.9460 : FIELD_LENGTH_METERS - 13.9460, red ? 5.1151 : FIELD_WIDTH_METERS - 5.1151, red ? Rotation2d.fromDegrees(-120) : Rotation2d.fromDegrees(60));
-		ALGAE_AB = new Pose2d(red ? 14.4352 : FIELD_LENGTH_METERS - 14.4352, red ? 3.7315 : FIELD_WIDTH_METERS - 3.7315, red ? Rotation2d.fromDegrees(180) : Rotation2d.fromDegrees(0));
+		ALGAE_AB = new Pose2d(red ? 14.4547 : FIELD_LENGTH_METERS - 14.4547, red ? 3.7696 : FIELD_WIDTH_METERS - 3.7696, red ? Rotation2d.fromDegrees(180) : Rotation2d.fromDegrees(0));
 
         //Stop Precomputed positions here
 

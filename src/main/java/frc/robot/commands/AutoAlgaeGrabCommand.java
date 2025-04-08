@@ -20,9 +20,11 @@ public class AutoAlgaeGrabCommand extends SequentialCommandGroup {
                 new GoToArmevatorPoseState(armevator, HOME),
                 new PathfindingState(drivetrain, drivetrain::getNearestAlgae)
             ),
-            new GoToNextAlgaePoseState(armevator)
-                .raceWith(new AlgaeIntake(algaeManipulator)),
-            new RobotCentricState(drivetrain, -0.3, 0).withTimeout(0.25)
+            new ParallelCommandGroup(
+                new GoToNextAlgaePoseState(armevator),
+                new AlgaeIntake(algaeManipulator),
+                new RobotCentricState(drivetrain, -1.0, 0)
+            )
         );
     }
 }
