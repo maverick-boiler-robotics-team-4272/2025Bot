@@ -67,6 +67,7 @@ public class Armevator extends SubsystemBase implements Loggable {
     private ArmFeedforward armFeedforward = new ArmFeedforward(0, ARM_FF, 0, 0);
 
     private ArmevatorPosition nextPose = L4_ARMEVATOR_POSITION;
+    private ArmevatorPosition nextAlgaePose = ALGAE_ARMEVATOR_POSITION;
 
     public Armevator(SparkAbsoluteEncoder armEncoder) {
         this.armEncoder = armEncoder;
@@ -124,8 +125,20 @@ public class Armevator extends SubsystemBase implements Loggable {
         nextPose = position;
     }
 
+    public void upperAlgaeNext() {
+        nextAlgaePose = ALGAE_ARMEVATOR_POSITION_TWO;
+    }
+
+    public void lowerAlgaeNext() {
+        nextAlgaePose = ALGAE_ARMEVATOR_POSITION;
+    }
+
     public void goToNextPos() {
         goToPos(nextPose);
+    }
+
+    public void goToNextAlgaePos() {
+        goToPos(nextAlgaePose);
     }
 
     public boolean nextIsL4() {
