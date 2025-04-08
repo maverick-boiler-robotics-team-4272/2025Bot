@@ -5,6 +5,8 @@ import edu.wpi.first.math.geometry.*;
 
 import static frc.robot.constants.FieldConstants.*;
 
+import java.util.ArrayList;
+
 import com.pathplanner.lib.path.PathPlannerPath;
 
 public class PositionContainer {
@@ -53,6 +55,8 @@ public class PositionContainer {
     public final PathPlannerPath SCORE_GH;
     public final PathPlannerPath SCORE_IJ;
     public final PathPlannerPath SCORE_KL;
+
+    public ArrayList<Pose2d> ALGAE_POSES;
 
     public PositionContainer(boolean red) {
         //Variable = new Pose2d(red ? FIELD_LENGTH_METERS - x : x, y, red ? Rotation2d.fromDegrees(red degrees) : Rotation2d.fromDegrees(blue Degrees))
@@ -106,5 +110,12 @@ public class PositionContainer {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+        ALGAE_POSES.add(ALGAE_AB);
+        ALGAE_POSES.add(ALGAE_CD);
+        ALGAE_POSES.add(ALGAE_EF);
+        ALGAE_POSES.add(ALGAE_GH);
+        ALGAE_POSES.add(ALGAE_IJ);
+        ALGAE_POSES.add(ALGAE_KL);
     }
 }

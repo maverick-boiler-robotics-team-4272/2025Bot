@@ -195,13 +195,21 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         }
     }
 
+    public void setAlgaeGrab(boolean grab) {
+        inputs.getAlgae = grab;
+    }
+
     /**
      * @return if algae should be grabbed next cycle
      */
     public boolean getAlgae() {
         return inputs.getAlgae;
     }
-    
+
+    public Pose2d getNearestAlgae() {
+        return getState().Pose.nearest(getGlobalPositions().ALGAE_POSES);
+    }
+
     /**
      * Sets the next pose to pathfind to and path to follow during the autoteleop gameplay for scoring
      *
