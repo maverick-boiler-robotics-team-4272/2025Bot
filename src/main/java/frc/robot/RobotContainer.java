@@ -237,6 +237,22 @@ public class RobotContainer {
             new InstantCommand(() -> armevator.resetArm())
         );
 
+        driverController.povDownLeft().onTrue(
+           new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_LEFT_CLOSE)).ignoringDisable(true)
+        );
+
+        driverController.povUpLeft().onTrue(
+           new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_LEFT_FAR)).ignoringDisable(true)
+        );
+
+        driverController.povDownRight().onTrue(
+           new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_RIGHT_CLOSE)).ignoringDisable(true)
+        );
+
+        driverController.povUpRight().onTrue(
+           new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_RIGHT_FAR)).ignoringDisable(true)
+        );
+
         // Run SysId routines when holding back/start and X/Y.
         // Note that each routine should be run exactly once in a single log.
         driverController.back().and(driverController.y()).whileTrue(drivetrain.sysIdDynamic(Direction.kForward));
@@ -446,21 +462,21 @@ public class RobotContainer {
 
         buttonBoard.getButton(1).whileTrue(
             // new PathfindingState(drivetrain, getGlobalPositions().CORAL_STATION_LEFT)
-            new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_LEFT_FAR)).ignoringDisable(true)
+            new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_LEFT_CLOSE)).ignoringDisable(true)
         );
         
         buttonBoard.getButton(3).whileTrue(
-            new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_LEFT_CLOSE)).ignoringDisable(true)
+            new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_LEFT_FAR)).ignoringDisable(true)
         );
 
         buttonBoard.getButton(2).whileTrue(
             // new PathfindingState(drivetrain, getGlobalPositions().CORAL_STATION_RIGHT)
-            new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_RIGHT_FAR)).ignoringDisable(true)
+            new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_RIGHT_CLOSE)).ignoringDisable(true)
         );
 
         buttonBoard.getButton(4).whileTrue(
             // new PathfindingState(drivetrain, getGlobalPositions().CORAL_STATION_RIGHT)
-            new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_RIGHT_CLOSE)).ignoringDisable(true)
+            new InstantCommand(() -> drivetrain.setNextFeedPose(getGlobalPositions().CORAL_STATION_RIGHT_FAR)).ignoringDisable(true)
         );
     }
 
