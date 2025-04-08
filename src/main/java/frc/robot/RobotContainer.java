@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.Command.InterruptionBehavior;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
-import frc.robot.commands.AutoAlgaeCommand;
+import frc.robot.commands.AutoAlgaeScoreCommand;
 import frc.robot.commands.AutoGameCommand;
 import frc.robot.commands.AutoGamePrepCommand;
 import frc.robot.commands.AutonomousFeedTillFirstLidar;
@@ -133,7 +133,7 @@ public class RobotContainer {
         driverController.b().onTrue(new ResetHeadingState(drivetrain).ignoringDisable(true));
 
         driverController.rightStick().whileTrue(
-            new AutoAlgaeCommand(
+            new AutoAlgaeScoreCommand(
                 drivetrain, 
                 armevator, 
                 algaeManipulator
@@ -180,6 +180,7 @@ public class RobotContainer {
                     armevator, 
                     feeder, 
                     coralManipulator,
+                    algaeManipulator,
                     () -> driverController.getHID().getAButtonPressed()
                 ).repeatedly().withInterruptBehavior(InterruptionBehavior.kCancelIncoming)
             );
@@ -190,13 +191,15 @@ public class RobotContainer {
                     armevator, 
                     feeder, 
                     coralManipulator,
+                    algaeManipulator,
                     () -> driverController.getHID().getAButtonPressed()
                 ).repeatedly().beforeStarting(
                     new AutoGamePrepCommand(
                         drivetrain, 
                         armevator, 
                         feeder, 
-                        coralManipulator
+                        coralManipulator,
+                        algaeManipulator
                     )
                 ).withInterruptBehavior(InterruptionBehavior.kCancelIncoming)
             );
@@ -207,6 +210,7 @@ public class RobotContainer {
                     armevator, 
                     feeder, 
                     coralManipulator,
+                    algaeManipulator,
                     () -> driverController.getHID().getAButtonPressed()
                 ).repeatedly().withInterruptBehavior(InterruptionBehavior.kCancelIncoming)
             );
@@ -217,13 +221,15 @@ public class RobotContainer {
                     armevator, 
                     feeder, 
                     coralManipulator,
+                    algaeManipulator,
                     () -> driverController.getHID().getAButtonPressed()
                 ).repeatedly().beforeStarting(
                     new AutoGamePrepCommand(
                         drivetrain, 
                         armevator, 
                         feeder, 
-                        coralManipulator
+                        coralManipulator,
+                        algaeManipulator
                     )
                 ).withInterruptBehavior(InterruptionBehavior.kCancelIncoming)
             );
@@ -278,17 +284,21 @@ public class RobotContainer {
         );
 
         buttonBoard.getButton(4 + 16).whileTrue(
-            new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION)
-                .alongWith(new AlgaeIntake(algaeManipulator)).repeatedly()
-        );
-
-        buttonBoard.getButton(4 + 16).onTrue(
-            new InstantCommand(drivetrain::toggleAlgae)  
+            new SequentialCommandGroup(
+                new InstantCommand(() -> drivetrain.setAlgaeGrab(true)),
+                new WaitCommand(0.2),
+                new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION)
+                    .alongWith(new AlgaeIntake(algaeManipulator)).repeatedly()
+            ) 
         );
 
         buttonBoard.getButton(3 + 16).whileTrue(
-            new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION_TWO)
-                .alongWith(new AlgaeIntake(algaeManipulator)).repeatedly()
+            new SequentialCommandGroup(
+                new InstantCommand(() -> drivetrain.setAlgaeGrab(true)),
+                new WaitCommand(0.2),
+                new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION_TWO)
+                    .alongWith(new AlgaeIntake(algaeManipulator)).repeatedly()
+            ) 
         );
 
         buttonBoard.getButton(10).onTrue(

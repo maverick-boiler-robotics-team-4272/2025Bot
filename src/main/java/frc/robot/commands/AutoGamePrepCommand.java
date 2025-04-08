@@ -3,8 +3,10 @@ package frc.robot.commands;
 import static frc.robot.constants.positions.ArmevatorPositions.HOME;
 
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
 import frc.robot.subsystems.armevator.Armevator;
 import frc.robot.subsystems.armevator.states.GoToArmevatorPoseState;
 import frc.robot.subsystems.armevator.states.GoToNextArmevatorPoseState;
@@ -16,7 +18,7 @@ import frc.robot.subsystems.drivetrain.states.PathfindThenPathState;
 import frc.robot.subsystems.feeder.Feeder;
 
 public class AutoGamePrepCommand extends SequentialCommandGroup {
-    public AutoGamePrepCommand(CommandSwerveDrivetrain drivetrain, Armevator armevator, Feeder feeder, CoralManipulator coralManipulator) {
+    public AutoGamePrepCommand(CommandSwerveDrivetrain drivetrain, Armevator armevator, Feeder feeder, CoralManipulator coralManipulator, AlgaeManipulator algaeManipulator) {
         super(
             new ConditionalCommand(
                 new PathfindThenPathState(drivetrain, drivetrain::getNextMiddlePath), 
@@ -35,10 +37,11 @@ public class AutoGamePrepCommand extends SequentialCommandGroup {
                 ),
                 armevator::nextIsL4
             ),
-
-
-
-            
+            new SequentialCommandGroup(
+                new AutoAlgaeGrabCommand(drivetrain, armevator, algaeManipulator),
+                new AutoAlgaeScoreCommand(drivetrain, armevator, algaeManipulator),
+                new InstantCommand(() -> drivetrain.setAlgaeGrab(false))
+            ).unless(() -> !drivetrain.getAlgae()),
             new GoToArmevatorPoseState(armevator, HOME).withTimeout(0.1).unless(() -> !armevator.nextIsL4())
         );
     }
