@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.Command.InterruptionBehavior;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.AutoAlgaeGrabCommand;
 import frc.robot.commands.AutoAlgaeScoreCommand;
 import frc.robot.commands.AutoGameCommand;
@@ -244,17 +243,17 @@ public class RobotContainer {
             new InstantCommand(() -> armevator.resetArm())
         );
 
-        driverController.leftStick().whileTrue(
+        driverController.x().whileTrue(
             new AutoAlgaeGrabCommand(drivetrain, armevator, algaeManipulator)
         );
 
 
         // Run SysId routines when holding back/start and X/Y.
         // Note that each routine should be run exactly once in a single log.
-        driverController.back().and(driverController.y()).whileTrue(drivetrain.sysIdDynamic(Direction.kForward));
-        driverController.back().and(driverController.x()).whileTrue(drivetrain.sysIdDynamic(Direction.kReverse));
-        driverController.start().and(driverController.y()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kForward));
-        driverController.start().and(driverController.x()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kReverse));
+        // driverController.back().and(driverController.y()).whileTrue(drivetrain.sysIdDynamic(Direction.kForward));
+        // driverController.back().and(driverController.x()).whileTrue(drivetrain.sysIdDynamic(Direction.kReverse));
+        // driverController.start().and(driverController.y()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kForward));
+        // driverController.start().and(driverController.x()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kReverse));
 
         if(!Robot.isReal()) {
             drivetrain.registerTelemetry(logger::telemeterize);
@@ -292,7 +291,6 @@ public class RobotContainer {
         buttonBoard.getButton(4 + 16).whileTrue(
             new SequentialCommandGroup(
                 new InstantCommand(() -> drivetrain.setAlgaeGrab(true)),
-                new InstantCommand(() -> armevator.lowerAlgaeNext()),
                 new WaitCommand(0.2),
                 new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION)
                     .alongWith(new AlgaeIntake(algaeManipulator)).repeatedly()
@@ -302,7 +300,6 @@ public class RobotContainer {
         buttonBoard.getButton(3 + 16).whileTrue(
             new SequentialCommandGroup(
                 new InstantCommand(() -> drivetrain.setAlgaeGrab(true)),
-                new InstantCommand(() -> armevator.upperAlgaeNext()),
                 new WaitCommand(0.2),
                 new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION_TWO)
                     .alongWith(new AlgaeIntake(algaeManipulator)).repeatedly()

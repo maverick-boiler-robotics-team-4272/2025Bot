@@ -308,6 +308,16 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         return nextBargePath;
     }
 
+    public boolean nextAlgaeHigh() {
+        Pose2d algaePose = getNearestAlgae();
+
+        return (
+            algaePose.equals(getGlobalPositions().ALGAE_AB) ||
+            algaePose.equals(getGlobalPositions().ALGAE_EF) ||
+            algaePose.equals(getGlobalPositions().ALGAE_IJ)
+        );
+    }
+
     /**
      * Configures the AutoBuilder for autos and pathfinding
      */
