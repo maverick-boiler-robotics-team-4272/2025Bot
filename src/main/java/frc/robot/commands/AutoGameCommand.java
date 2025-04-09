@@ -16,6 +16,7 @@ import frc.robot.subsystems.armevator.states.GoToArmevatorPoseState;
 import frc.robot.subsystems.coralManipulator.CoralManipulator;
 import frc.robot.subsystems.coralManipulator.states.CoralOutakeState;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
+import frc.robot.subsystems.drivetrain.states.BrakeState;
 import frc.robot.subsystems.drivetrain.states.PathfindThenPathState;
 import frc.robot.subsystems.drivetrain.states.PathfindingState;
 import frc.robot.subsystems.feeder.Feeder;
@@ -31,6 +32,7 @@ public class AutoGameCommand extends SequentialCommandGroup {
                     )
                 )
             ),
+            new BrakeState(drivetrain),
             new ParallelCommandGroup(
                 new SequentialCommandGroup( 
                     new FeederManipulatorCommand(feeder, coralManipulator, armevator),
@@ -42,14 +44,20 @@ public class AutoGameCommand extends SequentialCommandGroup {
                     )
                 ),
                 new ConditionalCommand(
-                    new PathfindThenPathState(drivetrain, drivetrain::getNextMiddlePath).beforeStarting(
+                    new PathfindThenPathState(
+                        drivetrain, 
+                        drivetrain::getNextMiddlePath
+                    ).beforeStarting(
                         new ParallelRaceGroup(
                             new WaitUntilCommand(leaveOverride),
                             new WaitUntilCommand(feeder::lidarBackTripped),
                             new WaitUntilCommand(feeder::lidarFrontTripped)
                         )
                     ), 
-                    new PathfindThenPathState(drivetrain, drivetrain::getNextPath).beforeStarting(
+                    new PathfindThenPathState(
+                        drivetrain, 
+                        drivetrain::getNextPath
+                    ).beforeStarting(
                         new ParallelRaceGroup(
                             new WaitUntilCommand(leaveOverride),
                             new WaitUntilCommand(feeder::lidarBackTripped),
