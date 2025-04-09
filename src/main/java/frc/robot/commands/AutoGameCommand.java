@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
+import frc.robot.constants.SubsystemConstants.DrivetrainConstants.AutoConstants;
 import frc.robot.subsystems.armevator.Armevator;
 import frc.robot.subsystems.armevator.states.GoToArmevatorPoseState;
 import frc.robot.subsystems.coralManipulator.CoralManipulator;
@@ -42,14 +43,24 @@ public class AutoGameCommand extends SequentialCommandGroup {
                     )
                 ),
                 new ConditionalCommand(
-                    new PathfindThenPathState(drivetrain, drivetrain::getNextMiddlePath).beforeStarting(
+                    new PathfindThenPathState(
+                        drivetrain, 
+                        drivetrain::getNextMiddlePath, 
+                        AutoConstants.LIMITED_TRANSLATION, 
+                        AutoConstants.LIMITED_TRANSLATION_A
+                    ).beforeStarting(
                         new ParallelRaceGroup(
                             new WaitUntilCommand(leaveOverride),
                             new WaitUntilCommand(feeder::lidarBackTripped),
                             new WaitUntilCommand(feeder::lidarFrontTripped)
                         )
                     ), 
-                    new PathfindThenPathState(drivetrain, drivetrain::getNextPath).beforeStarting(
+                    new PathfindThenPathState(
+                        drivetrain, 
+                        drivetrain::getNextPath, 
+                        AutoConstants.LIMITED_TRANSLATION, 
+                        AutoConstants.LIMITED_TRANSLATION_A
+                    ).beforeStarting(
                         new ParallelRaceGroup(
                             new WaitUntilCommand(leaveOverride),
                             new WaitUntilCommand(feeder::lidarBackTripped),
