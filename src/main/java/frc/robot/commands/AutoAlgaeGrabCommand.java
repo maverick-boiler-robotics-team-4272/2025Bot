@@ -27,7 +27,7 @@ public class AutoAlgaeGrabCommand extends SequentialCommandGroup {
                     drivetrain::nextAlgaeHigh
                 ),
                 new AlgaeIntake(algaeManipulator),
-                new RobotCentricState(drivetrain, -1.0, 0)
+                new RobotCentricState(drivetrain, -1.0, 0).withTimeout(0.2)
             )
         );
     }
