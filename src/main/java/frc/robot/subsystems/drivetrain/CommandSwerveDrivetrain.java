@@ -15,6 +15,7 @@ import com.ctre.phoenix6.swerve.SwerveRequest;
 import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -63,6 +64,8 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         public Pose2d nextBargePose; // The next barge pose to score algae
 
         public boolean getAlgae; // Should the robot grab the algae after scoring a coral
+
+        public ChassisSpeeds speed;
     }
 
     // Logging inputs
@@ -102,6 +105,8 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         FRONT_LIMELIGHT.configure(FRONT_LIMELIGHT_POSE);
         ELEVATOR_LIMELIGHT.configure(ELEVATOR_LIMELIGHT_POSE);
         FRONT_2_LIMELIGHT.configure(FRONT_LIMELIGHT_2_POSE);
+
+        inputs.speed = new ChassisSpeeds();
     }
 
     // The next path to run when the robot is pathfinding
@@ -434,10 +439,13 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         }
 
         fuseOdometry();
+
+        SwerveDriveState state = getState();
         
         inputs.isRedSide = isRed;
-        inputs.estimatedPose = getState().Pose;
-        inputs.moduleStates = getState().ModuleStates;
+        inputs.estimatedPose = state.Pose;
+        inputs.moduleStates = state.ModuleStates;
+        inputs.speed = state.Speeds;
         
         for(int i = 0; i < 4; i++) {
             var module = getModule(i);
