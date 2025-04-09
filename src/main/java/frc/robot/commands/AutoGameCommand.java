@@ -11,12 +11,12 @@ import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
-import frc.robot.constants.SubsystemConstants.DrivetrainConstants.AutoConstants;
 import frc.robot.subsystems.armevator.Armevator;
 import frc.robot.subsystems.armevator.states.GoToArmevatorPoseState;
 import frc.robot.subsystems.coralManipulator.CoralManipulator;
 import frc.robot.subsystems.coralManipulator.states.CoralOutakeState;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
+import frc.robot.subsystems.drivetrain.states.BrakeState;
 import frc.robot.subsystems.drivetrain.states.PathfindThenPathState;
 import frc.robot.subsystems.drivetrain.states.PathfindingState;
 import frc.robot.subsystems.feeder.Feeder;
@@ -32,6 +32,7 @@ public class AutoGameCommand extends SequentialCommandGroup {
                     )
                 )
             ),
+            new BrakeState(drivetrain),
             new ParallelCommandGroup(
                 new SequentialCommandGroup( 
                     new FeederManipulatorCommand(feeder, coralManipulator, armevator),
@@ -45,9 +46,7 @@ public class AutoGameCommand extends SequentialCommandGroup {
                 new ConditionalCommand(
                     new PathfindThenPathState(
                         drivetrain, 
-                        drivetrain::getNextMiddlePath, 
-                        AutoConstants.LIMITED_TRANSLATION, 
-                        AutoConstants.LIMITED_TRANSLATION_A
+                        drivetrain::getNextMiddlePath
                     ).beforeStarting(
                         new ParallelRaceGroup(
                             new WaitUntilCommand(leaveOverride),
@@ -57,9 +56,7 @@ public class AutoGameCommand extends SequentialCommandGroup {
                     ), 
                     new PathfindThenPathState(
                         drivetrain, 
-                        drivetrain::getNextPath, 
-                        AutoConstants.LIMITED_TRANSLATION, 
-                        AutoConstants.LIMITED_TRANSLATION_A
+                        drivetrain::getNextPath
                     ).beforeStarting(
                         new ParallelRaceGroup(
                             new WaitUntilCommand(leaveOverride),

@@ -18,12 +18,12 @@ public class SubsystemConstants {
     public static class DrivetrainConstants {
         public static  class AutoConstants {
             public static final double TRANSLATION_MAX = 4.35;
-            public static final double TRANSLATION_MAX_A = 4.25;//3.05;
+            public static final double TRANSLATION_MAX_A = 3.6;//3.05;
             public static final Rotation2d ROTATION_MAX = Rotation2d.fromDegrees(360.0);
             public static final Rotation2d ROTATION_MAX_A = Rotation2d.fromDegrees(560.0);
 
-            public static final double LIMITED_TRANSLATION = 3.85;
-            public static final double LIMITED_TRANSLATION_A = 3.60;
+            public static final double LIMITED_TRANSLATION = 4.0;
+            public static final double LIMITED_TRANSLATION_A = 3.6;
 
             public static final double TRANSLATION_P = 10.0;
             public static final double TRANSLATION_I = 0.00005; // This has to be greater that 0 I think

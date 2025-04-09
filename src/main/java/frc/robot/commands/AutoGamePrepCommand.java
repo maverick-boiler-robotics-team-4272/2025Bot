@@ -5,7 +5,6 @@ import static frc.robot.constants.positions.ArmevatorPositions.HOME;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.constants.SubsystemConstants.DrivetrainConstants.AutoConstants;
 import frc.robot.subsystems.armevator.Armevator;
 import frc.robot.subsystems.armevator.states.GoToArmevatorPoseState;
 import frc.robot.subsystems.armevator.states.GoToNextArmevatorPoseState;
@@ -20,8 +19,8 @@ public class AutoGamePrepCommand extends SequentialCommandGroup {
     public AutoGamePrepCommand(CommandSwerveDrivetrain drivetrain, Armevator armevator, Feeder feeder, CoralManipulator coralManipulator) {
         super(
             new ConditionalCommand(
-                new PathfindThenPathState(drivetrain, drivetrain::getNextMiddlePath, AutoConstants.LIMITED_TRANSLATION, AutoConstants.LIMITED_TRANSLATION_A), 
-                new PathfindThenPathState(drivetrain, drivetrain::getNextPath, AutoConstants.LIMITED_TRANSLATION, AutoConstants.LIMITED_TRANSLATION_A), 
+                new PathfindThenPathState(drivetrain, drivetrain::getNextMiddlePath), 
+                new PathfindThenPathState(drivetrain, drivetrain::getNextPath), 
                 armevator::nextIsL1
             ),
             new GoToNextArmevatorPoseState(armevator)
