@@ -1,5 +1,7 @@
 package frc.robot.subsystems.drivetrain.states;
 
+import static frc.robot.constants.SubsystemConstants.DrivetrainConstants.TeleConstants.MAX_TRANSLATION;
+
 import com.ctre.phoenix6.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.swerve.SwerveRequest.RobotCentric;
 
@@ -18,11 +20,19 @@ public class RobotCentricState extends State<CommandSwerveDrivetrain> {
         this.forwardSpeed = forwardSpeed;
         this.sidewaysSpeed = sidewaysSpeed;
 
-        control = new RobotCentric().withDriveRequestType(DriveRequestType.OpenLoopVoltage).withDeadband(0.01).withRotationalDeadband(0.001);
+        control = new RobotCentric()
+            .withDeadband(0.01)
+            .withRotationalDeadband(0.001)
+            .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
     }
 
     @Override
     public void execute() {
-        requiredSubsystem.applyRequest(() -> control.withVelocityX(sidewaysSpeed).withVelocityY(forwardSpeed));
+        requiredSubsystem.setControl(
+            control
+                .withVelocityX(-forwardSpeed * MAX_TRANSLATION)
+                .withVelocityY(sidewaysSpeed * MAX_TRANSLATION)
+                .withRotationalRate(0.0)
+        );
     }
 }
