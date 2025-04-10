@@ -17,12 +17,6 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "Go home"
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "H to GH Algee"
@@ -43,7 +37,13 @@
         {
           "type": "named",
           "data": {
-            "name": "Auto Algee Barge "
+            "name": "Barge"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Go home"
           }
         },
         {
@@ -67,7 +67,13 @@
         {
           "type": "named",
           "data": {
-            "name": "Auto Algee Barge "
+            "name": "Barge"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Go home"
           }
         }
       ]

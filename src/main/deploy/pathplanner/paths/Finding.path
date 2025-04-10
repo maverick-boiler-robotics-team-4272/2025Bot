@@ -108,7 +108,7 @@
         "y": 1.899948289557174
       },
       "isLocked": false,
-      "linkedName": "Coral_Station_Left_Far"
+      "linkedName": "Coral_Station_Left_Far_Point"
     },
     {
       "anchor": {
@@ -124,7 +124,7 @@
         "y": 3.7369001076137582
       },
       "isLocked": false,
-      "linkedName": "Coral_Station_Right_Far"
+      "linkedName": "Coral_Station_Right_Far_Point"
     },
     {
       "anchor": {
@@ -188,7 +188,7 @@
         "y": 6.779102510267477
       },
       "isLocked": false,
-      "linkedName": "Coral_Station_Right_Close"
+      "linkedName": "Coral_Station_Right_Close_Point"
     },
     {
       "anchor": {
@@ -204,7 +204,7 @@
         "y": -2.830033321441142
       },
       "isLocked": false,
-      "linkedName": "Coral_Station_Left_Close"
+      "linkedName": "Coral_Station_Left_Close_Point"
     },
     {
       "anchor": {
