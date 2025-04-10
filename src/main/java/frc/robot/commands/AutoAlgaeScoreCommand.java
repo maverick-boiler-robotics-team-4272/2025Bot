@@ -13,19 +13,18 @@ import frc.robot.subsystems.armevator.Armevator;
 import frc.robot.subsystems.armevator.states.GoToArmevatorPoseState;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
 import frc.robot.subsystems.drivetrain.states.BrakeState;
-import frc.robot.subsystems.drivetrain.states.PathfindingState;
+import frc.robot.subsystems.drivetrain.states.PathfindThenPathState;
 
-public class AutoAlgaeCommand extends SequentialCommandGroup {
-    public AutoAlgaeCommand(CommandSwerveDrivetrain drivetrain, Armevator armevator, AlgaeManipulator algaeManipulator) {
+public class AutoAlgaeScoreCommand extends SequentialCommandGroup {
+    public AutoAlgaeScoreCommand(CommandSwerveDrivetrain drivetrain, Armevator armevator, AlgaeManipulator algaeManipulator) {
         super(
             new SequentialCommandGroup (
-                new PathfindingState(drivetrain, drivetrain::getNextBargePose, AutoConstants.LIMITED_TRANSLATION, AutoConstants.LIMITED_TRANSLATION_A),
+                new PathfindThenPathState(drivetrain, drivetrain::getNextBargePath, AutoConstants.LIMITED_TRANSLATION, AutoConstants.LIMITED_TRANSLATION_A),
                 new BrakeState(drivetrain),
                 new GoToArmevatorPoseState(armevator, BARGE_PREP_ARMEVATOR_POSITION),
-                // new WaitCommand(.05),
                 new GoToArmevatorPoseState(armevator, BARGE_ARMEVATOR_POSITION)
             ).raceWith(new AlgaeIntake(algaeManipulator)),
-            new AlgaeOuttake(algaeManipulator),
+            new AlgaeOuttake(algaeManipulator).withTimeout(0.2),
             new GoToArmevatorPoseState(armevator, HOME).withTimeout(0.05)
         );
     }

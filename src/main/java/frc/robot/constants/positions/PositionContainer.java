@@ -5,6 +5,8 @@ import edu.wpi.first.math.geometry.*;
 
 import static frc.robot.constants.FieldConstants.*;
 
+import java.util.ArrayList;
+
 import com.pathplanner.lib.path.PathPlannerPath;
 
 public class PositionContainer {
@@ -14,6 +16,13 @@ public class PositionContainer {
     public final Pose2d CORAL_GH;
     public final Pose2d CORAL_IJ;
     public final Pose2d CORAL_KL;
+
+    public final Pose2d ALGAE_AB;
+    public final Pose2d ALGAE_CD;
+    public final Pose2d ALGAE_EF;
+    public final Pose2d ALGAE_GH;
+    public final Pose2d ALGAE_IJ;
+    public final Pose2d ALGAE_KL;
 
     public final Pose2d CORAL_STATION_LEFT_FAR;
     public final Pose2d CORAL_STATION_LEFT_CLOSE;
@@ -47,6 +56,8 @@ public class PositionContainer {
     public final PathPlannerPath SCORE_IJ;
     public final PathPlannerPath SCORE_KL;
 
+    public ArrayList<Pose2d> ALGAE_POSES = new ArrayList<>(6);
+
     public PositionContainer(boolean red) {
         //Variable = new Pose2d(red ? FIELD_LENGTH_METERS - x : x, y, red ? Rotation2d.fromDegrees(red degrees) : Rotation2d.fromDegrees(blue Degrees))
         //Insert Precomputed positions here
@@ -63,6 +74,12 @@ public class PositionContainer {
 		LEFT_BARGE = new Pose2d(red ? 9.5157 : FIELD_LENGTH_METERS - 9.5157, red ? 0.8805 : FIELD_WIDTH_METERS - 0.8805, red ? Rotation2d.fromDegrees(0) : Rotation2d.fromDegrees(180));
 		CORAL_STATION_RIGHT_CLOSE = new Pose2d(red ? 16.8380 : FIELD_LENGTH_METERS - 16.8380, red ? 6.6229 : FIELD_WIDTH_METERS - 6.6229, red ? Rotation2d.fromDegrees(-126) : Rotation2d.fromDegrees(55));
 		CORAL_STATION_LEFT_CLOSE = new Pose2d(red ? 16.8284 : FIELD_LENGTH_METERS - 16.8284, red ? 1.3790 : FIELD_WIDTH_METERS - 1.3790, red ? Rotation2d.fromDegrees(126) : Rotation2d.fromDegrees(-55));
+		ALGAE_KL = new Pose2d(red ? 13.4694 : FIELD_LENGTH_METERS - 13.4694, red ? 2.7468 : FIELD_WIDTH_METERS - 2.7468, red ? Rotation2d.fromDegrees(120) : Rotation2d.fromDegrees(-60));
+		ALGAE_IJ = new Pose2d(red ? 12.1594 : FIELD_LENGTH_METERS - 12.1594, red ? 3.0564 : FIELD_WIDTH_METERS - 3.0564, red ? Rotation2d.fromDegrees(60) : Rotation2d.fromDegrees(-120));
+		ALGAE_GH = new Pose2d(red ? 11.7715 : FIELD_LENGTH_METERS - 11.7715, red ? 4.2829 : FIELD_WIDTH_METERS - 4.2829, red ? Rotation2d.fromDegrees(0) : Rotation2d.fromDegrees(180));
+		ALGAE_EF = new Pose2d(red ? 12.6453 : FIELD_LENGTH_METERS - 12.6453, red ? 5.2963 : FIELD_WIDTH_METERS - 5.2963, red ? Rotation2d.fromDegrees(-60) : Rotation2d.fromDegrees(120));
+		ALGAE_CD = new Pose2d(red ? 13.9363 : FIELD_LENGTH_METERS - 13.9363, red ? 5.0377 : FIELD_WIDTH_METERS - 5.0377, red ? Rotation2d.fromDegrees(-120) : Rotation2d.fromDegrees(60));
+		ALGAE_AB = new Pose2d(red ? 14.3596 : FIELD_LENGTH_METERS - 14.3596, red ? 3.7963 : FIELD_WIDTH_METERS - 3.7963, red ? Rotation2d.fromDegrees(180) : Rotation2d.fromDegrees(0));
 
         //Stop Precomputed positions here
 
@@ -93,5 +110,12 @@ public class PositionContainer {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+        ALGAE_POSES.add(ALGAE_AB);
+        ALGAE_POSES.add(ALGAE_CD);
+        ALGAE_POSES.add(ALGAE_EF);
+        ALGAE_POSES.add(ALGAE_GH);
+        ALGAE_POSES.add(ALGAE_IJ);
+        ALGAE_POSES.add(ALGAE_KL);
     }
 }
