@@ -566,13 +566,14 @@ public class RobotContainer {
 
         NamedCommands.registerCommand("Barge",
             new SequentialCommandGroup(
-                new SequentialCommandGroup(
-                    new GoToArmevatorPoseState(armevator, BARGE_PREP_ARMEVATOR_POSITION),
-                    new GoToArmevatorPoseState(armevator, BARGE_ARMEVATOR_POSITION)
-                ).raceWith(new AlgaeIntake(algaeManipulator)).withTimeout(5)
-                .andThen(new AlgaeOuttake(algaeManipulator)).withTimeout(0.5)
-            )        
+                new GoToArmevatorPoseState(armevator, BARGE_PREP_ARMEVATOR_POSITION),
+                new GoToArmevatorPoseState(armevator, BARGE_ARMEVATOR_POSITION)
+            ).raceWith(new AlgaeIntake(algaeManipulator)).withTimeout(5)   
         );
+
+        NamedCommands.registerCommand("Barge Outake",
+            new AlgaeOuttake(algaeManipulator).withTimeout(.5)
+    );
 
         NamedCommands.registerCommand("Hold Algae Low",
             new ParallelCommandGroup(
