@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.Command.InterruptionBehavior;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.commands.AutoAlgaeGrabCommand;
 import frc.robot.commands.AutoAlgaeScoreCommand;
 import frc.robot.commands.AutoGameCommand;
 import frc.robot.commands.AutoGamePrepCommand;
@@ -41,7 +42,6 @@ import frc.robot.subsystems.coralManipulator.states.CoralOutakeState;
 import frc.robot.subsystems.coralManipulator.states.IdleState;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
 import frc.robot.subsystems.drivetrain.states.DriveState;
-import frc.robot.subsystems.drivetrain.states.PathfindingState;
 import frc.robot.subsystems.drivetrain.states.ResetHeadingState;
 import frc.robot.subsystems.feeder.Feeder;
 import frc.robot.subsystems.feeder.states.FeedState;
@@ -244,12 +244,11 @@ public class RobotContainer {
         );
 
         driverController.x().whileTrue(
-            // new SequentialCommandGroup(
-            //     new AutoAlgaeGrabCommand(drivetrain, armevator, algaeManipulator),
-            //     new BrakeState(drivetrain).withTimeout(0.3),
-            //     new AutoAlgaeScoreCommand(drivetrain, armevator, algaeManipulator)
-            // )
-            new PathfindingState(drivetrain, drivetrain::getNearestAlgae)
+            new SequentialCommandGroup(
+                new AutoAlgaeGrabCommand(drivetrain, armevator, algaeManipulator),
+                new AutoAlgaeScoreCommand(drivetrain, armevator, algaeManipulator)
+            )
+            // new PathfindingState(drivetrain, drivetrain::getNearestAlgae)
         );
 
 
@@ -321,6 +320,7 @@ public class RobotContainer {
 
         buttonBoard.getButton(11).whileTrue(
             new BargeScoreCommand(armevator, algaeManipulator, () -> driverController.getHID().getPOV() == 270)
+                .alongWith(new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().LEFT_BARGE, getGlobalPositions().LEFT_BARGE_PATH)).ignoringDisable(true))
         );
 
         buttonBoard.getButton(14).whileTrue(

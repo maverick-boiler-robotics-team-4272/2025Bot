@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 11.346527777777778,
-        "y": 1.9705729166666663
+        "x": 10.50798611111111,
+        "y": 3.158506944444444
       },
       "prevControl": null,
       "nextControl": {
-        "x": 11.108626861004504,
-        "y": 1.8937409324515235
+        "x": 10.258166010867562,
+        "y": 3.1679894290504746
       },
       "isLocked": false,
-      "linkedName": "Barge Approch"
+      "linkedName": null
     },
     {
       "anchor": {
@@ -20,8 +20,8 @@
         "y": 3.1445312499999996
       },
       "prevControl": {
-        "x": 9.733495790596777,
-        "y": 3.0985516240834126
+        "x": 9.737576690084918,
+        "y": 3.1349484771540053
       },
       "nextControl": null,
       "isLocked": false,
@@ -48,7 +48,7 @@
   "folder": "Approch Paths",
   "idealStartingState": {
     "velocity": 1.0,
-    "rotation": 47.93567344642121
+    "rotation": 0.0
   },
   "useDefaultConstraints": true
 }
