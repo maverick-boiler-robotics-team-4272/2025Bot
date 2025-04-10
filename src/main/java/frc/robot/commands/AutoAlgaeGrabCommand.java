@@ -4,7 +4,9 @@ import static frc.robot.constants.positions.ArmevatorPositions.*;
 
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
 import frc.robot.subsystems.algaeManipulator.states.AlgaeIntake;
 import frc.robot.subsystems.armevator.Armevator;
@@ -20,15 +22,17 @@ public class AutoAlgaeGrabCommand extends SequentialCommandGroup {
                 new GoToArmevatorPoseState(armevator, HOME),
                 new PathfindingState(drivetrain, drivetrain::getNearestAlgae)
             ),
-            new ParallelCommandGroup(
+            new ParallelRaceGroup(
                 new ConditionalCommand(
                     new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION_TWO), 
                     new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION),
                     drivetrain::nextAlgaeHigh
                 ),
-                new AlgaeIntake(algaeManipulator),
-                new RobotCentricState(drivetrain, -1.0, 0).withTimeout(0.2)
-            )
+                new AlgaeIntake(algaeManipulator)
+            ),
+            new WaitCommand(0.2),
+            new RobotCentricState(drivetrain, -0.3, 0).withTimeout(0.5)
+                .raceWith(new AlgaeIntake(algaeManipulator))
         );
     }
 }

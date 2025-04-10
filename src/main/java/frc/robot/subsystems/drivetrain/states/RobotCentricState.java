@@ -30,8 +30,8 @@ public class RobotCentricState extends State<CommandSwerveDrivetrain> {
     public void execute() {
         requiredSubsystem.setControl(
             control
-                .withVelocityX(-forwardSpeed * MAX_TRANSLATION)
-                .withVelocityY(sidewaysSpeed * MAX_TRANSLATION)
+                .withVelocityX(forwardSpeed * MAX_TRANSLATION)
+                .withVelocityY(-sidewaysSpeed * MAX_TRANSLATION)
                 .withRotationalRate(0.0)
         );
     }

@@ -74,12 +74,12 @@ public class PositionContainer {
 		LEFT_BARGE = new Pose2d(red ? 9.5157 : FIELD_LENGTH_METERS - 9.5157, red ? 0.8805 : FIELD_WIDTH_METERS - 0.8805, red ? Rotation2d.fromDegrees(0) : Rotation2d.fromDegrees(180));
 		CORAL_STATION_RIGHT_CLOSE = new Pose2d(red ? 16.8380 : FIELD_LENGTH_METERS - 16.8380, red ? 6.6229 : FIELD_WIDTH_METERS - 6.6229, red ? Rotation2d.fromDegrees(-126) : Rotation2d.fromDegrees(55));
 		CORAL_STATION_LEFT_CLOSE = new Pose2d(red ? 16.8284 : FIELD_LENGTH_METERS - 16.8284, red ? 1.3790 : FIELD_WIDTH_METERS - 1.3790, red ? Rotation2d.fromDegrees(126) : Rotation2d.fromDegrees(-55));
-		ALGAE_KL = new Pose2d(red ? 13.5128 : FIELD_LENGTH_METERS - 13.5128, red ? 2.6833 : FIELD_WIDTH_METERS - 2.6833, red ? Rotation2d.fromDegrees(120) : Rotation2d.fromDegrees(-60));
-		ALGAE_IJ = new Pose2d(red ? 12.1571 : FIELD_LENGTH_METERS - 12.1571, red ? 2.9628 : FIELD_WIDTH_METERS - 2.9628, red ? Rotation2d.fromDegrees(60) : Rotation2d.fromDegrees(-120));
-		ALGAE_GH = new Pose2d(red ? 11.6959 : FIELD_LENGTH_METERS - 11.6959, red ? 4.2766 : FIELD_WIDTH_METERS - 4.2766, red ? Rotation2d.fromDegrees(0) : Rotation2d.fromDegrees(180));
-		ALGAE_EF = new Pose2d(red ? 12.6043 : FIELD_LENGTH_METERS - 12.6043, red ? 5.3527 : FIELD_WIDTH_METERS - 5.3527, red ? Rotation2d.fromDegrees(-60) : Rotation2d.fromDegrees(120));
-		ALGAE_CD = new Pose2d(red ? 13.9460 : FIELD_LENGTH_METERS - 13.9460, red ? 5.1151 : FIELD_WIDTH_METERS - 5.1151, red ? Rotation2d.fromDegrees(-120) : Rotation2d.fromDegrees(60));
-		ALGAE_AB = new Pose2d(red ? 14.4547 : FIELD_LENGTH_METERS - 14.4547, red ? 3.7696 : FIELD_WIDTH_METERS - 3.7696, red ? Rotation2d.fromDegrees(180) : Rotation2d.fromDegrees(0));
+		ALGAE_KL = new Pose2d(red ? 13.4694 : FIELD_LENGTH_METERS - 13.4694, red ? 2.7468 : FIELD_WIDTH_METERS - 2.7468, red ? Rotation2d.fromDegrees(120) : Rotation2d.fromDegrees(-60));
+		ALGAE_IJ = new Pose2d(red ? 12.1594 : FIELD_LENGTH_METERS - 12.1594, red ? 3.0564 : FIELD_WIDTH_METERS - 3.0564, red ? Rotation2d.fromDegrees(60) : Rotation2d.fromDegrees(-120));
+		ALGAE_GH = new Pose2d(red ? 11.7704 : FIELD_LENGTH_METERS - 11.7704, red ? 4.3303 : FIELD_WIDTH_METERS - 4.3303, red ? Rotation2d.fromDegrees(0) : Rotation2d.fromDegrees(180));
+		ALGAE_EF = new Pose2d(red ? 12.6453 : FIELD_LENGTH_METERS - 12.6453, red ? 5.2963 : FIELD_WIDTH_METERS - 5.2963, red ? Rotation2d.fromDegrees(-60) : Rotation2d.fromDegrees(120));
+		ALGAE_CD = new Pose2d(red ? 13.9363 : FIELD_LENGTH_METERS - 13.9363, red ? 5.0377 : FIELD_WIDTH_METERS - 5.0377, red ? Rotation2d.fromDegrees(-120) : Rotation2d.fromDegrees(60));
+		ALGAE_AB = new Pose2d(red ? 14.3815 : FIELD_LENGTH_METERS - 14.3815, red ? 3.7197 : FIELD_WIDTH_METERS - 3.7197, red ? Rotation2d.fromDegrees(180) : Rotation2d.fromDegrees(0));
 
         //Stop Precomputed positions here
 

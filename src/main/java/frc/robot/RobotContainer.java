@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.Command.InterruptionBehavior;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import frc.robot.commands.AutoAlgaeGrabCommand;
 import frc.robot.commands.AutoAlgaeScoreCommand;
 import frc.robot.commands.AutoGameCommand;
 import frc.robot.commands.AutoGamePrepCommand;
@@ -42,6 +41,7 @@ import frc.robot.subsystems.coralManipulator.states.CoralOutakeState;
 import frc.robot.subsystems.coralManipulator.states.IdleState;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
 import frc.robot.subsystems.drivetrain.states.DriveState;
+import frc.robot.subsystems.drivetrain.states.PathfindingState;
 import frc.robot.subsystems.drivetrain.states.ResetHeadingState;
 import frc.robot.subsystems.feeder.Feeder;
 import frc.robot.subsystems.feeder.states.FeedState;
@@ -244,7 +244,12 @@ public class RobotContainer {
         );
 
         driverController.x().whileTrue(
-            new AutoAlgaeGrabCommand(drivetrain, armevator, algaeManipulator)
+            // new SequentialCommandGroup(
+            //     new AutoAlgaeGrabCommand(drivetrain, armevator, algaeManipulator),
+            //     new BrakeState(drivetrain).withTimeout(0.3),
+            //     new AutoAlgaeScoreCommand(drivetrain, armevator, algaeManipulator)
+            // )
+            new PathfindingState(drivetrain, drivetrain::getNearestAlgae)
         );
 
 
