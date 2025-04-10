@@ -102,7 +102,6 @@ public class Feeder extends SubsystemBase implements Loggable {
   }
 
   public boolean lidarFrontTripped() {
-    // TODO: make sure it doesnt die if no lidar
     if (inputs.averageFrontLidarDistance <= FEEDER_CAN_FRONT_TRIGGER_DISTANCE) {
       return true;
     }
