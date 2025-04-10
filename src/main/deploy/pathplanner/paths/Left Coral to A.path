@@ -54,7 +54,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -179.51853419416167
+    "rotation": 180.0
   },
   "reversed": false,
   "folder": "Auto paths",

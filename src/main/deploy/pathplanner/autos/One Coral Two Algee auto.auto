@@ -43,7 +43,7 @@
         {
           "type": "named",
           "data": {
-            "name": "Go home"
+            "name": "Barge Outake"
           }
         },
         {
@@ -68,6 +68,12 @@
           "type": "named",
           "data": {
             "name": "Barge"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Barge Outake"
           }
         },
         {
