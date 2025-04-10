@@ -14,29 +14,81 @@ import frc.robot.utils.commandUtils.State;
 public class PathfindingState extends State<CommandSwerveDrivetrain> {
     private Command command;
     private Supplier<Pose2d> pose;
+    private PathConstraints constraints;
 
     public PathfindingState(CommandSwerveDrivetrain drivetrain, Pose2d targetPose) {
         super(drivetrain);
 
         pose = () -> targetPose;
+
+        this.constraints = new PathConstraints(
+            AutoConstants.TRANSLATION_MAX,
+            AutoConstants.TRANSLATION_MAX_A,
+            AutoConstants.ROTATION_MAX.getDegrees(),
+            AutoConstants.ROTATION_MAX_A.getDegrees()
+        );
     }
 
     public PathfindingState(CommandSwerveDrivetrain drivetrain, Supplier<Pose2d> targetPose) {
         super(drivetrain);
 
         pose = targetPose;
+
+        this.constraints = new PathConstraints(
+            AutoConstants.TRANSLATION_MAX,
+            AutoConstants.TRANSLATION_MAX_A,
+            AutoConstants.ROTATION_MAX.getDegrees(),
+            AutoConstants.ROTATION_MAX_A.getDegrees()
+        );
+    }
+
+    public PathfindingState(CommandSwerveDrivetrain drivetrain, Pose2d targetPose, PathConstraints constraints) {
+        super(drivetrain);
+
+        pose = () -> targetPose;
+
+        this.constraints = constraints;
+    }
+
+    public PathfindingState(CommandSwerveDrivetrain drivetrain, Supplier<Pose2d> targetPose, PathConstraints constraints) {
+        super(drivetrain);
+
+        pose = targetPose;
+
+        this.constraints = constraints;
+    }
+
+    public PathfindingState(CommandSwerveDrivetrain drivetrain, Pose2d targetPose, double maxVel, double maxAcc) {
+        super(drivetrain);
+
+        pose = () -> targetPose;
+
+        this.constraints = new PathConstraints(
+            maxVel, 
+            maxAcc, 
+            AutoConstants.ROTATION_MAX.getDegrees(), 
+            AutoConstants.ROTATION_MAX_A.getDegrees()
+        );
+    }
+
+    public PathfindingState(CommandSwerveDrivetrain drivetrain, Supplier<Pose2d> targetPose, double maxVel, double maxAcc) {
+        super(drivetrain);
+
+        pose = targetPose;
+
+        this.constraints = new PathConstraints(
+            maxVel, 
+            maxAcc, 
+            AutoConstants.ROTATION_MAX.getDegrees(), 
+            AutoConstants.ROTATION_MAX_A.getDegrees()
+        );
     }
 
     @Override
     public void initialize() {
         command = AutoBuilder.pathfindToPose(
             pose.get(), 
-            new PathConstraints(
-                AutoConstants.TRANSLATION_MAX,
-                AutoConstants.TRANSLATION_MAX_A,
-                AutoConstants.ROTATION_MAX.getDegrees(),
-                AutoConstants.ROTATION_MAX_A.getDegrees()
-            )
+            constraints
         );
 
         command.initialize();

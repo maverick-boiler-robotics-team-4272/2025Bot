@@ -20,8 +20,8 @@
         "y": 4.261830237984019
       },
       "prevControl": {
-        "x": 10.986582260239606,
-        "y": 4.088426079889935
+        "x": 9.949795081967213,
+        "y": 4.10891393442623
       },
       "nextControl": null,
       "isLocked": false,
@@ -31,7 +31,19 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "Auto Algee Low",
+      "waypointRelativePos": 0.0,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Auto Algee Low"
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 4.5,
     "maxAcceleration": 2.7,

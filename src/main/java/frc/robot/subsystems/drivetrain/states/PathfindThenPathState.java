@@ -14,27 +14,81 @@ import frc.robot.utils.commandUtils.State;
 public class PathfindThenPathState extends State<CommandSwerveDrivetrain> {
     Supplier<PathPlannerPath> pathSupplier;
     Command command;
-
-    public PathfindThenPathState(CommandSwerveDrivetrain drivetrain, Supplier<PathPlannerPath> pathSupplier) {
-        super(drivetrain);
-
-        this.pathSupplier = pathSupplier;
-    }
+    PathConstraints constraints;
 
     public PathfindThenPathState(CommandSwerveDrivetrain drivetrain, PathPlannerPath path) {
-        this(drivetrain, () -> path);
+        super(drivetrain);
+
+        pathSupplier = () -> path;
+
+        this.constraints = new PathConstraints(
+            AutoConstants.TRANSLATION_MAX,
+            AutoConstants.TRANSLATION_MAX_A,
+            AutoConstants.ROTATION_MAX.getDegrees(),
+            AutoConstants.ROTATION_MAX_A.getDegrees()
+        );
+    }
+
+    public PathfindThenPathState(CommandSwerveDrivetrain drivetrain, Supplier<PathPlannerPath> path) {
+        super(drivetrain);
+
+        pathSupplier = path;
+
+        this.constraints = new PathConstraints(
+            AutoConstants.TRANSLATION_MAX,
+            AutoConstants.TRANSLATION_MAX_A,
+            AutoConstants.ROTATION_MAX.getDegrees(),
+            AutoConstants.ROTATION_MAX_A.getDegrees()
+        );
+    }
+
+    public PathfindThenPathState(CommandSwerveDrivetrain drivetrain, PathPlannerPath path, PathConstraints constraints) {
+        super(drivetrain);
+
+        pathSupplier = () -> path;
+
+        this.constraints = constraints;
+    }
+
+    public PathfindThenPathState(CommandSwerveDrivetrain drivetrain, Supplier<PathPlannerPath> path, PathConstraints constraints) {
+        super(drivetrain);
+
+        pathSupplier = path;
+
+        this.constraints = constraints;
+    }
+
+    public PathfindThenPathState(CommandSwerveDrivetrain drivetrain, PathPlannerPath path, double maxVel, double maxAcc) {
+        super(drivetrain);
+
+        pathSupplier = () -> path;
+
+        this.constraints = new PathConstraints(
+            maxVel, 
+            maxAcc, 
+            AutoConstants.ROTATION_MAX.getDegrees(), 
+            AutoConstants.ROTATION_MAX_A.getDegrees()
+        );
+    }
+
+    public PathfindThenPathState(CommandSwerveDrivetrain drivetrain, Supplier<PathPlannerPath> path, double maxVel, double maxAcc) {
+        super(drivetrain);
+
+        pathSupplier = path;
+
+        this.constraints = new PathConstraints(
+            maxVel, 
+            maxAcc, 
+            AutoConstants.ROTATION_MAX.getDegrees(), 
+            AutoConstants.ROTATION_MAX_A.getDegrees()
+        );
     }
 
     @Override
     public void initialize() {
         this.command = AutoBuilder.pathfindThenFollowPath(
             pathSupplier.get(),
-            new PathConstraints(
-                AutoConstants.TRANSLATION_MAX,
-                AutoConstants.TRANSLATION_MAX_A,
-                AutoConstants.ROTATION_MAX.getDegrees(),
-                AutoConstants.ROTATION_MAX_A.getDegrees()
-            )
+            constraints
         );
 
         command.initialize();

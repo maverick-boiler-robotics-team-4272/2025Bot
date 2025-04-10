@@ -33,13 +33,24 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Auto Algee",
+      "name": "Hold Algae Low",
       "waypointRelativePos": 0,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Auto Algee"
+          "name": "Hold Algae Low"
+        }
+      }
+    },
+    {
+      "name": "Auto Algee Barge ",
+      "waypointRelativePos": 0.6859547606522879,
+      "endWaypointRelativePos": 1.0,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Auto Algee Barge "
         }
       }
     }
