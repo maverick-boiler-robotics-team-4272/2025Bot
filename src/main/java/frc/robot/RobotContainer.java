@@ -533,6 +533,14 @@ public class RobotContainer {
                 new GoToArmevatorPosAndGrip(armevator, coralManipulator, L4_ARMEVATOR_POSITION)
             )
         );
+
+        NamedCommands.registerCommand("Feed to L3", 
+            new SequentialCommandGroup(   
+                new FeederManipulatorCommand(feeder, coralManipulator, armevator),
+                new GoToArmevatorPosAndGrip(armevator, coralManipulator, L3_ARMEVATOR_POSITION)
+            )
+        );
+
         NamedCommands.registerCommand("Next", 
             new GoToNextArmevatorPoseState(armevator)
                 .raceWith(new IdleState(coralManipulator, armevator::getArmRotation))
@@ -550,6 +558,22 @@ public class RobotContainer {
             )
         );
 
+        NamedCommands.registerCommand("Feed to algae",
+            new SequentialCommandGroup(   
+                new FeederManipulatorCommand(feeder, coralManipulator, armevator),
+                new GoToArmevatorPosAndGrip(armevator, coralManipulator, ALGAE_ARMEVATOR_POSITION),
+                new AlgaeIntake(algaeManipulator)
+            ).until(algaeManipulator::hasAlgae)
+        );
+
+        NamedCommands.registerCommand("Score L3", 
+            new SequentialCommandGroup(
+                new GoToArmevatorPosAndGrip(armevator, coralManipulator, L3_ARMEVATOR_POSITION),
+                new WaitCommand(0.2),
+                new CoralOutakeState(coralManipulator, 1).withTimeout(.25)
+            )
+        );
+        
         NamedCommands.registerCommand("Auto Algee Low",
             new ParallelCommandGroup(
                 new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION),
@@ -610,7 +634,8 @@ public class RobotContainer {
         autoChooser.addOption("right Four Piece", new PathPlannerAuto("Right four piece auto", false));
         autoChooser.addOption("Right four piece minimal stops", new PathPlannerAuto("Right four piece minimal stops", false));
         autoChooser.addOption("Left four piece minimal stops", new PathPlannerAuto("Left four piece minimal stops auto", false));
-        autoChooser.addOption("One Coral Two Algee auto", new PathPlannerAuto("One Coral Two Algee auto", false));
+        autoChooser.addOption("One Coral Two Algee Left auto", new PathPlannerAuto("One Coral Two Algee Left auto", false));
+        autoChooser.addOption("One Coral Two Algee Right auto", new PathPlannerAuto("One Coral Two Algee Right auto", false));
         autoChooser.addOption("Odometry test", new PathPlannerAuto("Wheel Diam"));
         autoChooser.addOption("Barge Test", new PathPlannerAuto("Barge Test"));
         //autoChooser.setDefaultOption("Output name", new PathPlannerAuto("auto name", boolean mirror same field)); //ex

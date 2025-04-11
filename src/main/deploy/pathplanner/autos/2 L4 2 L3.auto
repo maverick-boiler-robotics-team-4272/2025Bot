@@ -1,0 +1,91 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Left auto start"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score L4"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "J to Left Coral"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Left feeder to K"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score L4"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "K to left coral"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Left coral to KL Algae"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Auto Algee Low"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "KL to K"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score L3"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "K to left coral"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Left Coral to L"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score L3"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": null,
+  "choreoAuto": false
+}
