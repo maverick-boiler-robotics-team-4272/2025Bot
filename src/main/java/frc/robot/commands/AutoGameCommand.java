@@ -19,7 +19,6 @@ import frc.robot.subsystems.coralManipulator.states.CoralOutakeState;
 import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
 import frc.robot.subsystems.drivetrain.states.BrakeState;
 import frc.robot.subsystems.drivetrain.states.PathfindThenPathState;
-import frc.robot.subsystems.drivetrain.states.PathfindingState;
 import frc.robot.subsystems.feeder.Feeder;
 import frc.robot.subsystems.feeder.states.FeedState;
 
@@ -28,7 +27,7 @@ import frc.robot.subsystems.feeder.states.FeedState;
 public class AutoGameCommand extends SequentialCommandGroup {
     public AutoGameCommand(CommandSwerveDrivetrain drivetrain, Armevator armevator, Feeder feeder, CoralManipulator coralManipulator, AlgaeManipulator algaeManipulator, BooleanSupplier leaveOverride) {
         super(
-            new PathfindingState(drivetrain, drivetrain::getNextFeedPose).raceWith(
+            new PathfindThenPathState(drivetrain, drivetrain::getNextFeedPath).raceWith(
                 new WaitCommand(0.5).andThen(
                     new FeedState(feeder).alongWith(
                         new GoToArmevatorPoseState(armevator, HOME)

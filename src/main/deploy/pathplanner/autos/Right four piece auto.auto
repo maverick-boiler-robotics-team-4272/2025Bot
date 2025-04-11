@@ -11,12 +11,6 @@
           }
         },
         {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.3
-          }
-        },
-        {
           "type": "named",
           "data": {
             "name": "Score L4"
@@ -26,24 +20,6 @@
           "type": "path",
           "data": {
             "pathName": "E to right coral"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Right Coral to B"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Score L4"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "B to right coral"
           }
         },
         {
@@ -62,6 +38,24 @@
           "type": "path",
           "data": {
             "pathName": "D to right coral"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Right Coral to B"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score L4"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "B to right coral"
           }
         },
         {
