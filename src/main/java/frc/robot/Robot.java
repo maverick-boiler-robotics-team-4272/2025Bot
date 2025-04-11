@@ -46,6 +46,8 @@ public class Robot extends LoggedRobot {
       DriverStation.reportWarning(e.getMessage(), e.getStackTrace());
 
       Logger.addDataReceiver(new WPILOGWriter("/logs"));
+      SignalLogger.setPath("/logs");
+      SignalLogger.stop();
     }
     
     Logger.addDataReceiver(new NT4Publisher()); // Publish data to NetworkTables
