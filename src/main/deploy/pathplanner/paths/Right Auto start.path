@@ -8,27 +8,32 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 11.4855,
-        "y": 6.0432500000000005
+        "x": 13.157711227852154,
+        "y": 5.293272796041313
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 12.724996367057363,
-        "y": 5.410869663072235
+        "x": 12.77204861111111,
+        "y": 5.394618055555555
       },
       "prevControl": {
-        "x": 11.875499999999999,
-        "y": 5.8385
+        "x": 12.3865303306755,
+        "y": 5.4954097908449695
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "AutoTautoE"
+      "linkedName": "TautoE"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.49792531120332145,
+      "rotationDegrees": -59.99999999999999
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [
@@ -45,8 +50,8 @@
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 3.0,
-    "maxAcceleration": 2.4,
+    "maxVelocity": 4.5,
+    "maxAcceleration": 3.2,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -62,5 +67,5 @@
     "velocity": 0,
     "rotation": 0.0
   },
-  "useDefaultConstraints": false
+  "useDefaultConstraints": true
 }
