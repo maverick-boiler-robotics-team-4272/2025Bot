@@ -4,24 +4,24 @@
     {
       "anchor": {
         "x": 11.25423801369863,
-        "y": 3.9799229452054794
+        "y": 4.386
       },
       "prevControl": null,
       "nextControl": {
-        "x": 11.452206824154377,
-        "y": 4.132593669598654
+        "x": 11.590510289317717,
+        "y": 4.3967676431332725
       },
       "isLocked": false,
-      "linkedName": "Coral_GH"
+      "linkedName": null
     },
     {
       "anchor": {
         "x": 11.68,
-        "y": 4.385616438356164
+        "y": 4.386
       },
       "prevControl": {
-        "x": 11.482046322011762,
-        "y": 4.232926093635456
+        "x": 11.314529590006535,
+        "y": 4.393070142600798
       },
       "nextControl": null,
       "isLocked": false,
@@ -54,12 +54,12 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.5682415460892226
+    "rotation": 0.0
   },
   "reversed": false,
   "folder": "Approch Paths",
   "idealStartingState": {
-    "velocity": 1.0,
+    "velocity": 0.5,
     "rotation": 0.0
   },
   "useDefaultConstraints": false

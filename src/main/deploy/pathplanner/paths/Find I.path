@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 12.110702054794519,
-        "y": 2.552482876712329
+        "x": 11.840239726027399,
+        "y": 2.717765410958904
       },
       "prevControl": null,
       "nextControl": {
-        "x": 12.028633158234399,
-        "y": 2.798880294155824
+        "x": 12.115969327543963,
+        "y": 3.1513382439458546
       },
       "isLocked": false,
-      "linkedName": "Coral_IJ"
+      "linkedName": null
     },
     {
       "anchor": {
@@ -20,8 +20,8 @@
         "y": 3.093407534246575
       },
       "prevControl": {
-        "x": 12.1376920355458,
-        "y": 2.745640119116062
+        "x": 11.773621671347614,
+        "y": 2.6164442569784
       },
       "nextControl": null,
       "isLocked": false,
@@ -54,12 +54,12 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 58.72229713313359
+    "rotation": 59.99999999999999
   },
   "reversed": false,
   "folder": "Approch Paths",
   "idealStartingState": {
-    "velocity": 1.0,
+    "velocity": 0.5,
     "rotation": 59.99999999999999
   },
   "useDefaultConstraints": false

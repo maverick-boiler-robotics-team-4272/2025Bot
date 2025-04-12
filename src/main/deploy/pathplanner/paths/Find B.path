@@ -4,24 +4,24 @@
     {
       "anchor": {
         "x": 14.815325342465753,
-        "y": 3.9648972602739723
+        "y": 3.931
       },
       "prevControl": null,
       "nextControl": {
-        "x": 14.220532932815726,
-        "y": 3.8952850137673516
+        "x": 14.392524130139929,
+        "y": 3.9443999684551425
       },
       "isLocked": false,
-      "linkedName": "Coral_AB"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 14.393229166666668,
-        "y": 3.9690972222222216
+        "x": 14.38561152272892,
+        "y": 3.931
       },
       "prevControl": {
-        "x": 14.64191020794391,
-        "y": 4.012509891736545
+        "x": 14.635611150867232,
+        "y": 3.9305688031704427
       },
       "nextControl": null,
       "isLocked": false,
@@ -59,7 +59,7 @@
   "reversed": false,
   "folder": "Approch Paths",
   "idealStartingState": {
-    "velocity": 1.0,
+    "velocity": 0.5,
     "rotation": 180.0
   },
   "useDefaultConstraints": false

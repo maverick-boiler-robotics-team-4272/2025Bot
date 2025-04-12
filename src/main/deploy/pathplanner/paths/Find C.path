@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 13.958861301369863,
-        "y": 5.542594178082192
+        "x": 14.274400684931507,
+        "y": 5.392337328767123
       },
       "prevControl": null,
       "nextControl": {
-        "x": 13.992549280958853,
-        "y": 5.293295203478091
+        "x": 14.025402681134532,
+        "y": 4.945933716724577
       },
       "isLocked": false,
-      "linkedName": "Coral_CD"
+      "linkedName": null
     },
     {
       "anchor": {
@@ -20,8 +20,8 @@
         "y": 5.014577684244903
       },
       "prevControl": {
-        "x": 14.034208523133492,
-        "y": 5.275486453546581
+        "x": 14.334912181374708,
+        "y": 5.510043511549261
       },
       "nextControl": null,
       "isLocked": false,
@@ -54,12 +54,12 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -119.77369562494148
+    "rotation": -119.99999999999999
   },
   "reversed": false,
   "folder": "Approch Paths",
   "idealStartingState": {
-    "velocity": 1.0,
+    "velocity": 0.5,
     "rotation": -119.99999999999999
   },
   "useDefaultConstraints": false
