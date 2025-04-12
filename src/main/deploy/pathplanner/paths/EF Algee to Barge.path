@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 11.736818439268967,
-        "y": 4.261830237984019
+        "x": 12.599077868852458,
+        "y": 5.379610655737706
       },
       "prevControl": null,
       "nextControl": {
-        "x": 11.503560058796875,
-        "y": 4.170280398286075
+        "x": 11.340368852459015,
+        "y": 5.211782786885246
       },
       "isLocked": false,
-      "linkedName": "Auto Algee GH"
+      "linkedName": "Auto Algee EF"
     },
     {
       "anchor": {
-        "x": 9.487760416666667,
+        "x": 9.37,
         "y": 3.1445312499999996
       },
       "prevControl": {
-        "x": 10.40583319321696,
-        "y": 3.6027106296584908
+        "x": 10.165573770491802,
+        "y": 3.3057377049180325
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Right_Barge"
+      "linkedName": "AutoRightBarge"
     }
   ],
   "rotationTargets": [],
@@ -33,24 +33,13 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Hold Algae Low",
+      "name": "Hold Algae High",
       "waypointRelativePos": 0,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Hold Algae Low"
-        }
-      }
-    },
-    {
-      "name": "Auto Algee Barge ",
-      "waypointRelativePos": 0.4103103629668593,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "Auto Algee Barge "
+          "name": "Hold Algae High"
         }
       }
     }
@@ -71,7 +60,7 @@
   "folder": "Auto paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.5682415460892226
+    "rotation": -59.99999999999999
   },
   "useDefaultConstraints": false
 }

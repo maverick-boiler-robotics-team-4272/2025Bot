@@ -26,7 +26,9 @@ public class ArmevatorPositions {
 
     public static final ArmevatorPosition FEEDING_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(0), Meters.convertFrom(0.0, Inches));
 
-    public static final ArmevatorPosition ALGAE_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(37), Meters.convertFrom(4.0, Inches));
+    //Changed the position to be lower for testing, might be changed back at worlds
+    //public static final ArmevatorPosition ALGAE_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(37), Meters.convertFrom(4.0, Inches));
+    public static final ArmevatorPosition ALGAE_ARMEVATOR_POSITION = new ArmevatorPosition(Rotation2d.fromDegrees(37), Meters.convertFrom(3.0, Inches));
     public static final ArmevatorPosition ALGAE_ARMEVATOR_POSITION_TWO = new ArmevatorPosition(Rotation2d.fromDegrees(40), Meters.convertFrom(15, Inches));
 
     public static class ArmevatorPosition {

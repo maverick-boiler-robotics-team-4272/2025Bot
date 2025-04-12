@@ -677,7 +677,7 @@ public class RobotContainer {
         // autoChooser.addOption("Right Auto", new PathPlannerAuto("Right Two Piece auto", false));
         autoChooser.addOption("Right three piece auto", new PathPlannerAuto("Right three piece auto"));
         autoChooser.setDefaultOption("Left three piece auto", new PathPlannerAuto("Left three piece auto"));
-        autoChooser.setDefaultOption("Middle Auto", new PathPlannerAuto("Short Auto", false));
+        autoChooser.addOption("Middle Auto", new PathPlannerAuto("Short Auto", false));
         autoChooser.addOption("Left Four Piece", new PathPlannerAuto("Left four piece auto", false));
         autoChooser.addOption("right Four Piece", new PathPlannerAuto("Right four piece auto", false));
         // autoChooser.addOption("Right four piece minimal stops", new PathPlannerAuto("Right four piece minimal stops", false));

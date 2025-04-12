@@ -3,61 +3,55 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 11.736818439268967,
-        "y": 4.261830237984019
-      },
-      "prevControl": null,
-      "nextControl": {
-        "x": 11.503560058796875,
-        "y": 4.170280398286075
-      },
-      "isLocked": false,
-      "linkedName": "Auto Algee GH"
-    },
-    {
-      "anchor": {
         "x": 9.487760416666667,
         "y": 3.1445312499999996
       },
+      "prevControl": null,
+      "nextControl": {
+        "x": 10.25365858106865,
+        "y": 3.649896196603587
+      },
+      "isLocked": false,
+      "linkedName": "Right_Barge"
+    },
+    {
+      "anchor": {
+        "x": 12.599077868852458,
+        "y": 5.379610655737706
+      },
       "prevControl": {
-        "x": 10.40583319321696,
-        "y": 3.6027106296584908
+        "x": 11.74795081967213,
+        "y": 6.122848360655737
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Right_Barge"
+      "linkedName": "Auto Algee EF"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.8083623693379808,
+      "rotationDegrees": -59.99999999999999
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Hold Algae Low",
+      "name": "Auto Algee Low",
       "waypointRelativePos": 0,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Hold Algae Low"
-        }
-      }
-    },
-    {
-      "name": "Auto Algee Barge ",
-      "waypointRelativePos": 0.4103103629668593,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "Auto Algee Barge "
+          "name": "Auto Algee High"
         }
       }
     }
   ],
   "globalConstraints": {
     "maxVelocity": 4.5,
-    "maxAcceleration": 2.7,
+    "maxAcceleration": 3.2,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -65,13 +59,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -59.99999999999999
   },
   "reversed": false,
   "folder": "Auto paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.5682415460892226
+    "rotation": 0.0
   },
   "useDefaultConstraints": false
 }

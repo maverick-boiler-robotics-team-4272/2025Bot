@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 9.487760416666667,
+        "x": 9.370000000000001,
         "y": 3.1445312499999996
       },
       "prevControl": {
-        "x": 10.65377507173363,
+        "x": 10.536014655066964,
         "y": 3.1301129663503295
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Right_Barge"
+      "linkedName": "AutoRightBarge"
     }
   ],
   "rotationTargets": [],
@@ -46,7 +46,7 @@
   ],
   "globalConstraints": {
     "maxVelocity": 4.5,
-    "maxAcceleration": 3.0,
+    "maxAcceleration": 2.7,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,

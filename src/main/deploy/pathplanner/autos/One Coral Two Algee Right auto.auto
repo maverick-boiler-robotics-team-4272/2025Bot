@@ -1,0 +1,91 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Short Path Auto"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score L4"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "H to GH Algee"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Auto Algee Low"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "GH Algee to Barge"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Barge"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Barge Outake"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Barge to EF Algee"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Auto Algee High"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "EF Algee to Barge"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Barge"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Barge Outake"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Go home"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": null,
+  "choreoAuto": false
+}
