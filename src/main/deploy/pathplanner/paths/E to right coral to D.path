@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 12.737636028341296,
-        "y": 5.3800057578048355
+        "x": 12.77204861111111,
+        "y": 5.394618055555555
       },
       "prevControl": null,
       "nextControl": {
-        "x": 13.534109247178689,
-        "y": 6.020046329661027
+        "x": 13.568521829948503,
+        "y": 6.034658627411747
       },
       "isLocked": false,
       "linkedName": "TautoE"
@@ -92,7 +92,7 @@
   ],
   "globalConstraints": {
     "maxVelocity": 4.5,
-    "maxAcceleration": 2.7,
+    "maxAcceleration": 3.5,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,

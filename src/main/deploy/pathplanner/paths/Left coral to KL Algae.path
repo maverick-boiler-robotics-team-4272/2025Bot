@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 14.190358754007336,
-        "y": 2.226991694586344
+        "x": 13.912379538050793,
+        "y": 2.4809045298374937
       },
       "isLocked": false,
       "linkedName": "New left Coral station"
     },
     {
       "anchor": {
-        "x": 13.391884457828862,
-        "y": 2.6572550978504546
+        "x": 13.538022483287495,
+        "y": 2.664069270323491
       },
       "prevControl": {
-        "x": 15.144093902019424,
-        "y": 1.6358189562574261
+        "x": 14.421648599477239,
+        "y": 1.9593859496246018
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "AutoReefK"
+      "linkedName": "AutoKLAlgae"
     }
   ],
   "rotationTargets": [],
@@ -47,13 +47,13 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Feed to L4",
+      "name": "Feed to algae",
       "waypointRelativePos": 0.0,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Feed to L4"
+          "name": "Feed to algae"
         }
       }
     }

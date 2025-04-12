@@ -3,37 +3,32 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.569791666666666,
-        "y": 4.052951388888888
+        "x": 13.538022483287495,
+        "y": 2.664069270323491
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.8034817351598167,
-        "y": 2.7006397450532726
+        "x": 13.296613680013072,
+        "y": 2.599093969619217
       },
       "isLocked": false,
-      "linkedName": "Reef AB"
+      "linkedName": "AutoKLAlgae"
     },
     {
       "anchor": {
-        "x": 1.277,
-        "y": 1.0
+        "x": 13.391884457828862,
+        "y": 2.6572550978504546
       },
       "prevControl": {
-        "x": 2.2087756849315068,
-        "y": 2.4322773972602736
+        "x": 13.652325648774665,
+        "y": 2.7253130586452223
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Right Coral Station"
+      "linkedName": "AutoReefK"
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.6981818181818192,
-      "rotationDegrees": 55.0
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [],
@@ -47,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 52.84193852320712
+    "rotation": 119.99999999999999
   },
   "reversed": false,
-  "folder": "To Right Coral",
+  "folder": "Auto paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 119.99999999999999
   },
   "useDefaultConstraints": true
 }

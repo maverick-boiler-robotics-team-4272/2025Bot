@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 13.448729359487873,
-        "y": 2.497874706448083
+        "x": 13.424188619840168,
+        "y": 2.549303412995589
       },
       "prevControl": null,
       "nextControl": {
-        "x": 14.219714379412771,
-        "y": 2.124606590732724
+        "x": 14.071261004917725,
+        "y": 2.1196043297379874
       },
       "isLocked": false,
-      "linkedName": "FourPieceK"
+      "linkedName": "FastFourK"
     },
     {
       "anchor": {
@@ -20,28 +20,28 @@
         "y": 1.1097648456225624
       },
       "prevControl": {
-        "x": 15.177765244219067,
-        "y": 1.603107490634532
+        "x": 15.27336059458088,
+        "y": 1.671738376014455
       },
       "nextControl": {
-        "x": 16.421010468086912,
-        "y": 0.9539641702756867
+        "x": 16.41342741820758,
+        "y": 0.9173308497261913
       },
       "isLocked": false,
       "linkedName": "FourPieceLeftCoral"
     },
     {
       "anchor": {
-        "x": 13.760186643566142,
-        "y": 2.6433202079047033
+        "x": 13.753791798752763,
+        "y": 2.741719144382005
       },
       "prevControl": {
-        "x": 14.796040828978944,
-        "y": 1.7905014077754817
+        "x": 14.886199361175835,
+        "y": 1.956298989437777
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "FourPieceL"
+      "linkedName": "FastFourL"
     }
   ],
   "rotationTargets": [
@@ -88,17 +88,6 @@
           "name": "Feed to L4"
         }
       }
-    },
-    {
-      "name": "Feed to L4",
-      "waypointRelativePos": 1.0,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "Feed to L4"
-        }
-      }
     }
   ],
   "globalConstraints": {
@@ -111,13 +100,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 118.18737376457598
+    "rotation": 119.99999999999999
   },
   "reversed": false,
   "folder": "Auto paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 118.95099520746685
+    "rotation": 119.99999999999999
   },
   "useDefaultConstraints": false
 }
