@@ -248,7 +248,7 @@ public class RobotContainer {
             new SequentialCommandGroup(
                 new AutoAlgaeGrabCommand(drivetrain, armevator, algaeManipulator),
                 new AutoAlgaeScoreCommand(drivetrain, armevator, algaeManipulator)
-            )
+            ).withInterruptBehavior(InterruptionBehavior.kCancelIncoming)
             // new PathfindingState(drivetrain, drivetrain::getNearestAlgae)
         );
 
@@ -337,8 +337,11 @@ public class RobotContainer {
         );
 
         buttonBoard.getButton(11).whileTrue(
-            new BargeScoreCommand(armevator, algaeManipulator, () -> driverController.getHID().getPOV() == 270)
-                .alongWith(new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().LEFT_BARGE, getGlobalPositions().LEFT_BARGE_PATH)).ignoringDisable(true))
+            new SequentialCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().LEFT_BARGE, getGlobalPositions().LEFT_BARGE_PATH)),
+                new WaitCommand(0.1),
+                new BargeScoreCommand(armevator, algaeManipulator, () -> driverController.getHID().getPOV() == 270).ignoringDisable(false)
+            ).ignoringDisable(true)
         );
 
         buttonBoard.getButton(14).whileTrue(
