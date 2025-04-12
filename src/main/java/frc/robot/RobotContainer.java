@@ -673,19 +673,19 @@ public class RobotContainer {
         autoTab.add("SideChooser", SIDE_CHOOSER);
 
         // autoChooser.addOption("Wheel Diam", new PathPlannerAuto("Wheel Diam"));
-        autoChooser.addOption("Left Auto", new PathPlannerAuto("Left Two Piece auto", false));
-        autoChooser.addOption("Right Auto", new PathPlannerAuto("Right Two Piece auto", false));
+        // autoChooser.addOption("Left Auto", new PathPlannerAuto("Left Two Piece auto", false));
+        // autoChooser.addOption("Right Auto", new PathPlannerAuto("Right Two Piece auto", false));
         autoChooser.addOption("Right three piece auto", new PathPlannerAuto("Right three piece auto"));
         autoChooser.setDefaultOption("Left three piece auto", new PathPlannerAuto("Left three piece auto"));
         autoChooser.setDefaultOption("Middle Auto", new PathPlannerAuto("Short Auto", false));
         autoChooser.addOption("Left Four Piece", new PathPlannerAuto("Left four piece auto", false));
         autoChooser.addOption("right Four Piece", new PathPlannerAuto("Right four piece auto", false));
-        autoChooser.addOption("Right four piece minimal stops", new PathPlannerAuto("Right four piece minimal stops", false));
-        autoChooser.addOption("Left four piece minimal stops", new PathPlannerAuto("Left four piece minimal stops auto", false));
+        // autoChooser.addOption("Right four piece minimal stops", new PathPlannerAuto("Right four piece minimal stops", false));
+        // autoChooser.addOption("Left four piece minimal stops", new PathPlannerAuto("Left four piece minimal stops auto", false));
         autoChooser.addOption("One Coral Two Algee Left auto", new PathPlannerAuto("One Coral Two Algee Left auto", false));
         autoChooser.addOption("One Coral Two Algee Right auto", new PathPlannerAuto("One Coral Two Algee Right auto", false));
         autoChooser.addOption("Odometry test", new PathPlannerAuto("Wheel Diam"));
-        autoChooser.addOption("Barge Test", new PathPlannerAuto("Barge Test"));
+        // autoChooser.addOption("Barge Test", new PathPlannerAuto("Barge Test"));
         //autoChooser.setDefaultOption("Output name", new PathPlannerAuto("auto name", boolean mirror same field)); //ex
     }
 
