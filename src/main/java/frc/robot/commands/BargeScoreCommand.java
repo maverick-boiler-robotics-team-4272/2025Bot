@@ -21,7 +21,6 @@ public class BargeScoreCommand extends SequentialCommandGroup {
             ).until(release),
             new AlgaeOuttake(algaeManipulator).withTimeout(0.25)
         );
-
         addRequirements(armevator, algaeManipulator);
     }
 }

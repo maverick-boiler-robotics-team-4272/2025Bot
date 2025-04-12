@@ -8,7 +8,6 @@ import frc.robot.subsystems.feeder.Feeder;
 import frc.robot.utils.commandUtils.State;
 
 public class FeedState extends State<Feeder> {
-
   double power;
   
   public FeedState(Feeder feederSubsystem, double power) {

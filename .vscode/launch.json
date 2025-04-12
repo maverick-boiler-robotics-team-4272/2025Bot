@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "PrecomputationMain",
+      "request": "launch",
+      "mainClass": "frc.robot.precomputations.PrecomputationMain",
+      "projectName": "2025Bot"
+    },
+    {
+      "type": "java",
       "name": "Main",
       "request": "launch",
       "mainClass": "frc.robot.Main",

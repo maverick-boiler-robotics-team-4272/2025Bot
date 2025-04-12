@@ -10,7 +10,6 @@ import frc.robot.subsystems.coralManipulator.CoralManipulator;
 import frc.robot.utils.commandUtils.State;
 
 public class PositionState extends State<CoralManipulator> {
-
   double rotation;
   
   public PositionState(CoralManipulator feederSubsystem, double rotation) {

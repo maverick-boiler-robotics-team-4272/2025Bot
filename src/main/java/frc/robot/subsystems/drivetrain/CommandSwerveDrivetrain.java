@@ -95,11 +95,10 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         }
 
         inputs.nextScorePose = getGlobalPositions().CORAL_AB;
-        inputs.nextFeedPose = getGlobalPositions().CORAL_STATION_LEFT;
+        inputs.nextFeedPose = getGlobalPositions().CORAL_STATION_LEFT_FAR_POINT;
         inputs.nextBargePose = getGlobalPositions().MIDDLE_BARGE;
         nextPath = getGlobalPositions().CORAL_A;
         nextBargePath = getGlobalPositions().MIDDLE_BARGE_PATH;
-        nextAlgaePath = getGlobalPositions().SCORE_AB;
 
         inputs.getAlgae = false;
 
@@ -113,8 +112,8 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     // The next path to run when the robot is pathfinding
     private PathPlannerPath nextPath;
     private PathPlannerPath nextMiddlePath;
+    private PathPlannerPath nextFeedPath;
     private PathPlannerPath nextBargePath;
-    private PathPlannerPath nextAlgaePath;
     
     /* Blue alliance sees forward as 0 degrees (toward red alliance wall) */
     private static final Rotation2d kBlueAlliancePerspectiveRotation = Rotation2d.kZero;
@@ -202,6 +201,10 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         }
     }
 
+    public void setAlgaeGrab(boolean grab) {
+        inputs.getAlgae = grab;
+    }
+
     /**
      * @return if algae should be grabbed next cycle
      */
@@ -209,12 +212,10 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         return inputs.getAlgae;
     }
 
-    /**
-     * @return the next path to grab algae with
-     */
-    public PathPlannerPath getNextAlgaePath() {
-        return nextAlgaePath;
+    public Pose2d getNearestAlgae() {
+        return getState().Pose.nearest(getGlobalPositions().ALGAE_POSES);
     }
+
     /**
      * Sets the next pose to pathfind to and path to follow during the autoteleop gameplay for scoring
      *
@@ -251,6 +252,11 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
      */
     public void setNextFeedPose(Pose2d next) {
         inputs.nextFeedPose = next;
+    }
+
+    public void setNextFeedPose(Pose2d next, PathPlannerPath path) {
+        inputs.nextFeedPose = next;
+        nextFeedPath = path;
     }
 
     /**
@@ -306,11 +312,25 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         return nextMiddlePath;
     }
 
+    public PathPlannerPath getNextFeedPath() {
+        return nextFeedPath;
+    }
+
     /**
      * @return the next path to score in the barge
      */
     public PathPlannerPath getNextBargePath() {
         return nextBargePath;
+    }
+
+    public boolean nextAlgaeHigh() {
+        Pose2d algaePose = getNearestAlgae();
+
+        return (
+            algaePose.equals(getGlobalPositions().ALGAE_AB) ||
+            algaePose.equals(getGlobalPositions().ALGAE_EF) ||
+            algaePose.equals(getGlobalPositions().ALGAE_IJ)
+        );
     }
 
     /**
