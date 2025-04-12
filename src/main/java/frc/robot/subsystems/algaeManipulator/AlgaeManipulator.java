@@ -32,7 +32,7 @@ public class AlgaeManipulator extends SubsystemBase implements Loggable {
     public AlgaeManipulator() {
         algaeControllerMotor = VortexBuilder.create(ALGAE_MOTOR_ID)
             .withInversion(true)
-            .withCurrentLimit(30)
+            .withCurrentLimit(40)
             .withIdleMode(IdleMode.kBrake)
             .build();
 
