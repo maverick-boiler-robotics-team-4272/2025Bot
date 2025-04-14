@@ -7,7 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Left auto start"
+            "pathName": "Short Path Auto"
           }
         },
         {
@@ -19,55 +19,61 @@
         {
           "type": "path",
           "data": {
-            "pathName": "J to Left Coral"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Left Coral to A"
+            "pathName": "H to GH Algee"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Score L4"
+            "name": "Auto Algee Low"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "A to Left Coral"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Left feeder to K"
+            "pathName": "GH Algee to Barge"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Score L4"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "K to left coral"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Left Coral to L"
+            "name": "Barge"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Score L4"
+            "name": "Barge Outake"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Barge to EF Algee"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Auto Algee High"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "EF Algee to Barge"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Barge"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Barge Outake"
           }
         },
         {

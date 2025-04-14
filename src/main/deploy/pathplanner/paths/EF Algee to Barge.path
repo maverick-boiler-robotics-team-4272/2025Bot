@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 13.391884457828862,
-        "y": 2.6572550978504546
+        "x": 12.599077868852458,
+        "y": 5.379610655737706
       },
       "prevControl": null,
       "nextControl": {
-        "x": 13.943711670808625,
-        "y": 2.3653941472359157
+        "x": 11.340368852459015,
+        "y": 5.211782786885246
       },
       "isLocked": false,
-      "linkedName": "AutoReefK"
+      "linkedName": "Auto Algee EF"
     },
     {
       "anchor": {
-        "x": 16.29225,
-        "y": 1.0025
+        "x": 9.37,
+        "y": 3.1445312499999996
       },
       "prevControl": {
-        "x": 15.306395902656245,
-        "y": 1.554865540701928
+        "x": 10.165573770491802,
+        "y": 3.3057377049180325
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "New left Coral station"
+      "linkedName": "AutoRightBarge"
     }
   ],
   "rotationTargets": [],
@@ -33,31 +33,20 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Go home",
-      "waypointRelativePos": 0.04,
+      "name": "Hold Algae High",
+      "waypointRelativePos": 0,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Go home"
-        }
-      }
-    },
-    {
-      "name": "Feed to L4",
-      "waypointRelativePos": 0.6095238095238092,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "Feed to L4"
+          "name": "Hold Algae High"
         }
       }
     }
   ],
   "globalConstraints": {
     "maxVelocity": 4.5,
-    "maxAcceleration": 3.5,
+    "maxAcceleration": 2.7,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -65,13 +54,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 126.46233721780271
+    "rotation": 0.0
   },
   "reversed": false,
   "folder": "Auto paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 119.99999999999999
+    "rotation": -59.99999999999999
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

@@ -248,7 +248,7 @@ public class RobotContainer {
             new SequentialCommandGroup(
                 new AutoAlgaeGrabCommand(drivetrain, armevator, algaeManipulator),
                 new AutoAlgaeScoreCommand(drivetrain, armevator, algaeManipulator)
-            )
+            ).withInterruptBehavior(InterruptionBehavior.kCancelIncoming)
             // new PathfindingState(drivetrain, drivetrain::getNearestAlgae)
         );
 
@@ -337,8 +337,11 @@ public class RobotContainer {
         );
 
         buttonBoard.getButton(11).whileTrue(
-            new BargeScoreCommand(armevator, algaeManipulator, () -> driverController.getHID().getPOV() == 270)
-                .alongWith(new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().LEFT_BARGE, getGlobalPositions().LEFT_BARGE_PATH)).ignoringDisable(true))
+            new SequentialCommandGroup(
+                new InstantCommand(() -> drivetrain.setNextBargePose(getGlobalPositions().LEFT_BARGE, getGlobalPositions().LEFT_BARGE_PATH)),
+                new WaitCommand(0.1),
+                new BargeScoreCommand(armevator, algaeManipulator, () -> driverController.getHID().getPOV() == 270).ignoringDisable(false)
+            ).ignoringDisable(true)
         );
 
         buttonBoard.getButton(14).whileTrue(
@@ -578,6 +581,14 @@ public class RobotContainer {
                 new GoToArmevatorPosAndGrip(armevator, coralManipulator, L4_ARMEVATOR_POSITION)
             )
         );
+
+        NamedCommands.registerCommand("Feed to L3", 
+            new SequentialCommandGroup(   
+                new FeederManipulatorCommand(feeder, coralManipulator, armevator),
+                new GoToArmevatorPosAndGrip(armevator, coralManipulator, L3_ARMEVATOR_POSITION)
+            )
+        );
+
         NamedCommands.registerCommand("Next", 
             new GoToNextArmevatorPoseState(armevator)
                 .raceWith(new IdleState(coralManipulator, armevator::getArmRotation))
@@ -595,6 +606,22 @@ public class RobotContainer {
             )
         );
 
+        NamedCommands.registerCommand("Feed to algae",
+            new SequentialCommandGroup(   
+                new FeederManipulatorCommand(feeder, coralManipulator, armevator),
+                new GoToArmevatorPosAndGrip(armevator, coralManipulator, ALGAE_ARMEVATOR_POSITION),
+                new AlgaeIntake(algaeManipulator)
+            ).until(algaeManipulator::hasAlgae)
+        );
+
+        NamedCommands.registerCommand("Score L3", 
+            new SequentialCommandGroup(
+                new GoToArmevatorPosAndGrip(armevator, coralManipulator, L3_ARMEVATOR_POSITION),
+                new WaitCommand(0.2),
+                new CoralOutakeState(coralManipulator, 1).withTimeout(.25)
+            )
+        );
+        
         NamedCommands.registerCommand("Auto Algee Low",
             new ParallelCommandGroup(
                 new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION),
@@ -611,13 +638,14 @@ public class RobotContainer {
 
         NamedCommands.registerCommand("Barge",
             new SequentialCommandGroup(
-                new SequentialCommandGroup(
-                    new GoToArmevatorPoseState(armevator, BARGE_PREP_ARMEVATOR_POSITION),
-                    new GoToArmevatorPoseState(armevator, BARGE_ARMEVATOR_POSITION)
-                ).raceWith(new AlgaeIntake(algaeManipulator)).withTimeout(5)
-                .andThen(new AlgaeOuttake(algaeManipulator)).withTimeout(0.5)
-            )        
+                new GoToArmevatorPoseState(armevator, BARGE_PREP_ARMEVATOR_POSITION),
+                new GoToArmevatorPoseState(armevator, BARGE_ARMEVATOR_POSITION)
+            ).raceWith(new AlgaeIntake(algaeManipulator)).withTimeout(5)   
         );
+
+        NamedCommands.registerCommand("Barge Outake",
+            new AlgaeOuttake(algaeManipulator).withTimeout(.5)
+    );
 
         NamedCommands.registerCommand("Hold Algae Low",
             new ParallelCommandGroup(
@@ -645,18 +673,19 @@ public class RobotContainer {
         autoTab.add("SideChooser", SIDE_CHOOSER);
 
         // autoChooser.addOption("Wheel Diam", new PathPlannerAuto("Wheel Diam"));
-        autoChooser.addOption("Left Auto", new PathPlannerAuto("Left Two Piece auto", false));
-        autoChooser.addOption("Right Auto", new PathPlannerAuto("Right Two Piece auto", false));
+        // autoChooser.addOption("Left Auto", new PathPlannerAuto("Left Two Piece auto", false));
+        // autoChooser.addOption("Right Auto", new PathPlannerAuto("Right Two Piece auto", false));
         autoChooser.addOption("Right three piece auto", new PathPlannerAuto("Right three piece auto"));
         autoChooser.setDefaultOption("Left three piece auto", new PathPlannerAuto("Left three piece auto"));
-        autoChooser.setDefaultOption("Middle Auto", new PathPlannerAuto("Short Auto", false));
+        autoChooser.addOption("Middle Auto", new PathPlannerAuto("Short Auto", false));
         autoChooser.addOption("Left Four Piece", new PathPlannerAuto("Left four piece auto", false));
         autoChooser.addOption("right Four Piece", new PathPlannerAuto("Right four piece auto", false));
-        autoChooser.addOption("Right four piece minimal stops", new PathPlannerAuto("Right four piece minimal stops", false));
-        autoChooser.addOption("Left four piece minimal stops", new PathPlannerAuto("Left four piece minimal stops auto", false));
-        autoChooser.addOption("One Coral Two Algee auto", new PathPlannerAuto("One Coral Two Algee auto", false));
+        // autoChooser.addOption("Right four piece minimal stops", new PathPlannerAuto("Right four piece minimal stops", false));
+        // autoChooser.addOption("Left four piece minimal stops", new PathPlannerAuto("Left four piece minimal stops auto", false));
+        autoChooser.addOption("One Coral Two Algee Left auto", new PathPlannerAuto("One Coral Two Algee Left auto", false));
+        autoChooser.addOption("One Coral Two Algee Right auto", new PathPlannerAuto("One Coral Two Algee Right auto", false));
         autoChooser.addOption("Odometry test", new PathPlannerAuto("Wheel Diam"));
-        autoChooser.addOption("Barge Test", new PathPlannerAuto("Barge Test"));
+        // autoChooser.addOption("Barge Test", new PathPlannerAuto("Barge Test"));
         //autoChooser.setDefaultOption("Output name", new PathPlannerAuto("auto name", boolean mirror same field)); //ex
     }
 

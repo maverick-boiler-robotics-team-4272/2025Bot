@@ -4,24 +4,24 @@
     {
       "anchor": {
         "x": 11.25423801369863,
-        "y": 3.9799229452054794
+        "y": 4.085
       },
       "prevControl": null,
       "nextControl": {
         "x": 11.503960189304792,
-        "y": 3.968140118272806
+        "y": 4.073217173067327
       },
       "isLocked": false,
-      "linkedName": "Coral_GH"
+      "linkedName": null
     },
     {
       "anchor": {
         "x": 11.68,
-        "y": 4.085102739726028
+        "y": 4.085
       },
       "prevControl": {
         "x": 11.30870183972053,
-        "y": 4.093993743775396
+        "y": 4.093891004049368
       },
       "nextControl": null,
       "isLocked": false,
@@ -59,7 +59,7 @@
   "reversed": false,
   "folder": "Approch Paths",
   "idealStartingState": {
-    "velocity": 1.0,
+    "velocity": 0.5,
     "rotation": 0.0
   },
   "useDefaultConstraints": false

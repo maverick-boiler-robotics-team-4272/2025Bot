@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 12.15577910958904,
-        "y": 5.542594178082192
+        "x": 12.531421232876712,
+        "y": 5.752953767123288
       },
       "prevControl": null,
       "nextControl": {
-        "x": 12.711752884904097,
-        "y": 5.411491918942861
+        "x": 12.852707810972843,
+        "y": 5.16421900193337
       },
       "isLocked": false,
-      "linkedName": "Coral_EF"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 12.737636028341296,
-        "y": 5.3800057578048355
+        "x": 12.77204861111111,
+        "y": 5.394618055555555
       },
       "prevControl": {
-        "x": 12.42178080911552,
-        "y": 5.472595207584226
+        "x": 12.63662154186505,
+        "y": 5.6086891055194
       },
       "nextControl": null,
       "isLocked": false,
@@ -59,7 +59,7 @@
   "reversed": false,
   "folder": "Approch Paths",
   "idealStartingState": {
-    "velocity": 1.0,
+    "velocity": 0.5,
     "rotation": -59.99999999999999
   },
   "useDefaultConstraints": false

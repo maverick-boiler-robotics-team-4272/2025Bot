@@ -5,7 +5,7 @@ import static frc.robot.constants.positions.ArmevatorPositions.*;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.constants.SubsystemConstants.DrivetrainConstants.AutoConstants;
 import frc.robot.subsystems.algaeManipulator.AlgaeManipulator;
 import frc.robot.subsystems.algaeManipulator.states.AlgaeIntake;
 import frc.robot.subsystems.armevator.Armevator;
@@ -19,7 +19,7 @@ public class AutoAlgaeGrabCommand extends SequentialCommandGroup {
         super(
             new ParallelCommandGroup(
                 new GoToArmevatorPoseState(armevator, HOME),
-                new PathfindingState(drivetrain, drivetrain::getNearestAlgae)
+                new PathfindingState(drivetrain, drivetrain::getNearestAlgae, AutoConstants.LIMITED_TRANSLATION, AutoConstants.LIMITED_TRANSLATION_A)
             ),
             new ParallelCommandGroup(
                 new ConditionalCommand(
@@ -29,8 +29,8 @@ public class AutoAlgaeGrabCommand extends SequentialCommandGroup {
                 ),
                 new AlgaeIntake(algaeManipulator).until(algaeManipulator::hasAlgae)
             ),
-            new WaitCommand(0.2),
-            new RobotCentricState(drivetrain, -0.3, 0).withTimeout(0.5)
+            // new WaitCommand(0.2),
+            new RobotCentricState(drivetrain, -0.2, 0).withTimeout(0.5)
                 .raceWith(new AlgaeIntake(algaeManipulator))
         );
     }

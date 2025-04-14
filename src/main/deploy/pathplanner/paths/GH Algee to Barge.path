@@ -45,8 +45,8 @@
     },
     {
       "name": "Auto Algee Barge ",
-      "waypointRelativePos": 0.6859547606522879,
-      "endWaypointRelativePos": 1.0,
+      "waypointRelativePos": 0.4103103629668593,
+      "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
@@ -73,5 +73,5 @@
     "velocity": 0,
     "rotation": 0.5682415460892226
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

@@ -102,10 +102,7 @@ public class Feeder extends SubsystemBase implements Loggable {
   }
 
   public boolean lidarFrontTripped() {
-    if (inputs.averageFrontLidarDistance <= FEEDER_CAN_FRONT_TRIGGER_DISTANCE) {
-      return true;
-    }
-    return false;
+    return inputs.averageFrontLidarDistance <= FEEDER_CAN_FRONT_TRIGGER_DISTANCE;
   }
 
   public boolean lidarFrontNotTripped() {
@@ -113,10 +110,7 @@ public class Feeder extends SubsystemBase implements Loggable {
   }
 
   public boolean lidarBackTripped() {
-    if (inputs.averageBackLidarDistance <= FEEDER_CAN_BACK_TRIGGER_DISTANCE) {
-      return true;
-    }
-    return false;
+    return inputs.averageBackLidarDistance <= FEEDER_CAN_BACK_TRIGGER_DISTANCE;
   }
   
   public boolean lidarBackNotTripped() {

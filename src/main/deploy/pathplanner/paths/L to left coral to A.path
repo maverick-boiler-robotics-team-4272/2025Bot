@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 13.760186643566142,
-        "y": 2.6433202079047033
+        "x": 13.753791798752763,
+        "y": 2.741719144382005
       },
       "prevControl": null,
       "nextControl": {
-        "x": 14.487179199163133,
-        "y": 2.258000566964972
+        "x": 14.518564555830785,
+        "y": 2.373514974262966
       },
       "isLocked": false,
-      "linkedName": "FourPieceL"
+      "linkedName": "FastFourL"
     },
     {
       "anchor": {
@@ -20,28 +20,28 @@
         "y": 1.1097648456225624
       },
       "prevControl": {
-        "x": 15.354922114043392,
-        "y": 1.7446830726075486
+        "x": 15.401721324498233,
+        "y": 1.6267323239537426
       },
       "nextControl": {
-        "x": 16.315269634810655,
-        "y": 0.9504351241178648
+        "x": 16.388629450569326,
+        "y": 0.9190049928707891
       },
       "isLocked": false,
       "linkedName": "FourPieceLeftCoral"
     },
     {
       "anchor": {
-        "x": 14.517750000000001,
-        "y": 3.5959999999999996
+        "x": 14.479215314202365,
+        "y": 3.6117393392493913
       },
       "prevControl": {
-        "x": 14.724130690805703,
-        "y": 3.4549077944656
+        "x": 14.622593383704944,
+        "y": 3.370978078176036
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "FourPieceA"
+      "linkedName": "FastFourA"
     }
   ],
   "rotationTargets": [
@@ -111,13 +111,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -179.51853419416167
+    "rotation": 180.0
   },
   "reversed": false,
   "folder": "Auto paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 118.18737376457598
+    "rotation": 119.99999999999999
   },
   "useDefaultConstraints": false
 }

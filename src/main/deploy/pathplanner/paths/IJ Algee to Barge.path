@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 9.487760416666667,
+        "x": 9.370000000000001,
         "y": 3.1445312499999996
       },
       "prevControl": {
-        "x": 10.65377507173363,
+        "x": 10.536014655066964,
         "y": 3.1301129663503295
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Right_Barge"
+      "linkedName": "AutoRightBarge"
     }
   ],
   "rotationTargets": [],
@@ -60,7 +60,7 @@
   "folder": "Auto paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 58.72229713313359
+    "rotation": 59.99999999999999
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }
