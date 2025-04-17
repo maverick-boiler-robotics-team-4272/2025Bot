@@ -74,7 +74,7 @@ public class SubsystemConstants {
         );
         public static Limelight FRONT_LIMELIGHT = new Limelight("limelight-front");
         public static Limelight ELEVATOR_LIMELIGHT = new Limelight("limelight-elevate");
-        public static Limelight FRONT_2_LIMELIGHT = new Limelight("limelight-mid");
+        public static Limelight FRONT_2_LIMELIGHT = new Limelight("limelight");
     }
 
     public static class ArmevatorConstants {
