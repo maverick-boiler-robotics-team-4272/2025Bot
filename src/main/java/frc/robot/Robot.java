@@ -29,8 +29,10 @@ public class Robot extends LoggedRobot {
 
   @Override
   public void robotInit() {
-    UsbCamera climberCam = CameraServer.startAutomaticCapture();
-    climberCam.setFPS(10);
+    if(isReal()) {
+      UsbCamera climberCam = CameraServer.startAutomaticCapture();
+      climberCam.setFPS(10);
+    }
 
     CanBridge.runTCP();
 
@@ -38,8 +40,8 @@ public class Robot extends LoggedRobot {
 
     try {
       if(isReal()) {
-        Logger.addDataReceiver(new WPILOGWriter("/U/Logs")); // Log to a USB stick ("/U/logs")
-        SignalLogger.setPath("/U/Logs");
+        Logger.addDataReceiver(new WPILOGWriter("/home/lvuser/logs")); // Log to a USB stick ("/U/logs")
+        SignalLogger.setPath("/home/lvuser/logs");
         SignalLogger.stop();
       }
     } catch (Exception e) {
