@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 14.416925547562862,
-        "y": 3.9373483376399157
+        "x": 14.393,
+        "y": 4.0
       },
       "prevControl": null,
       "nextControl": {
-        "x": 14.878541931132386,
-        "y": 4.769580627625768
+        "x": 14.854616383569525,
+        "y": 4.832232289985852
       },
       "isLocked": false,
-      "linkedName": "AutoB"
+      "linkedName": "WorldAutoB"
     },
     {
       "anchor": {

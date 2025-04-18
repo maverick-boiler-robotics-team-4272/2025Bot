@@ -25,24 +25,6 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Right coral to D"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Score L4"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "D to right coral"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
             "pathName": "Right Coral to B"
           }
         },
@@ -56,6 +38,24 @@
           "type": "path",
           "data": {
             "pathName": "B to right coral"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Right coral to D"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score L4"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "D to right coral"
           }
         },
         {

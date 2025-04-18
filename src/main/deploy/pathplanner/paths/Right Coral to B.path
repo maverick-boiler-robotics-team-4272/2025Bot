@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 14.416925547562862,
-        "y": 3.9373483376399157
+        "x": 14.393,
+        "y": 4.0
       },
       "prevControl": {
-        "x": 14.880744552554441,
-        "y": 4.661649504406878
+        "x": 14.85681900499158,
+        "y": 4.724301166766962
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "AutoB"
+      "linkedName": "WorldAutoB"
     }
   ],
   "rotationTargets": [],

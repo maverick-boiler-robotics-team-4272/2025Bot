@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 13.839553122020725,
-        "y": 5.177285481346994
+        "x": 13.778298611111111,
+        "y": 5.15703125
       },
       "prevControl": null,
       "nextControl": {
-        "x": 14.499350800820093,
-        "y": 5.631273650171663
+        "x": 14.43809628991048,
+        "y": 5.61101941882467
       },
       "isLocked": false,
-      "linkedName": "RedReefD"
+      "linkedName": "WorldAutoD"
     },
     {
       "anchor": {
@@ -34,7 +34,7 @@
   "eventMarkers": [
     {
       "name": "Go home",
-      "waypointRelativePos": 0.04,
+      "waypointRelativePos": 0.05,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -45,7 +45,7 @@
     },
     {
       "name": "Autonomous Feed",
-      "waypointRelativePos": 0.5857142857142857,
+      "waypointRelativePos": 0.6,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
