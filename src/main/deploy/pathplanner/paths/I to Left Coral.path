@@ -3,57 +3,54 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 10.412799657534247,
-        "y": 6.143621575342466
+        "x": 12.080650684931506,
+        "y": 3.093407534246575
       },
       "prevControl": null,
       "nextControl": {
-        "x": 12.408680555555556,
-        "y": 6.135329861111111
+        "x": 13.736371527777779,
+        "y": 1.5513020833333326
       },
       "isLocked": false,
-      "linkedName": "Right Auto Start"
+      "linkedName": "Tauto I"
     },
     {
       "anchor": {
-        "x": 12.741780821919024,
-        "y": 5.392337328765202
+        "x": 16.29225,
+        "y": 1.0025
       },
       "prevControl": {
-        "x": 12.12551132039817,
-        "y": 6.00610968416663
+        "x": 14.96623263888889,
+        "y": 1.355642361111111
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "WorldsAutoE"
+      "linkedName": "New left Coral station"
     }
   ],
   "rotationTargets": [],
-  "constraintZones": [
-    {
-      "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.7,
-      "maxWaypointRelativePos": 1.0,
-      "constraints": {
-        "maxVelocity": 3.0,
-        "maxAcceleration": 2.25,
-        "maxAngularVelocity": 540.0,
-        "maxAngularAcceleration": 720.0,
-        "nominalVoltage": 12.0,
-        "unlimited": false
-      }
-    }
-  ],
+  "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Go to L4",
-      "waypointRelativePos": 0.5,
+      "name": "Go home",
+      "waypointRelativePos": 0.03771712158808921,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Go to L4"
+          "name": "Go home"
+        }
+      }
+    },
+    {
+      "name": "Feed to L4",
+      "waypointRelativePos": 0.39900744416873274,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Feed to L4"
         }
       }
     }
@@ -68,13 +65,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -60.068488159492176
+    "rotation": 126.46233721780271
   },
   "reversed": false,
   "folder": "Auto paths",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": 59.99999999999999
   },
   "useDefaultConstraints": true
 }
