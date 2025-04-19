@@ -8,13 +8,23 @@ import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
 import frc.robot.utils.commandUtils.State;
 
 public class ResetHeadingState extends State<CommandSwerveDrivetrain> {
+    Rotation2d offset;
+
     public ResetHeadingState(CommandSwerveDrivetrain drivetrain) {
         super(drivetrain);
+        
+        this.offset = Rotation2d.kZero;
+    }
+
+    public ResetHeadingState(CommandSwerveDrivetrain drivetrain, Rotation2d offset) {
+        super(drivetrain);
+
+        this.offset = offset;
     }
 
     @Override
     public void initialize() {
-        Pose2d currentPose = new Pose2d(requiredSubsystem.getState().Pose.getTranslation(), Rotation2d.fromDegrees(isRedSide() ? 180 : 0));
+        Pose2d currentPose = new Pose2d(requiredSubsystem.getState().Pose.getTranslation(), Rotation2d.fromDegrees(isRedSide() ? 180 : 0).plus(offset));
         requiredSubsystem.resetPose(currentPose);
     }
 

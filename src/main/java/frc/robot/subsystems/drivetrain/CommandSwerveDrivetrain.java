@@ -388,6 +388,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         if(limelightMeasurement != null) {
             if(
                 limelightMeasurement.tagCount > 0 && 
+                // TODO: Make this distance smaller??? or fix stupid elevator limelight
                 limelightMeasurement.avgTagDist < 3.0 && 
                 Units.radiansToRotations(getState().Speeds.omegaRadiansPerSecond) < 2.0
             ) {
