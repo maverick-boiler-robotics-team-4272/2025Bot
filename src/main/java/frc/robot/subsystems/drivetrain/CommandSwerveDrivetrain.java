@@ -47,6 +47,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     public static class DrivetrainInputs {
         public Pose2d estimatedPose; // The Fused Pose of the robot
         public SwerveModuleState moduleStates[]; // The module states of the robot
+        public boolean inputsIsSafe;
 
         public boolean fuseVison; // Is the odometry fusing
 
@@ -72,6 +73,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         inputs.fuseVison = false;
         inputs.estimatedPose = new Pose2d();
         inputs.desiredPose = new Pose2d();
+        inputs.inputsIsSafe = true;
 
         inputs.moduleStates = getState().ModuleStates;
         inputs.driveCurrents = new double[4];
@@ -97,6 +99,8 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         FRONT_2_LIMELIGHT.configure(FRONT_LIMELIGHT_2_POSE);
     }
 
+    public static boolean isSafe; //is the robot in a safe position to drive fast
+
     // The next path to run when the robot is pathfinding
     private PathPlannerPath nextPath;
     private PathPlannerPath nextMiddlePath;
@@ -117,7 +121,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
     /* Swerve request to apply during robot-centric path following */
     private final SwerveRequest.ApplyRobotSpeeds m_pathApplyRobotSpeeds = new SwerveRequest.ApplyRobotSpeeds();
-
+    
     /**
      * Constructs a CTRE SwerveDrivetrain using the specified constants.
      * <p>
@@ -174,6 +178,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
      * @param request Function returning the request to apply
      * @return Command to run
      */
+
     public Command applyRequest(Supplier<SwerveRequest> requestSupplier) {
         return run(() -> this.setControl(requestSupplier.get()));
     }
@@ -189,6 +194,33 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         }
     }
 
+    /**
+     * Is the robot in a position not close to a wall
+     * @param robotPose
+     * @return
+     */
+    //TODO: Tune these numbers
+    public void isDriveSafe(Pose2d robotPose) {
+        if(
+            robotPose.getX() > 0// || 
+            // robotPose.getX() < -9999999 ||
+            // robotPose.getY() > 99999999 ||
+            // robotPose.getY() < -9999999 
+            ) 
+        {
+            isSafe = false;
+        } else {
+            isSafe = true;
+        }
+    }
+
+    /**
+     * get Robot Pose
+     * @return
+     */
+    public Pose2d getPose() {
+        return inputs.estimatedPose;
+    }
     public void setAlgaeGrab(boolean grab) {
         inputs.getAlgae = grab;
     }
@@ -378,7 +410,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     public void setDesiredPose(Pose2d pose) {
         inputs.desiredPose = pose;
     }
-
+        
     /**
      * Fuses the vision from the limelight measurment to the estimated pose
      * 
@@ -442,7 +474,8 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         
         inputs.estimatedPose = state.Pose;
         inputs.moduleStates = state.ModuleStates;
-        
+        inputs.inputsIsSafe = isSafe;
+        isDriveSafe(inputs.estimatedPose);
         for(int i = 0; i < 4; i++) {
             var module = getModule(i);
 

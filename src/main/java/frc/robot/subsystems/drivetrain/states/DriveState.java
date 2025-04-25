@@ -10,6 +10,7 @@ import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
 import frc.robot.utils.commandUtils.State;
 
 import static frc.robot.constants.SubsystemConstants.DrivetrainConstants.TeleConstants.*;
+import static frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain.isSafe;
 
 public class DriveState extends State<CommandSwerveDrivetrain> {
     private DoubleSupplier xAxis;
@@ -32,11 +33,20 @@ public class DriveState extends State<CommandSwerveDrivetrain> {
 
     @Override
     public void execute() {
-        requiredSubsystem.setControl(
-            request
-                .withVelocityX(-xAxis.getAsDouble() * MAX_TRANSLATION)
-                .withVelocityY(-yAxis.getAsDouble() * MAX_TRANSLATION)
-                .withRotationalRate(-theta.getAsDouble() * MAX_ANGULAR)
-        );
+        if(isSafe){
+            requiredSubsystem.setControl(
+                request
+                    .withVelocityX(-xAxis.getAsDouble() * MAX_TRANSLATION)
+                    .withVelocityY(-yAxis.getAsDouble() * MAX_TRANSLATION)
+                    .withRotationalRate(-theta.getAsDouble() * MAX_ANGULAR)
+            );
+        } else {
+            requiredSubsystem.setControl(
+                request
+                    .withVelocityX(-xAxis.getAsDouble() * MAX_TRANSLATION * 0.1)
+                    .withVelocityY(-yAxis.getAsDouble() * MAX_TRANSLATION * 0.1)
+                    .withRotationalRate(-theta.getAsDouble() * MAX_ANGULAR)
+            );
+        }
     }
 }
