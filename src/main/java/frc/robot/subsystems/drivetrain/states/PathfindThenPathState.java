@@ -87,7 +87,7 @@ public class PathfindThenPathState extends State<CommandSwerveDrivetrain> {
     @Override
     public void initialize() {
         this.command = AutoBuilder.pathfindThenFollowPath(
-            pathSupplier.get(),
+            pathSupplier.get(), //TODO: this one
             constraints
         );
 
