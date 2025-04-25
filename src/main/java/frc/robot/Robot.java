@@ -30,8 +30,9 @@ public class Robot extends LoggedRobot {
   @Override
   public void robotInit() {
     UsbCamera climberCam = CameraServer.startAutomaticCapture();
-    climberCam.setFPS(10);
-
+    if(Robot.isReal()) {
+      climberCam.setFPS(10);
+    }
     CanBridge.runTCP();
 
     Logger.recordMetadata("RobotName", "2025Bot"); // Set a metadata value
