@@ -33,7 +33,8 @@ public class DriveState extends State<CommandSwerveDrivetrain> {
 
     @Override
     public void execute() {
-        if(isSafe){
+        //TODO:may be fix for drive assist if in a periodic. execute happens only once
+        if(!isSafe){
             requiredSubsystem.setControl(
                 request
                     .withVelocityX(-xAxis.getAsDouble() * MAX_TRANSLATION)

@@ -15,7 +15,10 @@ import com.ctre.phoenix6.swerve.SwerveRequest;
 import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Notifier;
@@ -29,14 +32,23 @@ import frc.robot.constants.TunerConstants.TunerSwerveDrivetrain;
 import frc.robot.utils.limelight.LimelightHelpers;
 import frc.robot.utils.logging.Loggable;
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.config.ModuleConfig;
 import com.pathplanner.lib.config.PIDConstants;
 import com.pathplanner.lib.config.RobotConfig;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 import com.pathplanner.lib.path.PathPlannerPath;
+import com.pathplanner.lib.util.DriveFeedforwards;
 import com.pathplanner.lib.util.PathPlannerLogging;
 
 import static frc.robot.constants.FieldConstants.getGlobalPositions;
 import static frc.robot.constants.SubsystemConstants.LimeLightConstants.*;
+
+import edu.wpi.first.units.measure.Mass;
+import edu.wpi.first.units.measure.MomentOfInertia;
+import edu.wpi.first.units.MassUnit;
+import edu.wpi.first.units.measure.Distance;
+
+
 
 /**
  * Class that extends the Phoenix 6 SwerveDrivetrain class and implements
@@ -183,6 +195,33 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         return run(() -> this.setControl(requestSupplier.get()));
     }
 
+    public ChassisSpeeds getCurrentSpeeds() {
+        // Converts module states to robot-relative speeds using built-in kinematics
+        return getKinematics().toChassisSpeeds(getState().ModuleStates);
+    }
+    
+    public void driveWithChassisSpeeds(ChassisSpeeds speeds, DriveFeedforwards feedforwards) {
+        this.setControl(
+            m_pathApplyRobotSpeeds
+                .withSpeeds(speeds)
+                .withWheelForceFeedforwardsX(feedforwards.robotRelativeForcesXNewtons())
+                .withWheelForceFeedforwardsY(feedforwards.robotRelativeForcesYNewtons())
+        );
+    }
+    //TODO: Fix this for AutoGameCommand robot cofig null thingy
+    Mass mass = MomentOfInertia.ofBaseUnits(1.0, MassUnit.KILOGRAM);
+    MomentOfInertia moi = new MomentOfInertia(10);  
+    ModuleConfig moduleConfig = new ModuleConfig(0.1, 5.0, 0.5, DCMotor.getCIM(2), 30, 2);
+    Translation2d[] moduleOffsets = new Translation2d[] {
+    new Translation2d(0.5, 0.5),
+    new Translation2d(0.5, -0.5),
+    new Translation2d(-0.5, 0.5),
+    new Translation2d(-0.5, -0.5)
+    };
+
+    RobotConfig config = new RobotConfig(mass, moi, moduleConfig, moduleOffsets);
+
+
     /**
      * Toggles if algae should be grabbed next cycle
      */
@@ -199,10 +238,10 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
      * @param robotPose
      * @return
      */
-    //TODO: Tune these numbers
-    public void isDriveSafe(Pose2d robotPose) {
+    //TODO: Tune these numbers and make a state (check periodic in drivetrain and remove my method implementation)
+    public void isDriveSafe() {
         if(
-            robotPose.getX() > 0// || 
+            inputs.estimatedPose.getX() > 0// || 
             // robotPose.getX() < -9999999 ||
             // robotPose.getY() > 99999999 ||
             // robotPose.getY() < -9999999 
@@ -217,7 +256,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     /**
      * get Robot Pose
      * @return
-     */
+     */ //TODO: can I use this in a Drivetrain state?
     public Pose2d getPose() {
         return inputs.estimatedPose;
     }
@@ -475,7 +514,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         inputs.estimatedPose = state.Pose;
         inputs.moduleStates = state.ModuleStates;
         inputs.inputsIsSafe = isSafe;
-        isDriveSafe(inputs.estimatedPose);
+        isDriveSafe(); //TODO: Here
         for(int i = 0; i < 4; i++) {
             var module = getModule(i);
 

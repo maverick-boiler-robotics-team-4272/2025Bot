@@ -4,6 +4,11 @@ import static frc.robot.constants.positions.ArmevatorPositions.*;
 
 import java.util.function.BooleanSupplier;
 
+import com.pathplanner.lib.config.PIDConstants;
+import com.pathplanner.lib.config.RobotConfig;
+import com.pathplanner.lib.controllers.PPHolonomicDriveController;
+
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
@@ -28,6 +33,17 @@ import frc.robot.subsystems.feeder.states.FeedState;
 public class AutoGameCommand extends SequentialCommandGroup {
     public AutoGameCommand(CommandSwerveDrivetrain drivetrain, Armevator armevator, Feeder feeder, CoralManipulator coralManipulator, AlgaeManipulator algaeManipulator, BooleanSupplier leaveOverride) {
         super(
+            new FollowPathWithCustomTolerance(
+                drivetrain.getNextFeedPath(), 
+                drivetrain::getPose, 
+                drivetrain::getCurrentSpeeds, 
+                drivetrain::driveWithChassisSpeeds, 
+                new PPHolonomicDriveController(new PIDConstants(AutoConstants.TRANSLATION_P, AutoConstants.TRANSLATION_I, AutoConstants.TRANSLATION_D), new PIDConstants(AutoConstants.ROTATION_P, AutoConstants.ROTATION_I, AutoConstants.ROTATION_D)), 
+                new RobotConfig(drivetrain.getKinematics(), new PIDConstants(AutoConstants.TRANSLATION_P, AutoConstants.TRANSLATION_I, AutoConstants.TRANSLATION_D), new PIDConstants(AutoConstants.ROTATION_P, AutoConstants.ROTATION_I, AutoConstants.ROTATION_D)), //TODO: do drivetrain Mass and MOI thingy
+                () -> false, 
+                drivetrain.getNextFeedPose(), 
+                0.01, 
+                drivetrain),
             new PathfindThenPathState(drivetrain, drivetrain::getNextFeedPath).raceWith(
                 new WaitCommand(0.5).andThen(
                     new FeedState(feeder).alongWith(
