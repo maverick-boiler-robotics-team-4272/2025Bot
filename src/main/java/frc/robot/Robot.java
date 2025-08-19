@@ -27,11 +27,13 @@ public class Robot extends LoggedRobot {
 
   private RobotContainer m_robotContainer;
 
+  private Timer m_gcTimer = new Timer;
+
   @Override
   public void robotInit() {
     UsbCamera climberCam = CameraServer.startAutomaticCapture();
     climberCam.setFPS(10);
-
+    m_gcTimer.start();
     CanBridge.runTCP();
 
     Logger.recordMetadata("RobotName", "2025Bot"); // Set a metadata value
@@ -70,7 +72,9 @@ public class Robot extends LoggedRobot {
   @Override
   public void robotPeriodic() {
     PeriodicalUtil.runPeriodics();
-
+    if(m_gcTimer.advanceIfElapsed(5)) {
+      System.gc();
+    }
     CommandScheduler.getInstance().run(); 
   }
 
