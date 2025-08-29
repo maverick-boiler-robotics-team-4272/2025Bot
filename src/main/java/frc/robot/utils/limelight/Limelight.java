@@ -16,11 +16,9 @@ public class Limelight implements Periodical, Loggable {
         boolean tV;
         Pose2d robotPose;
         double tagDist;
-        boolean use;
     }
 
     LimelightInputsAutoLogged inputs = new LimelightInputsAutoLogged();
-    inputs.use = true;
 
     private String tableName;
     
