@@ -1,5 +1,6 @@
 package frc.robot.subsystems.climber;
 
+import static frc.robot.constants.FieldConstants.LOG_COUNTER;
 import static frc.robot.constants.HardwareMap.CLIMBER_MOTOR_ID;
 
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
@@ -32,6 +33,8 @@ public class Climber extends SubsystemBase implements Loggable {
 
     @Override
     public void periodic() {
-        log("Subsystems", "Climber");
+        if(LOG_COUNTER % 20 == 0) {
+            log("Subsystems", "Climber");
+        }
     }
 }

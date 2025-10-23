@@ -1,4 +1,6 @@
 package frc.robot.utils.limelight;
+import static frc.robot.constants.FieldConstants.LOG_COUNTER;
+
 import org.littletonrobotics.junction.AutoLog;
 import org.littletonrobotics.junction.Logger;
 
@@ -85,8 +87,9 @@ public class Limelight implements Periodical, Loggable {
             inputs.tagDist = poseEstimate.avgTagDist;
         }
         inputs.tV = LimelightHelpers.getTV(tableName);
-
-        log("Limelights", tableName);
+        if(LOG_COUNTER % 10 == 0) {
+            log("Limelights", tableName);
+        }
     }
 
     @Override

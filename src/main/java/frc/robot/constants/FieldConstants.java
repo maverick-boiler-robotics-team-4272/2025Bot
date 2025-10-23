@@ -13,6 +13,8 @@ public class FieldConstants {
     public static final PositionContainer RED_POSITIONS;
     public static final PositionContainer BLUE_POSITIONS;
 
+    public static int LOG_COUNTER = 0;
+    public static boolean LOG_LOG = false;
     static {
         RED_POSITIONS = new PositionContainer(true);
         BLUE_POSITIONS = new PositionContainer(false);

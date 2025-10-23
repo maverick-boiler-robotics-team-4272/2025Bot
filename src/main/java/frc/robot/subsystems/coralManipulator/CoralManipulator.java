@@ -3,6 +3,8 @@ package frc.robot.subsystems.coralManipulator;
 import edu.wpi.first.math.geometry.Rotation2d;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+import static frc.robot.constants.FieldConstants.LOG_COUNTER;
 import static frc.robot.constants.HardwareMap.*;
 import static frc.robot.constants.SubsystemConstants.ArmevatorConstants.MAVCODER_OFFSET;
 import static frc.robot.constants.SubsystemConstants.CoralManipulatorConstants.*;
@@ -96,8 +98,9 @@ public class CoralManipulator extends SubsystemBase implements Loggable {
 
     @Override
     public void periodic() {
-        log("Subsystems", "CoralManipulator");
-        
+        if(LOG_COUNTER % 20 == 0) {
+            log("Subsystems", "CoralManipulator");
+        }
         inputs.currRotation = getWheelRotation();
         inputs.rotationError = inputs.desiredRotation.minus(inputs.currRotation);
     }

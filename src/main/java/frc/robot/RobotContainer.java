@@ -58,7 +58,7 @@ import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 
 public class RobotContainer {
-    private boolean elliott = false; //is elliot driving? //yes
+    private boolean elliott = false; //is elliot driving? //no, and this should be for Grayson...
     private boolean buttonBoardInUse = true; // Is an override tool if the button board does not work.
 
     private ShuffleboardTab autoTab;
@@ -676,7 +676,7 @@ public class RobotContainer {
         // autoChooser.addOption("Left Auto", new PathPlannerAuto("Left Two Piece auto", false));
         // autoChooser.addOption("Right Auto", new PathPlannerAuto("Right Two Piece auto", false));
         autoChooser.addOption("Right three piece auto", new PathPlannerAuto("Right three piece auto"));
-        autoChooser.setDefaultOption("Left three piece auto", new PathPlannerAuto("Left three piece auto"));
+        autoChooser.setDefaultOption("Left three piece auto", new PathPlannerAuto("Left Three Piece auto"));
         autoChooser.addOption("Middle Auto", new PathPlannerAuto("Short Auto", false));
         autoChooser.addOption("Left Four Piece", new PathPlannerAuto("Left four piece auto", false));
         autoChooser.addOption("right Four Piece", new PathPlannerAuto("Right four piece auto", false));
@@ -685,6 +685,8 @@ public class RobotContainer {
         autoChooser.addOption("One Coral Two Algee Left auto", new PathPlannerAuto("One Coral Two Algee Left auto", false));
         autoChooser.addOption("One Coral Two Algee Right auto", new PathPlannerAuto("One Coral Two Algee Right auto", false));
         autoChooser.addOption("Odometry test", new PathPlannerAuto("Wheel Diam"));
+        autoChooser.addOption("Left Three Piece plus Algae auto", new PathPlannerAuto("Left Three Piece plus Algae auto", false));
+
         // autoChooser.addOption("Barge Test", new PathPlannerAuto("Barge Test"));
         //autoChooser.setDefaultOption("Output name", new PathPlannerAuto("auto name", boolean mirror same field)); //ex
     }

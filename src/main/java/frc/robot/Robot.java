@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import static frc.robot.constants.FieldConstants.LOG_COUNTER;
+import static frc.robot.constants.FieldConstants.LOG_LOG;
+
 import org.littletonrobotics.junction.LoggedRobot;
 import org.littletonrobotics.junction.Logger;
 import org.littletonrobotics.junction.networktables.NT4Publisher;
@@ -27,13 +30,17 @@ public class Robot extends LoggedRobot {
 
   private RobotContainer m_robotContainer;
 
+  public Robot() {
+    super(0.03);
+  }
   @Override
   public void robotInit() {
-    UsbCamera climberCam = CameraServer.startAutomaticCapture();
-    climberCam.setFPS(10);
+    if(isReal()) {
+      UsbCamera climberCam = CameraServer.startAutomaticCapture();
+      climberCam.setFPS(10);
 
-    CanBridge.runTCP();
-
+      CanBridge.runTCP();
+    }
     Logger.recordMetadata("RobotName", "2025Bot"); // Set a metadata value
 
     try {
@@ -70,7 +77,8 @@ public class Robot extends LoggedRobot {
   @Override
   public void robotPeriodic() {
     PeriodicalUtil.runPeriodics();
-
+    LOG_COUNTER++;
+    
     CommandScheduler.getInstance().run(); 
   }
 

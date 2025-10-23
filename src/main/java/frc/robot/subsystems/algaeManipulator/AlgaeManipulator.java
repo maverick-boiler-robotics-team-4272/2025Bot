@@ -3,6 +3,8 @@ package frc.robot.subsystems.algaeManipulator;
 import edu.wpi.first.math.filter.MedianFilter;
 // Hardware
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
+import static frc.robot.constants.FieldConstants.LOG_COUNTER;
 import static frc.robot.constants.HardwareMap.*;
 
 import org.littletonrobotics.junction.AutoLog;
@@ -59,8 +61,9 @@ public class AlgaeManipulator extends SubsystemBase implements Loggable {
     @Override
     public void periodic() {
         inputs.hasAlgae = hasAlgae();
-
-        log("Subsystems", "AlgaeManipulator");
+        if(LOG_COUNTER % 20 == 0) {
+            log("Subsystems", "AlgaeManipulator");
+        }
     }
 }
 

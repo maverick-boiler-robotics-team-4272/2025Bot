@@ -19,6 +19,7 @@ import frc.robot.constants.positions.ArmevatorPositions.ArmevatorPosition;
 
 import static edu.wpi.first.units.Units.Inches;
 import static edu.wpi.first.units.Units.Meters;
+import static frc.robot.constants.FieldConstants.LOG_COUNTER;
 import static frc.robot.constants.HardwareMap.*;
 import static frc.robot.constants.SubsystemConstants.ArmevatorConstants.*;
 import static frc.robot.constants.positions.ArmevatorPositions.*;
@@ -257,7 +258,8 @@ public class Armevator extends SubsystemBase implements Loggable {
         inputs.limitSwitch = isLimitSwitchHit();
 
         safetyLogic();
-
-        log("Subsystems", "Armevator");
+        if(LOG_COUNTER % 20 == 0) {
+            log("Subsystems", "Armevator");
+        }
     }
 }

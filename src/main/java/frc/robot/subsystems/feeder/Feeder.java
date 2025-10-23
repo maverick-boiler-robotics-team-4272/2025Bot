@@ -19,6 +19,7 @@ import au.grapplerobotics.LaserCan;
 import au.grapplerobotics.ConfigurationFailedException;
 
 import static edu.wpi.first.units.Units.Amps;
+import static frc.robot.constants.FieldConstants.LOG_COUNTER;
 import static frc.robot.constants.HardwareMap.*;
 import static frc.robot.constants.SubsystemConstants.FeederConstants.*;
 
@@ -135,8 +136,9 @@ public class Feeder extends SubsystemBase implements Loggable {
     
     inputs.frontLidarIsTripped = lidarFrontTripped();
     inputs.backLidarIsTripped = lidarBackTripped();
-    
-    log("Subsystems", "Feeder");
+    if(LOG_COUNTER % 20 == 0) {
+      log("Subsystems", "Feeder");
+    }
   }
 
 }

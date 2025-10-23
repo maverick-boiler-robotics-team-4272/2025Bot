@@ -35,6 +35,7 @@ import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 import com.pathplanner.lib.path.PathPlannerPath;
 import com.pathplanner.lib.util.PathPlannerLogging;
 
+import static frc.robot.constants.FieldConstants.LOG_COUNTER;
 import static frc.robot.constants.FieldConstants.getGlobalPositions;
 import static frc.robot.constants.SubsystemConstants.LimeLightConstants.*;
 
@@ -450,7 +451,9 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
             inputs.driveCurrents[i] = module.getDriveMotor().getStatorCurrent().getValueAsDouble();
         }
 
-        log("Subsystems", "Drivetrain");
+        if(LOG_COUNTER % 20 == 0) {
+            log("Subsystems", "Drivetrain");
+        }
     }
 
     // Below is all the drivetrain simulation stuff...
