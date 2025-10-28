@@ -14,8 +14,7 @@ public class ResetHeadingState extends State<CommandSwerveDrivetrain> {
 
     @Override
     public void initialize() {
-        Pose2d currentPose = new Pose2d(requiredSubsystem.getState().Pose.getTranslation(), Rotation2d.fromDegrees(isRedSide() ? 180 : 0));
-        requiredSubsystem.resetPose(currentPose);
+        requiredSubsystem.resetPose(new Pose2d(requiredSubsystem.getState().Pose.getTranslation(), Rotation2d.fromDegrees(isRedSide() ? 180 : 0)));
     }
 
     @Override

@@ -4,7 +4,6 @@ import edu.wpi.first.math.geometry.Rotation2d;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static frc.robot.constants.FieldConstants.LOG_COUNTER;
 import static frc.robot.constants.HardwareMap.*;
 import static frc.robot.constants.SubsystemConstants.ArmevatorConstants.MAVCODER_OFFSET;
 import static frc.robot.constants.SubsystemConstants.CoralManipulatorConstants.*;
@@ -12,7 +11,6 @@ import static frc.robot.constants.SubsystemConstants.CoralManipulatorConstants.*
 import org.littletonrobotics.junction.AutoLog;
 import org.littletonrobotics.junction.Logger;
 
-import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.spark.SparkAbsoluteEncoder;
 import com.revrobotics.spark.config.AbsoluteEncoderConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
@@ -64,8 +62,8 @@ public class CoralManipulator extends SubsystemBase implements Loggable {
     }
 
     public void getEncoderRotation() {
-        AbsoluteEncoder encoder = coralControllerMotor.getAbsoluteEncoder();
-        encoder.getPosition();
+        // AbsoluteEncoder encoder = coralControllerMotor.getAbsoluteEncoder(); Why?
+        coralControllerMotor.getAbsoluteEncoder().getPosition();
     }
 
     public void setWheelRotation(Rotation2d rot) {
@@ -98,9 +96,7 @@ public class CoralManipulator extends SubsystemBase implements Loggable {
 
     @Override
     public void periodic() {
-        if(LOG_COUNTER % 20 == 0) {
-            log("Subsystems", "CoralManipulator");
-        }
+        log("Subsystems", "CoralManipulator");
         inputs.currRotation = getWheelRotation();
         inputs.rotationError = inputs.desiredRotation.minus(inputs.currRotation);
     }

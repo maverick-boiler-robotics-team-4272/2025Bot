@@ -56,7 +56,7 @@ public class Feeder extends SubsystemBase implements Loggable {
 
   private TalonFX feederControllerMotor;
 
-  private MedianFilter backLidarFilter = new MedianFilter(11);
+  private MedianFilter backLidarFilter = new MedianFilter(9);
   private MedianFilter frontLidarFilter = new MedianFilter(5);
 
   public Feeder() {
@@ -106,10 +106,6 @@ public class Feeder extends SubsystemBase implements Loggable {
     return inputs.averageFrontLidarDistance <= FEEDER_CAN_FRONT_TRIGGER_DISTANCE;
   }
 
-  public boolean lidarFrontNotTripped() {
-    return !lidarFrontTripped();
-  }
-
   public boolean lidarBackTripped() {
     return inputs.averageBackLidarDistance <= FEEDER_CAN_BACK_TRIGGER_DISTANCE;
   }
@@ -136,9 +132,7 @@ public class Feeder extends SubsystemBase implements Loggable {
     
     inputs.frontLidarIsTripped = lidarFrontTripped();
     inputs.backLidarIsTripped = lidarBackTripped();
-    if(LOG_COUNTER % 20 == 0) {
-      log("Subsystems", "Feeder");
-    }
+    log("Subsystems", "Feeder");
   }
 
 }

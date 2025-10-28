@@ -77,6 +77,7 @@ public class RobotContainer {
     public static final Feeder feeder = new Feeder();
     public static final Climber climber = new Climber();
 
+    //TODO: premake instant commands for setting feeder stations to minimize lmabda obect creation
     public RobotContainer() {
         setDefaultCommands();
         configureBindings();
@@ -312,7 +313,6 @@ public class RobotContainer {
 
         buttonBoard.getButton(4 + 16).whileTrue(
             new SequentialCommandGroup(
-                new InstantCommand(() -> drivetrain.setAlgaeGrab(true)),
                 new WaitCommand(0.2),
                 new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION)
                     .alongWith(new AlgaeIntake(algaeManipulator)).repeatedly()
@@ -321,7 +321,6 @@ public class RobotContainer {
 
         buttonBoard.getButton(3 + 16).whileTrue(
             new SequentialCommandGroup(
-                new InstantCommand(() -> drivetrain.setAlgaeGrab(true)),
                 new WaitCommand(0.2),
                 new GoToArmevatorPoseState(armevator, ALGAE_ARMEVATOR_POSITION_TWO)
                     .alongWith(new AlgaeIntake(algaeManipulator)).repeatedly()

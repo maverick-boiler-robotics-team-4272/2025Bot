@@ -57,8 +57,7 @@ public class Robot extends LoggedRobot {
       SignalLogger.stop();
     }
     
-    Logger.addDataReceiver(new NT4Publisher()); // Publish data to NetworkTables
-      
+    // Logger.addDataReceiver(new NT4Publisher()); // Publish data to NetworkTables... or don't
     // Logger.disableDeterministicTimestamps() // See "Deterministic Timestamps" in
     // the "Understanding Data Flow" page
     Logger.start(); // Start logging! No more data receivers, r eplay sources, or metadata values may

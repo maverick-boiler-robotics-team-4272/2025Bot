@@ -4,7 +4,6 @@ import edu.wpi.first.math.filter.MedianFilter;
 // Hardware
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import static frc.robot.constants.FieldConstants.LOG_COUNTER;
 import static frc.robot.constants.HardwareMap.*;
 
 import org.littletonrobotics.junction.AutoLog;
@@ -29,7 +28,7 @@ public class AlgaeManipulator extends SubsystemBase implements Loggable {
 
     private Vortex algaeControllerMotor;
 
-    private MedianFilter algMedianFilter = new MedianFilter(11);
+    private MedianFilter algMedianFilter = new MedianFilter(9);
 
     public AlgaeManipulator() {
         algaeControllerMotor = VortexBuilder.create(ALGAE_MOTOR_ID)
@@ -45,12 +44,8 @@ public class AlgaeManipulator extends SubsystemBase implements Loggable {
         algaeControllerMotor.set(power);
     }
 
-    public double getCurrent() {
-        return algaeControllerMotor.getOutputCurrent();
-    }
-
     public boolean hasAlgae() {
-        return algMedianFilter.calculate(getCurrent()) > 29;
+        return inputs.hasAlgae;
     }
 
     @Override
@@ -60,10 +55,8 @@ public class AlgaeManipulator extends SubsystemBase implements Loggable {
 
     @Override
     public void periodic() {
-        inputs.hasAlgae = hasAlgae();
-        if(LOG_COUNTER % 20 == 0) {
-            log("Subsystems", "AlgaeManipulator");
-        }
+        inputs.hasAlgae = algMedianFilter.calculate(algaeControllerMotor.getOutputCurrent()) > 29;
+        log("Subsystems", "AlgaeManipulator");
     }
 }
 

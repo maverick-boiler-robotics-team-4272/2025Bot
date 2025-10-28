@@ -11,7 +11,7 @@ public class CoralIntakeState extends State<CoralManipulator> {
 
   public CoralIntakeState(CoralManipulator coralSubsystem, double power) {
     super(coralSubsystem);
-    this.coralPower = power;
+    coralPower = power;
   }
 
   @Override

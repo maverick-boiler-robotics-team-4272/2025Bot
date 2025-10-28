@@ -60,7 +60,6 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         public Pose2d nextFeedPose; // The next pose to feed from
         public Pose2d nextBargePose; // The next barge pose to score algae
 
-        public boolean getAlgae; // Should the robot grab the algae after scoring a coral
     }
 
     // Logging inputs
@@ -91,8 +90,6 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         nextBargePath = getGlobalPositions().MIDDLE_BARGE_PATH;
         nextFeedPath = getGlobalPositions().CORAL_STATION_LEFT_CLOSE;
 
-        inputs.getAlgae = false;
-
         FRONT_LIMELIGHT.configure(FRONT_LIMELIGHT_POSE);
         ELEVATOR_LIMELIGHT.configure(ELEVATOR_LIMELIGHT_POSE);
         FRONT_2_LIMELIGHT.configure(FRONT_LIMELIGHT_2_POSE);
@@ -103,6 +100,8 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
     private PathPlannerPath nextMiddlePath;
     private PathPlannerPath nextFeedPath;
     private PathPlannerPath nextBargePath;
+    
+    private SwerveDriveState state;
     
     /* Blue alliance sees forward as 0 degrees (toward red alliance wall) */
     private static final Rotation2d kBlueAlliancePerspectiveRotation = Rotation2d.kZero;
@@ -177,28 +176,6 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
      */
     public Command applyRequest(Supplier<SwerveRequest> requestSupplier) {
         return run(() -> this.setControl(requestSupplier.get()));
-    }
-
-    /**
-     * Toggles if algae should be grabbed next cycle
-     */
-    public void toggleAlgae() {
-        if(inputs.getAlgae) {
-            inputs.getAlgae = false;
-        } else {
-            inputs.getAlgae = true;
-        }
-    }
-
-    public void setAlgaeGrab(boolean grab) {
-        inputs.getAlgae = grab;
-    }
-
-    /**
-     * @return if algae should be grabbed next cycle
-     */
-    public boolean getAlgae() {
-        return inputs.getAlgae;
     }
 
     public Pose2d getNearestAlgae() {
@@ -439,7 +416,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
 
         fuseOdometry();
 
-        SwerveDriveState state = getState();
+        state = getState();
         
         inputs.estimatedPose = state.Pose;
         inputs.moduleStates = state.ModuleStates;
@@ -451,9 +428,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
             inputs.driveCurrents[i] = module.getDriveMotor().getStatorCurrent().getValueAsDouble();
         }
 
-        if(LOG_COUNTER % 20 == 0) {
-            log("Subsystems", "Drivetrain");
-        }
+        log("Subsystems", "Drivetrain");
     }
 
     // Below is all the drivetrain simulation stuff...

@@ -13,7 +13,7 @@ public class IdleState extends State<CoralManipulator> {
 
     public IdleState(CoralManipulator coralManipulator, Supplier<Rotation2d> armRotation) {
         super(coralManipulator);
-        this.currentArmRotation = armRotation;
+        currentArmRotation = armRotation;
     }
 
     @Override
@@ -25,6 +25,6 @@ public class IdleState extends State<CoralManipulator> {
 
     @Override
     public void execute() {
-        requiredSubsystem.setWheelRotation(Rotation2d.fromDegrees((currentArmRotation.get().getDegrees() - startArmRotation.getDegrees()) * 1.0 + startWheelRotation.getDegrees()));
+        requiredSubsystem.setWheelRotation(Rotation2d.fromDegrees((currentArmRotation.get().getDegrees() - startArmRotation.getDegrees())/* *1.0 */ + startWheelRotation.getDegrees()));
     }
 }

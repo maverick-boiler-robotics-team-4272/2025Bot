@@ -6,17 +6,13 @@ import frc.robot.subsystems.drivetrain.CommandSwerveDrivetrain;
 import frc.robot.utils.commandUtils.State;
 
 public class BrakeState extends State<CommandSwerveDrivetrain> {
-    private SwerveDriveBrake request;
-
     public BrakeState(CommandSwerveDrivetrain drivetrain) {
         super(drivetrain);
-
-        request = new SwerveDriveBrake();
     }
 
     @Override
     public void initialize() {
-        requiredSubsystem.setControl(request);
+        requiredSubsystem.setControl(new SwerveDriveBrake());
     }
 
     @Override
